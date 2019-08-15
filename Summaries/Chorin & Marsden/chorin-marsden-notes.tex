@@ -1,0 +1,149 @@
+\documentclass[10pt,a4paper,final]{article}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\input{texHead}
+\title{Derivation of Euler's Equations via Chorin \& Marsden}
+\thispagestyle{fancy}
+\author{Sultan Aitzhan}
+\newcommand{\theshorttitle}{Notes from Chorin \& Marsden}
+\allowdisplaybreaks
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Euler's Equations}
+In this section, we derive Euler's equations for incompressible, inviscid, and irrotational flows. 
+
+Let $D$ be a region in two or three dimensional space filled with a fluid. We would like to describe the motion of such a fluid. Let $\textbf{x} = (x,y,z) \in D$ be a point in $D$ and consider the particle of fluid moving through $\textbf{x}$ at time $t.$ Let $\textbf{u}(\textbf{x},t)$ denote the velocity of the particle as it moves through $\textbf{x}$ at time $t.$ We call $\textbf{u}$ the \emph{velocity field of the fluid}. 
+
+For each $t,$ suppose there exists a well-defined mass density function $\rho(\textbf{x}, t).$ Then, if $W$ is a subregion of $D,$ the mass of fluid in $W$ at time $t$ is given by 
+\[ 
+m(W,t) = \int_W \rho(\textbf{x}, t) \D V,
+\]
+where $dV$ is the volume element in the plane or space. In what follows, we suppose that $\textbf{u}$ and $\rho$ are sufficiently smooth. We derive the equations of motion based on three main principles:
+\begin{enumerate}
+\item mass is neither created nor destroyed;
+\item the rate of change of momentum in a portion of the fluid equals the force applied to it;
+\item energy is neither created nor destroyed.
+\end{enumerate}
+
+\subsection{Conservation of Mass}
+
+Let $W$ be a subregion of $D.$ Then, the rate of change of mass in W is 
+\begin{equation}\label{CoM:eq1}
+\frac{d}{dt} m(W,t) = \frac{d}{dt} \int_W \rho(\textbf{x}, t) \D V =  \int_W \frac{\partial}{\partial t} \rho(\textbf{x}, t) \D V. 
+\end{equation}
+
+Let $\partial W$ denote the boundary of $W,$ let ${\bf n}$ denote the unit outward normal defined on points of $\partial W,$ and let $\D A$ denote the area element on $\partial W.$ Note that the volume flow rate, i.e. the volume of fluid which passes across $\partial W$ per unit time, per unit area is ${\bf u} \cdot {\bf n},$ and the mass flow rate, i.e. the mass of substance that passes across $\partial W$ per unit time, per unit area is $\rho {\bf u}\dot {\bf n}.$ In particular,  
+\begin{equation}\label{CoM:eq2}
+\mbox{the mass crossing the boundary $\partial W$ per unit time} = \int_{\partial W} \rho {\bf u} \cdot {\bf n} \D A.
+\end{equation}
+
+The principle of conservation of mass can be stated in the following way: the rate of increase of mass in $W$ equals the rate at which mass is crossing $\partial W$ in the inward direction. Using \eqref{CoM:eq1} and \eqref{CoM:eq2}, we have 
+\begin{equation}\label{CoM:eq3}
+\frac{d}{dt} \int_W \rho(\textbf{x}, t) \D V = - \int_{\partial W} \rho \textbf{u} \cdot \textbf{n} \D A.
+\end{equation}
+This is the integral form of conservation of mass principle. 
+In addition, we have the differential form of this principle, obtained as follows:
+\begin{align}
+\frac{d}{dt} \int_W \rho({\bf x}, t) \D V = \int_W \frac{\partial}{\partial t} \rho({\bf x}, t) \D V &\implies  \int_W \frac{\partial}{\partial t} \rho({\bf x}, t) \D V  = - \int_{\partial W} \rho {\bf u} \cdot {\bf n} \D A \nonumber \\
+&\implies \int_W \frac{\partial}{\partial t} \rho({\bf x}, t) \D V  + \int_{\partial W} \rho {\bf u} \cdot {\bf n} \D A = 0 \nonumber \\
+&\implies \int_W \frac{\partial}{\partial t} \rho({\bf x}, t) \D V + \int_W {\rm div} \rho {\bf u} \D V = 0 \nonumber \\
+&\implies \int_W \frac{\partial}{\partial t} \rho({\bf x}, t) +  {\rm div} \rho {\bf u} \D V = 0 \label{CoM:eq4} \\
+&\implies \frac{\partial}{\partial t} \rho({\bf x}, t) +  {\rm div} \rho {\bf u} = \frac{D\rho}{Dt} = 0
+\end{align} 
+which is obtained by applying the divergence theorem, noting that \eqref{CoM:eq4} must hold for any subregion $W$ and defining $\displaystyle\frac{D}{Dt} = \partial_t + \U\cdot \nabla$ is the \emph{material derivative}.
+
+\subsection{Balance of Momentum}
+Let ${\bf x}(t) = (x(t), y(t), z(t))$ be the trajectory followed by a fluid particle, so that the velocity is given by 
+\[ 
+{\bf u}(x(t), y(t), z(t), t) = (x\dot(t), y\dot(t), z\dot(t)) = \frac{d {\bf x} }{d t}(t).
+\]
+The acceleration of a fluid particle is given by 
+\[ {\bf a}(t) = \frac{d^2}{dt^2}{\bf x}(t) = \frac{d}{dt} {\bf u}(x(t), y(t), z(t), t),\]
+which becomes 
+\[ 
+{\bf a}(t) = \frac{\partial {\bf u}}{\partial x}\dot{x} + \frac{\partial {\bf u}}{\partial y}\dot{y} + \frac{\partial {\bf u}}{\partial z}\dot{z} + \frac{\partial {\bf u}}{\partial t}
+\]
+by chain rule. Letting
+\[ 
+{\bf u}(x,y,z,t) = (u(x,y,z,t), v(x,y,z,t), w(x,y,z,t))
+\]
+implies $u = \dot{x}, v = \dot{y}, w = \dot{z},$ so that we have 
+\[ 
+{\bf a}(t) = u\frac{\partial {\bf u}}{\partial x} + u\frac{\partial {\bf u}}{\partial y}+ z\frac{\partial {\bf u}}{\partial z} + \frac{\partial {\bf u}}{\partial t} = \partial_t {\bf u} + {\bf u} \cdot \nabla {\bf u}.
+\]
+We call the function $\frac{D}{Dt} = \partial_t + {\bf u} \cdot \nabla$ the \emph{material derivative}; it accounts for the motion of fluid and changes in the positions of fluid particles with time.
+
+Now, for any continuum, there are two types of forces acting on any piece of material. One is forces of \emph{stress}, where a piece of material on a given continuum is acted on by forces from the rest of continuum. Second, there are external forces such as body, magnetic fields, or gravity. 
+
+We start off with an \emph{ideal fluid}, which has the following property: for any motion of fluid there is a function $p(\X, t)$ called \emph{pressure} such that if $S$ is surface in the fluid with a chosen unit normal $\N,$ the force of stress exerted on $S$ per unit area at $\X \in S$ at time $t$ is $p(\X,t).$ This assumption suggests that the fluid is inviscid. If $W$ is a region in the fluid at time $t,$ the total force exerted on the fluid inside $W$ by means of stress on its boundary is 
+\[ 
+{\bf S}_{\partial W} = \{ \mbox{force on W}\} = - \int_{\partial W} p\N \D A.
+\]
+For any vector ${\bf e},$ we have 
+\begin{align*}
+{\bf e} \cdot {\bf S}_{\partial W} = - \int_{\partial W} p{\bf e} \cdot \N \D A &= - \int_{W} {\rm div}p{\bf e}\D V \\
+&= - \int_{W} p{\rm div}{\bf e} + (\nabla p) \cdot {\bf e} \D V \\
+&= - \int_{W} ({\rm grad} p) \cdot {\bf e} \D V, 
+\end{align*}
+so that 
+\begin{equation}\label{BoM:eq1}
+{\bf S}_{\partial W} = - \int_{W} {\rm grad} p \D V.
+\end{equation} 
+If ${\bf b}(\X,t)$ denotes the given body force per unit mass, the total body force is given 
+\begin{equation}\label{BoM:eq2}
+{\bf B} = \int_{W} \rho{\bf b} \D V.
+\end{equation}
+Thus, combining \eqref{BoM:eq1} and \eqref{BoM:eq2} will yield that on any piece of fluid material,
+\[ 
+\mbox{force per unit volume} = - {\rm grad} p + \rho{\bf b}.
+\]
+Now, recall that $\rho$ indicates mass and $\frac{D\U}{Dt}$ indicates acceleration. By Newton's Second law ($F = ma$), we can conclude that
+\begin{equation}\label{BoM:eq3}
+\rho\frac{D\U}{Dt} = - {\rm grad} p + \rho{\bf b}.
+\end{equation}
+This is the differential form of the principle of balance of momentum. It can be shown that the integral form of the principle is 
+\begin{equation}\label{BoM:eq4}
+\int_{W} \rho {\bf u}  \D V = - \int_{\partial W} (p\N + \rho \U(\U \cdot \N)) \D A +\int_{W} \rho{\bf b} \D V.
+\end{equation}
+\subsection{Conservation of Energy}
+We develop the final equation. For a fluid moving in a domain $D$ with velocity field $\U,$ the \emph{kinetic energy} contained in a region $W \subset D$ is 
+\[ 
+E_{\rm kinetic} = \frac{1}{2} \int_W \rho \| \U\|^2 \D V,
+\]
+where $\| \U\|^2 = (u^2 + v^2 + w^2).$ Assume that we can write $E_{\rm total} = E_{\rm kinetic} + E_{\rm internal}.$ We proceed to find an expression for $E_{\rm kinetic}.$
+
+The rate of change of kinetic energy of a moving portion $W_t$ of fluid is calculated with the aid of the transport theorem, whereby we have 
+\[ 
+\frac{d}{dt}\int_{W_t} \rho f \D V = \int_{W_t} \rho \frac{Df}{Dt} \D V.
+\]
+Then, 
+\begin{align}
+\frac{d}{dt} E_{\rm kinetic}  &=  \frac{1}{2} \frac{d}{dt} \int_{W_t} \rho \| \U\|^2 \D V \\
+&= \frac{1}{2}  \int_{W_t} \rho \frac{D \| \U\|^2}{Dt} \D V \\
+&= \frac{1}{2} \int_{W_t} 2 \rho  \U \cdot \frac{D \U}{Dt} \D V \\
+&= \int_{W_t} \rho  \U \cdot \frac{D \U}{Dt} \D V \\
+&= \int_{W_t} \rho  \U \cdot \left( \frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U \right) \D V.
+\end{align}
+
+Now, suppose that all the energy is kinetic (i.e. that the fluid is \emph{incompressible}) and that the rate of change of kinetic energy in a portion of fluid equals the rate at which the pressure and body forces do work. In other words, assume
+\[ 
+\frac{d}{dt} E_{\rm kinetic} = - \int_{\partial W_t} p \U \cdot \N \D a + \int_{W_t} \rho \U \cdot {\bf b} \D V.
+\]
+This assumption yields the following:
+\begin{align*}
+\int_{W_t} \rho  \U \cdot \left( \frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U \right) \D V &= \frac{d}{dt} E_{\rm kinetic} \\
+&= - \int_{\partial W_t} p \U \cdot \N \D A + \int_{W_t} \rho \U \cdot {\bf b} \D V &\text{(by assumption)}\\
+&= - \int_{W_t} {\rm div}\ p \U - \rho \U \cdot {\bf b} \D V &\text{(by divergence theorem)} \\
+&= - \int_{W_t} \U \cdot \nabla p - \rho \U \cdot {\bf b} \D V &\text{(since ${\rm div}\ \U = 0$)}.
+\end{align*}
+Then, for incompressible fluids, the \emph{Euler equations} are 
+\begin{align*}
+\rho\frac{D\U}{Dt} &= - {\rm grad} p + \rho{\bf b} &\text{Balance of momentum}\\ 
+\frac{D \rho}{D t} &= 0 &\text{Conservation of mass} \\
+{\rm div}\ \U &= 0 &\text{Fluid is incompressible}
+\end{align*}
+along with the boundary condition 
+\[ \U \cdot \N = 0 \quad \mbox{on } \partial D.\]
+\end{document}
