@@ -1,0 +1,208 @@
+% Preamble
+\documentclass[10pt,reqno,oneside,a4paper]{article}
+\usepackage[a4paper,includeheadfoot,left=25mm,right=25mm,top=00mm,bottom=20mm,headheight=20mm]{geometry}
+\usepackage{siunitx}
+\input{texHead}
+\author{Sultan Aitzhan}
+\title{Capstone Notes}
+\newcommand{\theshorttitle}{Capstone Notes}
+\date{\today}
+\allowdisplaybreaks
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\tableofcontents
+
+\section{Preliminaries}
+
+\subsection{Derivation of Euler's Equations}
+First, we derive Euler's equations for incompressible, irrotational, and inviscid fluids. 
+
+\subsubsection{The boundary conditions for water waves}
+
+We briefly describe the boundary conditions that define water waves problems, before diving into details. A \emph{free} surface is the fluid surface where velocity conditions do not apply, and is instead characterised by stresses exerted by the atmosphere. In general, these stresses include a viscous component, but if we can reasonably model the fluid as inviscid, then the atmosphere exerts only pressure. Pressure is often taken to be a constant (the atmospheric pressure), but it may differ in time and on different points along a surface. In addition, any surface tension effects can be present at a curved surface, thus leading to a pressure difference across the surface. This description is by no means complete, and a more comprehensive theory would include the interplay between the motion of the water surface and the air above it. However, for our case, the small density of air, \si[per-mode=symbol]{1.25 \kilogram\per\meter\cubed}, compared with that of water, \si[per-mode=symbol]{997 \kilogram\per\meter\cubed}, makes our approach viable. We refer to this condition as the \emph{dynamic boundary condition}. Another, perhaps less obvious, condition requires a statement that the surface is a surface of the fluid; that is, it is always composed of fluid particles. This means that the fluid particles are to remain on the free surface. This is called the \emph{kinematic boundary condition}, for it does not involve any action of forces. Finally, at the bottom of the fluid, we assume that the bed is impermeable. Absence of viscosity suggests that the bottom topography becomes a surface of the fluid, so that the fluid particles in contact with the bed move in this surface. As such, this condition somewhat mirrors the kinematic condition at a free surface, the notable difference being that the bottom is prescribed a priori. In our case, we also assume that the bottom surface is fixed and rigid. This is the \emph{bottom condition}.
+
+We now turn to a formulation of the condition outlined above.
+
+\subsubsection*{The Kinematic Condition}
+The free surface, whose determination is usually the aim of water-wave problems, will be represented by 
+\[ 
+z = \eta(\X_{\perp}, t),
+\]
+where $\X_{\perp}$ refers to the vector that is perpendicular to the $z$-direction; i.e. $\X = (x,y,z)=(\X_{\perp}, z).$ Now, if we require that the fluid particles remain on the surface, the surface $F(\X, t) = {\rm constant}$ must satisfy 
+\[ 
+\frac{DF}{Dt} = 0.
+\]
+Then, if $F = z -  \eta(\X_{\perp}, t) = 0,$ we must have 
+\[ 
+\frac{D}{Dt}(z -  \eta(\X_{\perp}, t)) = 0 \implies w - \{ h_t + (\U_{\perp}\cdot \nabla_{\perp})h\} = 0 \implies w = \{ h_t + (\U_{\perp}\cdot \nabla_{\perp})h\} \qquad z = \eta(\X_{\perp}, t)
+\]
+This is the kinematic condition.
+\subsubsection*{The Dynamic Condition}
+
+\subsubsection*{The Bottom Condition}
+
+
+\subsection{Euler's Equations: velocity potential and nondimensionalisation}
+
+\subsubsection{Velocity Potential Formulation}
+Second, we formulate the Euler's equation in 2 dimensions in terms of velocity potential. To begin, recall our assumption that the velocity field $\U$ is irrotational, so $\nabla \times \U = 0.$ This means that $\U$ is curl-free, and by Hemholtz' decomposition, there exists a scalar field $\phi$ such that $\U = \nabla \phi.$ We refer to $\phi$ as \emph{the velocity potential}. 
+
+Now, since the fluid is incompressible, 
+\[ 
+0 = \Div \U = \Div \nabla \phi = \nabla \cdot \nabla \phi = \Delta \phi. 
+\]
+Since we are working in 2 dimensions, $\phi$ is a function of $x,z,$ and $t.$ Thus
+\begin{equation}\label{EE-main}
+\Div \U = \phi_{xx} + \phi_{zz} = 0 \qquad x\in S\times (h, \eta).
+\end{equation}
+This is the first equation. Now, recall the bottom condition
+\[ 
+w = (\U_{\perp} \cdot \nabla_{\perp})b,
+\]
+where $w$ is the $z$-th component of $\U, \U = (\U_{\perp}, w)$ and $\nabla = (\nabla_{\perp}, \partial_z).$ Since $(u,w) = \U = \nabla \phi = (\partial_x \phi, \partial_z \phi),$ we have
+\[ 
+w = (\U_{\perp} \cdot \nabla_{\perp})b \implies \partial_z \phi = (\partial_x \phi  \partial_x)(-h) = \partial_x \phi \partial_x (-h) = 0,
+\]
+since $b = -h,$ and $h$ is fixed. Thus, we have 
+\begin{equation}\label{EE-bottom}
+\partial_z \phi = 0 \qquad z = -h.
+\end{equation}
+
+We move on to the kinematic condition at the free surface $\eta(x,t).$ The condition is given by 
+\begin{equation}\label{EE-kinematic}
+w = \eta_t + (\U_{\perp} \cdot \nabla_{\perp})\eta \implies \partial_z \phi = \eta_t + \partial_x \phi \partial_x \eta \implies \phi_z = \eta_t + \phi_x \eta_x \qquad z = \eta_(x,t).
+\end{equation}
+
+
+FInally, we derive the dynamic boundary condition. Recall the balance of momentum principle. Given a force $\mathbb{F},$ pressure $P,$ mass density $\rho,$ the balance of momentum states that 
+\[ 
+\frac{D\U}{Dt} = \frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U = -\frac{1}{\rho}\nabla P + \mathbb{F}.
+\]
+Now, suppose that $\rho$ is constant, and that we can write $\mathbb{F} = - \nabla \Omega.$ Then, 
+\begin{align*}
+\frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U = -\frac{1}{\rho}\nabla P + \mathbb{F} &\implies \frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U = - \nabla ( \frac{P}{\rho} + \Omega) \\
+&\implies \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U) - \U \times (\nabla \U) = - \nabla ( \frac{P}{\rho} + \Omega) \\
+&\implies \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U + \frac{P}{\rho} + \Omega) = \U \times (\nabla \U) \\
+&\implies \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U + \frac{P}{\rho} + \Omega) = 0, &\text{ $\U$ is irrotational}
+\end{align*}
+where the third line follows by an identity 
+\[
+(\U \cdot \nabla) \U + \U \times (\nabla \U) = \nabla (\frac{1}{2} \U \cdot \U).
+\]
+Now, since $\U = \nabla \phi,$ it follows that 
+\[ 
+\frac{\partial \U}{\partial t} = \nabla \phi_t \quad \U \cdot \U = \begin{bmatrix} \partial_x \phi \\ \partial_z \phi \end{bmatrix} \cdot \begin{bmatrix} \partial_x \phi \\ \partial_z \phi \end{bmatrix} = \phi_x^2 + \phi_z^2.
+\]
+Thus, we have 
+\begin{align*}
+\frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U + \frac{P}{\rho} + \Omega) = 0 &\implies \nabla \phi_t  + \nabla (\frac{1}{2} (\phi_x^2 + \phi_z^2) + \frac{P}{\rho} + \Omega) = 0 \\
+&\implies \nabla(\phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + \frac{P}{\rho} + \Omega) = 0 \\
+&\implies \phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + \frac{P}{\rho} + \Omega = 0 \\
+&\implies \phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + \Omega = -  \frac{P}{\rho}.
+\end{align*}
+Assume that $\Omega = g z,$ where $g$ is gravitational constant, and that pressure is given by $P = -\sigma/H,$ where $\frac{1}{H}$ is the mean curvature. It is a well-known fact that the mean curvature can be expressed as 
+\[ 
+\frac{1}{H} = \frac{\eta_{xx}}{(1+\eta_x^2)^{3/2}}.
+\]
+Substituting the above into the equation and evaluating at the free surface yields 
+\begin{equation}\label{EE-dynamic}
+\phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + g\eta = \frac{\sigma}{\rho} \frac{\eta_{xx}}{(1+\eta_x^2)^{3/2}} \qquad z = \eta(x, t),
+\end{equation} 
+which is the dynamic boundary condition, where we also substituted $\Omega = gz$. Altogether, the problem becomes:
+\begin{align*}
+\phi_{xx} + \phi_{zz} &= 0 &x &\in S\times [-h, \eta] \\
+\partial_z \phi &= 0 &z &= -h \\
+\eta_t + \phi_x \eta_x &= \phi_z &z &= \eta_(x,t) \\
+\phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + g\eta &= \frac{\sigma}{\rho} \frac{\eta_{xx}}{(1+\eta_x^2)^{3/2}} &z &= \eta(x, t).
+\end{align*}
+
+\subsubsection{Nondimensionalisation}
+Having expressed the Euler's equations in the velocity potential, we'd like to non-dimeonsionalise the problem so that we can perform various approximations. Define new dimensionless variables as follows:
+\[ 
+z^* = \frac{1}{h}z \qquad x^* = \frac{\sqrt{\epsilon}}{h}x \qquad t^* = \sqrt{\frac{\epsilon g}{h}}t \qquad \eta = \epsilon h \eta^* \qquad \phi  = h\sqrt{\epsilon g h} \phi^*.
+\]
+First, note that 
+\[ 
+\phi^*_{xx} = \frac{\partial}{\partial x} \left( \frac{\partial \phi^*}{\partial x}\right) = \frac{\partial}{\partial x} \left( \frac{\partial \phi^*}{\partial x^*} \frac{\partial x^*}{\partial x}\right) =  \frac{\sqrt{\epsilon}}{h} \frac{\partial}{\partial x} \left( \frac{\partial \phi^*}{\partial x^*}\right) = \frac{\sqrt{\epsilon}}{h} \frac{\partial}{\partial x} \left( \frac{\partial \phi^*}{\partial x^*}\right) = \frac{\sqrt{\epsilon}}{h} \frac{\partial^2 \phi^*}{\partial (x^*)^2} \frac{\partial x^*}{\partial x} = \frac{\epsilon}{h^2}\frac{\partial^2 \phi^*}{\partial (x^*)^2},
+\]
+and
+\[ 
+\phi^*_{zz} = \frac{\partial}{\partial z} \left( \frac{\partial \phi^*}{\partial z}\right) = \frac{\partial}{\partial z} \left( \frac{\partial \phi^*}{\partial z^*} \frac{\partial z^*}{\partial z}\right) =  \frac{1}{h} \frac{\partial}{\partial z} \left(\frac{\partial \phi^*}{\partial z^*}\right) = \frac{1}{h} \frac{\partial}{\partial z} \left( \frac{\partial \phi^*}{\partial z^*}\right) = \frac{1}{h} \frac{\partial^2 \phi^*}{\partial (z^*)^2} \frac{\partial z^*}{\partial z} = \frac{1}{h^2}\frac{\partial^2 \phi^*}{\partial (z^*)^2},
+\]
+so that 
+\[ 
+\phi_{xx} = h\sqrt{\epsilon g h} \phi^*_{xx} = h\sqrt{\epsilon g h} \frac{\epsilon}{h^2}\frac{\partial^2 \phi^*}{\partial (x^*)^2}  = \sqrt{\epsilon g h} \frac{\epsilon}{h}\frac{\partial^2 \phi^*}{\partial (x^*)^2} 
+\]
+and
+\[ 
+\phi_{zz} = h\sqrt{\epsilon g h} \phi^*_{zz} = h\sqrt{\epsilon g h} \frac{1}{h^2}\frac{\partial^2 \phi^*}{\partial (x^*)^2}  = \sqrt{\epsilon g h} \frac{1}{h}\frac{\partial^2 \phi^*}{\partial (x^*)^2}. 
+\]
+Thus, we can transform the main equation as follows:
+\[ 
+0 = \phi_{xx} + \phi_{zz} =  \sqrt{\epsilon g h} \frac{\epsilon}{h}\frac{\partial^2 \phi^*}{\partial (x^*)^2} + \sqrt{\epsilon g h} \frac{1}{h}\frac{\partial^2 \phi^*}{\partial (z^*)^2},
+\]
+so that 
+\[ 
+\epsilon \frac{\partial^2 \phi^*}{\partial (x^*)^2}  + \frac{\partial^2 \phi^*}{\partial (z^*)^2} = 0
+\]
+is the dimensionless version of \eqref{EE-main}. The interval $z \in (h, \eta)$ becomes $hz^* \in [-h, \epsilon h \eta^*],$ so that $z^* \in [-1, \epsilon \eta^*].$
+
+Now, note that 
+\begin{align*}
+\phi^*_z &= \frac{\partial \phi^*}{\partial z^*} \frac{\partial z^*}{\partial z} = \frac{1}{h} \frac{\partial \phi^*}{\partial z^*} &\implies \phi_z = h\sqrt{\epsilon g h}\phi^*_z = \sqrt{\epsilon g h} \frac{\partial \phi^*}{\partial z^*}; \\
+\phi^*_x &= \frac{\partial \phi^*}{\partial z^*} \frac{\partial x^*}{\partial x} = \frac{\sqrt{\epsilon}}{h} \frac{\partial \phi^*}{\partial x^*} &\implies \phi_x = h\sqrt{\epsilon g h}\phi^*_x = \epsilon\sqrt{g h} \frac{\partial \phi^*}{\partial x^*};\\
+\eta^*_t &= \frac{\partial \eta^*}{\partial t^*} \frac{\partial t^*}{\partial t} = \sqrt{\frac{\epsilon g}{h}} \frac{\partial \eta^*}{\partial t^*} &\implies \eta_t = \epsilon h \eta^*_t = \epsilon \sqrt{\epsilon g h} \frac{\partial \eta^*}{\partial t^*};\\
+\eta^*_x &= \frac{\partial \eta^*}{\partial x^*} \frac{\partial x^*}{\partial x} = \frac{\sqrt{\epsilon}}{h} \frac{\partial \eta^*}{\partial t^*} &\implies \eta_x = \epsilon h \eta^*_x = \epsilon \sqrt{\epsilon} \frac{\partial \eta^*}{\partial x^*}; \\
+z& = -h \implies hz^*= - h &\implies z^* = -1;\\
+z& = \eta(x,t) \implies hz^* = \epsilon h \eta^*(hx^*/\sqrt{\epsilon}, t^* h / \epsilon g) &\implies z^* = \epsilon \eta^*(hx^*/\sqrt{\epsilon}, t^* h / \epsilon g).
+\end{align*}
+Using the above relations, we rewrite the bottom condition and the kinematic condition:
+\begin{align*}
+\phi_z = 0 &\implies \sqrt{\epsilon g h} \frac{\partial \phi^*}{\partial z^*} = 0 \implies \frac{\partial \phi^*}{\partial z^*} = 0 &z^* &= -1; \\
+\eta_t + \phi_x \eta_x = \phi_z &\implies  \epsilon \sqrt{\epsilon g h} \frac{\partial \eta^*}{\partial t^*} + \epsilon^2 \sqrt{\epsilon g h} \frac{\partial \phi^*}{\partial x^*} \frac{\partial \eta^*}{\partial x^*} = \sqrt{\epsilon g h} \frac{\partial \phi^*}{\partial z^*} \\
+&\implies  \epsilon \frac{\partial \eta^*}{\partial t^*} + \epsilon^2 \frac{\partial \phi^*}{\partial x^*} \frac{\partial \eta^*}{\partial x^*} =  \frac{\partial \phi^*}{\partial z^*}  &z^* &= \epsilon\eta^*(x,t).
+\end{align*}
+At last, observe that 
+\[ 
+\phi^*_t = \frac{\partial \phi^*}{\partial t^*} \frac{\partial t^*}{\partial t} =  \sqrt{\frac{\epsilon g}{h}} \frac{\partial \phi^*}{\partial t^*} \implies \phi_t = h \sqrt{\epsilon g h}\phi^*_t = h\epsilon g \frac{\partial \phi^*}{\partial t^*}.
+\]
+We use the expression for $\phi_t,$ as well as expressions of $\phi_x, \phi_z$ to non-dimensionalise the dynamic condition. For convenience, set the surface tension $\sigma =0.$ Then,
+\begin{align*}
+0 = \phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + g\eta &=  \phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + g\eta \\
+&= \epsilon h g \frac{\partial \phi^*}{\partial t^*} + \frac{1}{2} \left( \epsilon\sqrt{g h} \frac{\partial \phi^*}{\partial x^*}\right)^2 +  \frac{1}{2}\left(\sqrt{\epsilon g h} \frac{\partial \phi^*}{\partial z^*}\right)^2 + g \epsilon h \eta^* \\
+&= \epsilon h g \frac{\partial \phi^*}{\partial t^*} + \frac{1}{2}  \epsilon^2 g h \left(\frac{\partial \phi^*}{\partial x^*}\right)^2 +  \frac{1}{2} \epsilon g h \left(\frac{\partial \phi^*}{\partial z^*}\right)^2 + g \epsilon h \eta^*,
+\end{align*}
+which implies 
+\begin{align*}
+\frac{\partial \phi^*}{\partial t^*} + \frac{1}{2}  \epsilon \left(\frac{\partial \phi^*}{\partial x^*}\right)^2 +  \frac{1}{2} \left(\frac{\partial \phi^*}{\partial z^*}\right)^2 + \eta^*  &= 0 &z &= \eta(x, t).
+\end{align*}
+
+\subsection{Euler's Equations: non-local formulation}
+
+\section{The Whole-Line problem}
+
+\subsection{Derivation of Wave \& KdV equations}
+
+\subsubsection{Via velocity potential formulation}
+
+\subsubsection{Via non-local formulation}
+
+\section{The Half-Line problem}
+
+\subsection{Determining the boundary conditions}
+
+\subsection{Determining the non-local formulation}
+
+\subsection{Derivation of Wave \& KdV equations}
+
+\subsubsection{Via velocity potential formulation}
+
+\subsubsection{Via non-local formulation}
+
+% \clearpage
+\bibliographystyle{amsplain}
+{\small\bibliography{references}}
+
+\end{document}

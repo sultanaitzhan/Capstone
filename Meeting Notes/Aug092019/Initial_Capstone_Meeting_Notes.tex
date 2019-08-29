@@ -1,0 +1,105 @@
+\documentclass[a4paper,reqno]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\title{Initial Meeting Notes - Preparation for Semester 1 Capstone}
+\author{Katie Oliveras}
+\date{Post-Meeting Summary\\Last Updated: \today}
+
+\begin{document}
+\maketitle
+\section{Action Items}
+    This section will contain a list of tasks assigned from the inital meeting.  Items may be referenced in more detail within the following sections of the document.  
+    \begin{itemize}
+        \item \textbf{Meeting} Schedule for August 13 at 3:00pm SG time.  
+        \item \textbf{Logistics} Please consider/begin the following:
+            \begin{enumerate}
+                \item Draft project proposal summary and project workflow.  
+                \item How do you want to save/share writeups, etc.
+            \end{enumerate}
+        \item \textbf{Research}
+            \begin{enumerate}
+                
+                \item \emph{Derivation of Euler}. Read through Sections 1.1, 1.2, and 2.1 from \cite{chorin1990mathematical}.   
+                \item \emph{Derivation of Euler}. Read Chapter 1 of \cite{johnson1997modern}.
+                \item \emph{Euler for Irrotational Flow}.  It's important to note that many people formulation the free-surface problem in terms of $u(x,z,t)$, $v(x,z,t)$, $p(x,z,t)$, and $\eta(x,t)$.  That is, in terms of the bulk velocities, the pressure, and the free surface.  However, in \eqref{eqn:oEuler1}-\eqref{eqn:oEuler4}, the problem is formulated in terms of a velocity potential $\phi(x,z,t)$ and $\eta(x,t)$.  Section 1.1.3 from \cite{johnson1997modern} has a good discussion of this difference (rotational vs. irrotational).
+                \item Compare derivations and information from both \cite{chorin1990mathematical,johnson1997modern}.
+                \item Choose either the scaling in Section 4.1 from \cite{deconinckNotes} or those given in Section 1.3 of \cite{johnson1997modern}.  Your choice (note the differences).  Nondimensionalize Euler's equations in the velocity potential formulation.
+                \item Derive the wave equation from the Euler's equations.  You may find the discussion in Section 4.1.4 from \cite{deconinckNotes} useful.
+                \item \emph{Background knowledge.} Watch these videos \href{https://www.youtube.com/playlist?list=PLfF--3o8i4r82vJ0kjCVYgqKgyVM5QwN0}{YouTube MIT playlist}
+            \end{enumerate}
+    \end{itemize}
+
+
+\section{Research Objective}
+    Assuming an irrotational, inviscid and incompressible flow, the governing equations for the fluid surface $\eta(x,t)$ and velocity potential $\phi(x,z,t)$ are given by
+    $a^2$
+    \begin{align}
+    &\phi_{xx}+\phi_{zz}= 0,   &(x,z) \in S\times[-h,\eta], \label{eqn:oEuler1}\\
+    &\phi_z = 0, &z= -h, \label{eqn:oEuler2}\\
+    &\eta_t + \eta_x\phi_x  = \phi_z, &z = \eta(x,t), \label{eqn:oEuler3}\\
+    &\displaystyle\phi_t + \frac{1}{2}\left(\phi_{x}^2  + \phi_z^2\right) + g\eta = \frac{\sigma}{\rho}\frac{\eta_{xx}}{\left(1+\eta_x^2\right)^{3/2}},  &z = \eta(x,t),\label{eqn:oEuler4}
+    \end{align}
+    \noindent where $S$ is a subset of $\mathbb{R}$, $z$ is the vertical coordinate, $g$ is the acceleration of gravity, $h$ is the constant depth of the fluid when at a state of rest, $\sigma$ represents the coefficient of surface tension, and $\rho$ is the constant fluid density.   From these equations, we would like to derive asymptotic models that incorporate more general boundary conditions such as the \emph{half-line problem}but from the perspective a single equation for $\eta(x,t)$ that encapsulates the full dynamics.  This single equation is given by 
+    \begin{equation}
+        \partial_t\left(\mathcal{H}(\eta,D)\big\lbrace\eta_t\rbrace\right) + \partial_x\left(\frac{1}{2}\left(\mathcal{H}(\eta,D)\big\lbrace\eta_t\rbrace\right)^2 + g\eta - \frac{1}{2}\frac{\left(\eta_t+\eta_x\mathcal{H}(\eta,D)\big\lbrace\eta_t\rbrace\right)^2}{1 + \eta_x^2}\right) = 0.\label{eqn:singleEquation}
+        \end{equation}
+    where the operator $\mathcal{H}(\eta,D)$ is defined via the equation
+    \begin{align}
+        \int_{-\infty}^{\infty} e^{-i{k} x}\left[ i\cosh(|{k}|(\eta+h))f( x) - \sinh(k(\eta+h))\mathcal{H}(\eta,D)\lbrace f( x)\rbrace \right]d x = 0.\label{MFA}
+    \end{align} It is worth noting that the above definition for $\mathcal{H}(\eta,D)$ is only formulated for the infinite-line problem where we have assumed that $\phi,\eta \to 0$ as $\vert x \vert \to \infty$.  Part of this project would be to extend the above definition of $\mathcal{H}(\eta,D)$ to problems posed on the half-line.
+
+
+
+    \subsection{Potential Workflow}
+
+        \subsubsection{The whole-line problem.}
+        \begin{itemize}
+            \item \textit{Background: Equations of Motion (velocity potiential formulation).} Understand the derivation of the Euler equations for inviscid, irrotational flow. This also includes the traditional non-dimensionalization for the Euler equations.                Potential references include \cite{johnson1997modern} and Section 4.1.4 of \cite{deconinckNotes}.  Specifically, following the scalings outlined in \cite{deconinckNotes}, the equations become
+             \begin{align}
+                &\phi_{xx}+\epsilon\phi_{zz}= 0,   &(x,z) \in S\times[-1,\epsilon\eta], \label{eqn:ndEuler1}\\
+                &\phi_z = 0, &z= -1, \label{eqn:ndEuler2}\\
+                &\epsilon\eta_t + \epsilon^2\eta_x\phi_x  = \phi_z, &z = \epsilon\eta(x,t), \label{eqn:ndEuler3}\\
+                &\displaystyle\phi_t + \frac{1}{2}\left(\phi_{x}^2  + \phi_z^2\right) + \eta = 0,  &z = \epsilon\eta(x,t),\label{eqn:ndEuler4}
+                \end{align}
+                where surface tension has been ignored ($\sigma = 0$). 
+            \item \textit{Background: Equations of Motion (nonlocal formulation).} Understand the derivation of the single equation given by \eqref{eqn:singleEquation} as discussed in \cite{oliverasNotesOneD}.  Re-derive \eqref{eqn:singleEquation} as well as \eqref{MFA} beginning from the nondimensional equations \eqref{eqn:ndEuler1}-\eqref{eqn:ndEuler4}.
+            \item \textit{Derivation: Model Equations.}  Using both  \eqref{eqn:ndEuler1}-\eqref{eqn:ndEuler4} and the nondimensional version of \eqref{eqn:singleEquation}, derive the wave equation, and the Boussinesq equation (see Section 4.1.8 from \cite{deconinckNotes}).  Compare the derivation methods using both models and discuss the results.  \emph{The derivation using the single equation will be a new result. }
+        \end{itemize}
+        \subsubsection{The half-line problem.}
+            \begin{itemize}
+                \item \textit{Determining the boundary conditions.}  Determine the appropriate boundary conditions for the half-line problem.
+                \item \textit{Derivation via the nonlocal formulation.}  Derive the appropriate nonlocal version of \eqref{MFA} in nondimensional variables.
+                \item \textit{Asymptotic Models.} Derive the half-line versions of the wave-equation and the Boussinesq equation from both model formulations (traditional and nonlocal single equation).  \emph{This will be a new result.}
+            \end{itemize}
+        \subsubsection{Exploratory analysis.}
+            At this point, all of the results will be new.  There will be many different avenues for exploration and will be pursued according to expressed interest.  These projects include, new asymptotic models and comparisons, numerical simulation of model equations, comparsions of various model equations, uni-directional assumptions and their validity on the half-line, analysis, and much more.  
+    \subsection{Responsibilities}
+        \begin{itemize}
+            \item Find references for items as indicated.  Share these references with KO for validation.  
+            \item Provide weekly updates.
+            \item Document weekly progress using \LaTeX.
+            \item Send \emph{post-meeting} summaries.
+            \item Expected to spend at least 9 hours each week working on projects related to the project.  \emph{This is an average that can be adjusted depending on school schedule.}
+        `   \item Encouraged to participate in the Putnam competition and MCM mathematical modeling competition.
+            \item Apply for some form of funding during the year (travel funding, \ etc.)
+            \item Follow the Capstone guidelines provided by Yale-NUS.
+        \end{itemize}
+
+    \section{Logistics}
+        \begin{itemize}
+            \item \textit{Write your own version of the project description}.  Complete proposal form. Based on the information outlined below, propose a breakdown of goals and objectives to be carried out in both Semesters 1 and 2. I will validate the timeline.  \emph{If you could get this to KO \underline{before} the 26th, it would be helpful as KO will be traveling the 26 - 30.}
+            \item \textit{Propose project workflow}.  This will include several items including (but not limited to)
+                \begin{itemize}
+                    \item Content sharing.  Git, Trello, etc.
+                    \item Task management.  Think about how you want to organize tasks, and completion status.  KO will provide feedback.  
+                    \item Weekly meetings. \emph{KO proposes to begin weekly meetings either Monday or Thursday mornings SG time.  These would begin the week of Sept 20.  Until then, we can schedule meetings on an as-needed basis according to current schedule.}
+                \end{itemize}
+            \item \textit{Complete proposal form.} Using the above items, please submit your project proposal form.
+            \item \textit{Consider travel funding request.} There is a conference October 18-20 in Seattle.  There may be funding to attend via Yale-NUS.  We could also use this time to collaborate during the time.  
+        \end{itemize}
+            
+\bibliographystyle{plain}
+\bibliography{references.bib}
+\end{document}

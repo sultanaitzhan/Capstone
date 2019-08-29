@@ -1,0 +1,17 @@
+\BOOKMARK [1][-]{section.1}{Preliminaries}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Derivation of Euler's Equations}{section.1}% 2
+\BOOKMARK [3][-]{subsubsection.1.1.1}{The boundary conditions for water waves}{subsection.1.1}% 3
+\BOOKMARK [2][-]{subsection.1.2}{Euler's Equations: velocity potential and nondimensionalisation}{section.1}% 4
+\BOOKMARK [3][-]{subsubsection.1.2.1}{Velocity Potential Formulation}{subsection.1.2}% 5
+\BOOKMARK [3][-]{subsubsection.1.2.2}{Nondimensionalisation}{subsection.1.2}% 6
+\BOOKMARK [2][-]{subsection.1.3}{Euler's Equations: non-local formulation}{section.1}% 7
+\BOOKMARK [1][-]{section.2}{The Whole-Line problem}{}% 8
+\BOOKMARK [2][-]{subsection.2.1}{Derivation of Wave \046 KdV equations}{section.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Via velocity potential formulation}{subsection.2.1}% 10
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Via non-local formulation}{subsection.2.1}% 11
+\BOOKMARK [1][-]{section.3}{The Half-Line problem}{}% 12
+\BOOKMARK [2][-]{subsection.3.1}{Determining the boundary conditions}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.2}{Determining the non-local formulation}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.3}{Derivation of Wave \046 KdV equations}{section.3}% 15
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Via velocity potential formulation}{subsection.3.3}% 16
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Via non-local formulation}{subsection.3.3}% 17
