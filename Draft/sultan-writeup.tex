@@ -23,7 +23,7 @@ First, we derive Euler's equations for incompressible, irrotational, and invisci
 
 We briefly describe the boundary conditions that define water waves problems, before diving into details. A \emph{free} surface is the fluid surface where velocity conditions do not apply, and is instead characterised by stresses exerted by the atmosphere. In general, these stresses include a viscous component, but if we can reasonably model the fluid as inviscid, then the atmosphere exerts only pressure. Pressure is often taken to be a constant (the atmospheric pressure), but it may differ in time and on different points along a surface. In addition, any surface tension effects can be present at a curved surface, thus leading to a pressure difference across the surface. This description is by no means complete, and a more comprehensive theory would include the interplay between the motion of the water surface and the air above it. However, for our case, the small density of air, \si[per-mode=symbol]{1.25 \kilogram\per\meter\cubed}, compared with that of water, \si[per-mode=symbol]{997 \kilogram\per\meter\cubed}, makes our approach viable. We refer to this condition as the \emph{dynamic boundary condition}. Another, perhaps less obvious, condition requires a statement that the surface is a surface of the fluid; that is, it is always composed of fluid particles. This means that the fluid particles are to remain on the free surface. This is called the \emph{kinematic boundary condition}, for it does not involve any action of forces. Finally, at the bottom of the fluid, we assume that the bed is impermeable. Absence of viscosity suggests that the bottom topography becomes a surface of the fluid, so that the fluid particles in contact with the bed move in this surface. As such, this condition somewhat mirrors the kinematic condition at a free surface, the notable difference being that the bottom is prescribed a priori. In our case, we also assume that the bottom surface is fixed and rigid. This is the \emph{bottom condition}.
 
-We now turn to a formulation of the condition outlined above.
+We now turn to a formulation of the conditions outlined above.
 
 \subsubsection*{The Kinematic Condition}
 The free surface, whose determination is usually the aim of water-wave problems, will be represented by 
@@ -40,9 +40,37 @@ Then, if $F = z -  \eta(\X_{\perp}, t) = 0,$ we must have
 \]
 This is the kinematic condition.
 \subsubsection*{The Dynamic Condition}
+In the absence of viscous forces, the simplest dynamic condition requires that the pressure is prescribed on $z =  \eta(\X_{\perp}, t).$ For most problems studied, it is usual to set $P = {\rm constant},$ and of course, the simplicity of this condition tends to belie the fact that the evaluation is on the free surface $z = \eta,$ whose determination is part - often the most significant part - of the solution of the problem. To make the condition more realistic (for inviscid fluids), we'd like to incorporate the effects of surface tension into the dynamic condition. 
+
+Recall the balance of momentum principle. Given a force $\mathbb{F},$ pressure $P,$ mass density $\rho,$ the balance of momentum states that 
+\[ 
+\frac{D\U}{Dt} = \frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U = -\frac{1}{\rho}\nabla P + \mathbb{F}.
+\]
+Now, suppose that $\rho$ is constant, and that we can write $\mathbb{F} = - \nabla \Omega.$ Then, 
+\begin{align*}
+\frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U = -\frac{1}{\rho}\nabla P + \mathbb{F} &\implies \frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U = - \nabla ( \frac{P}{\rho} + \Omega) \\
+&\implies \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U) - \U \times (\nabla \U) = - \nabla ( \frac{P}{\rho} + \Omega) \\
+&\implies \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U + \frac{P}{\rho} + \Omega) = \U \times (\nabla \U) \\
+&\implies \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U + \frac{P}{\rho} + \Omega) = 0, &\text{ $\U$ is irrotational}
+\end{align*}
+where the third line follows by an identity 
+\[
+(\U \cdot \nabla) \U + \U \times (\nabla \U) = \nabla (\frac{1}{2} \U \cdot \U).
+\]
 
 \subsubsection*{The Bottom Condition}
-
+For an inviscid fluid, the bottom constitutes a boundary which is defined as a surface moving with the fluid. Thus, if 
+\[ 
+z = b(\X_\perp, t)
+\]
+represents the impermeable bed of the fluid, for this to be a fluid surface we must have 
+\[ 
+\frac{D}{Dt}(z -  b(\X_{\perp}, t)) = 0 \implies w -( b_t + (\U_{\perp}\cdot \nabla_{\perp})b )= 0 \implies w =b_t + (\U_{\perp}\cdot \nabla_{\perp})b \qquad z = b(\X_{\perp}, t).
+\]
+Now, we further impose that the surface be stationary at the bottom, so that the condition becomes
+\[ 
+w = (\U_{\perp}\cdot \nabla_{\perp})b \qquad z = b(\X_{\perp}, t).
+\]
 
 \subsection{Euler's Equations: velocity potential and nondimensionalisation}
 
@@ -76,21 +104,8 @@ w = \eta_t + (\U_{\perp} \cdot \nabla_{\perp})\eta \implies \partial_z \phi = \e
 \end{equation}
 
 
-FInally, we derive the dynamic boundary condition. Recall the balance of momentum principle. Given a force $\mathbb{F},$ pressure $P,$ mass density $\rho,$ the balance of momentum states that 
-\[ 
-\frac{D\U}{Dt} = \frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U = -\frac{1}{\rho}\nabla P + \mathbb{F}.
-\]
-Now, suppose that $\rho$ is constant, and that we can write $\mathbb{F} = - \nabla \Omega.$ Then, 
-\begin{align*}
-\frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U = -\frac{1}{\rho}\nabla P + \mathbb{F} &\implies \frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U = - \nabla ( \frac{P}{\rho} + \Omega) \\
-&\implies \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U) - \U \times (\nabla \U) = - \nabla ( \frac{P}{\rho} + \Omega) \\
-&\implies \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U + \frac{P}{\rho} + \Omega) = \U \times (\nabla \U) \\
-&\implies \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U + \frac{P}{\rho} + \Omega) = 0, &\text{ $\U$ is irrotational}
-\end{align*}
-where the third line follows by an identity 
-\[
-(\U \cdot \nabla) \U + \U \times (\nabla \U) = \nabla (\frac{1}{2} \U \cdot \U).
-\]
+Finally, we derive the dynamic boundary condition. We have
+\[ \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U + \frac{P}{\rho} + \Omega) = 0. \]
 Now, since $\U = \nabla \phi,$ it follows that 
 \[ 
 \frac{\partial \U}{\partial t} = \nabla \phi_t \quad \U \cdot \U = \begin{bmatrix} \partial_x \phi \\ \partial_z \phi \end{bmatrix} \cdot \begin{bmatrix} \partial_x \phi \\ \partial_z \phi \end{bmatrix} = \phi_x^2 + \phi_z^2.
