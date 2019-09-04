@@ -202,6 +202,25 @@ which implies
 
 \subsubsection{Via velocity potential formulation}
 
+\begin{enumerate}
+\item[Step 1:] Linearize the Euler's equation and derive the linear dispersion relation (by substituting $u = f(z)e^{ikx - iwt}$.)
+\item[Step 2:] By making assumptions on variables of the dispersion relation, derive the conditions that would signify that we're dealing with long waves in shallow water.
+\item[Step 3:] Nondimensionalise so that the new variables have the desired property of describing long waves in shallow water.
+\item[Step 4:] Expand $\phi(x,z,t)$ as a function in $(z+1)$ due to the condition $\phi_z =0$ at $z = -1.$ Substitute the series into the dynamic and kinetic conditions and separate the terms depending on epsilon.
+\item[Step 5:] Assume the expansions 
+\[ \phi_{0x} = u_0 + \epsilon u_1 + \epsilon^2 u_2 + \ldots \qquad \eta = \eta_0 + \epsilon \eta_1 + \epsilon^2 \eta_2 + \ldots \]
+to which we refer as the perturbation expansion, and introduce the time scales 
+\[ \tau_0 = t, \quad \tau_1 = \epsilon t, \quad \tau_2 = \epsilon^2 t_2, \ldots \]
+so that 
+\[ 
+\frac{\partial}{\partial t} = \frac{\partial}{\partial \tau_0} + \epsilon \frac{\partial}{\partial \tau_1} + \epsilon^2 \frac{\partial}{\partial \tau_2} +  \ldots.
+\]
+\item[Step 6:] Substitute the expansion up to the leading order in epsilon and derive the wave equations.
+\item[Step 7:] Substitute the expansion up to order 1 in epsilon and separate the terms based in powers of $epsilon.$  Terms in zeroth power of epsilon will be the same terms that yield wave equations, but the terms in the first power of epsilon need to be dealt with.
+\item[Step 8:] Introduce the characteristic variables $l = x + \tau_0, r = x - \tau_0,$ so that 
+\[ \partial_x = \partial_r + \partial_l, \qquad \partial_{\tau_0} = \partial_l - \partial_r.\]
+Using this, transform the equations and eliminate variables as needed. This will yield two KdV equations.
+\end{enumerate}
 \subsubsection{Via non-local formulation}
 
 \section{The Half-Line problem}
