@@ -1,0 +1,39 @@
+\documentclass[a4paper,reqno]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\title{Meeting Notes - Preparation for Semester 1 Capstone}
+\date{Post-Meeting Summary\\Last Updated: \today}
+
+\begin{document}
+\maketitle
+\section{Action Items}
+ This section will contain a list of tasks assigned from the initial meeting. Items may be referenced in more detail within the following sections of the document.  
+    \begin{itemize}
+        \item \textbf{Agenda} 
+            \begin{enumerate}
+            	   \item Go through previous tasks.
+                \item Project Proposal due Sep 16.
+                \item Funding Application, due Sep 18.
+                \item Linearization of half-line equations.
+                \item Perturbation expansions.
+                \item Next meeting.
+            \end{enumerate}
+        \item \textbf{From Previous Meeting}
+            \begin{enumerate}
+                
+                \item \emph{Derivation of Euler}. Read through Sections 1.1, 1.2, and 2.1 from \cite{chorin1990mathematical}.   
+                \item \emph{Derivation of Euler}. Read Chapter 1 of \cite{johnson1997modern}.
+                \item \emph{Euler for Irrotational Flow}.  It's important to note that many people formulation the free-surface problem in terms of $u(x,z,t)$, $v(x,z,t)$, $p(x,z,t)$, and $\eta(x,t)$.  That is, in terms of the bulk velocities, the pressure, and the free surface.  However, in \eqref{eqn:oEuler1}-\eqref{eqn:oEuler4}, the problem is formulated in terms of a velocity potential $\phi(x,z,t)$ and $\eta(x,t)$.  Section 1.1.3 from \cite{johnson1997modern} has a good discussion of this difference (rotational vs. irrotational).
+                \item Compare derivations and information from both \cite{chorin1990mathematical,johnson1997modern}.
+                \item Choose either the scaling in Section 4.1 from \cite{deconinckNotes} or those given in Section 1.3 of \cite{johnson1997modern}.  Your choice (note the differences).  Nondimensionalize Euler's equations in the velocity potential formulation.
+                \item Derive the wave equation from the Euler's equations.  You may find the discussion in Section 4.1.4 from \cite{deconinckNotes} useful.
+                \item \emph{Background knowledge.} Watch these videos \href{https://www.youtube.com/playlist?list=PLfF--3o8i4r82vJ0kjCVYgqKgyVM5QwN0}{YouTube MIT playlist}
+            \end{enumerate}
+    \end{itemize}
+
+\bibliographystyle{plain}
+\bibliography{references.bib}
+
+\end{document}
