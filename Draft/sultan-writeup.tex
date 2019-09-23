@@ -210,11 +210,57 @@ which implies
 \item[Step 5:] Assume the expansions 
 \[ \phi_{0x} = u_0 + \epsilon u_1 + \epsilon^2 u_2 + \ldots \qquad \eta = \eta_0 + \epsilon \eta_1 + \epsilon^2 \eta_2 + \ldots \]
 to which we refer as the perturbation expansion, and introduce the time scales 
-\[ \tau_0 = t, \quad \tau_1 = \epsilon t, \quad \tau_2 = \epsilon^2 t_2, \ldots \]
+\begin{equation}\label{timescales}
+\tau_0 = t, \quad \tau_1 = \epsilon t, \quad \tau_2 = \epsilon^2 t_2, \ldots 
+\end{equation}
 so that 
 \[ 
 \frac{\partial}{\partial t} = \frac{\partial}{\partial \tau_0} + \epsilon \frac{\partial}{\partial \tau_1} + \epsilon^2 \frac{\partial}{\partial \tau_2} +  \ldots.
 \]
+Suppose we do not introduce the time scales \eqref{timescales}. Let's see what happens to the boundary conditions at the free surface:
+\begin{align*}
+\epsilon \eta_t + \epsilon^2 \phi_x \eta_x &= \phi_z &z &= \eta_(x,t) \\
+\phi_t + \frac{1}{2} (\phi_x^2 + \epsilon \phi_z^2) + \eta &= 0 &z &= \eta(x, t).
+\end{align*}
+The Taylor series expansion for $\phi$ allows for rewriting
+\[ \phi(x,z,t) = \phi_0(x,t) - \epsilon \frac{(z+1)^2}{2!}\phi_{0xx} + \epsilon^2 \frac{(z+1)^4}{4!}\phi_{0xxxx} + \ldots  \]
+Now, introduce the perturbation expansions
+\[ 
+\phi_{0x} = u_0 + \epsilon u_1 + \epsilon^2 u_2 + \ldots \qquad \eta = \eta_0 + \epsilon \eta_1 + \epsilon^2 \eta_2 + \ldots
+\]
+Then, compute the terms in the BC up to first or second power in $\epsilon:$
+\begin{align*}
+\phi_z &= \epsilon u_{0x} + \epsilon^2(-\eta_0 u_{0x} - u_{1x} + \frac{1}{6}u_{0xxx}) + \mathcal{O}(\epsilon^3) \\
+\phi_{zz} &= \epsilon u_{0xx} + \mathcal{O}(\epsilon^2) \\
+\eta_t &= \eta_{0t} + \epsilon \eta_{1t} + \mathcal{O}(\epsilon^2) \\
+\phi_x &= u_0 + \epsilon(u_1 - \frac{1}{2}u_{0xx}) + \mathcal{O}(\epsilon^2) \\
+\phi_{xx} &= u_{0x} + \epsilon(u_{1x} - \frac{1}{2}u_{0xxx}) + \mathcal{O}(\epsilon^2) \\
+\phi_{xt} &= u_{0t} + \epsilon(u_{1t} - \frac{1}{2}u_{0xxt}) + \mathcal{O}(\epsilon^2) \\
+\eta_x &= \eta_{0x} + \epsilon \eta_{1x} + \mathcal{O}(\epsilon^2).
+\end{align*}
+Now, we transform the kinematic conditions. First, note that 
+\begin{align*}
+\epsilon^2 \phi_x \eta_x &= \epsilon^2(u_0 + \epsilon(u_1 - \frac{1}{2}u_{0xx}) + \mathcal{O}(\epsilon^2))(\eta_{0x} + \epsilon \eta_{1x} + \mathcal{O}(\epsilon^2)) \\
+&= \epsilon^2(u_0\eta_{0x}  + \epsilon u_0 \eta_{1x} + \epsilon(u_1 - \frac{1}{2}u_{0xx})\eta_{0x} + \mathcal{O}(\epsilon^2))\\
+&= \epsilon^2 u_0\eta_{0x}  + \mathcal{O}(\epsilon^3)).
+\end{align*} 
+This yields
+\begin{align*}
+\epsilon \eta_t + \epsilon^2 \phi_x \eta_x &= \phi_z &\implies \\
+\epsilon(\eta_{0t} + \epsilon \eta_{1t} + \mathcal{O}(\epsilon^2)) + \epsilon^2 u_0\eta_{0x}  + \mathcal{O}(\epsilon^3)) &= \epsilon u_{0x} + \epsilon^2(-\eta_0 u_{0x} - u_{1x} + \frac{1}{6}u_{0xxx}) + \mathcal{O}(\epsilon^3) &\implies \\
+\epsilon(\eta_{0t} + \epsilon \eta_{1t}) + \epsilon^2 u_0\eta_{0x} &= \epsilon u_{0x} + \epsilon^2(-\eta_0 u_{0x} - u_{1x} + \frac{1}{6}u_{0xxx}) + \mathcal{O}(\epsilon^3).
+\end{align*}
+Matching by powers of $\epsilon,$ we have
+\begin{align*}
+&\epsilon: & u_{0x} + \eta_{0t} &= 0\\
+&\epsilon^2: & \eta_{1t}+ u_{1x} &= -(u_0\eta_{0x} + \eta_0 u_{0x} - \frac{1}{6}u_{0xxx}) 
+\end{align*}
+Similar manipulation of the dynamic condition yields
+\begin{align*}
+&\epsilon^0: & u_{0t} + \eta_{0x} &= 0\\
+&\epsilon^1: & \eta_{1x}+ u_{1t} &= -(u_0 u_{0x} - \frac{1}{2}u_{0xxt}) 
+\end{align*}
+Note the if we were to use the time scales (say $t = \tau_0$), we would have similar equations but would lack the $-\eta_{0\tau_1}$ term in the kinematic condition, and the $-u_{0\tau_1}$ term in the dynamic condition.
 \item[Step 6:] Substitute the expansion up to the leading order in epsilon and derive the wave equations.
 \item[Step 7:] Substitute the expansion up to order 1 in epsilon and separate the terms based in powers of $epsilon.$  Terms in zeroth power of epsilon will be the same terms that yield wave equations, but the terms in the first power of epsilon need to be dealt with.
 \item[Step 8:] Introduce the characteristic variables $l = x + \tau_0, r = x - \tau_0,$ so that 

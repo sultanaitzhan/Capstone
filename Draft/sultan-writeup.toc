@@ -8,10 +8,10 @@
 \contentsline {section}{\numberline {2}The Whole-Line problem}{5}{section.2}% 
 \contentsline {subsection}{\numberline {2.1}Derivation of Wave \& KdV equations}{5}{subsection.2.1}% 
 \contentsline {subsubsection}{\numberline {2.1.1}Via velocity potential formulation}{5}{subsubsection.2.1.1}% 
-\contentsline {subsubsection}{\numberline {2.1.2}Via non-local formulation}{6}{subsubsection.2.1.2}% 
-\contentsline {section}{\numberline {3}The Half-Line problem}{6}{section.3}% 
-\contentsline {subsection}{\numberline {3.1}Determining the boundary conditions}{6}{subsection.3.1}% 
-\contentsline {subsection}{\numberline {3.2}Determining the non-local formulation}{6}{subsection.3.2}% 
-\contentsline {subsection}{\numberline {3.3}Derivation of Wave \& KdV equations}{6}{subsection.3.3}% 
-\contentsline {subsubsection}{\numberline {3.3.1}Via velocity potential formulation}{6}{subsubsection.3.3.1}% 
-\contentsline {subsubsection}{\numberline {3.3.2}Via non-local formulation}{6}{subsubsection.3.3.2}% 
+\contentsline {subsubsection}{\numberline {2.1.2}Via non-local formulation}{7}{subsubsection.2.1.2}% 
+\contentsline {section}{\numberline {3}The Half-Line problem}{7}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Determining the boundary conditions}{7}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Determining the non-local formulation}{7}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}Derivation of Wave \& KdV equations}{7}{subsection.3.3}% 
+\contentsline {subsubsection}{\numberline {3.3.1}Via velocity potential formulation}{7}{subsubsection.3.3.1}% 
+\contentsline {subsubsection}{\numberline {3.3.2}Via non-local formulation}{7}{subsubsection.3.3.2}% 

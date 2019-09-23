@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.29)  4 SEP 2019 16:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.29)  23 SEP 2019 10:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -786,26 +786,26 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [1{/Users/ww/Library/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 }
 
-] [2] [3] [4] [5]
+] [2] [3] [4] [5] [6]
 No file sultan-writeup.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 242.
-[6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 242.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 288.
+[7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 288.
  (./sultan-writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 242.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 242.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 288.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 288.
 Package rerunfilecheck Info: File `sultan-writeup.out' has not changed.
 (rerunfilecheck)             Checksum: D695319CCFD814481387F15DE2747ABB;1413.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 242.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 288.
  ) 
 Here is how much of TeX's memory you used:
- 19872 strings out of 492616
- 366358 string characters out of 6129481
- 439724 words of memory out of 5000000
- 23600 multiletter control sequences out of 15000+600000
+ 19875 strings out of 492616
+ 366382 string characters out of 6129481
+ 439779 words of memory out of 5000000
+ 23601 multiletter control sequences out of 15000+600000
  544286 words of font info for 71 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 40i,13n,63p,2014b,799s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,13n,63p,2014b,804s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -820,10 +820,10 @@ ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
 ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
 /2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/
 2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on sultan-writeup.pdf (6 pages, 173255 bytes).
+Output written on sultan-writeup.pdf (7 pages, 177420 bytes).
 PDF statistics:
- 191 PDF objects out of 1000 (max. 8388607)
- 167 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 500000)
+ 199 PDF objects out of 1000 (max. 8388607)
+ 174 compressed objects within 2 object streams
+ 34 named destinations out of 1000 (max. 500000)
  137 words of extra memory for PDF output out of 10000 (max. 10000000)
 
