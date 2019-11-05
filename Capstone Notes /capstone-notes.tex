@@ -1,0 +1,465 @@
+% Preamble
+\documentclass[10pt,reqno,oneside,a4paper]{article}
+\usepackage[a4paper,includeheadfoot,left=25mm,right=25mm,top=00mm,bottom=20mm,headheight=20mm]{geometry}
+\usepackage{siunitx}
+\input{texHead}
+\author{Sultan Aitzhan}
+\title{Capstone Notes}
+\newcommand{\theshorttitle}{Capstone Notes}
+\date{\today}
+\allowdisplaybreaks
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\tableofcontents
+
+\section{Preliminaries}
+
+\subsection{Derivation of Euler's Equations}
+First, we derive Euler's equations for incompressible, irrotational, and inviscid fluids. 
+
+\subsubsection{The boundary conditions for water waves}
+
+We briefly describe the boundary conditions that define water waves problems, before diving into details. A \emph{free} surface is the fluid surface where velocity conditions do not apply, and is instead characterised by stresses exerted by the atmosphere. In general, these stresses include a viscous component, but if we can reasonably model the fluid as inviscid, then the atmosphere exerts only pressure. Pressure is often taken to be a constant (the atmospheric pressure), but it may differ in time and on different points along a surface. In addition, any surface tension effects can be present at a curved surface, thus leading to a pressure difference across the surface. This description is by no means complete, and a more comprehensive theory would include the interplay between the motion of the water surface and the air above it. However, for our case, the small density of air, \si[per-mode=symbol]{1.25 \kilogram\per\meter\cubed}, compared with that of water, \si[per-mode=symbol]{997 \kilogram\per\meter\cubed}, makes our approach viable. We refer to this condition as the \emph{dynamic boundary condition}. Another, perhaps less obvious, condition requires a statement that the surface is a surface of the fluid; that is, it is always composed of fluid particles. This means that the fluid particles are to remain on the free surface. This is called the \emph{kinematic boundary condition}, for it does not involve any action of forces. Finally, at the bottom of the fluid, we assume that the bed is impermeable. Absence of viscosity suggests that the bottom topography becomes a surface of the fluid, so that the fluid particles in contact with the bed move in this surface. As such, this condition somewhat mirrors the kinematic condition at a free surface, the notable difference being that the bottom is prescribed a priori. In our case, we also assume that the bottom surface is fixed and rigid. This is the \emph{bottom condition}.
+
+We now turn to a formulation of the conditions outlined above.
+
+\subsubsection*{The Kinematic Condition}
+The free surface, whose determination is usually the aim of water-wave problems, will be represented by 
+\[ 
+z = \eta(\X_{\perp}, t),
+\]
+where $\X_{\perp}$ refers to the vector that is perpendicular to the $z$-direction; i.e. $\X = (x,y,z)=(\X_{\perp}, z).$ Now, if we require that the fluid particles remain on the surface, the surface $F(\X, t) = {\rm constant}$ must satisfy 
+\[ 
+\frac{DF}{Dt} = 0.
+\]
+Then, if $F = z -  \eta(\X_{\perp}, t) = 0,$ we must have 
+\[ 
+\frac{D}{Dt}(z -  \eta(\X_{\perp}, t)) = 0 \implies w - \{ h_t + (\U_{\perp}\cdot \nabla_{\perp})h\} = 0 \implies w = \{ h_t + (\U_{\perp}\cdot \nabla_{\perp})h\} \qquad z = \eta(\X_{\perp}, t)
+\]
+This is the kinematic condition.
+\subsubsection*{The Dynamic Condition}
+In the absence of viscous forces, the simplest dynamic condition requires that the pressure is prescribed on $z =  \eta(\X_{\perp}, t).$ For most problems studied, it is usual to set $P = {\rm constant},$ and of course, the simplicity of this condition tends to belie the fact that the evaluation is on the free surface $z = \eta,$ whose determination is part - often the most significant part - of the solution of the problem. To make the condition more realistic (for inviscid fluids), we'd like to incorporate the effects of surface tension into the dynamic condition. 
+
+Recall the balance of momentum principle. Given a force $\mathbb{F},$ pressure $P,$ mass density $\rho,$ the balance of momentum states that 
+\[ 
+\frac{D\U}{Dt} = \frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U = -\frac{1}{\rho}\nabla P + \mathbb{F}.
+\]
+Now, suppose that $\rho$ is constant, and that we can write $\mathbb{F} = - \nabla \Omega.$ Then, 
+\begin{align*}
+\frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U = -\frac{1}{\rho}\nabla P + \mathbb{F} &\implies \frac{\partial \U}{\partial t} + (\U \cdot \nabla) \U = - \nabla ( \frac{P}{\rho} + \Omega) \\
+&\implies \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U) - \U \times (\nabla \U) = - \nabla ( \frac{P}{\rho} + \Omega) \\
+&\implies \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U + \frac{P}{\rho} + \Omega) = \U \times (\nabla \U) \\
+&\implies \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U + \frac{P}{\rho} + \Omega) = 0, &\text{ $\U$ is irrotational}
+\end{align*}
+where the third line follows by an identity 
+\[
+(\U \cdot \nabla) \U + \U \times (\nabla \U) = \nabla (\frac{1}{2} \U \cdot \U).
+\]
+
+\subsubsection*{The Bottom Condition}
+For an inviscid fluid, the bottom constitutes a boundary which is defined as a surface moving with the fluid. Thus, if 
+\[ 
+z = b(\X_\perp, t)
+\]
+represents the impermeable bed of the fluid, for this to be a fluid surface we must have 
+\[ 
+\frac{D}{Dt}(z -  b(\X_{\perp}, t)) = 0 \implies w -( b_t + (\U_{\perp}\cdot \nabla_{\perp})b )= 0 \implies w =b_t + (\U_{\perp}\cdot \nabla_{\perp})b \qquad z = b(\X_{\perp}, t).
+\]
+Now, we further impose that the surface be stationary at the bottom, so that the condition becomes
+\[ 
+w = (\U_{\perp}\cdot \nabla_{\perp})b \qquad z = b(\X_{\perp}, t).
+\]
+
+\subsection{Euler's Equations: velocity potential and nondimensionalisation}
+
+\subsubsection{Velocity Potential Formulation}
+Second, we formulate the Euler's equation in 2 dimensions in terms of velocity potential. To begin, recall our assumption that the velocity field $\U$ is irrotational, so $\nabla \times \U = 0.$ This means that $\U$ is curl-free, and by Hemholtz' decomposition, there exists a scalar field $\phi$ such that $\U = \nabla \phi.$ We refer to $\phi$ as \emph{the velocity potential}. 
+
+Now, since the fluid is incompressible, 
+\[ 
+0 = \Div \U = \Div \nabla \phi = \nabla \cdot \nabla \phi = \Delta \phi. 
+\]
+Since we are working in 2 dimensions, $\phi$ is a function of $x,z,$ and $t.$ Thus
+%\begin{equation}\label{EE-main}
+%\Div \U = \phi_{xx} + \phi_{zz} = 0 \qquad x\in S\times (h, \eta).
+%\end{equation}
+This is the first equation. Now, recall the bottom condition
+\[ 
+w = (\U_{\perp} \cdot \nabla_{\perp})b,
+\]
+where $w$ is the $z$-th component of $\U, \U = (\U_{\perp}, w)$ and $\nabla = (\nabla_{\perp}, \partial_z).$ Since $(u,w) = \U = \nabla \phi = (\partial_x \phi, \partial_z \phi),$ we have
+\[ 
+w = (\U_{\perp} \cdot \nabla_{\perp})b \implies \partial_z \phi = (\partial_x \phi  \partial_x)(-h) = \partial_x \phi \partial_x (-h) = 0,
+\]
+since $b = -h,$ and $h$ is fixed. Thus, we have 
+%\begin{equation}\label{EE-bottom}
+%\partial_z \phi = 0 \qquad z = -h.
+%\end{equation}
+
+We move on to the kinematic condition at the free surface $\eta(x,t).$ The condition is given by 
+\begin{equation}\label{EE-kinematic}
+w = \eta_t + (\U_{\perp} \cdot \nabla_{\perp})\eta \implies \partial_z \phi = \eta_t + \partial_x \phi \partial_x \eta \implies \phi_z = \eta_t + \phi_x \eta_x \qquad z = \eta_(x,t).
+\end{equation}
+
+
+Finally, we derive the dynamic boundary condition. We have
+\[ \frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U + \frac{P}{\rho} + \Omega) = 0. \]
+Now, since $\U = \nabla \phi,$ it follows that 
+\[ 
+\frac{\partial \U}{\partial t} = \nabla \phi_t \quad \U \cdot \U = \begin{bmatrix} \partial_x \phi \\ \partial_z \phi \end{bmatrix} \cdot \begin{bmatrix} \partial_x \phi \\ \partial_z \phi \end{bmatrix} = \phi_x^2 + \phi_z^2.
+\]
+Thus, we have 
+\begin{align*}
+\frac{\partial \U}{\partial t} + \nabla (\frac{1}{2} \U \cdot \U + \frac{P}{\rho} + \Omega) = 0 &\implies \nabla \phi_t  + \nabla (\frac{1}{2} (\phi_x^2 + \phi_z^2) + \frac{P}{\rho} + \Omega) = 0 \\
+&\implies \nabla(\phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + \frac{P}{\rho} + \Omega) = 0 \\
+&\implies \phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + \frac{P}{\rho} + \Omega = 0 \\
+&\implies \phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + \Omega = -  \frac{P}{\rho}.
+\end{align*}
+Assume that $\Omega = g z,$ where $g$ is gravitational constant, and that pressure is given by $P = -\sigma/H,$ where $\frac{1}{H}$ is the mean curvature. It is a well-known fact that the mean curvature can be expressed as 
+\[ 
+\frac{1}{H} = \frac{\eta_{xx}}{(1+\eta_x^2)^{3/2}}.
+\]
+Substituting the above into the equation and evaluating at the free surface yields 
+%\begin{equation}\label{EE-dynamic}
+%\phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + g\eta = \frac{\sigma}{\rho} \frac{\eta_{xx}}{(1+\eta_x^2)^{3/2}} \qquad z = \eta(x, t),
+%\end{equation} 
+which is the dynamic boundary condition, where we also substituted $\Omega = gz$. Altogether, the problem becomes:
+\begin{align*}
+\phi_{xx} + \phi_{zz} &= 0 &x &\in S\times [-h, \eta] \\
+\partial_z \phi &= 0 &z &= -h \\
+\eta_t + \phi_x \eta_x &= \phi_z &z &= \eta_(x,t) \\
+\phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + g\eta &= \frac{\sigma}{\rho} \frac{\eta_{xx}}{(1+\eta_x^2)^{3/2}} &z &= \eta(x, t).
+\end{align*}
+
+\begin{align*}
+2 \frac{\partial f}{\partial \tau_1} + 3 f \frac{\partial f}{\partial r} + \frac{1}{3}\frac{\partial^3 f}{\partial r^3} &= 0 \\
+2 \frac{\partial g}{\partial \tau_1} - 3 g \frac{\partial g}{\partial l} - \frac{1}{3}\frac{\partial^3 g}{\partial l^3} &= 0 
+\end{align*}
+
+\begin{align*}
+\eta_0 = f(x - \tau_0, \tau_1, \ldots) +  g(x + \tau_0, \tau_1, \ldots) \qquad u_0 = f(x - \tau_0, \tau_1, \ldots) -  g(x + \tau_0, \tau_1, \ldots)
+\end{align*}
+
+\subsubsection{Nondimensionalisation}
+Having expressed the Euler's equations in the velocity potential, we'd like to non-dimeonsionalise the problem so that we can perform various approximations. Define new dimensionless variables as follows:
+\[ 
+z^* = \frac{1}{h}z \qquad x^* = \frac{\sqrt{\epsilon}}{h}x \qquad t^* = \sqrt{\frac{\epsilon g}{h}}t \qquad \eta = \epsilon h \eta^* \qquad \phi  = h\sqrt{\epsilon g h} \phi^*.
+\]
+First, note that 
+\[ 
+\phi^*_{xx} = \frac{\partial}{\partial x} \left( \frac{\partial \phi^*}{\partial x}\right) = \frac{\partial}{\partial x} \left( \frac{\partial \phi^*}{\partial x^*} \frac{\partial x^*}{\partial x}\right) =  \frac{\sqrt{\epsilon}}{h} \frac{\partial}{\partial x} \left( \frac{\partial \phi^*}{\partial x^*}\right) = \frac{\sqrt{\epsilon}}{h} \frac{\partial}{\partial x} \left( \frac{\partial \phi^*}{\partial x^*}\right) = \frac{\sqrt{\epsilon}}{h} \frac{\partial^2 \phi^*}{\partial (x^*)^2} \frac{\partial x^*}{\partial x} = \frac{\epsilon}{h^2}\frac{\partial^2 \phi^*}{\partial (x^*)^2},
+\]
+and
+\[ 
+\phi^*_{zz} = \frac{\partial}{\partial z} \left( \frac{\partial \phi^*}{\partial z}\right) = \frac{\partial}{\partial z} \left( \frac{\partial \phi^*}{\partial z^*} \frac{\partial z^*}{\partial z}\right) =  \frac{1}{h} \frac{\partial}{\partial z} \left(\frac{\partial \phi^*}{\partial z^*}\right) = \frac{1}{h} \frac{\partial}{\partial z} \left( \frac{\partial \phi^*}{\partial z^*}\right) = \frac{1}{h} \frac{\partial^2 \phi^*}{\partial (z^*)^2} \frac{\partial z^*}{\partial z} = \frac{1}{h^2}\frac{\partial^2 \phi^*}{\partial (z^*)^2},
+\]
+so that 
+\[ 
+\phi_{xx} = h\sqrt{\epsilon g h} \phi^*_{xx} = h\sqrt{\epsilon g h} \frac{\epsilon}{h^2}\frac{\partial^2 \phi^*}{\partial (x^*)^2}  = \sqrt{\epsilon g h} \frac{\epsilon}{h}\frac{\partial^2 \phi^*}{\partial (x^*)^2} 
+\]
+and
+\[ 
+\phi_{zz} = h\sqrt{\epsilon g h} \phi^*_{zz} = h\sqrt{\epsilon g h} \frac{1}{h^2}\frac{\partial^2 \phi^*}{\partial (x^*)^2}  = \sqrt{\epsilon g h} \frac{1}{h}\frac{\partial^2 \phi^*}{\partial (x^*)^2}. 
+\]
+Thus, we can transform the main equation as follows:
+\[ 
+0 = \phi_{xx} + \phi_{zz} =  \sqrt{\epsilon g h} \frac{\epsilon}{h}\frac{\partial^2 \phi^*}{\partial (x^*)^2} + \sqrt{\epsilon g h} \frac{1}{h}\frac{\partial^2 \phi^*}{\partial (z^*)^2},
+\]
+so that 
+\[ 
+\epsilon \frac{\partial^2 \phi^*}{\partial (x^*)^2}  + \frac{\partial^2 \phi^*}{\partial (z^*)^2} = 0
+\]
+is the dimensionless version of \eqref{EE-main}. The interval $z \in (h, \eta)$ becomes $hz^* \in [-h, \epsilon h \eta^*],$ so that $z^* \in [-1, \epsilon \eta^*].$
+
+Now, note that 
+\begin{align*}
+\phi^*_z &= \frac{\partial \phi^*}{\partial z^*} \frac{\partial z^*}{\partial z} = \frac{1}{h} \frac{\partial \phi^*}{\partial z^*} &\implies \phi_z = h\sqrt{\epsilon g h}\phi^*_z = \sqrt{\epsilon g h} \frac{\partial \phi^*}{\partial z^*}; \\
+\phi^*_x &= \frac{\partial \phi^*}{\partial z^*} \frac{\partial x^*}{\partial x} = \frac{\sqrt{\epsilon}}{h} \frac{\partial \phi^*}{\partial x^*} &\implies \phi_x = h\sqrt{\epsilon g h}\phi^*_x = \epsilon\sqrt{g h} \frac{\partial \phi^*}{\partial x^*};\\
+\eta^*_t &= \frac{\partial \eta^*}{\partial t^*} \frac{\partial t^*}{\partial t} = \sqrt{\frac{\epsilon g}{h}} \frac{\partial \eta^*}{\partial t^*} &\implies \eta_t = \epsilon h \eta^*_t = \epsilon \sqrt{\epsilon g h} \frac{\partial \eta^*}{\partial t^*};\\
+\eta^*_x &= \frac{\partial \eta^*}{\partial x^*} \frac{\partial x^*}{\partial x} = \frac{\sqrt{\epsilon}}{h} \frac{\partial \eta^*}{\partial t^*} &\implies \eta_x = \epsilon h \eta^*_x = \epsilon \sqrt{\epsilon} \frac{\partial \eta^*}{\partial x^*}; \\
+z& = -h \implies hz^*= - h &\implies z^* = -1;\\
+z& = \eta(x,t) \implies hz^* = \epsilon h \eta^*(hx^*/\sqrt{\epsilon}, t^* h / \epsilon g) &\implies z^* = \epsilon \eta^*(hx^*/\sqrt{\epsilon}, t^* h / \epsilon g).
+\end{align*}
+Using the above relations, we rewrite the bottom condition and the kinematic condition:
+\begin{align*}
+\phi_z = 0 &\implies \sqrt{\epsilon g h} \frac{\partial \phi^*}{\partial z^*} = 0 \implies \frac{\partial \phi^*}{\partial z^*} = 0 &z^* &= -1; \\
+\eta_t + \phi_x \eta_x = \phi_z &\implies  \epsilon \sqrt{\epsilon g h} \frac{\partial \eta^*}{\partial t^*} + \epsilon^2 \sqrt{\epsilon g h} \frac{\partial \phi^*}{\partial x^*} \frac{\partial \eta^*}{\partial x^*} = \sqrt{\epsilon g h} \frac{\partial \phi^*}{\partial z^*} \\
+&\implies  \epsilon \frac{\partial \eta^*}{\partial t^*} + \epsilon^2 \frac{\partial \phi^*}{\partial x^*} \frac{\partial \eta^*}{\partial x^*} =  \frac{\partial \phi^*}{\partial z^*}  &z^* &= \epsilon\eta^*(x,t).
+\end{align*}
+At last, observe that 
+\[ 
+\phi^*_t = \frac{\partial \phi^*}{\partial t^*} \frac{\partial t^*}{\partial t} =  \sqrt{\frac{\epsilon g}{h}} \frac{\partial \phi^*}{\partial t^*} \implies \phi_t = h \sqrt{\epsilon g h}\phi^*_t = h\epsilon g \frac{\partial \phi^*}{\partial t^*}.
+\]
+We use the expression for $\phi_t,$ as well as expressions of $\phi_x, \phi_z$ to non-dimensionalise the dynamic condition. For convenience, set the surface tension $\sigma =0.$ Then,
+\begin{align*}
+0 = \phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + g\eta &=  \phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + g\eta \\
+&= \epsilon h g \frac{\partial \phi^*}{\partial t^*} + \frac{1}{2} \left( \epsilon\sqrt{g h} \frac{\partial \phi^*}{\partial x^*}\right)^2 +  \frac{1}{2}\left(\sqrt{\epsilon g h} \frac{\partial \phi^*}{\partial z^*}\right)^2 + g \epsilon h \eta^* \\
+&= \epsilon h g \frac{\partial \phi^*}{\partial t^*} + \frac{1}{2}  \epsilon^2 g h \left(\frac{\partial \phi^*}{\partial x^*}\right)^2 +  \frac{1}{2} \epsilon g h \left(\frac{\partial \phi^*}{\partial z^*}\right)^2 + g \epsilon h \eta^*,
+\end{align*}
+which implies 
+\begin{align*}
+\frac{\partial \phi^*}{\partial t^*} + \frac{1}{2}  \epsilon \left(\frac{\partial \phi^*}{\partial x^*}\right)^2 +  \frac{1}{2} \left(\frac{\partial \phi^*}{\partial z^*}\right)^2 + \eta^*  &= 0 &z &= \eta(x, t).
+\end{align*}
+
+\subsection{Euler's Equations: non-local formulation}
+
+\section{The Whole-Line problem}
+
+\subsection{Derivation of Wave \& KdV equations}
+
+\subsubsection{Via velocity potential formulation}
+
+\begin{enumerate}
+\item[Step 1:] Linearize the Euler's equation and derive the linear dispersion relation (by substituting $u = f(z)e^{ikx - iwt}$.)
+\item[Step 2:] By making assumptions on variables of the dispersion relation, derive the conditions that would signify that we're dealing with long waves in shallow water.
+\item[Step 3:] Nondimensionalise so that the new variables have the desired property of describing long waves in shallow water.
+\item[Step 4:] Expand $\phi(x,z,t)$ as a function in $(z+1)$ due to the condition $\phi_z =0$ at $z = -1.$ Substitute the series into the dynamic and kinetic conditions and separate the terms depending on epsilon.
+\item[Step 5:] Assume the expansions 
+\[ \phi_{0x} = u_0 + \epsilon u_1 + \epsilon^2 u_2 + \ldots \qquad \eta = \eta_0 + \epsilon \eta_1 + \epsilon^2 \eta_2 + \ldots \]
+to which we refer as the perturbation expansion, and introduce the time scales 
+\begin{equation}\label{timescales}
+\tau_0 = t, \quad \tau_1 = \epsilon t, \quad \tau_2 = \epsilon^2 t_2, \ldots 
+\end{equation}
+so that 
+\[ 
+\frac{\partial}{\partial t} = \frac{\partial}{\partial \tau_0} + \epsilon \frac{\partial}{\partial \tau_1} + \epsilon^2 \frac{\partial}{\partial \tau_2} +  \ldots.
+\]
+Suppose we do not introduce the time scales \eqref{timescales}. Let's see what happens to the boundary conditions at the free surface:
+\begin{align*}
+\epsilon \eta_t + \epsilon^2 \phi_x \eta_x &= \phi_z &z &= \eta_(x,t) \\
+\phi_t + \frac{1}{2} (\phi_x^2 + \epsilon \phi_z^2) + \eta &= 0 &z &= \eta(x, t).
+\end{align*}
+The Taylor series expansion for $\phi$ allows for rewriting
+\[ \phi(x,z,t) = \phi_0(x,t) - \epsilon \frac{(z+1)^2}{2!}\phi_{0xx} + \epsilon^2 \frac{(z+1)^4}{4!}\phi_{0xxxx} + \ldots  \]
+Now, introduce the perturbation expansions
+\[ 
+\phi_{0x} = u_0 + \epsilon u_1 + \epsilon^2 u_2 + \ldots \qquad \eta = \eta_0 + \epsilon \eta_1 + \epsilon^2 \eta_2 + \ldots
+\]
+Then, compute the terms in the BC up to first or second power in $\epsilon:$
+\begin{align*}
+\phi_z &= \epsilon u_{0x} + \epsilon^2(-\eta_0 u_{0x} - u_{1x} + \frac{1}{6}u_{0xxx}) + \mathcal{O}(\epsilon^3) \\
+\phi_{zz} &= \epsilon u_{0xx} + \mathcal{O}(\epsilon^2) \\
+\eta_t &= \eta_{0t} + \epsilon \eta_{1t} + \mathcal{O}(\epsilon^2) \\
+\phi_x &= u_0 + \epsilon(u_1 - \frac{1}{2}u_{0xx}) + \mathcal{O}(\epsilon^2) \\
+\phi_{xx} &= u_{0x} + \epsilon(u_{1x} - \frac{1}{2}u_{0xxx}) + \mathcal{O}(\epsilon^2) \\
+\phi_{xt} &= u_{0t} + \epsilon(u_{1t} - \frac{1}{2}u_{0xxt}) + \mathcal{O}(\epsilon^2) \\
+\eta_x &= \eta_{0x} + \epsilon \eta_{1x} + \mathcal{O}(\epsilon^2).
+\end{align*}
+Now, we transform the kinematic conditions. First, note that 
+\begin{align*}
+\epsilon^2 \phi_x \eta_x &= \epsilon^2(u_0 + \epsilon(u_1 - \frac{1}{2}u_{0xx}) + \mathcal{O}(\epsilon^2))(\eta_{0x} + \epsilon \eta_{1x} + \mathcal{O}(\epsilon^2)) \\
+&= \epsilon^2(u_0\eta_{0x}  + \epsilon u_0 \eta_{1x} + \epsilon(u_1 - \frac{1}{2}u_{0xx})\eta_{0x} + \mathcal{O}(\epsilon^2))\\
+&= \epsilon^2 u_0\eta_{0x}  + \mathcal{O}(\epsilon^3)).
+\end{align*} 
+This yields
+\begin{align*}
+\epsilon \eta_t + \epsilon^2 \phi_x \eta_x &= \phi_z &\implies \\
+\epsilon(\eta_{0t} + \epsilon \eta_{1t} + \mathcal{O}(\epsilon^2)) + \epsilon^2 u_0\eta_{0x}  + \mathcal{O}(\epsilon^3)) &= \epsilon u_{0x} + \epsilon^2(-\eta_0 u_{0x} - u_{1x} + \frac{1}{6}u_{0xxx}) + \mathcal{O}(\epsilon^3) &\implies \\
+\epsilon(\eta_{0t} + \epsilon \eta_{1t}) + \epsilon^2 u_0\eta_{0x} &= \epsilon u_{0x} + \epsilon^2(-\eta_0 u_{0x} - u_{1x} + \frac{1}{6}u_{0xxx}) + \mathcal{O}(\epsilon^3).
+\end{align*}
+Matching by powers of $\epsilon,$ we have
+\begin{align*}
+&\epsilon: & u_{0x} + \eta_{0t} &= 0\\
+&\epsilon^2: & \eta_{1t}+ u_{1x} &= -(u_0\eta_{0x} + \eta_0 u_{0x} - \frac{1}{6}u_{0xxx}) 
+\end{align*}
+Similar manipulation of the dynamic condition yields
+\begin{align*}
+&\epsilon^0: & u_{0t} + \eta_{0x} &= 0\\
+&\epsilon^1: & \eta_{1x}+ u_{1t} &= -(u_0 u_{0x} - \frac{1}{2}u_{0xxt}) 
+\end{align*}
+Note the if we were to use the time scales (say $t = \tau_0$), we would have similar equations but would lack the $-\eta_{0\tau_1}$ term in the kinematic condition, and the $-u_{0\tau_1}$ term in the dynamic condition.
+\item[Step 6:] Substitute the expansion up to the leading order in epsilon and derive the wave equations.
+\item[Step 7:] Substitute the expansion up to order 1 in epsilon and separate the terms based in powers of $epsilon.$  Terms in zeroth power of epsilon will be the same terms that yield wave equations, but the terms in the first power of epsilon need to be dealt with.
+\item[Step 8:] Introduce the characteristic variables $l = x + \tau_0, r = x - \tau_0,$ so that 
+\[ \partial_x = \partial_r + \partial_l, \qquad \partial_{\tau_0} = \partial_l - \partial_r.\]
+Using this, transform the equations and eliminate variables as needed. This will yield two KdV equations.
+\end{enumerate}
+\subsubsection{Via non-local formulation}
+
+\section{The Half-Line problem}
+
+\subsection{Determining the boundary conditions}
+In addition to the original 4 equations, we add two more conditions on $\phi$ and $\eta$ at $x=0,$ so that our new system is:
+\begin{subequations} \label{DimHalfLineProblem}
+\begin{align}
+\phi_{xx} + \phi_{zz} &= 0 &-h < z < \eta(x,t) \\
+\phi_{z} &= 0 &z = -h \\
+\label{BC1}\phi_{x} &= 0 &x =0 \\
+\eta_t + \phi_{x}\eta_{x} &= \phi_{z} & z = \eta(x,t) \\
+\phi_t + g\eta + \frac{1}{2}(\phi_{x}^2 + \phi_{z}^2) &= 0 &z = \eta(x,t) \\
+\label{BC2}\phi_{z}(0,\eta,t) &= \eta_t(0,t) &(x,z) = (0,\eta). 
+\end{align}
+\end{subequations}
+Introducing the nondimensional variables as before yields the same 4 equations, and transforms \eqref{BC1} and \eqref{BC2}, so that the non-dimensional problem becomes:
+\begin{subequations} \label{NondimHalfLineProblem}
+\begin{align}
+\label{NondimPDE}\epsilon\phi_{xx} + \phi_{zz} &= 0 &-1 < z < \epsilon\eta \\
+\label{NondimBC1}\phi_{z} &= 0 &z = -1 \\
+\label{NondimBC2}\phi_{x} &= 0 &x =0 \\
+\label{NondimBC3}\epsilon\eta_t + \epsilon^2 \phi_{x}\eta_{x} &= \phi_{z} & z = \epsilon\eta\\
+\label{NondimBC4}\phi_t + \eta + \frac{1}{2}(\epsilon\phi_{x}^2 + \phi_{z}^2) &= 0 &z = \epsilon\eta \\
+\label{NondimBC5}\phi_{z}(0,\epsilon\eta,t) &= \epsilon\eta_t(0,t) &(x,z) = (0,\epsilon\eta).
+\end{align}
+\end{subequations}
+
+\subsection{Determining the non-local formulation}
+
+\subsection{Derivation of Wave \& KdV equations}
+
+\subsubsection{Via velocity potential formulation}
+We produce the derivation in two ways: one is as given in \cite{bernard} and the other as given in \cite{ablowitz}. First, we determine the dependence on $z.$ Assume the expansion 
+\[
+\phi(x,z,t) = \phi_0(x,z,t) + \epsilon \phi_1(x,z,t) + \epsilon^2 \phi_2(x,z,t) + \ldots
+\]
+Substituting the expansion into \eqref{NondimPDE}, we obtain
+\begin{align*}
+0 = \epsilon\phi_{xx} + \phi_{zz} &= \epsilon\phi_{0xx} + \epsilon^2 \phi_{1xx}+ \epsilon^3 \phi_{2xx} + \phi_{0zz} + \epsilon \phi_{1zz}+ \epsilon^2 \phi_{2zz} + \ldots \\
+&= \phi_{0zz} + \epsilon(\phi_{0xx} + \phi_{1zz}) + \epsilon^2(\phi_{1xx}+\phi_{2zz}) + \ldots
+\end{align*}
+so that in powers of $\epsilon,$ we have
+\begin{align*}
+&\epsilon^0: &\phi_{0zz} = 0 \implies \phi_0 = \phi_0(x,t), \mbox{s.t.} \phi_{0x}(0,t) = 0 \\
+&\epsilon^1: &\phi_{0xx} + \phi_{1zz} = 0 \implies \phi_1 = - \phi_{0xx} \frac{(z+1)^2}{2},  \mbox{s.t.} \phi_{0xxx}(0,t) = 0 \\
+&\epsilon^2: &\phi_{1xx}+\phi_{2zz} = 0 \implies \phi_2 = \phi_{0xxxx} \frac{(z+1)^4}{4!},  \mbox{s.t.} \phi_{0xxxxx}(0,t) = 0,
+\end{align*}
+and so forth. Thus, one solution to \eqref{NondimPDE}, \eqref{NondimBC1}, \eqref{NondimBC2} is 
+\begin{equation}\label{expansion1}
+\phi(x,z,t) = \phi_0 - \epsilon\frac{(z+1)^2}{2!}\phi_{0xx} + \epsilon^2 \frac{(z+1)^4}{4!}\phi_{0xxxx} - \ldots = \sum^{\infty}_{k=0} (-1)^k \epsilon^k \frac{(z+1)^{2k}}{(2k)!} \partial^k_x \phi_0,
+\end{equation}
+where we also require that $\partial_x^{2k+1}\phi_0(0,t) = 0$ for all $k \in \NN.$ Now, substituting \eqref{expansion1} into \eqref{NondimBC3}, \eqref{NondimBC4}, and \eqref{NondimBC5}, and keeping the terms in the lowest power of $\epsilon$ yields the following system:
+\begin{subequations} \label{NonDimHalfLineProb1}
+\begin{align}
+\label{P1BC1}\eta_t + \partial_x\phi_{0x} &= \mathcal{O}(\epsilon) &z &= \epsilon\eta \\
+\label{P1BC2}\partial_t\phi_{0x} + \partial_x \eta &=  \mathcal{O}(\epsilon) &z &= \epsilon\eta  \\
+\label{P1BC3}\eta_t + \partial_x\phi_{0x} &= \mathcal{O}(\epsilon) &(x,z) &= (0,\epsilon\eta) \\
+\label{P1BC4}\phi_{0x} &= 0 &x &= 0.
+\end{align}
+\end{subequations}
+Next, introduce the following perturbation expansions
+\begin{align*}
+\phi_{0x} &= u_0 + \epsilon u_1 +  \epsilon^2 u_2 + \ldots \\
+\eta &= \eta_0 + \epsilon \eta_1 +  \epsilon^2 \eta_2 + \ldots \\
+\end{align*}
+and the time scales
+\[ 
+\tau_0 = t, \quad \tau_1 = \epsilon t, \quad \tau_2 = \epsilon^2 t, \ldots
+\]
+so that 
+\[ 
+\partial_t = \partial_{\tau_0} + \epsilon \partial_{\tau_1} + \epsilon^2 \partial_{\tau_2} + \ldots
+\]
+With these expansions, in the lowest power of $\epsilon$ the system becomes:
+\begin{subequations} \label{NonDimHalfLineProb2}
+\begin{align}
+\label{P2BC1}\eta_{0\tau_0} + u_{0x} &=0 &z &= \epsilon\eta \\
+\label{P2BC2} u_{0\tau_0} + \eta_{0x} &= 0 &z &= \epsilon\eta  \\
+\label{P2BC3}\eta_{0\tau_0} +  u_{0x} &=0 &(x,z) &= (0,\epsilon\eta) \\
+\label{P2BC4} u_0 &= 0 &x &= 0.
+\end{align}
+\end{subequations}
+Combining \eqref{P2BC1} and \eqref{P2BC2} gives two wave equations
+\begin{align*}
+\frac{\partial^2 \eta_0}{\partial \tau_0^2} - \frac{\partial^2 \eta_0}{\partial x^2} = 0, \qquad \frac{\partial^2 u_0}{\partial \tau_0^2} - \frac{\partial^2 u_0}{\partial x^2} = 0, \qquad x\geq0, z= \epsilon \eta,
+\end{align*}
+along with a boundary condition $u_0 = 0$ at $x=0.$ We thus have a boundary value problem for $u_0,$ i.e. one of solving a wave equation with a semi-infinite fixed end, which has piecewise solutions:
+\begin{align*}
+u_0 = \begin{cases} F(x - \tau_0) + G(x+\tau_0) & x>\tau_0 \\ -G(\tau_0 - x) + G(x+\tau_0) & x< \tau_0 \end{cases},
+\end{align*}
+which follows since $F,G$ are defined on $[0, \infty).$ Since $u_0$ and $\eta_0$ are related by \eqref{P2BC1} and \eqref{P2BC2}, \textbf{it follows that} 
+\begin{align*}
+\eta_0 = \begin{cases} F(x - \tau_0) + G(x+\tau_0) & x>\tau_0 \\ G(\tau_0 - x) + G(x+\tau_0) & x< \tau_0 \end{cases}.
+\end{align*}
+Following the procedure outlined in \cite[p.71-72]{bernard}, we consider the equations \eqref{P1BC1} and \eqref{P1BC2} in the second lowest order:
+\begin{align*}
+\eta_{1\tau_0} + u_{1x} &= - (\eta_{0\tau_1} + u_0 \eta{0x} + \eta_0 u_{0x} - \frac{1}{6}u_{0xxx}) \\
+\eta_{1\tau_0} + \eta_{1x} &= - (u_{0\tau_1} - \frac{1}{2}u_{0xxx\tau_0} + u_0 u_{0x}),
+\end{align*}
+along with the boundary conditions $u_0 = u_1 = 0$ at $x = 0.$ Introduce characteristic variables, to separate the left and right going waves:
+\[ 
+l = x + \tau_0, \qquad r = x - \tau_0, 
+\]
+so that 
+\[ 
+\partial_x = \partial_r + \partial_l, \qquad \partial_{\tau_0} = \partial_l - \partial_r.
+\]
+Thus, 
+\begin{align*}
+\eta_0 = \begin{cases} F(r) + G(l) & r>0 \\ G(-r) + G(l)=: G(-r) + G & r<0 \end{cases} \qquad u_0 = \begin{cases} F(r) - G(l) & r>0 \\ G(-r) - Gl) =: G(-r)-G & r<0 \end{cases},
+\end{align*}
+where we let $G$ be a function of $l,$ to ease the notation. Also, keep in mind that $F,G$ are also functions of $\tau_0, \tau_1, \tau_2, \ldots.$ If $r > 0,$ then the situation is identical that in \cite[Chapter 4, p.72-73]{bernard}, and we obtain the KdV equations. Thus, we deal with the case $r<0.$ The transformed equations are
+\begin{align*}
+\eta_{1l} - \eta_{1r} + u_{1r} + u_{1l} &= - (G(-r)_{\tau_1} + G_{\tau_1} + (G(-r) - G)(-G(-r)_r + G_l) - (G(-r) + G)(G(-r)_r + G_l) + \frac{1}{6}(G(-r)_{rrr}+G_{lll})) \\
+&= -(G(-r)_{\tau_1} + G_{\tau_1} - 2G(-r)G(-r)_r - 2GG_l + \frac{1}{6} (G(-r)_{rrr} + G_{lll})) \\
+u_{1l} - u_{1r} + \eta_{1r} + \eta_{1l}  &= - (G(-r)_{\tau_1} - G_{\tau_1} - \frac{1}{2}(G(-r)_{rrr} - G_{lll}) - (G(-r) - G)(G(-r)_r+G_l)) \\
+&=  - (G(-r)_{\tau_1} - G_{\tau_1} - \frac{1}{2}(G(-r)_{rrr} - G_{lll}) - G(-r)G(-r)_r - G(-r)G_l + G G(-r)_r+GG_l )
+\end{align*}
+Add and subtract:
+\begin{align*}
+2(\eta_{1l} + u_{1l}) &= -\left(G(-r)_{\tau_1} - 3G(-r)G(-r)_r - \frac{1}{3} G(-r)_{rrr}\right) + GG_l  + G G(-r)_r- G(-r)G_l - \frac{2}{3} G_{lll} \\
+2(u_{1r} - \eta_{1r}) &=  - \left(G_{\tau_1} - 3GG_l - \frac{1}{3}G_{lll}\right) + G(-r)G(-r)_r - G(-r)G_l + G G(-r)_r + \frac{2}{3}G(-r)_{rrr} 
+\end{align*}
+Integrate:
+\begin{align*}
+2(\eta_{1} + u_{1}) &= -\left(G(-r)_{\tau_1} - 3G(-r)G(-r)_r - \frac{1}{3} G(-r)_{rrr}\right)l + \frac{1}{2}G^2  + G(-r)_r \int G \D l - G(-r)G - \frac{2}{3} G_{ll} + C_1 \\
+2(u_{1} - \eta_{1}) &=  - \left(G_{\tau_1} - 3GG_l - \frac{1}{3}G_{lll}\right)r -  \frac{1}{2}G(-r)^2 - G_l \int G(-r)_r \D r - G(-r)G   - \frac{2}{3}G(-r)_{rr} +C_2 
+\end{align*}
+Observe that the only secular terms here are the integrals and terms that contain $r$ and $l.$
+\newline Now, we proceed with the method of \cite{bernard}. Recall the expansion\eqref{expansion1}:
+\[
+\phi(x,z,t) = \phi_0 - \epsilon\frac{(z+1)^2}{2!}\phi_{0xx} + \epsilon^2 \frac{(z+1)^4}{4!}\phi_{0xxxx} - \ldots = \sum^{\infty}_{k=0} (-1)^k \epsilon^k \frac{(z+1)^{2k}}{(2k)!} \partial^k_x \phi_0,
+\]
+For symplicity, let $\phi_0 = A(x,t).$ Substituting the above expansion into the dynamic condition \eqref{NondimBC4} and retaining the first two terms yields a representation for $\eta:$
+\begin{equation}\label{expansion2}
+\eta = -A_t + \frac{\epsilon}{2}(A_{xxt} - A_x^2) + \ldots .
+\end{equation}
+Substituting the expansion into the kinematic condition \eqref{NondimBC3} yields an expansion
+\begin{equation}\label{expansion3}
+\epsilon \eta_t + \epsilon^2 \eta_x A_x = -\epsilon A_{xx}(1+ \epsilon \eta) + \frac{\epsilon^2}{3!}A_{xxxx} + \ldots .
+\end{equation}
+Substituting \eqref{expansion2} into \eqref{expansion3}, we get 
+\begin{equation}\label{well-posed}
+\epsilon(-A_{tt} + \frac{\epsilon}{2}(A_{xxtt} - 2A_xA_{xt})+\epsilon^2(-A_{xt}A_x)) = \epsilon A_{xx}(1- \epsilon A_t) + \frac{\epsilon^2}{3!}A_{xxxx} + \ldots.
+\end{equation}
+Dividing by $\epsilon$ and keeping order $\epsilon$ terms gives:
+\[ 
+A_{tt} - A_{xx} = \epsilon(\frac{A_{xxtt}}{2} - \frac{A_{xxxx}}{6} - 2A_xA_{xt} - A_{xx}A_{t}).
+\]
+This implies that $A_tt = A_xx + \mathcal{O}(\epsilon),$ and so $A_{ttxx} = A_{xxxx} + \mathcal{O}(\epsilon),$ which allows to rewrite the above to
+\begin{equation}\label{ill-posed}
+A_{tt} - A_{xx} = \epsilon(\frac{A_{xxxx}}{3} - 2A_xA_{xt} - A_{xx}A_{t}).
+\end{equation}
+Now, a glance at respective dispersion relations reveals that \eqref{well-posed} is well-posed but \eqref{ill-posed} is ill-posed. However, we can remove the ill-posedness of the latter by assuming an asymptotic expansion for $A.$ Thus, from now on, we focus on \eqref{ill-posed}. Assume the expansion $A= A_0 + \epsilon A_1 + \ldots$ and substitute into \eqref{ill-posed}:
+\[  
+A_{0tt} + \epsilon A_{1tt} - A_{0xx}  - \epsilon A_{1xx} + \mathcal{\epsilon^2} = \epsilon \left( \frac{A_{0xxxx}}{3} - 2 A_{0x}A_{0xt} - A_{0xx}A_{0t} + \mathcal{O}(\epsilon)\right).
+\]
+Also, recall the boundary condition $\phi_x = 0$ at $x = 0,$ for which in the lowest two order we have 
+\[ 
+\partial_x^{2k+1}\phi_0(0,t) = 0 \iff \partial_x^{2k+1}A(0,t) = 0 \iff \partial_xA(0,t) = 0 \iff  A_{0x}(0,t) = 0, A_{1x}(0,t) = 0.
+\]
+Now, in the lowest order, we have a BVP
+\[ 
+A_{0tt} - A_{0xx} = 0, \qquad A_{0x}(0,t) = 0,
+\]
+which represents a problem of semi-infinite string with free end. From \cite[Chapter 9, p.64-65]{knobel}, we know the solution is piecewise
+\[ 
+A(x,t) = \begin{cases} F(x-t) +G(x + t) & x>t  \\ G(t- x) + G(x+t) & x<t \end{cases}
+\]
+Introduce the time-scales $\tau_0 = t, \tau_1 = \epsilon t,$ so that the lowest order problem and its solution are
+\[ 
+A_{0\tau_0\tau_0} - A_{0xx} = 0, \qquad A_{0x}(0,\tau_0, \tau_1) = 0, \qquad A(x,\tau_0, \tau_1) = \begin{cases} F(x-\tau_0, \tau_1) +G(x + \tau_0, \tau_1) & x>\tau_0  \\ G(\tau_0- x, \tau_1) + G(x+\tau_0, \tau_1) & x<\tau_0 \end{cases}
+\] 
+Introduce the characteristic variables $r =x - \tau_0, l = x + \tau_0,$ so that
+\[ 
+\partial_{t} = \partial_{\tau_0}+ \epsilon \partial_{\tau_1}
+\]
+
+
+\subsubsection{Via non-local formulation}
+
+% \clearpage
+\bibliographystyle{amsplain}
+{\small\bibliography{references}}
+
+\end{document}

@@ -1,0 +1,304 @@
+% Preamble
+\documentclass[11pt,reqno,oneside,a4paper]{article}
+\usepackage[a4paper,includeheadfoot,left=25mm,right=25mm,top=00mm,bottom=20mm,headheight=20mm]{geometry}
+\input{../texHead}
+\author{Dave Smith \& Vishal Vasan}
+\title{Linear KdV solitons}
+\newcommand{\theshorttitle}{Linear KdV solitons}
+\date{\today}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+% \tableofcontents
+
+\section{Problem}
+
+Consider the problem for the Korteweg-de Vries equation
+\begin{subequations} \label{eqn:uProblem}
+\begin{align}
+    \label{eqn:uProblem.PDE}
+    u_t + u_{xxx} + 6uu_x &= 0 & (x,t) &\in \RR\times(0,T), \\
+    \label{eqn:uProblem.InC}
+    u(x,0) &= u_0(x) & x &\in\RR, \\
+    \label{eqn:uProblem.BC}
+    u(\cdot,t) &\in \mathcal{S}(\RR) & t &\in [0,T],
+\end{align}
+\end{subequations}
+where $u_0\in\mathcal{S}(\RR)$ is a known initial datum.
+With the particular initial datum
+\begin{equation} \label{eqn:u0Soliton}
+    u_0(x) = -\frac{a}{2}\sech^2\left(\frac{\sqrt{a}}{2}(x-p)\right),
+\end{equation}
+problem~\ref{eqn:uProblem} has known solution
+\begin{equation} \label{eqn:uSoliton}
+    u(x,t) = -\frac{a}{2}\sech^2\left(\frac{\sqrt{a}}{2}(x-p-at)\right),
+\end{equation}
+the so called ``KdV sech squared soliton''.
+This solution has the remarkable property that it is stable in time, translating to the right at speed $a$.
+It also interacts with other such solitons in an almost linear way: there is no change in shape after the interaction, but an additional speed bump.
+
+We attempt to model this soliton by linearising about various compactly supported piecewise constant approximations for $u$ or $u_x$.
+\begin{enumerate}
+    \item{
+        Approximate the initial datum as a box function, zero everywhere except close to $x=p$.
+        Linearise the equation by replacing the $u$ in the nonlinear term with the same box function translating to the right at speed $c$.
+        We expect $c=a$ will yield the best approximation, while the support and maximum value of our approximation are free parameters.
+    }
+    \item{
+        As above, but replace the box function with a step function which more accurately approximates the soliton generating initial datum~\eqref{eqn:u0Soliton}.
+        This can be done for a variety of improving approximations, in each of which the approximation of $u_0$ is step function even about $x=p$ with an even number of discontinuities.
+    }
+    \item{
+        The derivative of initial datum~\eqref{eqn:u0Soliton} is
+        \begin{equation} \label{eqn:du0Soliton}
+            u'_0(x) = \frac{a\sqrt{a}}{2}\sech^2\left(\frac{\sqrt{a}}{2}(x-p)\right)\tanh\left(\frac{\sqrt{a}}{2}(x-p)\right).
+        \end{equation}
+        Use a step function, odd about $x=p$, which assumes a positive constant for $0<x<x_0$ and zero for $x>x_0$, to approximate $u'_0$.
+        The initial datum is thus approximated as a continuous piecewise linear even function.
+        Linearise the equation by replacing the $u_x$ in the nonlinear term with the same step function translating to the right at speed $c$.
+        We expect $c=a$ will yield the best approximation, while the support and maximum value of our approximation are free parameters.
+    }
+    \item{
+        As above, but replace the simple step function with a step function which more accurately approximates the derivative~\eqref{eqn:du0Soliton} of the soliton generating initial datum.
+        This can be done for a variety of improving approximations, in each of which the approximation of $u'_0$ is a step function odd about $x=p$ with an odd number of discontinuities.
+    }
+\end{enumerate}
+
+To simulate the interactions of solitons, we would also like to try adding two of these.
+But that requires relatively moving interfaces.
+
+\section{Even box linearisation of $u_0$}
+
+Consider problem~\eqref{eqn:uProblem}, except with the $u$ in the nonlinearity replaced with the initial datum translating at speed $c$ to the right:
+\begin{subequations} \label{eqn:vBoxProblem}
+\begin{align}
+    \label{eqn:vBoxProblem.PDE}
+    v_t + v_{xxx} + 6v_0(x-ct)v_x &= 0 & (x,t) &\in \Omega_p\times(0,T), \\
+    \label{eqn:vBoxProblem.InC}
+    v(x,0) &= v_0(x) = \begin{cases} 6\xi & \mbox{if } \lvert x-p \rvert < \eta, \\ 0 & \lvert x-p \rvert > \eta, \end{cases} \\
+    \label{eqn:vBoxProblem.BC}
+    v(\cdot+ct,t) &\in \mathcal{S}(\Omega_p) & t &\in [0,T], \\
+    \label{eqn:vBoxProblem.IfC}
+    v(\cdot,t) &\in C^2(\RR) & t &\in [0,T],
+\end{align}
+\end{subequations}
+where $\xi,c,\eta>0$ and $p\in\RR$ are free parameters, and $\Omega_p=(-\infty,p-\eta)\cup(p-\eta,p+\eta)\cup(p+\eta,\infty)$.
+We make the change of variables $v(x,t) = q(x-ct-p,t)+v_0(x-ct-p)$ to obtain
+\begin{subequations} \label{eqn:wBoxProblem}
+\begin{align}
+    \label{eqn:wBoxProblem.PDE.left}
+    q_t + q_{xxx} - cq_x &= 0 & (x,t) &\in (-\infty,-\eta)\times(0,T), \\
+    \label{eqn:wBoxProblem.PDE.center}
+    q_t + q_{xxx} - (c-6\xi)q_x &= 0 & (x,t) &\in (-\eta,\eta)\times(0,T), \\
+    \label{eqn:wBoxProblem.PDE.right}
+    q_t + q_{xxx} - cq_x &= 0 & (x,t) &\in (\eta,\infty)\times(0,T), \\
+    \label{eqn:wBoxProblem.InC}
+    q(x,0) &= 0 & x &\in\RR \\
+    \label{eqn:wBoxProblem.BC}
+    q(\cdot,t) &\in \mathcal{S}(\Omega_0) & t &\in [0,T], \\
+    \label{eqn:wBoxProblem.IfC.left0}
+    \lim_{\epsilon\to0^-}q(-\eta+\epsilon,t) &= \lim_{\epsilon\to0^+}q(-\eta+\epsilon,t) + \xi & t &\in [0,T], \\
+    \label{eqn:wBoxProblem.IfC.left12}
+    \lim_{\epsilon\to0^-}\partial_x^jq(-\eta+\epsilon,t) &= \lim_{\epsilon\to0^+}\partial_x^jq(-\eta+\epsilon,t) & t &\in [0,T],\; j\in\{1,2\}, \\
+    \label{eqn:wBoxProblem.IfC.right0}
+    \lim_{\epsilon\to0^+}q(\eta+\epsilon,t) &= \lim_{\epsilon\to0^-}q(\eta+\epsilon,t) + \xi & t &\in [0,T], \\
+    \label{eqn:wBoxProblem.IfC.right12}
+    \lim_{\epsilon\to0^-}\partial_x^jq(\eta+\epsilon,t) &= \lim_{\epsilon\to0^+}\partial_x^jq(\eta+\epsilon,t) & t &\in [0,T],\; j\in\{1,2\}.
+\end{align}
+\end{subequations}
+
+\subsection{Stage 1}
+For notational convenience, we define
+\begin{equation}
+    \omega_{\pm1}(\la) := -\ri\la(\la^2+c), \qquad\qquad \omega_{0}(\la) := -\ri\la(\la^2+c-6\xi),
+\end{equation}
+so that equations~\eqref{eqn:wBoxProblem.PDE.left} and~\eqref{eqn:wBoxProblem.PDE.right} can be expressed as $[\partial_t+\omega_{\pm1}(-\ri\partial_x)]q=0$ and equation~\eqref{eqn:wBoxProblem.PDE.center} can be expressed as $[\partial_t+\omega_{0}(-\ri\partial_x)]q=0$.
+
+Also, if $\phi$ is a complex-valued function defined and piecewise continuous on some real interval $\operatorname{dom}(\phi)$, we denote its Fourier transform (more precisely, the Fourier transform of its zero extension) as
+\begin{equation}
+    \hat{\phi}(\la) := \int_{\operatorname{dom}(\phi)}\re^{-\ri\la x}\phi(x)\D x,
+\end{equation}
+for all $\la\in\CC$ for which the integral converges.
+
+For a given function $q(\cdot,t)\in\mathcal{S}(\Omega_0)$ and integrable in $t$, we also define the \emph{spectral boundary value}
+\begin{equation}
+    \M{f}{\pm1}{j}(\rho;\tau) := \int_0^\tau \re^{\rho s} \lim_{\epsilon\to0^\pm}\partial_x^j q(\pm\eta+\epsilon,s) \D s,
+\end{equation}
+for any $\tau\in[0,T]$ and any $\rho\in\CC$ for which the integral converges.
+This function represents a time transform of the limiting interface value as approached from outside the interval $(-\eta,\eta)$.
+
+We define
+%\begin{equation}
+ %   q^{-1} &= q \big\vert_{x<-\eta}, \qquad\qquad q^{0} &= q \big\vert_{\lvert x \rvert <\eta}, \qquad\qquad q^{+1} &= q \big\vert_{x>+\eta}
+%\end{equation}
+to refer to the restrictions of $q$ to each connected component of $\Omega_0$.
+
+We define functions $\M{\nu}{\omega_r}{k}:\CC\to\CC$ by
+\begin{equation}
+    \omega_r(\M{\nu}{r}{k}(\la)) = -\ri\la^3, \qquad \M{\nu}{r}{k}(\la) \sim \alpha^k\la \mbox{ as }\la\to\infty,
+\end{equation}
+so that all branch cuts of each $\M{\nu}{\omega_r}{k}$ are contained within a bounded region; each of these functions is analytic and bijective on $\{\la\in\CC:\lvert\la\rvert>R\}$ for $R$ chosen large enough.
+
+We also define the sets
+\begin{equation}
+    \Msups{D}{}{}{r}{\pm} := \{ \la\in\CC^\pm : \Re(\omega_r(\la)) < 0 \}, \qquad\qquad \Msups{D}{R}{}{r}{\pm} := \{ \la\in\Msups{D}{}{}{r}{\pm} : \lvert \Msup{\nu}{r}{k}{-1}(\la) \rvert > R \},
+\end{equation}
+for $r\in\{-1,0,1\}$ and $R \geq 0$.
+Each of these sets is, approximately, the union of one or two sectors, but with the rays deformed to curves depending on the values of $c$ and $\xi$.
+The boundaries of these sets, $\partial \Msups{D}{}{}{r}{\pm}$ and $\partial \Msups{D}{R}{}{r}{\pm}$, are oriented in the positive sense.
+We also define
+\begin{equation}
+    D^\pm := \{ \la\in\CC^\pm : \Re(-i\la^3) < 0 \}, \qquad\qquad D^\pm_R := \{ \la\in D^\pm : \lvert \la \rvert > R \}.
+\end{equation}
+
+\subsubsection{$x<-\eta$}
+Supposing $\phi\in \mathcal{S}(-\infty,-\eta]$, we find that, for all $\la\in\CC^+$,
+$$
+    \reallywidehat{[\partial_{xxx}-c\partial_x]\phi} = \omega_{-1}(\la)\hat{\phi}(\la) + \left[ \phi''(-\eta) + \ri\la\phi'(-\eta) - (\la^2+c)\phi(-\eta) \right] \re^{\ri\eta\la}.
+$$
+Applying this identity to $q(\cdot;t)$ which satisfies equation~\eqref{eqn:wBoxProblem.PDE.left} on $(-\infty,\eta)$, and solving the resulting temporal ordinary differential equation for $\widehat{q^{-1}}(\la;\cdot)$ with initial condition $\widehat{q^{-1}}(\la;0)=0$ obtained from equation~\eqref{eqn:wBoxProblem.InC}, yields
+\begin{equation} \label{eqn:BoxProblem.GR.left}
+    \re^{\omega_{-1}(\la)t} \widehat{q^{-1}}(\la;t) = \big[ -\M{f}{-1}{2}(\omega_{-1}(\la);t) - \ri\la \M{f}{-1}{1}(\omega_{-1}(\la);t)
+    + (\la^2+c) \M{f}{-1}{0}(\omega_{-1}(\la);t) \big] \re^{\ri\eta\la},
+\end{equation}
+valid for all $\la\in\CC^+$, an equation which we call the \emph{global relation} on $x<-\eta$.
+
+Applying the inverse Fourier transform to equation~\eqref{eqn:BoxProblem.GR.left} and using a Jordan's lemma argument, we find that, for all $(x,t)\in(-\infty,-\eta)\times[0,T]$, for all $R>0$, and for all $\tau\geq t$,
+\begin{multline}
+    2\pi q(x,t) = \int_{\partial\Msups{D}{R}{}{-1}{-}} \re^{\ri\la(x+\eta)-\omega_{-1}(\la)t} \big[ \M{f}{-1}{2}(\omega_{-1}(\la);\tau) + \ri\la \M{f}{-1}{1}(\omega_{-1}(\la);\tau) \\
+    - (\la^2+c) \M{f}{-1}{0}(\omega_{-1}(\la);\tau) \big] \D\la.
+\end{multline}
+Note that, due to its origin as an inverse Fourier transform and the application of Jordan's lemma, this integral must be understood as the joint principal value of two complex contour integrals, one about each connected component of $\partial\Msups{D}{R}{}{-1}{-}$.
+In these integrals, we make a change of notation $\la\mapsto\nu$, then substitute $\nu=\M{\nu}{-1}{k}(\la)$, with $k=1$ for the integral with contour including part of the negative real axis, and with $k=2$ for the integral with contour including part of the positive real axis.
+This yields
+\begin{multline} \label{eqn:BoxProblem.EF.left}
+    2\pi q(x,t) \\
+    = \int_{D_R^+} \re^{\ri\M{\nu}{-1}{1}(\la)(x+\eta)+\ri\la^3t} \left[ \M{f}{-1}{2}(-\ri\la^3;\tau) + \ri\M{\nu}{-1}{1}(\la) \M{f}{-1}{1}(-\ri\la^3;\tau) - \frac{\la^3}{\M{\nu}{-1}{1}(\la)} \M{f}{-1}{0}(-\ri\la^3;\tau) \right] \\
+    +            \re^{\ri\M{\nu}{-1}{2}(\la)(x+\eta)+\ri\la^3t} \left[ \M{f}{-1}{2}(-\ri\la^3;\tau) + \ri\M{\nu}{-1}{2}(\la) \M{f}{-1}{1}(-\ri\la^3;\tau) - \frac{\la^3}{\M{\nu}{-1}{2}(\la)} \M{f}{-1}{0}(-\ri\la^3;\tau) \right] \D\la,
+\end{multline}
+an equation we call the \emph{Ehrenpreis form} on $x<-\eta$.
+
+\subsubsection{$\lvert x \rvert < \eta$}
+Supposing $\phi\in \mathcal{S}[-\eta,\eta]=C^\infty[-\eta,\eta]$, we find that, for all $\la\in\CC$,
+\begin{multline*}
+    \reallywidehat{[\partial_{xxx}-(c-6b)\partial_x]\phi} = \omega_{0}(\la)\hat{\phi}(\la) + \left[ \phi''(\eta) + \ri\la\phi'(\eta) - (\la^2+c-6\xi)\phi(\eta) \right] \re^{-\ri\eta\la} \\
+    - \left[ \phi''(-\eta) + \ri\la\phi'(-\eta) - (\la^2+c-6\xi)\phi(-\eta) \right] \re^{\ri\eta\la}.
+\end{multline*}
+Applying this identity to $q(\cdot;t)$ which satisfies equation~\eqref{eqn:wBoxProblem.PDE.right} on $(-\eta,\eta)$, yields a temporal ordinary differential equation for $\widehat{q^{0}}(\la;\cdot)$, which can be solved with initial condition $\widehat{q^{0}}(\la;0)=0$ obtained from equation~\eqref{eqn:wBoxProblem.InC}.
+Solving and applying the interface conditions~\eqref{eqn:wBoxProblem.IfC.left0}--\eqref{eqn:wBoxProblem.IfC.right12}, we find
+\begin{multline} \label{eqn:BoxProblem.GR.center}
+    \re^{\omega_{0}(\la)t} \widehat{q^{0}}(\la;t) = \bigg[ \M{f}{-1}{2}(\omega_{0}(\la);t) + \ri\la \M{f}{-1}{1}(\omega_{0}(\la);t) \\
+    - (\la^2+c-6\xi) \left( \M{f}{-1}{0}(\omega_{0}(\la);t) - \frac{\xi}{\omega_0(\la)}\left[\re^{\omega_0(\la)t}-1\right] \right) \bigg] \re^{ \ri\eta\la} \\
+    - \bigg[ \M{f}{+1}{2}(\omega_{0}(\la);t) + \ri\la \M{f}{+1}{1}(\omega_{0}(\la);t) \\
+    - (\la^2+c-6\xi) \left( \M{f}{+1}{0}(\omega_{0}(\la);t) - \frac{\xi}{\omega_0(\la)}\left[\re^{\omega_0(\la)t}-1\right] \right) \bigg] \re^{-\ri\eta\la},
+\end{multline}
+valid for all $\la\in\CC$ an equation which we call the \emph{global relation} on $x<-\eta$.
+
+Applying the inverse Fourier transform to equation~\eqref{eqn:BoxProblem.GR.left} and using a Jordan's lemma argument, we find that, for all $(x,t)\in(-\eta,\eta)\times[0,T]$, for all $R>0$, and for all $\tau\geq t$,
+\begin{multline}
+    2\pi q(x,t)
+    = \int_{\partial\Msups{D}{R}{}{0}{+}} \re^{\ri\la(x+\eta)-\omega_{0}(\la)t} \bigg[ \M{f}{-1}{2}(\omega_{0}(\la);\tau) + \ri\la \M{f}{- 1}{1}(\omega_{0}(\la);\tau) \\
+    - (\la^2+c-6\xi) \left( \M{f}{-1}{0}(\omega_{0}(\la);\tau) - \frac{\xi}{\omega_0(\la)}\left[\re^{\omega_0(\la)\tau}-1\right] \right) \bigg] \D\la \\
+    + \int_{\partial\Msups{D}{R}{}{0}{-}} \re^{\ri\la(x-\eta)-\omega_{0}(\la)t} \bigg[ \M{f}{+1}{2}(\omega_{0}(\la);\tau) + \ri\la \M{f}{+ 1}{1}(\omega_{0}(\la);\tau) \\
+    - (\la^2+c-6\xi) \left( \M{f}{+1}{0}(\omega_{0}(\la);\tau) - \frac{\xi}{\omega_0(\la)}\left[\re^{\omega_0(\la)\tau}-1\right] \right) \bigg] \D\la.
+\end{multline}
+Note that, due to its origin as an inverse Fourier transform and the application of Jordan's lemma, these integrals must be understood as the joint principal value of three complex contour integrals, one about each connected component of $\partial\Msups{D}{R}{}{0}{\pm}$.
+In these integrals, we make a change of notation $\la\mapsto\nu$, then substitute $\nu=\M{\nu}{0}{k}(\la)$, with $k=1$ for the integral with contour including part of the negative real axis, and with $k=2$ for the integral with contour including part of the positive real axis, and with $k=0$ for the integral with contour lying wholly in $\CC^+$.
+This yields
+\begin{multline} \label{eqn:BoxProblem.EF.center}
+    2\pi q(x,t)
+    = \int_{D_R^+} \re^{\ri\M{\nu}{0}{0}(\la)(x+\eta)+\ri\la^3t} \Big[ \M{f}{-1}{2}(-\ri\la^3;\tau) + \ri\M{\nu}{0}{0}(\la) \M{f}{-1}{1}(-\ri\la^3;\tau) \\
+    - \frac{1}{\M{\nu}{0}{0}(\la)} \left( \la^3\M{f}{-1}{0}(-\ri\la^3;\tau) - \ri\xi\left[\re^{-\ri\la^3\tau}-1\right] \right) \Big] \\
+    +            \re^{\ri\M{\nu}{0}{1}(\la)(x-\eta)+\ri\la^3t} \Big[ \M{f}{+1}{2}(-\ri\la^3;\tau) + \ri\M{\nu}{0}{1}(\la) \M{f}{+1}{1}(-\ri\la^3;\tau) \\
+    - \frac{1}{\M{\nu}{0}{1}(\la)} \left( \la^3\M{f}{+1}{0}(-\ri\la^3;\tau) - \ri\xi\left[\re^{-\ri\la^3\tau}-1\right] \right) \Big] \\
+    +            \re^{\ri\M{\nu}{0}{2}(\la)(x-\eta)+\ri\la^3t} \Big[ \M{f}{+1}{2}(-\ri\la^3;\tau) + \ri\M{\nu}{0}{2}(\la) \M{f}{+1}{1}(-\ri\la^3;\tau) \\
+    - \frac{1}{\M{\nu}{0}{2}(\la)} \left( \la^3\M{f}{+1}{0}(-\ri\la^3;\tau) - \ri\xi\left[\re^{-\ri\la^3\tau}-1\right] \right) \Big]
+    \D\la,
+\end{multline}
+an equation we call the \emph{Ehrenpreis form} on $\lvert x \rvert < \eta$.
+
+\subsubsection{$x>\eta$}
+Supposing $\phi\in \mathcal{S}[\eta,\infty)$, we find that, for all $\la\in\CC^-$,
+$$
+    \reallywidehat{[\partial_{xxx}-c\partial_x]\phi} = \omega_{+1}(\la)\hat{\phi}(\la) - \left[ \phi''(\eta) + \ri\la\phi'(\eta) - (\la^2+c)\phi(\eta) \right] \re^{-\ri\eta\la}.
+$$
+Applying this identity to $q(\cdot;t)$ which satisfies equation~\eqref{eqn:wBoxProblem.PDE.right} on $(\eta,\infty)$, and solving the resulting temporal ordinary differential equation for $\widehat{q^{+1}}(\la;\cdot)$ with initial condition $\widehat{q^{+1}}(\la;0)=0$ obtained from equation~\eqref{eqn:wBoxProblem.InC}, yields
+\begin{equation} \label{eqn:BoxProblem.GR.right}
+    \re^{\omega_{+1}(\la)t} \widehat{q^{+1}}(\la;t) = \big[ \M{f}{+1}{2}(\omega_{+1}(\la);t) + \ri\la \M{f}{+1}{1}(\omega_{+1}(\la);t)
+    - (\la^2+c) \M{f}{+1}{0}(\omega_{+1}(\la);t) \big] \re^{-\ri\eta\la},
+\end{equation}
+valid for all $\la\in\CC^-$, an equation which we call the \emph{global relation} on $x<-\eta$.
+
+Applying the inverse Fourier transform to equation~\eqref{eqn:BoxProblem.GR.left} and using a Jordan's lemma argument, we find that, for all $(x,t)\in(\eta,\infty)\times[0,T]$, for all $R>0$, and for all $\tau\geq t$,
+\begin{multline}
+    2\pi q(x,t) = \int_{\partial\Msups{D}{R}{}{+1}{+}} \re^{\ri\la(x-\eta)-\omega_{+1}(\la)t} \big[ \M{f}{+1}{2}(\omega_{+1}(\la);\tau) + \ri\la \M{f}{+1}{1}(\omega_{+1}(\la);\tau) \\
+    - (\la^2+c) \M{f}{+1}{0}(\omega_{+1}(\la);\tau) \big] \D\la.
+\end{multline}
+Note that, due to its origin as an inverse Fourier transform and the application of Jordan's lemma, this integral must be understood as the principal value of a complex contour integral about the single connected component of $\partial\Msups{D}{R}{}{+1}{+}$.
+In this integral, we make a change of notation $\la\mapsto\nu$, then substitute $\nu=\M{\nu}{-1}{0}(\la)$.
+This yields
+\begin{multline} \label{eqn:BoxProblem.EF.right}
+    2\pi q(x,t) \\
+    = \int_{D_R^+} \re^{\ri\M{\nu}{+1}{0}(\la)(x-\eta)+\ri\la^3t} \left[ \M{f}{+1}{2}(-\ri\la^3;\tau) + \ri\M{\nu}{+1}{0}(\la) \M{f}{+1}{1}(-\ri\la^3;\tau) - \frac{\la^3}{\M{\nu}{+1}{0}(\la)} \M{f}{+1}{0}(-\ri\la^3;\tau) \right] \D\la,
+\end{multline}
+an equation we call the \emph{Ehrenpreis form} on $x>\eta$.
+
+\subsection{Stage 2}
+
+The Ehrenpreis forms~\eqref{eqn:BoxProblem.EF.left},~\eqref{eqn:BoxProblem.EF.center} and~\eqref{eqn:BoxProblem.EF.right} are not effective representations of the solution of problem~\ref{eqn:wBoxProblem}, because they each depend on some or all of the six spectral boundary boundary values
+$$
+    \M{f}{r}{k}(-\ri\la^3;\tau), \qquad r\in\{-1,+1\},\;k\in\{0,1,2\}.
+$$
+We have already used the six interface conditions~\eqref{eqn:wBoxProblem.IfC.left0}--\eqref{eqn:wBoxProblem.IfC.right12} in obtaining the Ehrenpreis form for $\lvert x \rvert < \eta$, and they cannot be used to simplify further any of the Ehrenpreis forms.
+Thus, to turn the Ehrenpreis forms into effective solution representations, we must derive and apply a data to unknown map, allowing the spectral boundary values to be expressed purely in terms of data of the problem.
+We turn to the global relations~\eqref{eqn:BoxProblem.GR.left},~\eqref{eqn:BoxProblem.GR.center} and~\eqref{eqn:BoxProblem.GR.right} to derive six equations in the six unknown spectral boundary values.
+
+The global relations contain the spectral boundary values, but each as a function of polynomials $\omega_r(\la)$, while the Ehrenpreis forms all depend upon the spectral boundary values understood as functions of a different polynomial $-\ri\la^3$.
+We will evaluate the global relations at $\la\mapsto\M{\nu}{r}{k}(\la)$ to obtain equations relating the spectral boundary values as functions of the relevant polynomial in $\la$.
+The integrals in the Ehrenpreis forms are all about $\partial D_R^+$, so it is only necessary to find expressions for the spectral boundary values that are valid on this contour.
+Examining the domains of validity of the three global relations, we find it is possible to apply maps as follows:
+\begin{itemize}
+    \item{
+        Apply the map $(\la,t)\mapsto(\M{\nu}{-1}{0}(\la),\tau)$ to the global relation on $x<-\eta$, equation~\eqref{eqn:BoxProblem.GR.left}, for one equation in the spectral boundary values.
+    }
+    \item{
+        Apply the maps $(\la,t)\mapsto(\M{\nu}{0}{k}(\la),\tau)$ for $k\in\{0,1,2\}$ to the global relation on $\lvert x \rvert < \eta$, equation~\eqref{eqn:BoxProblem.GR.center}, for three equations in the spectral boundary values.
+    }
+    \item{
+        Apply the maps $(\la,t)\mapsto(\M{\nu}{+1}{k}(\la),\tau)$ for $k\in\{1,2\}$ to the global relation on $x>\eta$, equation~\eqref{eqn:BoxProblem.GR.right}, for two equations in the spectral boundary values.
+    }
+\end{itemize}
+These six equations form the linear system
+\begin{subequations}
+\begin{equation}
+    \mathcal{A}(\la) \begin{pmatrix} \M{f}{-1}{2}(-\ri\la^3;\tau) \\ \M{f}{-1}{1}(-\ri\la^3;\tau) \\ \M{f}{-1}{0}(-\ri\la^3;\tau) \\ \M{f}{+1}{2}(-\ri\la^3;\tau) \\ \M{f}{+1}{1}(-\ri\la^3;\tau) \\ \M{f}{+1}{0}(-\ri\la^3;\tau) \end{pmatrix}
+    = \re^{-\ri\la^3\tau} \begin{pmatrix} \widehat{q^{-1}}\left(\M{\nu}{-1}{0}(\la),\tau\right) \\ \widehat{q^{+1}}\left(\M{\nu}{+1}{1}(\la),\tau\right) \\ \widehat{q^{+1}}\left(\M{\nu}{+1}{2}(\la),\tau\right) \\ \widehat{q^{0}}\left(\M{\nu}{0}{0}(\la),\tau\right) \\ \widehat{q^{0}}\left(\M{\nu}{0}{1}(\la),\tau\right) \\ \widehat{q^{0}}\left(\M{\nu}{0}{2}(\la),\tau\right) \end{pmatrix}
+    + 2\eta\xi\left[\re^{-\ri\la^3\tau}-1\right] \begin{pmatrix} 0 \\ 0 \\ 0 \\ \sinc\left(\xi\M{\nu}{0}{0}(\la)\right) \\ \sinc\left(\xi\M{\nu}{0}{1}(\la)\right) \\ \sinc\left(\xi\M{\nu}{0}{2}(\la)\right) \end{pmatrix}
+\end{equation}
+where, defining
+\begin{equation}
+    \Msup{E}{r}{k}{\pm}(\la) := \re^{\pm\ri\xi\M{\nu}{r}{k}(\la)},
+\end{equation}
+and suppressing the explicit $\la$ dependence of $\M{\nu}{r}{k}$ and $\Msup{E}{r}{k}{\pm}$,
+\begin{equation}
+    \mathcal{A}(\la) = \begin{pmatrix}
+    -\Msup{E}{-1}{0}{+} & -\ri\M{\nu}{-1}{0}\Msup{E}{-1}{0}{+} & \frac{\la^3}{\M{\nu}{-1}{0}}\Msup{E}{-1}{0}{+} & 0 & 0 & 0 \\
+    0 & 0 & 0 & \Msup{E}{+1}{1}{-} & \ri\M{\nu}{+1}{1}\Msup{E}{+1}{1}{-} & \frac{-\la^3}{\M{\nu}{+1}{1}}\Msup{E}{+1}{1}{-} \\
+    0 & 0 & 0 & \Msup{E}{+1}{2}{-} & \ri\M{\nu}{+1}{2}\Msup{E}{+1}{2}{-} & \frac{-\la^3}{\M{\nu}{+1}{2}}\Msup{E}{+1}{2}{-} \\
+    \Msup{E}{0}{0}{+} & \ri\M{\nu}{0}{0}\Msup{E}{0}{0}{+} & \frac{-\la^3}{\M{\nu}{0}{0}}\Msup{E}{0}{0}{+} &
+        -\Msup{E}{0}{0}{-} & -\ri\M{\nu}{0}{0}\Msup{E}{0}{0}{-} & \frac{\la^3}{\M{\nu}{0}{0}}\Msup{E}{0}{0}{-} \\
+    \Msup{E}{0}{1}{+} & \ri\M{\nu}{0}{1}\Msup{E}{0}{1}{+} & \frac{-\la^3}{\M{\nu}{0}{1}}\Msup{E}{0}{1}{+} &
+        -\Msup{E}{0}{1}{-} & -\ri\M{\nu}{0}{1}\Msup{E}{0}{1}{-} & \frac{\la^3}{\M{\nu}{0}{1}}\Msup{E}{0}{1}{-} \\
+    \Msup{E}{0}{2}{+} & \ri\M{\nu}{0}{2}\Msup{E}{0}{2}{+} & \frac{-\la^3}{\M{\nu}{0}{2}}\Msup{E}{0}{2}{+} &
+        -\Msup{E}{0}{2}{-} & -\ri\M{\nu}{0}{2}\Msup{E}{0}{2}{-} & \frac{\la^3}{\M{\nu}{0}{2}}\Msup{E}{0}{2}{-}
+    \end{pmatrix}.
+\end{equation}
+\end{subequations}
+We solve this linear system using Cramer's rule.
+
+% \clearpage
+\bibliographystyle{amsplain}
+{\small\bibliography{dbrefs}}
+
+\end{document}

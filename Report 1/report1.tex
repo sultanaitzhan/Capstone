@@ -4,7 +4,7 @@
 \usepackage{siunitx}
 \input{texHead}
 \author{Sultan Aitzhan}
-\title{Capstone Notes}
+\title{Report 1}
 \newcommand{\theshorttitle}{Capstone Notes}
 \date{\today}
 \allowdisplaybreaks
@@ -16,7 +16,7 @@
 
 \section{Preliminaries}
 
-\subsection{Derivation of Euler's Equations}
+\subsection{Introduction}
 First, we derive Euler's equations for incompressible, irrotational, and inviscid fluids. 
 
 \subsubsection{The boundary conditions for water waves}
@@ -131,6 +131,15 @@ which is the dynamic boundary condition, where we also substituted $\Omega = gz$
 \partial_z \phi &= 0 &z &= -h \\
 \eta_t + \phi_x \eta_x &= \phi_z &z &= \eta_(x,t) \\
 \phi_t + \frac{1}{2} (\phi_x^2 + \phi_z^2) + g\eta &= \frac{\sigma}{\rho} \frac{\eta_{xx}}{(1+\eta_x^2)^{3/2}} &z &= \eta(x, t).
+\end{align*}
+
+\begin{align*}
+2 \frac{\partial f}{\partial \tau_1} + 3 f \frac{\partial f}{\partial r} + \frac{1}{3}\frac{\partial^3 f}{\partial r^3} &= 0 \\
+2 \frac{\partial g}{\partial \tau_1} - 3 g \frac{\partial g}{\partial l} - \frac{1}{3}\frac{\partial^3 g}{\partial l^3} &= 0 
+\end{align*}
+
+\begin{align*}
+\eta_0 = f(x - \tau_0, \tau_1, \ldots) +  g(x + \tau_0, \tau_1, \ldots) \qquad u_0 = f(x - \tau_0, \tau_1, \ldots) -  g(x + \tau_0, \tau_1, \ldots)
 \end{align*}
 
 \subsubsection{Nondimensionalisation}
