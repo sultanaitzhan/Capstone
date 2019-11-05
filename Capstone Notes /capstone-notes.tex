@@ -328,7 +328,9 @@ and so forth. Thus, one solution to \eqref{NondimPDE}, \eqref{NondimBC1}, \eqref
 \begin{equation}\label{expansion1}
 \phi(x,z,t) = \phi_0 - \epsilon\frac{(z+1)^2}{2!}\phi_{0xx} + \epsilon^2 \frac{(z+1)^4}{4!}\phi_{0xxxx} - \ldots = \sum^{\infty}_{k=0} (-1)^k \epsilon^k \frac{(z+1)^{2k}}{(2k)!} \partial^k_x \phi_0,
 \end{equation}
-where we also require that $\partial_x^{2k+1}\phi_0(0,t) = 0$ for all $k \in \NN.$ Now, substituting \eqref{expansion1} into \eqref{NondimBC3}, \eqref{NondimBC4}, and \eqref{NondimBC5}, and keeping the terms in the lowest power of $\epsilon$ yields the following system:
+where we also require that $\partial_x^{2k+1}\phi_0(0,t) = 0$ for all $k \in \NN.$ 
+\vspace{1cm}
+\newline \textbf{Bernard's method:} we proceed with Prof. Bernard's method. Substituting \eqref{expansion1} into \eqref{NondimBC3}, \eqref{NondimBC4}, and \eqref{NondimBC5}, and keeping the terms in the lowest power of $\epsilon$ yields the following system:
 \begin{subequations} \label{NonDimHalfLineProb1}
 \begin{align}
 \label{P1BC1}\eta_t + \partial_x\phi_{0x} &= \mathcal{O}(\epsilon) &z &= \epsilon\eta \\
@@ -367,13 +369,13 @@ along with a boundary condition $u_0 = 0$ at $x=0.$ We thus have a boundary valu
 \begin{align*}
 u_0 = \begin{cases} F(x - \tau_0) + G(x+\tau_0) & x>\tau_0 \\ -G(\tau_0 - x) + G(x+\tau_0) & x< \tau_0 \end{cases},
 \end{align*}
-which follows since $F,G$ are defined on $[0, \infty).$ Since $u_0$ and $\eta_0$ are related by \eqref{P2BC1} and \eqref{P2BC2}, \textbf{it follows that} 
+which follows since $F,G$ are defined on $[0, \infty).$ Since $u_0$ and $\eta_0$ are related by \eqref{P2BC1} and \eqref{P2BC2}, it follows that
 \begin{align*}
-\eta_0 = \begin{cases} F(x - \tau_0) + G(x+\tau_0) & x>\tau_0 \\ G(\tau_0 - x) + G(x+\tau_0) & x< \tau_0 \end{cases}.
+\eta_0 = \begin{cases} - F(x - \tau_0) + G(x+\tau_0) & x>\tau_0 \\ G(\tau_0 - x) + G(x+\tau_0) & x< \tau_0 \end{cases}.
 \end{align*}
 Following the procedure outlined in \cite[p.71-72]{bernard}, we consider the equations \eqref{P1BC1} and \eqref{P1BC2} in the second lowest order:
 \begin{align*}
-\eta_{1\tau_0} + u_{1x} &= - (\eta_{0\tau_1} + u_0 \eta{0x} + \eta_0 u_{0x} - \frac{1}{6}u_{0xxx}) \\
+\eta_{1\tau_0} + u_{1x} &= - (\eta_{0\tau_1} + u_0 \eta_{0x} + \eta_0 u_{0x} - \frac{1}{6}u_{0xxx}) \\
 \eta_{1\tau_0} + \eta_{1x} &= - (u_{0\tau_1} - \frac{1}{2}u_{0xxx\tau_0} + u_0 u_{0x}),
 \end{align*}
 along with the boundary conditions $u_0 = u_1 = 0$ at $x = 0.$ Introduce characteristic variables, to separate the left and right going waves:
@@ -386,11 +388,12 @@ so that
 \]
 Thus, 
 \begin{align*}
-\eta_0 = \begin{cases} F(r) + G(l) & r>0 \\ G(-r) + G(l)=: G(-r) + G & r<0 \end{cases} \qquad u_0 = \begin{cases} F(r) - G(l) & r>0 \\ G(-r) - Gl) =: G(-r)-G & r<0 \end{cases},
+u_0 = \begin{cases} F(r) + G(l) & r>0 \\ -G(-r) + G(l) =: -G(-r)+G & r<0 \end{cases} \qquad\qquad \eta_0 = \begin{cases} - F(r)+G(l) & r>0 \\ G(-r) + G(l)=: G(-r) + G & r<0 \end{cases} 
 \end{align*}
-where we let $G$ be a function of $l,$ to ease the notation. Also, keep in mind that $F,G$ are also functions of $\tau_0, \tau_1, \tau_2, \ldots.$ If $r > 0,$ then the situation is identical that in \cite[Chapter 4, p.72-73]{bernard}, and we obtain the KdV equations. Thus, we deal with the case $r<0.$ The transformed equations are
+where we let $G$ be a function of $l,$ to ease the notation. Also, keep in mind that $F,G$ are also functions of $\tau_0, \tau_1, \tau_2, \ldots.$ If $r > 0,$ then the situation is identical that in \cite[Chapter 4, p.72-73]{bernard}, and we obtain the KdV equations. Thus, we deal with the case $r<0.$ \textbf{check carefully from now on till Prof. Ablowitz method.} The transformed equations are
 \begin{align*}
-\eta_{1l} - \eta_{1r} + u_{1r} + u_{1l} &= - (G(-r)_{\tau_1} + G_{\tau_1} + (G(-r) - G)(-G(-r)_r + G_l) - (G(-r) + G)(G(-r)_r + G_l) + \frac{1}{6}(G(-r)_{rrr}+G_{lll})) \\
+\eta_{1l} - \eta_{1r} + u_{1r} + u_{1l} &= - (G(-r)_{\tau_1} + G_{\tau_1} + (G(-r) - G)(-G(-r)_r + G_l) - (G(-r) + G)(G(-r)_r + G_l)\\
+&+ \frac{1}{6}(G(-r)_{rrr}+G_{lll})) \\
 &= -(G(-r)_{\tau_1} + G_{\tau_1} - 2G(-r)G(-r)_r - 2GG_l + \frac{1}{6} (G(-r)_{rrr} + G_{lll})) \\
 u_{1l} - u_{1r} + \eta_{1r} + \eta_{1l}  &= - (G(-r)_{\tau_1} - G_{\tau_1} - \frac{1}{2}(G(-r)_{rrr} - G_{lll}) - (G(-r) - G)(G(-r)_r+G_l)) \\
 &=  - (G(-r)_{\tau_1} - G_{\tau_1} - \frac{1}{2}(G(-r)_{rrr} - G_{lll}) - G(-r)G(-r)_r - G(-r)G_l + G G(-r)_r+GG_l )
@@ -406,7 +409,8 @@ Integrate:
 2(u_{1} - \eta_{1}) &=  - \left(G_{\tau_1} - 3GG_l - \frac{1}{3}G_{lll}\right)r -  \frac{1}{2}G(-r)^2 - G_l \int G(-r)_r \D r - G(-r)G   - \frac{2}{3}G(-r)_{rr} +C_2 
 \end{align*}
 Observe that the only secular terms here are the integrals and terms that contain $r$ and $l.$
-\newline Now, we proceed with the method of \cite{bernard}. Recall the expansion\eqref{expansion1}:
+\vspace{1cm}
+\newline \textbf{Ablowitz Method.} Now, we proceed with the method of Ablowitz. Recall the expansion \eqref{expansion1}:
 \[
 \phi(x,z,t) = \phi_0 - \epsilon\frac{(z+1)^2}{2!}\phi_{0xx} + \epsilon^2 \frac{(z+1)^4}{4!}\phi_{0xxxx} - \ldots = \sum^{\infty}_{k=0} (-1)^k \epsilon^k \frac{(z+1)^{2k}}{(2k)!} \partial^k_x \phi_0,
 \]
@@ -424,15 +428,15 @@ Substituting \eqref{expansion2} into \eqref{expansion3}, we get
 \end{equation}
 Dividing by $\epsilon$ and keeping order $\epsilon$ terms gives:
 \[ 
-A_{tt} - A_{xx} = \epsilon(\frac{A_{xxtt}}{2} - \frac{A_{xxxx}}{6} - 2A_xA_{xt} - A_{xx}A_{t}).
+A_{tt} - A_{xx} = \epsilon\left(\frac{A_{xxtt}}{2} - \frac{A_{xxxx}}{6} - 2A_xA_{xt} - A_{xx}A_{t}\right).
 \]
 This implies that $A_tt = A_xx + \mathcal{O}(\epsilon),$ and so $A_{ttxx} = A_{xxxx} + \mathcal{O}(\epsilon),$ which allows to rewrite the above to
 \begin{equation}\label{ill-posed}
-A_{tt} - A_{xx} = \epsilon(\frac{A_{xxxx}}{3} - 2A_xA_{xt} - A_{xx}A_{t}).
+A_{tt} - A_{xx} = \epsilon\left(\frac{A_{xxxx}}{3} - 2A_xA_{xt} - A_{xx}A_{t}\right).
 \end{equation}
 Now, a glance at respective dispersion relations reveals that \eqref{well-posed} is well-posed but \eqref{ill-posed} is ill-posed. However, we can remove the ill-posedness of the latter by assuming an asymptotic expansion for $A.$ Thus, from now on, we focus on \eqref{ill-posed}. Assume the expansion $A= A_0 + \epsilon A_1 + \ldots$ and substitute into \eqref{ill-posed}:
 \[  
-A_{0tt} + \epsilon A_{1tt} - A_{0xx}  - \epsilon A_{1xx} + \mathcal{\epsilon^2} = \epsilon \left( \frac{A_{0xxxx}}{3} - 2 A_{0x}A_{0xt} - A_{0xx}A_{0t} + \mathcal{O}(\epsilon)\right).
+A_{0tt} + \epsilon A_{1tt} - A_{0xx}  - \epsilon A_{1xx} + \mathcal{O}(\epsilon^2) = \epsilon \left( \frac{A_{0xxxx}}{3} - 2 A_{0x}A_{0xt} - A_{0xx}A_{0t} + \mathcal{O}(\epsilon)\right).
 \]
 Also, recall the boundary condition $\phi_x = 0$ at $x = 0,$ for which in the lowest two order we have 
 \[ 
@@ -448,15 +452,57 @@ A(x,t) = \begin{cases} F(x-t) +G(x + t) & x>t  \\ G(t- x) + G(x+t) & x<t \end{ca
 \]
 Introduce the time-scales $\tau_0 = t, \tau_1 = \epsilon t,$ so that the lowest order problem and its solution are
 \[ 
-A_{0\tau_0\tau_0} - A_{0xx} = 0, \qquad A_{0x}(0,\tau_0, \tau_1) = 0, \qquad A(x,\tau_0, \tau_1) = \begin{cases} F(x-\tau_0, \tau_1) +G(x + \tau_0, \tau_1) & x>\tau_0  \\ G(\tau_0- x, \tau_1) + G(x+\tau_0, \tau_1) & x<\tau_0 \end{cases}
+A_{0\tau_0\tau_0} - A_{0xx} = 0, \qquad A_{0x}(0,\tau_0, \tau_1) = 0, \qquad A_0(x,\tau_0, \tau_1) = \begin{cases} F(x-\tau_0, \tau_1) +G(x + \tau_0, \tau_1) & x>\tau_0  \\ G(\tau_0- x, \tau_1) + G(x+\tau_0, \tau_1) & x<\tau_0 \end{cases}
 \] 
 Introduce the characteristic variables $r =x - \tau_0, l = x + \tau_0,$ so that
 \[ 
-\partial_{t} = \partial_{\tau_0}+ \epsilon \partial_{\tau_1}
+\partial_{\tau_0} = \partial_l - \partial_r, \qquad \partial_x = \partial_l + \partial_r \qquad \implies \partial_{t} = \partial_l - \partial_r + \epsilon \partial_{\tau_1}. 
 \]
+We then rewrite the derivatives in \eqref{ill-posed}:
+\begin{align*}
+\left( (\partial_l - \partial_r + \epsilon \partial_{\tau_1})^2 - (\partial_l + \partial_r)^2 \right)A = \epsilon \bigg(\frac{(\partial_l + \partial_r)^4}{3}A &- 2(\partial_l + \partial_r)A ((\partial_l + \partial_r)(\partial_l - \partial_r + \epsilon \partial_{\tau_1}))A \\
+&- (\partial_l + \partial_r)^2 A (\partial_l - \partial_r + \epsilon \partial_{\tau_1})A \bigg).
+\end{align*}
+Substituting  $A =  A_0 + \epsilon A_1 + \ldots,$ and taking the terms in power of $\epsilon,$ we obtain:
+\begin{equation}\label{a1}
+\begin{aligned}
+-4A_{1rl} - 2(A_{0 r\tau_{1}} - A_{0l\tau_1}) &= \frac{A_{0rrrr}}{3} + \frac{A_{0llll}}{3} + 2A_{0rrll} +\frac{8}{3}A_{0rrrl} \\
+&+ 2(A_{0r} +  A_{0l})(A_{0rr} - A_{0ll}) - (A_{0rr} + 2A_{0rl} + A_{0ll})(A_{0l} - A_{0r}). 
+\end{aligned}
+\end{equation}
+along with a BC $A_{1x}(0,t) = 0.$ 
 
-
+If $x > \tau_0,$ then we can proceed as before and derive the KdV equations. So, suppose $x < \tau_0.$ Then, 
+\[A_0(x, \tau_0, \tau_1) = G(\tau_0- x, \tau_1) + G(x+\tau_0, \tau_1) = G(-r) + G(l) =: G(-r) + G,\]
+where we assume $G$ is a function of $l,$ for the ease of notation. Substituting $A_0$ into \eqref{a1}, we obtain:
+\begin{align*}
+-4A_{1rl} &= 2(A_{0 r\tau_{1}} - A_{0l\tau_1}) + \frac{A_{0rrrr}}{3} + \frac{A_{0llll}}{3} + 2A_{0rrll} +\frac{8}{3}A_{0rrrl} \\
+&+ 2(A_{0r} +  A_{0l})(A_{0rr} - A_{0ll}) - (A_{0rr} + 2A_{0rl} + A_{0ll})(A_{0l} - A_{0r}) \\
+&= - 2(G(-r)_{r\tau_{1}} + G_{l\tau_{1}}) + \frac{G(-r)_{rrrr}}{3} + \frac{G_{llll}}{3}  \\
+&+ 2\left(-G(-r)_r + G_l\right)\left(G(-r)_{rr} - G_{ll}\right) - \left( G(-r)_{rr} + G_{ll}\right)\left(G(-r)_r + G_l\right) \\
+&= (-2G(-r)_{r\tau_{1}} + \frac{G(-r)_{rrrr}}{3} - 3G(-r)_rG(-r)_{rr}) +G(-r)_rG_{ll} + G(-r)_{rr}G_l \\
+&+ (-2G_{l\tau_{1}} + \frac{G_{llll}}{3} - 3G_l G_{ll}).
+\end{align*}
+Now, integrate with respect to $l$ and $r$:
+\begin{align*}
+-4A_{1r} &= \left(-2G(-r)_{r\tau_{1}} + \frac{G(-r)_{rrrr}}{3} - 3G(-r)_rG(-r)_{rr}\right)l + \left(-2Gl_{\tau_{1}} + \frac{G_{lll}}{3} - \frac{3}{2}G_l^2\right) \\
+&+ G(-r)_rG_{l} + G(-r)_{rr}G \\
+\intertext{and so:}
+-4A_{1} &=  \left(2G(-r)_{\tau_{1}} - \frac{G(-r)_{rrr}}{3} + \frac{3}{2}G(-r)_r^2 \right)l + \left(-2G_{\tau_{1}} + \frac{G_{lll}}{3} - \frac{3}{2}G_l^2\right)r \\
+&- G(-r)G_{l} - G(-r)_{r}G
+\end{align*} 
+Requiring secular terms to vanish, we obtain two equations
+\[ -2G_{\tau_{1}} + \frac{G_{lll}}{3} - \frac{3}{2}G_l^2 = 0, \qquad 2G(-r)_{\tau_{1}} - \frac{G(-r)_{rrr}}{3} + \frac{3}{2}G(-r)_r^2 = 0. \]
+Take the derivative w.r.t $l$ and $r$ respectively:
+\[ -2G_{l\tau_{1}} + \frac{G_{llll}}{3} - 3G_l G_{ll} = 0, \qquad -2G(-r)_{r\tau_{1}} + \frac{G(-r)_{rrrr}}{3} - 3G(-r)_rG(-r)_{rr} = 0. \]
+Let $U(l) = G_l,$ so that $U(-r) = - G(-r)_r.$  Then, noting that $-U(-r)_r = (U(-r))_r = ((-G(-r))_r)_r = G(-r)_{rr},$ we have
+\[U(-r)_{rr} = -G(-r)_{rrr} \mbox{ and } -U(-r)_{rrr} = G(-r)_{rrrr}. \]
+Thus, we obtain two KdV equations:
+\[ 
+2U(-r)_{\tau_1} - \frac{1}{3}U(-r)_{rrr} - 3U(-r)U(-r)_r = 0, \qquad 2U_{\tau_1} + \frac{1}{3}U_{lll} - 3UU_l = 0.
+\]
 \subsubsection{Via non-local formulation}
+
 
 % \clearpage
 \bibliographystyle{amsplain}
