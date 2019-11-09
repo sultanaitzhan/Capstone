@@ -371,7 +371,7 @@ u_0 = \begin{cases} F(x - \tau_0) + G(x+\tau_0) & x>\tau_0 \\ -G(\tau_0 - x) + G
 \end{align*}
 which follows since $F,G$ are defined on $[0, \infty).$ Since $u_0$ and $\eta_0$ are related by \eqref{P2BC1} and \eqref{P2BC2}, it follows that
 \begin{align*}
-\eta_0 = \begin{cases} - F(x - \tau_0) + G(x+\tau_0) & x>\tau_0 \\ G(\tau_0 - x) + G(x+\tau_0) & x< \tau_0 \end{cases}.
+\eta_0 = \begin{cases} F(x - \tau_0) - G(x+\tau_0) & x>\tau_0 \\ -G(\tau_0 - x) - G(x+\tau_0) & x< \tau_0 \end{cases}.
 \end{align*}
 Following the procedure outlined in \cite[p.71-72]{bernard}, we consider the equations \eqref{P1BC1} and \eqref{P1BC2} in the second lowest order:
 \begin{align*}
@@ -388,27 +388,31 @@ so that
 \]
 Thus, 
 \begin{align*}
-u_0 = \begin{cases} F(r) + G(l) & r>0 \\ -G(-r) + G(l) =: -G(-r)+G & r<0 \end{cases} \qquad\qquad \eta_0 = \begin{cases} - F(r)+G(l) & r>0 \\ G(-r) + G(l)=: G(-r) + G & r<0 \end{cases} 
+u_0 = \begin{cases} F(r) + G(l) & r>0 \\ -G(-r) + G(l) =: -G(-r)+G & r<0 \end{cases} \qquad\qquad \eta_0 = \begin{cases} F(r)-G(l) & r>0 \\ -G(-r) - G(l)=: -G(-r) - G & r<0 \end{cases} 
 \end{align*}
-where we let $G$ be a function of $l,$ to ease the notation. Also, keep in mind that $F,G$ are also functions of $\tau_0, \tau_1, \tau_2, \ldots.$ If $r > 0,$ then the situation is identical that in \cite[Chapter 4, p.72-73]{bernard}, and we obtain the KdV equations. Thus, we deal with the case $r<0.$ \textbf{check carefully from now on till Prof. Ablowitz method.} The transformed equations are
+where we let $G$ be a function of $l,$ to ease the notation. Also, keep in mind that $F,G$ are also functions of $\tau_0, \tau_1, \tau_2, \ldots.$ If $r > 0,$ then the situation is identical that in \cite[Chapter 4, p.72-73]{bernard}, and we obtain the KdV equations. Thus, we deal with the case $r<0.$ For convenience, let $-r = k,$ so that $\partial_{-r} = \partial_k = - \partial_r,$ and $G(-r)= G(k).$ The transformed equations are
 \begin{align*}
-\eta_{1l} - \eta_{1r} + u_{1r} + u_{1l} &= - (G(-r)_{\tau_1} + G_{\tau_1} + (G(-r) - G)(-G(-r)_r + G_l) - (G(-r) + G)(G(-r)_r + G_l)\\
-&+ \frac{1}{6}(G(-r)_{rrr}+G_{lll})) \\
-&= -(G(-r)_{\tau_1} + G_{\tau_1} - 2G(-r)G(-r)_r - 2GG_l + \frac{1}{6} (G(-r)_{rrr} + G_{lll})) \\
-u_{1l} - u_{1r} + \eta_{1r} + \eta_{1l}  &= - (G(-r)_{\tau_1} - G_{\tau_1} - \frac{1}{2}(G(-r)_{rrr} - G_{lll}) - (G(-r) - G)(G(-r)_r+G_l)) \\
-&=  - (G(-r)_{\tau_1} - G_{\tau_1} - \frac{1}{2}(G(-r)_{rrr} - G_{lll}) - G(-r)G(-r)_r - G(-r)G_l + G G(-r)_r+GG_l )
+\eta_{1l} - \eta_{1r} + u_{1r} + u_{1l} &= - (-G(k)_{\tau_1} - G_{\tau_1} + (-G(k) + G)(G(k)_k - G_l) - (-G(k) - G)(G(k)_k + G_l)\\
+&- \frac{1}{6}(G(k)_{kkk}+G_{lll})) \\
+&= -(-G(k)_{\tau_1} - G_{\tau_1} - 2G(k)G(k)_k - 2G G_l - \frac{1}{6}(G(k)_{kkk}+G_{lll})) \\
+u_{1l} - u_{1r} + \eta_{1r} + \eta_{1l}  &= - (-G(k)_{\tau_1} + G_{\tau_1} - \frac{1}{2}(-G(k)_{kkk} + G_{lll}) - (G(k) + G)(G(k)_k+G_l)) \\
+&=  - (-G(k)_{\tau_1} + G_{\tau_1} - \frac{1}{2}(-G(k)_{kkk} + G_{lll}) - G(k)G_l - G(k)G(k)_k + G G_l+GG(k)_k)
 \end{align*}
 Add and subtract:
 \begin{align*}
-2(\eta_{1l} + u_{1l}) &= -\left(G(-r)_{\tau_1} - 3G(-r)G(-r)_r - \frac{1}{3} G(-r)_{rrr}\right) + GG_l  + G G(-r)_r- G(-r)G_l - \frac{2}{3} G_{lll} \\
-2(u_{1r} - \eta_{1r}) &=  - \left(G_{\tau_1} - 3GG_l - \frac{1}{3}G_{lll}\right) + G(-r)G(-r)_r - G(-r)G_l + G G(-r)_r + \frac{2}{3}G(-r)_{rrr} 
+2(\eta_{1l} + u_{1l}) &= -\left( -2G(k)_{\tau_1} - 3 G(k)G(k)_k + \frac{1}{3}G_{kkk} \right) + GG_l  - G G(k)_k + G(k)G_l + \frac{2}{3} G_{lll} \\
+2(\eta_{1k} - u_{1k}) &=  - \left(-2G_{\tau_1} - 3GG_l + \frac{1}{3}G_{lll}\right) + G(k)G(k)_k - G(k)G_l + G G(k)_k + \frac{2}{3}G(k)_{kkk} 
 \end{align*}
+where we changed the integral, using
+\[ 
+u_{1r} - \eta_{1r} = \partial_r (u_1 - \eta_1) = (-\partial_r)(\eta_1 - u_1) = \partial_k(\eta_1 - u_1) = \eta_{1k} - u_{1k}.
+\]
 Integrate:
 \begin{align*}
-2(\eta_{1} + u_{1}) &= -\left(G(-r)_{\tau_1} - 3G(-r)G(-r)_r - \frac{1}{3} G(-r)_{rrr}\right)l + \frac{1}{2}G^2  + G(-r)_r \int G \D l - G(-r)G - \frac{2}{3} G_{ll} + C_1 \\
-2(u_{1} - \eta_{1}) &=  - \left(G_{\tau_1} - 3GG_l - \frac{1}{3}G_{lll}\right)r -  \frac{1}{2}G(-r)^2 - G_l \int G(-r)_r \D r - G(-r)G   - \frac{2}{3}G(-r)_{rr} +C_2 
+2(\eta_{1} + u_{1}) &= -\left(-2G(k)_{\tau_1} - 3 G(k)G(k)_k + \frac{1}{3}G_{kkk}\right)l + \frac{1}{2}G^2  - G(k)_k \int G \D l + G(k)G + \frac{2}{3} G_{ll} + C_1 \\
+2(\eta_{1} - u_{1}) &=  - \left(-2G_{\tau_1} - 3GG_l + \frac{1}{3}G_{lll}\right)k + \frac{1}{2}G(k)^2 - G_l \int G(k) \D k +GG(k) + \frac{2}{3}G(k)_{kk} + C_2 
 \end{align*}
-Observe that the only secular terms here are the integrals and terms that contain $r$ and $l.$
+Observe that the only secular terms here are the integrals and terms that contain $k$ and $l.$
 \vspace{1cm}
 \newline \textbf{Ablowitz Method.} Now, we proceed with the method of Ablowitz. Recall the expansion \eqref{expansion1}:
 \[
@@ -473,33 +477,38 @@ Substituting  $A =  A_0 + \epsilon A_1 + \ldots,$ and taking the terms in power 
 along with a BC $A_{1x}(0,t) = 0.$ 
 
 If $x > \tau_0,$ then we can proceed as before and derive the KdV equations. So, suppose $x < \tau_0.$ Then, 
-\[A_0(x, \tau_0, \tau_1) = G(\tau_0- x, \tau_1) + G(x+\tau_0, \tau_1) = G(-r) + G(l) =: G(-r) + G,\]
-where we assume $G$ is a function of $l,$ for the ease of notation. Substituting $A_0$ into \eqref{a1}, we obtain:
+\[A_0(x, \tau_0, \tau_1) = G(\tau_0- x, \tau_1) + G(x+\tau_0, \tau_1) = G(-r) + G(l) =: G(k) + G,\]
+where we assume $G$ is a function of $l,$ for the ease of notation. First, make a substitution $- \partial_r = \partial_k$ in \eqref{a1}, to obtain 
+\begin{equation}\label{a2}
+\begin{aligned}
+4A_{1kl}  + 2(A_{0 k\tau_{1}} + A_{0l\tau_1}) &= \frac{A_{0kkkk}}{3} + \frac{A_{0llll}}{3} + 2A_{0kkll} -\frac{8}{3}A_{0kkkl} \\
+&+ 2(-A_{0k} +  A_{0l})(A_{0kk} - A_{0ll}) - (A_{0kk} - 2A_{0kl} + A_{0ll})(A_{0l} + A_{0k}). 
+\end{aligned}
+\end{equation}
+Substituting $A_0$ into \eqref{a2}, we obtain:
 \begin{align*}
--4A_{1rl} &= 2(A_{0 r\tau_{1}} - A_{0l\tau_1}) + \frac{A_{0rrrr}}{3} + \frac{A_{0llll}}{3} + 2A_{0rrll} +\frac{8}{3}A_{0rrrl} \\
-&+ 2(A_{0r} +  A_{0l})(A_{0rr} - A_{0ll}) - (A_{0rr} + 2A_{0rl} + A_{0ll})(A_{0l} - A_{0r}) \\
-&= - 2(G(-r)_{r\tau_{1}} + G_{l\tau_{1}}) + \frac{G(-r)_{rrrr}}{3} + \frac{G_{llll}}{3}  \\
-&+ 2\left(-G(-r)_r + G_l\right)\left(G(-r)_{rr} - G_{ll}\right) - \left( G(-r)_{rr} + G_{ll}\right)\left(G(-r)_r + G_l\right) \\
-&= (-2G(-r)_{r\tau_{1}} + \frac{G(-r)_{rrrr}}{3} - 3G(-r)_rG(-r)_{rr}) +G(-r)_rG_{ll} + G(-r)_{rr}G_l \\
+4A_{1kl} &= -2(A_{0 k\tau_{1}} + A_{0l\tau_1}) + \frac{A_{0kkkk}}{3} + \frac{A_{0llll}}{3} + 2A_{0kkll} -\frac{8}{3}A_{0kkkl} \\
+&+ 2(-A_{0k} +  A_{0l})(A_{0kk} - A_{0ll}) - (A_{0kk} - 2A_{0kl} + A_{0ll})(A_{0l} + A_{0k}) \\
+&= - 2(G(k)_{k\tau_{1}} + G_{l\tau_{1}}) + \frac{G(k)_{kkkk}}{3} + \frac{G_{llll}}{3}  \\
+&+ 2\left(-G(k)_k + G_l\right)\left(G(k)_{kk} - G_{ll}\right) - \left( G(k)_{kk} + G_{ll}\right)\left(G(k)_k + G_l\right) \\
+&= (-2G(k)_{k\tau_{1}} + \frac{G(k)_{kkkk}}{3} - 3G(k)_kG(k)_{kk}) +G(k)_kG_{ll} + G(k)_{kk}G_l \\
 &+ (-2G_{l\tau_{1}} + \frac{G_{llll}}{3} - 3G_l G_{ll}).
 \end{align*}
-Now, integrate with respect to $l$ and $r$:
+Now, integrate with respect to $l$ and $k$:
 \begin{align*}
--4A_{1r} &= \left(-2G(-r)_{r\tau_{1}} + \frac{G(-r)_{rrrr}}{3} - 3G(-r)_rG(-r)_{rr}\right)l + \left(-2Gl_{\tau_{1}} + \frac{G_{lll}}{3} - \frac{3}{2}G_l^2\right) \\
-&+ G(-r)_rG_{l} + G(-r)_{rr}G \\
+-4A_{1k} &= \left(-2G(k)_{k\tau_{1}} + \frac{G(k)_{kkkk}}{3} - 3G(k)_kG(k)_{kk}\right)l + \left(-2G_{\tau_{1}} + \frac{G_{lll}}{3} - \frac{3}{2}G_l^2\right) \\
+&+ G(k)_kG_{l} + G(k)_{kk}G \\
 \intertext{and so:}
--4A_{1} &=  \left(2G(-r)_{\tau_{1}} - \frac{G(-r)_{rrr}}{3} + \frac{3}{2}G(-r)_r^2 \right)l + \left(-2G_{\tau_{1}} + \frac{G_{lll}}{3} - \frac{3}{2}G_l^2\right)r \\
-&- G(-r)G_{l} - G(-r)_{r}G
+-4A_{1} &=  \left(-2G(k)_{\tau_{1}} + \frac{G(k)_{kkk}}{3} - \frac{3}{2}G(k)_k^2 \right)l + \left(-2G_{\tau_{1}} + \frac{G_{lll}}{3} - \frac{3}{2}G_l^2\right)k \\
+&+ G(k)G_{l} + G(k)_{k}G .
 \end{align*} 
 Requiring secular terms to vanish, we obtain two equations
-\[ -2G_{\tau_{1}} + \frac{G_{lll}}{3} - \frac{3}{2}G_l^2 = 0, \qquad 2G(-r)_{\tau_{1}} - \frac{G(-r)_{rrr}}{3} + \frac{3}{2}G(-r)_r^2 = 0. \]
-Take the derivative w.r.t $l$ and $r$ respectively:
-\[ -2G_{l\tau_{1}} + \frac{G_{llll}}{3} - 3G_l G_{ll} = 0, \qquad -2G(-r)_{r\tau_{1}} + \frac{G(-r)_{rrrr}}{3} - 3G(-r)_rG(-r)_{rr} = 0. \]
-Let $U(l) = G_l,$ so that $U(-r) = - G(-r)_r.$  Then, noting that $-U(-r)_r = (U(-r))_r = ((-G(-r))_r)_r = G(-r)_{rr},$ we have
-\[U(-r)_{rr} = -G(-r)_{rrr} \mbox{ and } -U(-r)_{rrr} = G(-r)_{rrrr}. \]
-Thus, we obtain two KdV equations:
+\[ -2G(k)_{\tau_{1}} + \frac{G(k)_{kkk}}{3} - \frac{3}{2}G(k)_k^2 = 0, \qquad -2G_{\tau_{1}} + \frac{G_{lll}}{3} - \frac{3}{2}G_l^2 = 0. \]
+Take the derivative w.r.t $k$ and $l$ respectively:
+\[ -2G(k)_{k\tau_{1}} + \frac{G(k)_{kkkk}}{3} - 3G(k)_kG(k)_{kk}= 0, \qquad -2G_{l\tau_{1}} + \frac{G_{llll}}{3} - 3G_lG_{ll} = 0. \]
+Let $V(l) = G(l)_l,$ and $U(k) = G(k)_k.$ Then, we obtain two KdV equations:
 \[ 
-2U(-r)_{\tau_1} - \frac{1}{3}U(-r)_{rrr} - 3U(-r)U(-r)_r = 0, \qquad 2U_{\tau_1} + \frac{1}{3}U_{lll} - 3UU_l = 0.
+-2U_{\tau_{1}} + \frac{1}{3}U_{kkk} - 3UU_k= 0, \qquad -2V_{\tau_1} + \frac{1}{3}V_{lll} - 3VV_l = 0.
 \]
 \subsubsection{Via non-local formulation}
 

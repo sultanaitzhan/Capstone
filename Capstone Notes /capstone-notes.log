@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.29)  5 NOV 2019 16:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.29)  9 NOV 2019 16:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -791,38 +791,33 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Warning: Reference `EE-main' on page 4 undefined on input line 174.
 
 [4] [5] [6] [7] [8]
-Overfull \hbox (31.45323pt too wide) detected at line 400
+Overfull \hbox (7.19044pt too wide) detected at line 400
 []
  []
 
-
-Overfull \hbox (19.94122pt too wide) detected at line 410
-[]
- []
-
-[9] [10] (./capstone-notes.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 511.
- [11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 511.
+[9] [10] (./capstone-notes.bbl [11])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 520.
+ [12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 520.
  (./capstone-notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 511.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 511.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 520.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 520.
 Package rerunfilecheck Info: File `capstone-notes.out' has not changed.
 (rerunfilecheck)             Checksum: D695319CCFD814481387F15DE2747ABB;1413.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 511.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 520.
  ) 
 Here is how much of TeX's memory you used:
- 19944 strings out of 492616
- 367156 string characters out of 6129481
- 441309 words of memory out of 5000000
- 23632 multiletter control sequences out of 15000+600000
+ 19947 strings out of 492616
+ 367180 string characters out of 6129481
+ 441372 words of memory out of 5000000
+ 23633 multiletter control sequences out of 15000+600000
  544631 words of font info for 72 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 40i,13n,63p,2014b,799s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,13n,63p,2014b,896s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -840,10 +835,10 @@ ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive
 9/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2019/
 texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2
 019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on capstone-notes.pdf (11 pages, 237578 bytes).
+Output written on capstone-notes.pdf (12 pages, 237997 bytes).
 PDF statistics:
- 298 PDF objects out of 1000 (max. 8388607)
- 265 compressed objects within 3 object streams
- 69 named destinations out of 1000 (max. 500000)
+ 304 PDF objects out of 1000 (max. 8388607)
+ 270 compressed objects within 3 object streams
+ 71 named destinations out of 1000 (max. 500000)
  137 words of extra memory for PDF output out of 10000 (max. 10000000)
 
