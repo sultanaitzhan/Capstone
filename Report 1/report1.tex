@@ -108,6 +108,60 @@ where $\sigma$ is the coefficient of surface tension.}
 \rmk{The way we expressed the water wave problem is in terms of the scalar field $\phi.$ Now, recall that $\V = \nabla \phi,$ where $\V$ is the velocity field of the fluid. Since $\phi$ is a potential of $\V,$ we refer to $\phi$ as the \textit{velocity potential}, and the formulations \eqref{WLP2D} and \eqref{WLP1D} are called the velocity potential formulation of the water wave problem. There is also an integral formulation of the problem, with which we will deal later.}
 
 \subsubsection{Dispersion relation}
+We'd like to examine the dispersion relation. First, note that the PDE \eqref{1PDE} and BC \eqref{1BC1} remain the same, except they are to be satisfied at $z = 0.$ Consider a plane wave form of a solution: 
+\[ \phi_s(x,z,t) = A(k,z,t)\exp(ikx).\]
+Substituting into the PDE \eqref{1PDE}, we obtain an ODE 
+\[ A_{zz} - k^2 A = 0, \]
+whose general solution is
+\[ A = \bar{A}(k,t)\cosh(k(z+h))) + \bar{B}(k,t)\sinh(k(z+h)) \]
+Applying \eqref{1BC1}, we obtain that 
+\[ 
+\frac{\partial A}{\partial z} = 0 \qquad z = -h,
+\]
+which immediately implies that $\bar{B}=0.$
+Now, to deal with the remaining two equations, let 
+\[ \eta = \eta_1 + \eta_2 + \ldots \qquad \phi = \phi_1 + \phi_2 + \ldots \]
+where $\eta_i, \phi_i \sim \mathcal{O}(\epsilon^i),$ and $\epsilon$ is a small parameter. Examine the terms in \eqref{1BC2}:
+\[
+\phi_z^2 \mid_{z= \eta} = (\phi_1)_z^2 + \mathcal{O}(\epsilon^3) \qquad \phi_x^2 \mid_{z= \eta} = (\phi_1)_x^2 + \mathcal{O}(\epsilon^3).
+\]
+Thus, 
+\begin{align*}
+\phi_t + \frac{1}{2} (\phi_{x}^2 + \phi_{z}^2) + g \eta = 0 \qquad z = \eta(x,t) &\implies (\phi_1)_t + (\phi_2)_t + g(\eta_1 + \eta_2) + \frac{1}{2}\left((\phi_1)_x^2 + (\phi_1)_z^2 \right) = 0 \qquad z=0 \\
+&\implies \epsilon^1: \qquad \frac{\partial \phi_1}{\partial t} = - g \eta_1 \qquad z = 0
+\end{align*}
+Similarly, for the terms in \eqref{1BC3}, we have 
+\begin{align*}
+\eta_t + \phi_x\eta_x \mid_{z = \eta} = \phi_z\mid_{z= \eta} &\implies \eta_t + \phi_x\eta_x \mid_{z = 0} + \eta \frac{\partial}{\partial z}\left[ \eta_t + \phi_x\eta_x \mid_{z = 0} \right] = \frac{\partial}{\partial z}\left[ \phi \mid_{z=0} + \eta \phi_z \mid_{z=0}\right] \\
+&\implies \frac{\partial \eta_1}{\partial t} + \frac{\partial \eta_2}{\partial t} + \frac{\partial \phi_1}{\partial x} \frac{\partial \eta_1}{\partial x} = \frac{\partial \phi_1}{\partial z} + \frac{\partial \phi_2}{\partial z} + \eta_1 \frac{\partial^2 \phi_1}{\partial z^2} + \mathcal{O}(\epsilon^3) \\
+&\implies \epsilon^1: \qquad \frac{\partial \eta_1}{\partial t} = \frac{\partial \phi_1}{\partial z} \qquad z=0.
+\end{align*}
+In sum, the boundary conditions at $z = \eta$ turn into 
+\begin{equation}\label{linearisedBCs}
+\frac{\partial \eta_1}{\partial t} = \frac{\partial \phi_1}{\partial z} \qquad \frac{\partial \phi_1}{\partial t} = - g \eta_1 \qquad z=0.
+\end{equation}
+
+Assume that the free surface is of the form
+\[ 
+\eta(x,t) = \bar{\eta}(k,t) \exp(ikx).
+\]
+Substituting the above node and $\phi_s$ into equations in \eqref{linearisedBCs} and evaluating at $z=0$, we obtain 
+\[
+\frac{\partial \bar{A}}{\partial t} \cosh(kh) + g\bar{\eta} = 0 \qquad \frac{\partial \bar{eta}}{\partial t} - k \sinh(kh)\bar{A}  = 0. 
+\]
+Take the time derivative of the second equation and substitute into the first:
+\[ 
+\frac{\partial^2 \bar{\eta}}{\partial t^2} +g k \tanh(kh)\bar{\eta} = 0.
+\]
+Further assuming that $\bar{\eta}(k,t) = \bar{\eta}(k,0)e^{-i \omega t},$ we finally derive the dispersion relation:
+\[ 
+\omega^2 = gk \tanh(kh).
+\]
+Although the equations has several interesting limits, we focus on the shallow-water dispersion, which occurs when $kh \ll 1.$ In this case, 
+\[ 
+\omega^2 = gk (kh - \frac{(kh)^3}{3} + \ldots),
+\]
+and in the leading order, $\omega^2  \approx ghk^2,$ so that $\omega_{\pm} \approx \pm\sqrt{gh} |k| =: \pm c_0 |k|.$ For the context, it should be clear that since $\omega$ is a wavelength, and $k$ is a wave number, $c_0 = \sqrt{gh}$ is the phase velocity of the shallow water wave.  
 
 \subsubsection{Nondimensionalisation}
 Having expressed the problem in the velocity potential, we'd like to remove the dimensional variables. Since dimensions of the problem are directly related to the units of variables (wavelength, time, height), it is hard to decide which terms are negligible when performing an approximation procedure. Thus, we'd like to remove the dimensions of the problem, and work with ``pure'' numbers.  Define new dimensionless variables as follows:
