@@ -7,6 +7,10 @@
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{1}
 
+\bibitem{ablowitz}
+Mark~J. Ablowitz, \emph{Nonlinear dispersive waves: Asymptotic analysis and
+  solitons}, Cambridge University Press, 2011.
+
 \bibitem{batchelor}
 George~K. Batchelor, \emph{An introduction to fluid dynamics}, Cambridge
   University Press, 2000.
@@ -14,5 +18,8 @@ George~K. Batchelor, \emph{An introduction to fluid dynamics}, Cambridge
 \bibitem{marsden}
 Alexander~J. Chorin and Jerrold~E. Marsden, \emph{A mathematical introduction
   to fluid mechanics}, Springer, 1990.
+
+\bibitem{bernard}
+Bernard Deconinck, \emph{Nonlinear waves}, 2010.
 
 \end{thebibliography}

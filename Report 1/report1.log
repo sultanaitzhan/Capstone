@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.29)  11 NOV 2019 22:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.29)  13 NOV 2019 17:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -796,25 +796,30 @@ r/m/n/10 = [][] = [][] [][]  \OML/cmm/m/it/10 ^^^[] \OT1/cmr/m/n/10 = [][] = []
  [][] [][]  \OML/cmm/m/it/10 g^^Q \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 ga^^Q[]
  []
 
-[5] (./report1.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 245.
- [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 245.
+[5] [6] [7] [8] [9] [10] [11]
+Overfull \hbox (7.19044pt too wide) detected at line 508
+[]
+ []
+
+(./report1.bbl [12])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 536.
+ [13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 536.
  (./report1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 245.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 245.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 536.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 536.
 Package rerunfilecheck Info: File `report1.out' has not changed.
 (rerunfilecheck)             Checksum: 425CBFAD988ADE6EE6BCB7AD969292CA;903.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 245.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 536.
  ) 
 Here is how much of TeX's memory you used:
- 19920 strings out of 492616
- 366665 string characters out of 6129481
- 436441 words of memory out of 5000000
- 23625 multiletter control sequences out of 15000+600000
+ 20003 strings out of 492616
+ 367626 string characters out of 6129481
+ 438050 words of memory out of 5000000
+ 23655 multiletter control sequences out of 15000+600000
  544631 words of font info for 72 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 40i,12n,63p,957b,741s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,13n,63p,957b,893s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -823,17 +828,20 @@ usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
 r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
 local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
 cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/t
-exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
-ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive
-/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2
-019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
-19/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on report1.pdf (6 pages, 208481 bytes).
+l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/t
+exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
+ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive
+/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
+2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/20
+19/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2019/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/201
+9/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on report1.pdf (13 pages, 259856 bytes).
 PDF statistics:
- 234 PDF objects out of 1000 (max. 8388607)
- 205 compressed objects within 3 object streams
- 52 named destinations out of 1000 (max. 500000)
+ 378 PDF objects out of 1000 (max. 8388607)
+ 338 compressed objects within 4 object streams
+ 105 named destinations out of 1000 (max. 500000)
  97 words of extra memory for PDF output out of 10000 (max. 10000000)
 
