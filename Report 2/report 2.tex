@@ -1,0 +1,921 @@
+% Preamble
+\documentclass[10pt,reqno,oneside,a4paper]{article}
+\usepackage[a4paper,includeheadfoot,left=25mm,right=25mm,top=00mm,bottom=20mm,headheight=20mm]{geometry}
+\usepackage{siunitx}
+\input{texHead}
+\author{Sultan Aitzhan}
+\title{Report 2}
+\newcommand{\theshorttitle}{Report 2}
+\date{\today}
+\allowdisplaybreaks
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\tableofcontents
+
+
+\section{Water-wave problem on the whole line: non-local formulation}
+
+Recall the full water-wave problem on a whole line:
+\begin{subequations} \label{DimWholeLineProblem}
+\begin{align}
+\phi_{xx} + \phi_{zz} &= 0 &-h < z < \eta(x,t) \label{PDE}\\
+\phi_{z} &= 0 &z = -h \label{BBC}\\
+\eta_t + \phi_{x}\eta_{x} &= \phi_{z} & z = \eta(x,t) \label{KBC}\\
+\phi_t + g\eta + \frac{1}{2}(\phi_{x}^2 + \phi_{z}^2) &= 0 &z = \eta(x,t) \label{DBC}
+\end{align}
+\end{subequations}
+where we set the surface tension to be zero. Consider the velocity potential evaluated at the surface:
+\[ 
+q(x) = \phi (x, \eta(x)).
+\]
+Combining \eqref{KBC} and \eqref{DBC}, we obtain 
+\begin{equation}\label{qEq1}
+q_t + \frac{1}{2}q_x^2 + g \eta - \frac{1}{2} \frac{(\eta_t + q_x \eta_x)^2}{1 + \eta_x^2} = 0,
+\end{equation}
+which is an equation for two unknowns $q ,\eta.$ Now, we introduce an operator that maps the normal derivative at a surface $\eta$ to the tangential derivative at the surface:
+\begin{equation}\label{defH1}
+\mathcal{H}(\eta, D) \{ \nabla \phi \cdot \vec{N} \} = \nabla \phi \cdot \vec{T},
+\end{equation}
+where $D = - i \nabla.$ For convenience, we drop the vector notation. Note that
+\[ 
+\nabla \phi \cdot N = \begin{bmatrix} \phi_x \\ \phi_z \end{bmatrix} \cdot \begin{bmatrix} -\eta_x \\ 1 \end{bmatrix} = \phi_z - \phi_x \eta_x = \eta_t
+\] 
+and 
+\[ 
+\nabla \phi \cdot T = \begin{bmatrix} \phi_x \\ \phi_z \end{bmatrix} \cdot \begin{bmatrix} 1 \\ \eta_x \end{bmatrix} = \phi_x + \eta_x \phi_z = q_x.
+\]
+This allows us to rewrite \eqref{defH1} as 
+\begin{equation}\label{defH2}
+\mathcal{H}(\eta, D) \{ \eta_t \} = q_x.
+\end{equation}
+Looking at the system
+\begin{align*}
+q_t + \frac{1}{2}q_x^2 + g \eta - \frac{1}{2} \frac{(\eta_t + q_x \eta_x)^2}{1 + \eta_x^2} &= 0, \\
+\mathcal{H}(\eta, D) \{ \eta_t \} &= q_x,
+\end{align*}
+we recognise that we can rewrite the full water-wave problem in terms of the $\mathcal{H}$ operator. This is done by differentiating \eqref{qEq1} with respect to $x$ and \eqref{defH2} with respect to $t:$
+\begin{align}
+\partial_t(q_x) + \partial_x\left(\frac{1}{2}q_x^2 + g \eta - \frac{1}{2} \frac{(\eta_t + q_x \eta_x)^2}{1 + \eta_x^2}\right) &= 0, \label{qEq2} \\
+\partial_t(\mathcal{H}(\eta, D) \{ \eta_t \}) &= q_{xt}. \label{defH3}
+\end{align}
+Substituting \eqref{defH3} into \eqref{qEq2}, we obtain 
+\begin{equation}\label{Hequation}
+\partial_t\left(\mathcal{H}(\eta, D)\{ \eta_t\} \right) + \partial_x\left( \frac{1}{2}\left(\mathcal{H}(\eta, D)\{\eta_t\} \right)^2 + \epsilon \eta - \frac{1}{2} \frac{(\eta_t + \eta_x \mathcal{H}(\eta, D)\{ \eta_t\})^2}{1+\eta_x^2}\right) = 0.
+\end{equation}
+The utility of \eqref{Hequation} depends on whether we can find a useful representation for the operator $\mathcal{H}(\eta, D).$ In the next section, we describe an equation that the $\mathcal{H}$ operator must satisfy. 
+
+\subsubsection{Behaviour of the $\mathcal{H}$ operator}
+Consider the following boundary value problem:
+\begin{subequations}
+\begin{align}
+\phi_{xx} + \phi_{zz} &= 0 &-h < z < \eta(x,t) \\
+\phi_{z} &= 0 &z = -h \\
+\nabla  \phi \cdot N &= f(x )& z = \eta(x,t)
+\end{align}
+\end{subequations}
+Let $\varphi$ be harmonic, so that 
+\[ \varphi_{xx} + \varphi_{zz} = 0. \] Clearly, $\varphi_z$ is harmonic, so we have
+\[ \varphi_z(\phi_{xx} + \phi_{zz}) - \phi((\varphi_z)_{zz} + (\varphi_{z})_{xx}) = 0. \]
+Taking the integral over the domain yields
+\[ \int^{\infty}_{-\infty} \int^{\eta(x)}_{-h} \varphi_z(\phi_{xx} + \phi_{zz}) - \phi((\varphi_z)_{zz} + (\varphi_{z})) \D z \D x = 0.\]
+An application of Green's theorem yields 
+\[ \int_D \varphi_z(\nabla  \phi \cdot N) - \phi(\nabla  \varphi_z \cdot N) \D s = 0,\]
+where $D$ is the boundary of the domain, $\D s$ is the area element. Now, observe the following:
+\begin{align*}
+- \nabla  \varphi_z \cdot N = - \begin{pmatrix} \varphi_{zx} \\ \varphi_{zz} \end{pmatrix} \cdot \begin{pmatrix} - \dfrac{\D z}{\D s} \\ \dfrac{\D x}{\D s} \end{pmatrix} &=  - \begin{pmatrix} \varphi_{zx} \\ - \varphi_{xx} \end{pmatrix} \cdot \begin{pmatrix} - \dfrac{\D z}{\D s} \\ \dfrac{\D x}{\D s} \end{pmatrix} \\
+&= \begin{pmatrix} \varphi_{zx} \\ \varphi_{xx} \end{pmatrix} \cdot \begin{pmatrix} \dfrac{\D z}{\D s} \\ \dfrac{\D x}{\D s} \end{pmatrix} \\
+&= \begin{pmatrix} \varphi_{xx} \\ \varphi_{xz} \end{pmatrix} \cdot \begin{pmatrix} \dfrac{\D x}{\D s} \\ \dfrac{\D z}{\D s} \end{pmatrix} \\
+&= \nabla  \varphi_x \cdot T,
+\end{align*}
+from which we rewrite the integral equation:
+\[ 
+0 = \int_D \varphi_z(\nabla  \phi \cdot N) + \phi(\nabla  \varphi_z \cdot T) \D s.
+\]
+Applying the dot product, we obtain a contour integral:
+\begin{equation}\label{DimContInt}
+\int_D \varphi_z (\phi_z \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) = 0.
+\end{equation}
+We split the contour into four segments:
+\begin{align*}
+\int_D &= \int^{\infty}_{-\infty} \bigg|^{z = -h} + \int_{-h}^{\eta(x)} \bigg|^{x \to \infty}+ \int_{\infty}^{-\infty}\bigg|^{\eta(x)} + \int_{\eta(x)}^{-h}\bigg|^{x \to -\infty} \\
+&=  \int^{\infty}_{-\infty} \bigg|^{z = -h} +  \int_{-h}^{\eta(x)} \bigg|^{x \to \infty} - \int_{-\infty}^{\infty}\bigg|^{\eta(x)} -  \int^{\eta(x)}_{-h} \bigg|^{x \to -\infty}.
+\end{align*}
+Consider each segment:
+\begin{itemize}
+\item At $|x|\to \infty,$ we know that $\phi$ and its gradient vanish, so the integral also vanishes on these segments.
+\item At $z = -h, \D z = 0,$ so we have 
+\begin{align*}
+\int^{\infty}_{-\infty}\varphi_z (\phi_z \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) &= \int^{\infty}_{-\infty}\varphi_z \phi_z + \phi \varphi_{xx} \D x \\
+&= \int^{\infty}_{-\infty} \phi \varphi_{xx} \D x \qquad \text{(since $\phi_z=0$ at $z =-h$)} \\
+&= \phi(x,-h) \varphi_x(x, -h) \bigg|^{\infty}_{-\infty} - \int^{\infty}_{-\infty} \phi_x(x,-h)\varphi_x(x,-h) \D x \\
+&= 0.
+\end{align*}
+where we pick $\varphi$ such that $\varphi_x(x, -h) = 0.$
+\item At $z = \eta, \D z = \eta_x \D x,$ so we have 
+\begin{align*}
+\int_{-\infty}^{\infty} \varphi_z(\phi_z - \phi_x \epsilon \phi_x \eta_x ) + \phi(\varphi_{xx}  +  \varphi_{xz} \eta_x) \D x &= \int_{-\infty}^{\infty} \varphi_z(\begin{pmatrix} \phi_x  \\ \phi_z \end{pmatrix}\cdot \begin{pmatrix} - \eta_x \\ 1 \end{pmatrix} + \phi \frac{\D \varphi_x(x, \eta)}{\D x} \D x \\
+&= \int_{-\infty}^{\infty} \varphi_z \nabla \phi \cdot N+ \phi \dfrac{\D \varphi_x(x, \eta)}{\D x} \D x \\
+&= \int_{-\infty}^{\infty} \varphi_z \nabla \phi \cdot N -\varphi_x \dfrac{\D \phi(x, \eta)}{\D x} \D x \\
+&= \int_{-\infty}^{\infty} \varphi_z \nabla \phi \cdot N -\varphi_x \begin{pmatrix} \phi_x  \\ \phi_z \end{pmatrix} \cdot \begin{pmatrix} 1 \\ \phi_x \eta_x \end{pmatrix} \D x \\
+&= \int_{-\infty}^{\infty} \varphi_z \nabla \phi \cdot N -\varphi_x \nabla \phi \cdot T \D x \\
+&= \int_{-\infty}^{\infty} \varphi_z f(x) -\varphi_x(x, \eta) \mathcal{H}( \eta, D)\{ f(x) \} \D x. 
+\end{align*}
+\end{itemize}
+Combining segments, we obtain 
+\begin{align*}
+\int_{-\infty}^{\infty} \varphi_z f(x) -\varphi_x(x, \eta) \mathcal{H}( \eta, D)\{ f(x) \} \D x = 0.
+\end{align*}
+Note that we could choose $\varphi(x,z) = e^{-ikx} \sinh(k(z+h)),$ so that the integral becomes:
+\begin{align*}
+\int_{-\infty}^{\infty} e^{-ikx}( k \cosh(k(\eta+h)) f(x) + ik \sinh(k(\eta+h)) \mathcal{H}( \eta, D)\{ f(x) \}) \D x = 0.
+\end{align*}
+Assume that $k \neq 0.$ Dividing by $k$ and multiplying by $i$ yields an equation that relates $f$ and the operator $\mathcal{H}$ acting on $f:$
+\begin{equation}\label{DimHbehav}
+\int_{-\infty}^{\infty} e^{-ikx}( i  \cosh(k(\eta+h)) f(x) - \sinh(k(\eta+h)) \mathcal{H}( \eta, D)\{ f(x) \}) \D x = 0.
+\end{equation}
+\rmk{One has to be careful with dividing by $k$: if $k =0,$ then none of the following work will be valid. Thus, we need to deal with this problem.}
+\rmk{A related comment to the above is that the choice of $\varphi$ is not unique. Indeed, we only required that $\varphi$ is harmonic, and that $\varphi_x(x, -h) = 0,$ which allowed us to cancel the contribution from the bottom. If we choose different $\varphi,$ then we will end up with different version of \eqref{DimHbehav}. This is important to be aware of, since different versions can give an insight into why the case $k=0$ is problematic. Furthermore, if we let $\varphi(x+iz)^n, n \in \NN,$ then we will end up with conservation laws, which we will exploit later.}
+
+\subsubsection{Nondimensional, nonlocal formulation}
+
+We derive the non-dimensional version of the above work. Let 
+\begin{equation}\label{NDcoord}
+t^{\star} = \frac{t \sqrt{gh}}{L}, \qquad x^{\star}  = \frac{x}{L}, \qquad z^{\star}  = \frac{z}{h}, \qquad \eta^{\star}  = \frac{\eta}{a}, \qquad k^{\star}  = Lk, \qquad \phi = \frac{Lga}{\sqrt{gh}} \phi^{\star}, \qquad q^{\star}  = \frac{\sqrt{gh}}{agL} q,
+\end{equation}
+and define parameters $\epsilon$ and $\mu$ so that
+\[ 
+\epsilon = \frac{a}{h}, \qquad \mu = \frac{h}{L}, \qquad \epsilon \mu = \frac{a}{L}.
+\] 
+Let $\varphi(x,z)$ be harmonic, and recall the equation \eqref{DimContInt}
+\begin{equation*}
+\int_D \varphi_z(\phi_z \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) = 0,
+\end{equation*}
+which we obtained in the previous section.
+In non-dimensional coordinates,
+\[ 
+\D x = L \D x^{\star}, \qquad \D z = h \D z^{\star}, \qquad \phi_z = \frac{L}{h}\frac{ga}{\sqrt{gh}} \phi^{\star}_{z^{\star}}, \qquad \phi_x = \frac{ga}{\sqrt{gh}} \phi^{\star}_{x^{\star}}.
+\]
+Moreover, we leave $\varphi$ the same but rescale its variables, which should be contrasted with that we rescaled both the function $\phi$ and its variables:
+\[ 
+\varphi_x = \frac{1}{L} \varphi_{x^{\star}}, \qquad \varphi_z = \frac{1}{h} \varphi_{z^{\star}}, \qquad \varphi_{xx} = \frac{1}{L^2} \varphi_{x^{\star}x^{\star}}, \qquad \varphi_{xz} = \frac{1}{Lh} \varphi_{x^{\star}z^{\star}}.
+\]
+Then, equation \eqref{DimContInt} becomes 
+\begin{equation}\label{NDimContIn}
+\int_D \varphi_z(\frac{1}{\mu^2}\phi_z \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) = 0,
+\end{equation}
+where we have dropped starred notation. Now, split the contour into the following segments
+\begin{align*}
+\int_D &= \int_{-\infty}^{\infty} \bigg|^{z = -1} + \int_{-1}^{\epsilon\eta(x)} \bigg|^{x  \to \infty} + \int^{-\infty}_{\infty} \bigg|^{z = \epsilon\eta(x)} + \int_{\epsilon\eta(x)}^{-1} \bigg|^{x \to -\infty} \\
+&= \int_{-\infty}^{\infty} \bigg|^{z = -1} + \int_{-1}^{\epsilon\eta(x)} \bigg|^{x  \to \infty} - \int^{\infty}_{-\infty} \bigg|^{z = \epsilon\eta(x)} - \int^{\epsilon\eta(x)}_{-1} \bigg|^{x \to -\infty}.
+\end{align*}
+Consider integral on each of the segments (WRITE OUT COMPLETELY):
+\begin{itemize}
+\item As $|x| \to \infty,$ we know that $\phi$ and its gradient vanish, so the integral also vanishes on these segments.
+\item At $z = -1, \D z = 0,$ so we have 
+\begin{align*}
+\int^{\infty}_{-\infty}\varphi_z (\frac{1}{\mu^2} \phi_z \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) &= \int^{\infty}_{-\infty}\frac{1}{\mu^2} \varphi_z \phi_z + \phi \varphi_{xx} \D x \\
+&= \int^{\infty}_{-\infty} \phi \varphi_{xx} \D x \qquad \text{(since $\phi_z=0$ at $z =-1$)} \\
+&= \phi(x,-h) \varphi_x(x, -h) \bigg|^{\infty}_{-\infty} - \int^{\infty}_{-\infty} \phi_x(x,-h)\varphi_x(x,-h) \D x \\
+&= 0,
+\end{align*}
+where we pick $\varphi$ such that $\varphi_x(x, -h) = 0.$
+\item At $z = \epsilon \eta, \D z = \epsilon \eta_x \D x.$ Moreover, introduce 
+\[ \tilde{\nabla} = \begin{pmatrix} \phi_x  \\ \dfrac{1}{\mu}\phi_z \end{pmatrix} \qquad \tilde{N} = \begin{pmatrix} -\epsilon \phi_x \eta_x \\ 1 \end{pmatrix} \] we have 
+\begin{align*}
+\int_{-\infty}^{\infty} \varphi_z(\frac{1}{\mu^2}\phi_z - \phi_x \epsilon \phi_x \eta_x ) + \phi(\varphi_{xx}  + \epsilon \varphi_{xz} \eta_x) \D x &= \int_{-\infty}^{\infty}\frac{1}{\mu} \varphi_z \begin{pmatrix} \phi_x  \\ \dfrac{1}{\mu}\phi_z \end{pmatrix}\cdot \begin{pmatrix} -\epsilon \phi_x \eta_x \\ 1 \end{pmatrix} + \phi \frac{\D \varphi_x(x, \epsilon \eta)}{\D x} \D x \\
+&= \int_{-\infty}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi \cdot \tilde{N}+ \phi \frac{\D \varphi_x(x, \epsilon \eta)}{\D x} \D x \\
+&= \int_{-\infty}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi \cdot \tilde{N} -\varphi_x \frac{\D \phi(x, \epsilon \eta)}{\D x} \D x + \varphi \phi(x, \epsilon \eta) \bigg|^{\infty}_{-\infty} \\
+&= \int_{-\infty}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi \cdot \tilde{N} -\varphi_x \frac{\D \phi(x, \epsilon \eta)}{\D x} \D x \\
+&= \int_{-\infty}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi \cdot \tilde{N} -\varphi_x \begin{pmatrix} \phi_x  \\ \dfrac{1}{\mu}\phi_z \end{pmatrix} \cdot \begin{pmatrix} 1 \\ \epsilon \phi_x \eta_x \end{pmatrix} \D x \\
+&= \int_{-\infty}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi \cdot \tilde{N} -\varphi_x \tilde{\nabla} \phi \cdot \tilde{T} \D x \\
+&= \int_{-\infty}^{\infty} \frac{1}{\mu} \varphi_z g(x) -\varphi_x(x, \epsilon \eta) \mathcal{H}(\epsilon \eta, D)\{ g(x) \} \D x.
+\end{align*}
+Observe that 
+\[ \nabla \phi \cdot N = \frac{ga}{\sqrt{gh}} \tilde{\nabla} \phi \cdot \tilde{N} = \frac{ga}{\sqrt{gh}} g(x^{\star}) = f(x^{\star} L) = f(x), \]
+so that 
+\[ 
+g(x^{\star}) = \frac{\sqrt{gh}}{ga}f(x^{\star}L) = \frac{\sqrt{gh}}{ga}f(x).
+\]
+\end{itemize}
+Combining segments, we obtain 
+\begin{align*}
+\int_{-\infty}^{\infty} \frac{1}{\mu}\varphi_z g(x) -\varphi_x(x, \epsilon\eta) \mathcal{H}( \epsilon\eta, D)\{ g(x) \} \D x = 0.
+\end{align*}
+As before, we choose $\varphi(x,z) = e^{-ikx} \sinh(k(z+h)) = e^{-ik^{\star}x^{\star}} \sinh(\mu k^{\star}(z^{\star}+1)) = e^{-ikx} \sinh(\mu k(z+1))$ so that the integral becomes:
+\begin{align*}
+\int_{-\infty}^{\infty} e^{-ikx}( k \cosh(\mu k(\eta+1)) g(x) + ik \sinh(\mu k(\eta+1)) \mathcal{H}( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
+\end{align*}
+Assume that $k \neq 0.$ Dividing by $k$ and multiplying by $i$ yields an equation that relates $g$ and the operator $\mathcal{H}$ acting on $g:$
+\begin{equation}\label{NDimHbehav}
+\int_{-\infty}^{\infty} e^{-ikx}( i  \cosh(\mu k(\eta+1)) g(x) - \sinh(\mu k(\eta+1)) \mathcal{H}( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
+\end{equation}
+\subsubsection{Representation of the $\mathcal{H}$ operator}
+In this section, we derive a representation of the $\mathcal{H}$ operator in the leading two terms. To begin, consider \eqref{NDimHbehav} and expand in $\epsilon:$
+\begin{align*}
+\cosh(\mu k(\eta+1)) &= \cosh(\mu k) + \mu k \epsilon \eta \sinh(\mu k) + \ldots, \\
+\sinh(\mu k(\eta+1)) &= \sinh(\mu k) + \mu k \epsilon \eta \cosh(\mu k) + \ldots, \\
+\mathcal{H}( \eta, D)\{ g(x) \} &= \left[\mathcal{H}_0 + \epsilon \mathcal{H}_1 + \ldots \right]( \epsilon\eta, D)\{ g(x) \}.
+\end{align*}
+Equation \eqref{NDimHbehav} becomes:
+\begin{align*}
+\int_{-\infty}^{\infty} &e^{-ikx}( i \left[ \cosh(\mu k) + \mu k \epsilon \eta \sinh(\mu k) + \ldots \right] g(x) \\
+&- \left[ \sinh(\mu k) + \mu k \epsilon \eta \cosh(\mu k) + \ldots\right] \left[ \mathcal{H}_0 + \epsilon \mathcal{H}_1 + \ldots \right]( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
+\end{align*}
+\textbf{Within $\mathcal{O}(\epsilon^0):$} from expansions above, we have 
+\begin{equation*}
+\int_{-\infty}^{\infty} e^{-ikx}( i  \cosh(\mu k) g(x) - \sinh(\mu k) \mathcal{H}_0( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
+\end{equation*}
+Dividing by $\sinh(\mu k),$ we obtain 
+\begin{equation*}
+\int_{-\infty}^{\infty} e^{-ikx}( i  \coth(\mu k) g(x) - \mathcal{H}_0( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
+\end{equation*}
+Splitting the integrand and recognizing Fourier transform yields:
+\begin{equation*}
+\mathcal{F}\{\mathcal{H}_0( \epsilon \eta, D)\{ g(x) \}\}_k= \int_{-\infty}^{\infty} e^{-ikx}\mathcal{H}_0( \epsilon \eta, D)\{ g(x) \} \D x = \int_{-\infty}^{\infty} e^{-ikx} i \coth(\mu k) g(x) \D x = i \coth(\mu k) \mathcal{F}\{g(x)\}_k.
+\end{equation*}
+Finally, we invert Fourier transform to obtain 
+\begin{equation*}
+\mathcal{H}_0( \epsilon \eta, D)\{ g(x) \} =\mathcal{F}^{-1}\{i \coth(\mu k) \mathcal{F}\{g(x)\}_k \}_k,
+\end{equation*}
+where we write out $k$'s explicitly to keep track of transforms.
+\newline \textbf{Within $\mathcal{O}(\epsilon^1):$} from expansions above, we have 
+\begin{align*}
+\int_{-\infty}^{\infty} e^{-ikx}( i \mu k \eta \sinh(\mu k) g(x) - \left[ \sinh(\mu k)\mathcal{H}_1 + \mu k \eta \cosh(\mu k) \mathcal{H}_0 \right]( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
+\end{align*}
+Dividing by $\sinh(\mu k)$ and dropping $( \epsilon \eta, D)$ for convenience, we have 
+\begin{align*}
+\int_{-\infty}^{\infty} e^{-ikx}( i \mu k \eta g(x) - \left[\mathcal{H}_1 + \mu k \eta \coth(\mu k) \mathcal{H}_0 \right]\{ g(x) \}) \D x = 0.
+\end{align*}
+Rearranging and recognising Fourier transform yields:
+\begin{align*}
+\mathcal{F} \{\mathcal{H}_1 \{ g(x) \})\}_k &= \int_{-\infty}^{\infty} e^{-ikx}  \mathcal{H}_1 \{ g(x) \}) \D x \\
+&= \int_{-\infty}^{\infty} e^{-ikx}( i \mu k \eta g  - \mu k \eta \coth(\mu k) \mathcal{H}_0 \{ g(x) \}) \D x \\
+&= \mu \mathcal{F} \{ i k \eta g \}_k - \mu k \coth(\mu k) \mathcal{F} \{ \eta \mathcal{H}_0 \{ g(x) \}) \}_k.
+\end{align*}
+Inverting Fourier transform, we obtain an expression for $\mathcal{H}_1:$
+\begin{align*}
+\mathcal{H}_1 \{ g(x) \} &= \mathcal{F}^{-1} \{ \mu \eta g \}_k - \mathcal{F}^{-1} \{ \mu k \coth(\mu k) \mathcal{F} \{ \eta \mathcal{H}_0 \{ g(x) \}) \}_k \} \\
+&= \mu \partial_x(\eta g) - \mathcal{F}^{-1} \{ \mu k \coth(\mu k) \mathcal{F} \{ \eta \mathcal{H}_0 \{ g(x) \}) \}_k \}_k \\
+&= \mu \partial_x(\eta g) - \mathcal{F}^{-1} \{ \mu k \coth(\mu k) \mathcal{F} \{ \eta \mathcal{F}^{-1}\{i \coth(\mu l) \mathcal{F}\{g\}_l \}_l \}_k \}_k.
+\end{align*}
+In sum, we obtain 
+\begin{align*}
+\mathcal{H}_0( \epsilon \eta, D)\{ g(x) \} &= \mathcal{F}^{-1}\{i \coth(\mu k) \mathcal{F}\{g(x)\}_k \}_k, \\
+\mathcal{H}_1( \epsilon \eta, D) \{ g(x) \} &= \mu \partial_x(\eta g) - \mathcal{F}^{-1} \{ \mu k \coth(\mu k) \mathcal{F} \{ \eta \mathcal{F}^{-1}\{i \coth(\mu l) \mathcal{F}\{g\}_l \}_l \}_k \}_k.
+\end{align*}
+\subsubsection{Deriving an expression for surface elevation}
+In this section, we would like to derive an expression for $\eta.$ We can do this because the scalar equation \eqref{Hequation} is written in terms of $\eta.$ The non-dimensional version of \eqref{Hequation} is given by
+\begin{equation}\label{NDHequation}
+\partial_t\left(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right) + \partial_x\left( \frac{1}{2}\left(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 + \epsilon \eta - \frac{1}{2}\epsilon^2 \mu^2 \frac{(\eta_t + \eta_x \mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\})^2}{1+\epsilon^2 \mu^2 \eta_x^2}\right) = 0.
+\end{equation}
+\newline \textbf{Within $\mathcal{O}(\mu^0).$} In the leading order, the equation \eqref{NDHequation} becomes
+\[ 
+\partial_t\left(\mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right) + \epsilon \partial_x \eta = 0.
+\]
+Substituting an expression for $\mathcal{H}_0,$ we obtain:
+\[ 
+\mathcal{F}^{-1}\{i \coth(\mu k) \mathcal{F}\{\epsilon \mu \eta_{tt}\}_k \}_k + \epsilon \partial_x \eta = 0,
+\]
+where we brought the time derivative inside the transform. Inverting the Fourier transform and multiplying by $\frac{k}{i \epsilon}$ yields
+\[ 
+\mu k \coth(\mu k) \reallywidehat{\eta_{tt}}_k  +  k^2 \reallywidehat{\eta}_k = 0.
+\]
+Recall
+\[ 
+\coth(\mu k) \approx \frac{1}{\mu k} + \mathcal{O}(\mu),
+\]
+so that 
+\[ 
+\reallywidehat{\eta_{tt}}_k + k^2 \reallywidehat{\eta}_k = 0.
+\]
+Inverting the Fourier transform, we have
+\[ 
+\eta_{tt} + (-i \partial_x)^2 \eta = 0,
+\]
+which is
+\[ \eta_{tt} - \eta_{xx} = 0. \]
+This is the wave equation, as we desired. 
+\newline \textbf{Within $\mathcal{O}(\mu^2).$} In the second leading order, the non-dimensional equation \eqref{NDHequation} becomes
+\[ 
+\partial_t\left(\mathcal{H}_0 \{ \epsilon \mu \eta_t\} + \epsilon \mathcal{H}_1 \{ \epsilon \mu \eta_t\} \right) + \partial_x \left(\frac{1}{2} (\mathcal{H}_0 \{ \epsilon \mu \eta_t\})^2 + \epsilon \eta \right) = 0.
+\]
+Note 
+\begin{align*}
+\mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t \} &= \epsilon \mu \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}_k\}_k; \\
+\mathcal{H}_1(\epsilon\eta, D)\{ \epsilon \mu \eta_t \} &= \epsilon \mu^2 (\eta \eta_t)_x - \epsilon \mathcal{F}^{-1} \{ \mu k \coth (\mu k) \mathcal{F}\{\eta \mathcal{F}^{-1} \{ i  \mu\coth (\mu k) \reallywidehat{\eta_t}_l\}_l \}_k \}_k.
+\end{align*}
+Then, 
+\begin{align*}
+\frac{1}{2}\left(\mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 = \frac{1}{2}\left(\mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 = \frac{\epsilon^2}{2} \left( \mathcal{F}^{-1} \{ i \mu \coth (\mu j) \reallywidehat{\eta_t}_j\}_j\right)^2,
+\end{align*}
+and 
+\begin{align*}
+\partial_t\left(\left[ \mathcal{H}_0(\epsilon\eta, D) + \epsilon \mathcal{H}_1(\epsilon\eta, D) \right] \{ \epsilon \mu \eta_t\} \right) &= \epsilon \mu \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_{tt}}_k\}_k + \epsilon^2 \mu^2 (\eta \eta_t)_{tx} \\
+&- \epsilon^2 \mathcal{F}^{-1} \{ \mu k \coth (\mu k) \mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{ i \mu \coth (\mu l) \reallywidehat{\eta_t}_l\}_l \right] \}_k \}_k.
+\end{align*}
+The single equation becomes 
+\begin{align*}
+\epsilon \mu \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_{tt}}_k\} _k+ \epsilon^2 \mu^2 (\eta \eta_t)_{tx} &- \epsilon^2 \mathcal{F}^{-1} \{ \mu k \coth (\mu k) \mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{ i \mu \coth (\mu l) \reallywidehat{\eta_t}_l\}_l \right] \}_k \}_k \\
+&+\frac{\epsilon^2}{2} \partial_x\left( \mathcal{F}^{-1} \{ i \mu \coth (\mu j) \reallywidehat{\eta_t}_j\}_j\right)^2 + \epsilon \partial_x \eta = 0.
+\end{align*}
+Application of Fourier transform yields
+\begin{align*}
+\epsilon \mu i \coth (\mu k) \reallywidehat{\eta_{tt}}_k  + \epsilon^2 \mu^2 ik (\eta \eta_t)_{t} &- \epsilon^2 \mu k \coth (\mu k) \mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{ i \mu \coth (\mu l) \reallywidehat{\eta_t}_l\}_l \right] \}_k \\
+&+\frac{\epsilon^2}{2} ik \mathcal{F} \{\left( \mathcal{F}^{-1} \{ i \mu \coth (\mu j) \reallywidehat{\eta_t}_j\}_j\right)^2\}_k + \epsilon ik \reallywidehat{\eta}_k = 0.
+\end{align*}
+Divide by $i\epsilon:$
+\begin{align*}
+\mu \coth (\mu k) \reallywidehat{\eta_{tt}}_k  + \epsilon \mu^2 k (\eta \eta_t)_{t} &- \epsilon \mu k \coth (\mu k) \mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{ \mu \coth (\mu l) \reallywidehat{\eta_t}_l\}_l \right] \}_k \\
+&+\frac{\epsilon}{2} k \mathcal{F}\{\left( \mathcal{F}^{-1} \{ i \mu \coth (\mu j) \reallywidehat{\eta_t}_j\}_j\right)^2\}_k + k \reallywidehat{\eta}_k = 0.
+\end{align*}
+Let $\epsilon = \mu^2$ and recall an expansion:
+\[ 
+\coth(\mu k) \approx \frac{1}{\mu k} + \frac{\mu k}{3}+ \mathcal{O}(\mu^3).
+\]
+Substitution of the expansion yields:
+\begin{align*}
+\left( \frac{1}{k} + \frac{\mu^2 k}{3} \right) \reallywidehat{\eta_{tt}}_k  + \mu^4 k (\eta \eta_t)_{t} &- \mu^2 k \left( \frac{1}{k} + \frac{\mu^2 k}{3} \right) \mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{\left( \frac{1}{l} + \frac{\mu^2 l}{3}\right) \reallywidehat{\eta_t}_l\}_l \right] \}_k \\
+&-\frac{\mu^2}{2} k \mathcal{F} \{\left( \mathcal{F}^{-1} \{ \left( \frac{1}{j} + \frac{\mu^2 j}{3} \right) \reallywidehat{\eta_t}_j\}_j\right)^2\}_k + k \reallywidehat{\eta}_k = 0.
+\end{align*}
+Within $\mathcal{O}(\mu^4),$ the equation becomes 
+\begin{align*}
+\left( \frac{1}{k} + \frac{\mu^2 k}{3} \right) \reallywidehat{\eta_{tt}}_k - \mu^2 \mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{\frac{1}{l}\reallywidehat{\eta_t}_l\}_l \right] \}_k -\frac{\mu^2}{2} k \mathcal{F}\{\left( \mathcal{F}^{-1} \{ \frac{1}{j} \reallywidehat{\eta_t}_j\}_j\right)^2\}_k + k \reallywidehat{\eta}_k = 0,
+\end{align*}
+or re-arranging and multiplying by $k$, we have
+\begin{align*}
+\reallywidehat{\eta_{tt}}_k + k^2 \reallywidehat{\eta}_k + \mu^2 \left(\frac{ k^2}{3}\reallywidehat{\eta_{tt}}_k - k \mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{\frac{1}{l}\reallywidehat{\eta_t}_l\}_l \right] \}_k -\frac{1}{2} k^2 \mathcal{F} \{\left( \mathcal{F}^{-1} \{ \frac{1}{j} \reallywidehat{\eta_t}_j\}_j\right)^2\}_k \right) = 0.
+\end{align*}
+Finally, inverting Fourier transform yields:
+\begin{align*}
+\eta_{tt} - \eta_{xx} + \mu^2 \left(-\frac{\partial_x^2}{3}\eta_{tt} + i \partial_x\left(\partial_t \left[\eta \mathcal{F}^{-1} \{\frac{1}{l}\reallywidehat{\eta_t}_l\}_l \right] \right) + \frac{1}{2} \partial_x^2 \left( \mathcal{F}^{-1} \{ \frac{1}{j} \reallywidehat{\eta_t}_j\}_j\right)^2 \right) = 0,
+\end{align*}
+or more conveniently,
+\begin{equation}\label{2ndApproxAlmost}
+\eta_{tt} - \eta_{xx} = \mu^2 \left(\frac{\partial_x^2}{3}\eta_{tt} - i \partial_x\left(\partial_t \left[\eta \mathcal{F}^{-1} \{\frac{1}{l}\reallywidehat{\eta_t}_l\}_l \right] \right) - \frac{1}{2} \partial_x^2 \left( \mathcal{F}^{-1} \{ \frac{1}{j} \reallywidehat{\eta_t}_j\}_j\right)^2 \right).
+\end{equation}
+Observe the following:
+\begin{align*}
+\frac{1}{l} \reallywidehat{\eta_t}_l &= \frac{1}{l} \frac{2}{\pi}\int^{\infty}_{-\infty} e^{-ilx} \eta_t \D x \\
+&= \frac{1}{l} \frac{2}{\pi} e^{-ilx} \int^x_{-\infty} \eta_t(x', t) \D x' \bigg|^{\infty}_{-\infty} + i\frac{2}{\pi} \int^{\infty}_{-\infty}e^{-ilx} \int^x_{-\infty} \eta_t(x', t) \D x' \D x \\
+&= i\frac{2}{\pi} \int^{\infty}_{-\infty}e^{-ilx} \int^x_{-\infty} \eta_t(x', t) \D x' \D x \\
+&= i \mathcal{F}\{\int^x_{-\infty} \eta_t(x', t) \D x' \}_l.
+\end{align*}
+so that 
+\begin{align*}
+\mathcal{F}^{-1} \{\frac{1}{l} \reallywidehat{\eta_t}_l\}_l = \mathcal{F}^{-1} \{  i \mathcal{F}\{\int^x_{-\infty} \eta_t(x', t) \D x' \}_l \}_l = i \int^x_{-\infty} \eta_t(x', t) \D x',
+\end{align*}
+where we applied the Fourier inversion theorem. Moreover, we also have
+\[ \eta_{tt} = \eta_{xx} + \mathcal{O}(\mu^2). \]
+Using these two facts, equation \eqref{2ndApproxAlmost} becomes
+\begin{align*}
+\eta_{tt} - \eta_{xx}  &= \mu^2 \left(\frac{1}{3}\eta_{xxxx} + \partial_x\partial_t \left[\eta \left(\int^{x}_{-\infty} \eta_t \D x' \right) \right]  + \frac{1}{2} \partial_x^2 \left(\int^{x}_{-\infty} \eta_t \D x' \right)^2 \right) \\
+&= \mu^2 \left( \frac{1}{3}\eta_{xxxx} + \partial_x \left[ \eta_t \left(\int^{x}_{-\infty} \eta_t \D x'  \right) + \eta \eta_x\right]  + \frac{1}{2} \partial_x^2 \left(\int^{x}_{-\infty} \eta_t \D x' \right)^2 \right) \\
+&= \epsilon \left[ \frac{1}{3}\eta_{xxxx} +  \partial_x^2 \left( \frac{\eta^2}{2} + \left( \int^{x}_{-\infty} \eta_t \D x' \right)^2\right)\right].
+\end{align*}
+For direct comparison, this equation is the same as the one in \cite[p. 111]{ablowitz}, the unnumbered equation between (5.20) and (5.21). It remains to derive the wave and KdV equations.
+
+\subsubsection{Derivation of wave and KdV equations}
+In this section, we derive the approximate equations from
+\begin{equation}\label{srfceq0}
+\eta_{tt} - \eta_{xx} = \epsilon \left[ \frac{1}{3}\eta_{xxxx} +  \partial_x^2 \left( \frac{\eta^2}{2} + \left( \int^{x}_{-\infty} \eta_t \D x' \right)^2\right)\right].
+\end{equation}
+As we approximate, we assume an expansion of $\eta$ in $\epsilon:$
+\begin{equation}\label{SrfcExpansion}
+\eta = \eta_0 + \epsilon \eta_1 + \mathcal{O}(\epsilon^2).
+\end{equation}
+\subsubsection*{First order approximation}
+Substitution of \eqref{SrfcExpansion} into equation \eqref{srfceq0} yields
+\begin{equation}\label{srfceqExpanded}
+\eta_{0tt} - \eta_{0xx} +\epsilon(\eta_{1tt} - \eta_{1xx})= \epsilon \left[ \frac{1}{3}\eta_{0xxxx} +  \partial_x^2 \left( \frac{(\eta_0 + \epsilon \eta_1)^2}{2} + \left( \int^{x}_{-\infty} (\eta_0 + \epsilon \eta_1)_t \D x' \right)^2\right)\right] + \mathcal{O}(\epsilon^2). 
+\end{equation}
+In the leading order $\mathcal{O}(\epsilon^0),$ equation \eqref{srfceqExpanded} becomes
+\begin{equation}\label{1stOrderApprox}
+\eta_{0tt} - \eta_{0xx} = 0.
+\end{equation}
+This is the wave equation with velocity $1,$ and whose general solution is 
+\[ \eta_0 = F(x-t) + G(x+t), \]
+where $F,G$ are some functions. 
+\subsubsection*{Second order approximation}
+As in the velocity potential case, we employ multiple scales. First, we find an expression for $\eta_0.$  We introduce 
+\[ \tau_0 = t, \qquad \tau_1 = \epsilon t, \qquad \tau_2 = \epsilon^2 t, \ldots, \]
+so that 
+\[ \eta(x, t) = \eta(x, \tau_0, \tau_1, \ldots). \]
+With this in mind, the expansion \eqref{SrfcExpansion} becomes
+\begin{equation}\label{NewSrfcExpansion}
+\eta(x, \tau_0, \tau_1, \ldots) = \eta_0(x, \tau_0, \tau_1, \ldots) + \mathcal{O}(\epsilon^1).
+\end{equation}
+Substituting \eqref{NewSrfcExpansion} into \eqref{srfceq0}, within $\mathcal{O}(\epsilon^0),$ we obtain
+\begin{equation}\label{1stOrderApprox}
+\eta_{0\tau_0 \tau_0} - \eta_{0xx} = 0,
+\end{equation}
+so that the general solution is 
+\[ \eta_0(x, \tau_0, \tau_1, \ldots ) = F(x-\tau_0, \tau_1, \ldots ) + G(x+\tau_0, \tau_1, \ldots). \]
+Now, although we have found an expression for $\eta_0,$ the functions $F,G$ used are still general functions. To determine $F,G,$ we proceed to the next order, i.e. $\mathcal{O}(\epsilon^1).$ We introduce
+\[ 
+\xi = x-\tau_0 \qquad \zeta = x+ \tau_0
+\]
+so that 
+\begin{align*}
+\partial_x &= \partial_\xi \frac{\D \xi}{\D x} + \partial_\zeta \frac{\D \zeta}{\D x} =\partial_\xi + \partial_\zeta, \\
+\partial_t &= \partial_\xi \frac{\D \xi}{\D t} + \partial_\zeta \frac{\D \zeta}{\D t} + \partial_{\tau_1}\frac{\D \tau_1}{\D t} = - \partial_\xi + \partial_\zeta + \epsilon \partial_{\tau_1}.
+\end{align*}
+We can rewrite \eqref{NewSrfcExpansion} as follows
+\begin{align*}
+\eta &= \eta_0 + \epsilon \eta_1 + \mathcal{O}(\epsilon^2)  \\
+&= F(x-t, \epsilon t, \ldots) + G(x+t, \epsilon t, \ldots) + \epsilon \eta_1 + \mathcal{O}(\epsilon^2) \\
+&= F(\xi, \tau_1, \ldots) + G(\zeta, \tau_1, \ldots) + \epsilon \eta_1 + \mathcal{O}(\epsilon^2) \\
+&= F+G + \epsilon \eta_1 +  \mathcal{O}(\epsilon^2).
+\end{align*}
+For ease of writing, we suppressed explicit dependence on variables, though the reader should bear in mind that function $F ~ (G)$ depend on $\xi ~ (\zeta), \tau_1, \tau_2,$ etc. In addition, observe that
+\begin{align*}
+(\partial_t^2 - \partial_x^2) &= \left( (- \partial_\xi + \partial_\zeta + \epsilon \partial_{\tau_1})^2 - (\partial_\xi + \partial_\zeta)^2 \right) \\
+&= \left( \partial^2_\xi - 2\partial_\xi\partial_\zeta + \partial_\zeta^2 + 2\epsilon(\partial_\zeta \partial_{\tau_1} - \partial_\xi\partial_{\tau_1}) + \epsilon^2 \partial_{\tau_1}^2
+- \partial_\xi^2 - 2\partial_\xi\partial_\zeta - \partial_\zeta^2 \right) \\
+&= \left( - 4\partial_\xi \partial_\zeta + 2\epsilon(\partial_\zeta \partial_{\tau_1} - \partial_\xi\partial_{\tau_1}) + \epsilon^2 \partial_{\tau_1}^2 \right),
+\end{align*}
+so that the LHS of \eqref{srfceq0} becomes
+\begin{align}
+(\partial_t^2 - \partial_x^2) \eta
+&= \left( - 4\partial_\xi \partial_\zeta + 2\epsilon(\partial_\zeta \partial_{\tau_1} - \partial_\xi\partial_{\tau_1}) + \epsilon^2 \partial_{\tau_1}^2 \right) ( F + G + \epsilon \eta_1 + \mathcal{O}(\epsilon^2)) \nonumber \\
+&= - 4\partial_\xi \partial_\zeta  ( F + G + \epsilon \eta_1) + 2\epsilon(\partial_\zeta \partial_{\tau_1} - \partial_\xi\partial_{\tau_1})  ( F + G) + \mathcal{O}(\epsilon^2) \nonumber \\
+&=  \epsilon \left(- 4\eta_{1\xi \zeta} - 2F_{\tau_1 \xi} + 2G_{\tau_1 \zeta} \right) + \mathcal{O}(\epsilon^2). \label{LHS1}
+\end{align}
+Now, we deal with the RHS of \eqref{srfceq0}. By appropriate substitutions, the terms become:
+\begin{align*}
+\frac{1}{3}\eta_{xxxx} &=\frac{1}{3} (\partial_x^2)^2 \eta \\
+&=\frac{1}{3} (\partial_\xi^2 + 2\partial_\xi\partial_\zeta + \partial_\zeta^2 )^2 \eta \\
+&=\frac{1}{3} (\partial_\xi^4 + \partial_\zeta^4 +  4\partial_\xi^3\partial_\zeta+  2\partial_\xi\partial_\zeta^3 + 6\partial_\xi\partial_\zeta) (F + G + \epsilon \eta_1 + \mathcal{O}(\epsilon^2)) \\
+&= \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta} + \epsilon (\partial_\xi + \partial_\zeta)^4 \eta_1 + \mathcal{O}(\epsilon^2)) \\
+&= \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta} + \mathcal{O}(\epsilon)); \\
+\frac{1}{2}\eta^2 &= \frac{1}{2} \left( F+G + \epsilon \eta_1 \right)^2 \\
+&=  \frac{1}{2} \left( (F+G)^2 + 2\epsilon(F+G)\eta_1 + \epsilon^2 \eta_1^2 \right) \\
+&=  \frac{1}{2} (F^2 + 2FG +G^2) + \epsilon(F+G)\eta_1 + \mathcal{O}(\epsilon^2) \\
+&= \frac{1}{2} (F^2 + 2FG +G^2) + \mathcal{O}(\epsilon); \\
+\left( \int^{x}_{-\infty} \eta_t \D x' \right)^2 &= \left( \int^{x}_{-\infty} \eta_{0t} \D x' + \epsilon\int^{x}_{-\infty}  \eta_{1t} \D x' \right)^2 \\
+&= \left( \int^{x}_{-\infty} \eta_{0t} \D x' + \epsilon\int^{x}_{-\infty} \eta_{1t} \D x' \right)^2 \\
+&= \left( \int^{x}_{-\infty} \eta_{0t} \D x' \right)^2 + \mathcal{O}(\epsilon) \\
+&= \left( \int^{x}_{-\infty}(-\partial_\xi + \partial_\zeta + \epsilon \partial_{\tau_1}) (F+G) \D x' \right)^2 + \mathcal{O}(\epsilon)\\ 
+&=  \left( \int^{x}_{-\infty}-F_\xi + G_\zeta \D x' + \epsilon \int^{x}_{-\infty} \partial_{\tau_1} (F+G) \D x' \right)^2 + \mathcal{O}(\epsilon) \\
+&= \left( \int^{x}_{-\infty}-F_\xi + G_\zeta \D x' \right)^2 + \mathcal{O}(\epsilon)\\
+&= \left( \int^{x}_{-\infty}F_\xi \D x'\right)^2 - 2\left( \int^{x}_{-\infty}F_\xi \D x'\right)\left( \int^{x}_{-\infty}G_\zeta \D x'\right) + \left( \int^{x}_{-\infty} G_\zeta \D x'\right)^2 + \mathcal{O}(\epsilon) \\
+&= F^2 - 2FG + G^2 + \mathcal{O}(\epsilon),
+\end{align*}
+where for the last line we translate $\xi' = x'-t, \zeta' = x'+t$ to obtain
+\begin{align*}
+\int^{x}_{-\infty}F_\xi \D x' = \lim_{a\to -\infty} \int^{x}_{a}F_{\xi'}(x'-t, \tau_1) \D x' &=  \lim_{a\to -\infty} \int^{x-t}_{a-t}F_{\xi'}(\xi', \tau_1) \D \xi' \\
+&=  \lim_{a\to -\infty} \int^{\xi}_{a-t}F_{\xi'}(\xi', \tau_1) \D \xi' \\
+&= \int^{\xi}_{-\infty}F_{\xi'}(\xi', \tau_1) \D \xi' = F(\xi, \tau_1), \\
+\int^{x}_{-\infty} G_\zeta' \D x' = \lim_{a\to -\infty} \int^{x}_{a}F_{\zeta'}(x'-t, \tau_1) \D x' &=  \lim_{a\to -\infty} \int^{x+t}_{a+t}G_{\zeta'}(\zeta', \tau_1) \D \zeta' \\
+&=  \lim_{a\to -\infty} \int^{\zeta}_{a-t}G_{\zeta'}(\zeta', \tau_1) \D \zeta' \\
+&= \int^{\zeta}_{-\infty}G_{\zeta'}(\zeta', \tau_1) \D \zeta' = G(\zeta, \tau_1).
+\end{align*}
+Note we assumed $F,G$ vanish as $\xi, \zeta \to -\infty.$ Substitution of terms into the RHS of \eqref{srfceq0} leads to:
+\begin{align}
+\epsilon &\left[ \frac{1}{3}\eta_{xxxx} +  \partial_x^2 \left( \frac{\eta^2}{2} + \left( \int^{x}_{-\infty} \eta_t \D x' \right)^2\right)\right] \nonumber\\
+&=\epsilon \Bigg[ \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) +  (\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) \left(\frac{1}{2} (F^2 + 2FG +G^2) + F^2 - 2FG + G^2 \right)\Bigg] + \mathcal{O}(\epsilon^2) \nonumber \\
+&= \epsilon \Bigg[ \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) +  (\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) \left(\frac{3}{2} F^2  + \frac{3}{2}G^2 - FG \right) \Bigg] + \mathcal{O}(\epsilon^2). \label{RHS1}
+\end{align}
+Combining \eqref{LHS1} and \eqref{RHS1}, in $\mathcal{O}(\epsilon^1)$ we have
+\begin{equation}\label{srfceq2}
+- 4\eta_{1\xi \zeta} = 2F_{\tau_1 \xi} - 2G_{\tau_1 \zeta} + \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) + (\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) \left(\frac{3}{2} F^2  + \frac{3}{2}G^2 - FG \right).
+\end{equation}
+In the last term of \eqref{srfceq2}, differentiation yields:
+\begin{align*}
+(\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) \left(\frac{3}{2} F^2  + \frac{3}{2}G^2 - FG\right) &= \partial_\xi(3 F F_\xi - G F_\xi) + \partial_\zeta(3 G G_\zeta - F G_\zeta) - 2 F_\xi G_\zeta,
+\end{align*}
+so that equation \eqref{srfceq2} becomes
+\begin{align}
+- 4\eta_{1\xi \zeta} &= 2F_{\tau_1 \xi} - 2G_{\tau_1 \zeta} + \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) + \partial_\xi(3 F F_\xi - G F_\xi) + \partial_\zeta(3 G G_\zeta - F G_\zeta) - 2 F_\xi G_\zeta \nonumber \\
+&= \partial_\xi(2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + 3 F F_\xi) + \partial_\zeta(- 2G_{\tau_1} +  \frac{1}{3}G_{\zeta\zeta\zeta} + 3 G G_\zeta) - (G F_\xi  + F G_\zeta). \label{srfceq3}
+\end{align}
+Integration of \eqref{srfceq3} with respect to $\zeta$ yields
+\[ 
+- 4\eta_{1\xi} = \partial_\xi(2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + 3 F F_\xi) \zeta + (- 2G_{\tau_1} +  \frac{1}{3}G_{\zeta\zeta\zeta} + 3 G G_\zeta) - \left(F_\xi \int G \D \zeta   + G F\right),
+\]
+and further integration with respect to $\xi$ leads to
+\[ 
+- 4\eta_{1} = (2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + 3 F F_\xi) \zeta + (- 2G_{\tau_1} +  \frac{1}{3}G_{\zeta\zeta\zeta}+ 3 G G_\zeta) \xi - \left(F \int G \D \zeta  + G \int F \D \xi \right).
+\]
+Since $\eta_1$ must be bounded, we must have 
+\begin{align}
+2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + 3 F F_\xi &= 0 \label{KdV1} \\
+2G_{\tau_1} - \frac{1}{3}G_{\zeta\zeta\zeta} -  3 G G_\zeta &= 0. \label{KdV2}
+\end{align}
+In other words, we have obtained two KdV equations, \eqref{KdV1} and \eqref{KdV2}, whose solutions describe behaviour of the surface elevation in the leading order. The derivation is complete.
+
+\section{Water-wave problem on the whole line: non-local formulation}
+The (tentative) half-line problem is given by the following system:
+\begin{subequations}\label{DimHalfLineProblem}
+\begin{align}
+\phi_{xx} + \phi_{zz} &= 0, &-h < z < \eta(x,t), \\
+\phi_{z} &= 0, &z = -h, \\
+\phi_{x} &= 0, &x =0, \\
+\eta_t + \phi_{x}\eta_{x} &= \phi_{z}, & z = \eta(x,t), \\
+\phi_t + g\eta + \frac{1}{2}(\phi_{x}^2 + \phi_{z}^2) &= 0, &z = \eta(x,t), \\
+\phi_{z}(0,\eta,t) &= \eta_t(0,t), &(x,z) = (0,\eta). \\
+|\phi| \to 0, |\eta| &\to 0,  &x &\to \infty,
+\end{align}
+\end{subequations}
+Introducing the nondimensional variables as before yields the non-dimensional problem:
+\begin{subequations} \label{NondimHalfLineProblem}
+\begin{align}
+\label{NondimPDE}\epsilon\phi_{xx} + \phi_{zz} &= 0 &-1 < z < \epsilon\eta \\
+\label{NondimBC1}\phi_{z} &= 0 &z = -1 \\
+\label{NondimBC2}\phi_{x} &= 0 &x =0 \\
+\label{NondimBC3}\epsilon\eta_t + \epsilon^2 \phi_{x}\eta_{x} &= \phi_{z} & z = \epsilon\eta\\
+\label{NondimBC4}\phi_t + \eta + \frac{1}{2}(\epsilon\phi_{x}^2 + \phi_{z}^2) &= 0 &z = \epsilon\eta \\
+\label{NondimBC5}\phi_{z}(0,\epsilon\eta,t) &= \epsilon\eta_t(0,t) &(x,z) = (0,\epsilon\eta),
+\end{align}
+\end{subequations}
+and the conditions on decay of $\phi$ and $\eta$ remain the same, except there is only the right side. We seek a non-local formulation of the problem.
+
+\subsubsection{Dimensional, non-local formulation for the half-line}
+First, we begin with a dimensional system. As previously, let $\varphi$ be harmonic. Then, after some manipulation, we have the following contour integral (in dimensional variables):
+\begin{equation}
+\int_D \varphi_z(\phi_z \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) = 0
+\end{equation}
+Break the contour $D$ in the following segments:
+\begin{align*}
+\int_D &= \int_{-\infty}^{\infty} \bigg|^{z=-h} + \int^{\eta(x)}_{-h} \bigg|^{x = \infty} + \int^{-\infty}_{\infty} \bigg|^{z= \eta(x)} + \int_{\eta}^{-h} \bigg|^{x=0} \\
+&= \int_{-\infty}^{\infty} \bigg|^{z=-h} + \int^{\eta(x)}_{-h} \bigg|^{x = \infty} - \int^{\infty}_{-\infty} \bigg|^{z= \eta(x)} - \int^{\eta}_{-h} \bigg|^{x=0}
+\end{align*}
+We consider each of the segments:
+\begin{itemize}
+\item At $x = \infty$, the integral vanishes due to behaviour of $\phi$ and its gradient. 
+\item At $x = 0, \D x = 0,$ so we have 
+\begin{align*}
+\int_{-h}^{\eta} - \varphi_z \phi_x + \phi \varphi_{xz} \D z &= \int_{-h}^{\eta} \phi \varphi_{xz} - \varphi_z \phi_x  \D z \\
+&= \int_{-h}^{\eta} \phi \varphi_{xz} \D z \qquad \text{(since $\phi_x = 0$ at $x = 0$)} \\
+&= \phi \varphi_x \bigg|^{\eta}_{-h} - \int_{-h}^{\eta} \phi_{z} \varphi_{x} \D z \\
+&= \phi(0, \eta) \varphi_x(0, \eta) - \phi(0, -h) \varphi_x(0, -h) - \int_{-h}^{\eta} \phi_{z}(0,z) \varphi_{x}(0,z) \D z. 
+\end{align*} 
+\item At $z = -h, \D z = 0,$ so we have 
+\begin{align*}
+\int^{\infty}_{0} \varphi_z \phi_z + \phi \varphi_{xx} \D x &= \int^{\infty}_{0} \phi \varphi_{xx} \D x \qquad \text{(since $\phi_{z}(x,-h) = 0$)}\\
+&= \phi(x,-h) \varphi_{x}(x,-h) \mid^{\infty}_{0} - \int^{\infty}_{0} \phi_x(x,-h) \varphi_x(x,-h) \D x \\
+&= - \phi(0,-h) \varphi_{x}(0,-h) - \int^{\infty}_{0} \phi_x(x,-h) \varphi_x(x,-h) \D x.
+\end{align*}
+\item At $z = \eta(x), \D z = \eta_x \D x,$ so we have
+\begin{align*}
+\int_{0}^{\infty} \varphi_z(\phi_x - \phi_x \eta_x) + \phi(\varphi_{xx}  + \varphi_{xz}\eta_x) \D x &= \int_{0}^{\infty} \varphi_z \frac{\partial \phi}{\partial N}+ \phi \frac{\D \varphi_x(x, \eta(x))}{\D x} \D x \\
+&= \int_{0}^{\infty} \varphi_z\frac{\partial \phi}{\partial N}\D x + \phi(x, \eta) \varphi_x(x, \eta) \bigg|^{\infty}_{0} - \int^{\infty}_{0}\phi_x(x, \eta)  \varphi_x(x, \eta) \D x \\
+&= \int_{0}^{\infty} \varphi_z(x, \eta)\frac{\partial \phi}{\partial N}(x, \eta)\D x - \phi(0, \eta) \varphi_x(0, \eta) - \int^{\infty}_{0}\phi_x(x, \eta)  \varphi_x(x, \eta) \D x.
+\end{align*}
+ \end{itemize}
+Combine the segments:
+\begin{align*}
+0 &= \int_D \varphi_z(\phi_x \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) \\
+&= \bigg\{ \int_{-\infty}^{\infty} \bigg|^{z=-h} + \int^{\eta(x)}_{-h} \bigg|^{x = \infty} - \int^{\infty}_{-\infty} \bigg|^{z= \eta(x)} - \int^{\eta}_{-h} \bigg|^{x=0} \bigg\} ~ \varphi_z(\phi_x \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) \\
+&= - \phi(0,-h) \varphi_{x}(0,-h) - \int^{\infty}_{0} \phi_x(x,-h) \varphi_x(x,-h) \D x \\
+&- \int_{0}^{\infty} \varphi_z(x, \eta)\frac{\partial \phi}{\partial N}(x, \eta)\D x + \phi(0, \eta) \varphi_x(0, \eta) + \int^{\infty}_{0}\phi_x(x, \eta)  \varphi_x(x, \eta) \D x \\
+&-\phi(0, \eta) \varphi_x(0, \eta) + \phi(0, -h) \varphi_x(0, -h) + \int_{-h}^{\eta} \phi_{z}(0,z) \varphi_{x}(0,z) \D z \\
+&=- \int^{\infty}_{0} \phi_x(x,-h) \varphi_x(x,-h) \D x- \int_{0}^{\infty} \varphi_z(x, \eta)\frac{\partial \phi}{\partial N}(x, \eta)\D x + \int^{\infty}_{0}\phi_x(x, \eta)  \varphi_x(x, \eta) \D x + \int_{-h}^{\eta} \phi_{z}(0,z) \varphi_{x}(0,z) \D z\\
+&=\int^{\infty}_{0}\phi_x(x, \eta)  \varphi_x(x, \eta) -\phi_x(x,-h) \varphi_x(x,-h) - \varphi_z(x, \eta)\frac{\partial \phi}{\partial N}(x, \eta) \D x  + \int_{-h}^{\eta} \phi_{z}(0,z) \varphi_{x}(0,z) \D z
+\end{align*}
+Force $\varphi_x(0,z) = 0,$ so that we are left with:
+\begin{equation}\label{eq19}
+\int_{0}^{\infty} \varphi_z(x, \eta)\frac{\partial \phi}{\partial N}(x, \eta) + \phi_x(x,-h) \varphi_x(x,-h) - \phi_x(x, \eta) \varphi_x(x, \eta) \D x = 0.
+\end{equation}
+Let $\varphi = \cos(kx) \sinh(k(z+h)),$ and note that $\phi_x(x, \eta) = \dfrac{\partial \phi}{\partial T}$ is the tangential derivative at $z = \eta.$ The equation \eqref{eq19} becomes:
+\begin{equation}
+\int_{0}^{\infty} k \cos(kx) \cosh(k(\eta+h)) \frac{\partial \phi}{\partial N}(x, \eta) + k \sin(kx) \sinh(k(\eta+h)) \dfrac{\partial \phi}{\partial T}(x, \eta) \D x = 0,
+\end{equation}
+since $\varphi_x(x,-h) = -k \sin(kx) \sinh(k(h-h)) = 0.$ Let $\dfrac{\partial \phi}{\partial N}(x, \eta) = f(x), \dfrac{\partial \phi}{\partial T}(x, \eta) = \mathcal{H}(\eta,D)\{ f(x) \}$ and assume $k \neq 0,$ so that we obtain
+\begin{equation}\label{DimHLRP}
+\int_{0}^{\infty} \cos(kx) \cosh(k(\eta+h)) f(x) + \sin(kx) \sinh(k(\eta+h))\mathcal{H}(\eta,D) \{f(x) \} \D x = 0.
+\end{equation}
+Observe that \eqref{DimHLRP} is kinda like the real part of the original equation but on a half-line (maybe the other half-line is the imaginary part).
+
+\subsubsection{Non-local, non-dimensional formulation on a half-line}
+As previously, let $\phi$ be harmonic. Then, after some manipulation, we have the following contour integral (in non-dimensional variables):
+\begin{equation}\label{contourHL1}
+\int_D \varphi_z(\frac{1}{\mu^2}\phi_z \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) = 0.
+\end{equation}
+Break the contour $D$ in the following segments:
+\[ 
+\{ x \to \infty, - 1 < z < \epsilon \eta\}, \qquad \{ x = 0, -1 < z < \epsilon\eta\}, \qquad \{ z = -1, 0<x<\infty\}, \qquad \{ z = \epsilon\eta, 0<x<\infty\}.
+\]
+We consider each of the segments.
+\begin{itemize}
+\item At $x \to \infty$, the integral vanishes due to behaviour of $\phi$ and its gradient. 
+\item At $x = 0, \D x = 0,$ so we have 
+\begin{align*}
+\int_{-1}^{\epsilon\eta} - \varphi_z \phi_x + \phi \varphi_{xz} \D z &= \phi(0, \epsilon \eta) \varphi_x(0, \epsilon\eta) - \phi(0, -1) \varphi_x(0, -1) - \int_{-1}^{\epsilon\eta} \phi_{z}(0,z) \varphi_{x}(0,z) \D z. 
+\end{align*} 
+\item At $z = -1, \D z = 0,$ so we have 
+\begin{align*}
+\int^{\infty}_{0} \varphi_z \phi_z + \phi \varphi_{xx} \D x = - \phi(0,-1) \varphi_{x}(0,-1) - \int^{\infty}_{0} \phi_x(x,-1) \varphi_x(x,-1) \D x.
+\end{align*}
+\item At $z =\epsilon \eta(x), \D z = \epsilon\eta_x \D x,$ so we have
+\begin{align*}
+\int_{0}^{\infty} \frac{1}{\mu^2} \varphi_z(\phi_x - \epsilon\phi_x \eta_x) &+ \phi(\varphi_{xx}  + \epsilon \varphi_{xz}\eta_x) \D x \\
+&=\int_{0}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi \cdot \tilde{N}+ \frac{\D \phi_x(x, \epsilon \eta(x))}{\D x} \D x \\
+&= \int_{0}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi\cdot \tilde{N} \D x + \phi(x, \epsilon \eta) \varphi_x(x, \epsilon\eta) \mid^{\infty}_{0} - \int^{\infty}_{0}\phi_x(x, \epsilon\eta)  \varphi_x(x, \epsilon \eta) \D x \\
+&= \int_{0}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi \cdot \tilde{N} \D x - \phi(0, \epsilon \eta) \varphi_x(0, \epsilon\eta) - \int^{\infty}_{0}\phi_x(x, \epsilon\eta)  \varphi_x(x, \epsilon \eta) \D x 
+\end{align*}
+ \end{itemize}
+Combine the segments:
+\begin{align*}
+0 &= \int_D \varphi_z(\frac{1}{\mu^2} \phi_x \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) \\
+&= \phi(0, \epsilon \eta) \varphi_x(0, \epsilon\eta) - \phi(0, -1) \varphi_x(0, -1) - \int_{-1}^{\epsilon\eta} \phi_{z}(0,z) \varphi_{x}(0,z) \D z  \\
+&- \phi(0,-1) \varphi_{x}(0,-1) - \int^{\infty}_{0} \phi_x(x,-1) \varphi_x(x,-1) \D x \\
+&+\int_{0}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi \cdot \tilde{N} \D x - \phi(0, \epsilon \eta) \varphi_x(0, \epsilon\eta) - \int^{\infty}_{0}\phi_x(x, \epsilon\eta)  \varphi_x(x, \epsilon \eta) \D x\\
+&= - 2\phi(0,-h) \varphi_{x}(0,-1) - \int_{-1}^{\epsilon\eta} \phi_{z}(0,z) \varphi_{x}(0,z) \D z \\
+& + \int_{0}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi \cdot \tilde{N} \D x - \int^{\infty}_{0}\phi_x(x, \epsilon\eta) \varphi_x(x, \epsilon \eta) \D x - \int^{\infty}_{0} \phi_x(x,-1) \varphi_x(x,-1) \D x.
+\end{align*}
+Force $\phi_x(0,z) = 0,$ so that we are left with:
+\begin{equation}
+\int_{0}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi \cdot \tilde{N} \D x - \phi_x(x, \epsilon\eta)  \varphi_x(x, \epsilon \eta) \D x -  \phi_x(x,-1) \varphi_x(x,-1) \D x
+\end{equation}
+Let $\varphi = \cos(kx) \sinh(\mu k(z+1)),$ and note that $\phi_x(x, \epsilon\eta) = \dfrac{\partial \phi}{\partial T}$ is the tangential derivative at $z = \epsilon\eta.$ The above becomes:
+\begin{equation}
+\int_{0}^{\infty} k \cos(kx) \cosh(\mu k(\eta+1)) \tilde{\nabla} \phi \cdot \tilde{N} + k \sin(kx) \sinh(\mu k(\eta+1)) \tilde{\nabla} \phi \cdot \tilde{T} \D x = 0,
+\end{equation}
+since $\varphi_x(x,-1) = -k \sin(kx) \sinh(k(1-1)) = 0.$ Let 
+\[\tilde{\nabla} \phi \cdot \tilde{T} = \dfrac{\partial \phi}{\partial N}(x, \epsilon\eta) = f(x), \dfrac{\partial \phi}{\partial T}(x, \epsilon\eta) = \mathcal{H}(\epsilon\eta,D)\{ f(x) \} \] 
+and assume $k \neq 0,$ so that we obtain
+\begin{equation}\label{DimHLRP}
+\int_{0}^{\infty} \cos(kx) \cosh(\mu k(\eta+1)) f(x) + \sin(kx) \sinh(\mu k(\eta+1))\mathcal{H}(\epsilon \eta,D) \{f(x) \} \D x = 0.
+\end{equation}
+\subsubsection{Perturbation expansion for $\mathcal{H}$}
+Suppose 
+\[ \mathcal{H}(\epsilon\eta, D)\{ f(x)\} = \sum^{\infty}_{j = 0} \epsilon^j \mathcal{H}_0(\epsilon\eta, D)\{ f(x)\}. \]
+For notational convenience, we assume throughout that the $H$ operator is evaluated at $(\epsilon, D),$ so that we drop this term in writing.
+Expand in $\epsilon:$
+\begin{align*}
+\cosh(\mu k(\epsilon \eta+1)) &= \cosh (\mu k) + \epsilon \mu k \eta \sinh(\mu k) + \frac{(\epsilon \mu k\eta)^2}{2} \cosh(\mu k) + \ldots, \\
+\sinh(\mu k(\epsilon\eta+1) &= \sinh(\mu k) + \epsilon \mu k \eta \cosh(\mu k) + \frac{(\epsilon \mu k\eta)^2}{2} \sinh(\mu k) + \ldots,
+\end{align*}
+so that \eqref{DimHLRP} becomes 
+\begin{equation}\label{DimHLRPexpanded}
+\begin{aligned}
+\int_{0}^{\infty} \cos(kx) ( \cosh (\mu k) &+ \epsilon \mu k \eta \sinh(\mu k) + \ldots) f(x) \\ 
+&+ \sin(kx) (\sinh(\mu k) + \epsilon \mu k \eta \cosh(\mu k) + \ldots)(\mathcal{H}_0+ \epsilon \mathcal{H}_1 + \ldots) \{f(x)\} \D x = 0.
+\end{aligned}
+\end{equation}
+Within $\mathcal{O}(\epsilon^0),$ we obtain 
+\[ 
+\int_{0}^{\infty} \cos(kx) \cosh (\mu k) f(x) + \sin(kx)\sinh(\mu k)\mathcal{H}_0 \{f(x) \} \D x = 0.
+\]
+Let $\mathcal{F}^k_c$ indicate the Fourier cosine transform, and similarly for the Fourier sine transform. Then, we have 
+\begin{align*}
+\mathcal{F}^k_s \{ \mathcal{H}_0 \{f(x) \} \}  &= - \mathcal{F}^k_c \{ \coth(\mu k) f(x)\} \\
+&\implies \mathcal{H}_0\{f(x) \} = - (\mathcal{F}^k_s )^{-1} \{ \mathcal{F}^k_c \{ \coth(\mu k) f(x)\}\} \\
+&\implies \mathcal{H}_0 \{f(x) \} = - \int^{\infty}_0  \sin (kx) \coth(\mu k) \left( \frac{2}{\pi} \int^{\infty}_{0}\cos(kx) f(x) \D x\right) \D k \\
+&\implies \mathcal{H}_0 \{f(x) \} = - \int^{\infty}_0  \sin (kx) \coth(\mu k) \reallywidehat{f^k_c} \D k = - \{ \mathcal{F}^k_s \}^{-1} \{ \coth(\mu k) \reallywidehat{f^k_c} \}. 
+\end{align*}
+Within $\mathcal{O}(\epsilon^1),$ the equation \eqref{DimHLRPexpanded} is
+\begin{align*}
+\int_{0}^{\infty} \cos(kx) \mu k \eta f(x) + \sin(kx) (\mathcal{H}_1 \{f(x) \} + \mu k \eta \coth(\mu k) \mathcal{H}_0\{f(x) \}) \D x = 0.
+\end{align*}
+Then, 
+\begin{align*}
+\int_{0}^{\infty} \sin(kx) \mathcal{H}_1 \{f(x) \} \D x &= - \mu k \left[ \int_{0}^{\infty} \cos(kx) \eta f(x)  \D x + \coth(\mu k) \int_{0}^{\infty}  \sin(kx)\eta \mathcal{H}_0\{f(x) \} \D x \right] \\
+&= - \mu k \left[ \reallywidehat{\left( \eta f(x) \right)}^k_c + \coth(\mu k) \reallywidehat{\left( \eta \mathcal{H}_0\{f(x) \} \right)}^k_c \right], 
+\end{align*}
+where Fourier sine transform is inverted to obtain
+\[ 
+\mathcal{H}_1 \{f(x) \} = - \{ \mathcal{F}^k_s \}^{-1} \{ \mu  k\reallywidehat{\left( \eta f(x) \right)}^k_c +\mu k \coth(\mu k) \reallywidehat{\left( \eta \mathcal{H}_0\{f(x) \} \right)}^k_c\}.
+\]
+In sum, we obtain
+\begin{align*}
+\mathcal{H}_0(\epsilon\eta, D) \{f(x) \} &= - \{ \mathcal{F}^k_s \}^{-1} \{ \coth(\mu k) \reallywidehat{f^k_c} \}, \\
+\mathcal{H}_1(\epsilon\eta, D) \{f(x) \} &= - \{ \mathcal{F}^k_s \}^{-1} \{ \mu k \reallywidehat{\left( \eta f(x) \right)}^k_c + \mu k \coth(\mu k) \reallywidehat{\left( \eta \mathcal{H}_0\{f(x) \} \right)}^k_c\}.
+\end{align*}
+\subsubsection{Approximation Procedure}
+First, we'd like to approximate. Recall the non-dimensional single equation:
+\begin{equation}\label{NondimH}
+\partial_t\left(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right) + \partial_x\left( \frac{1}{2}\left(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 + \epsilon \eta - \frac{1}{2}\epsilon \mu^2 \frac{(\eta_t + \eta_x \mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\})^2}{1+\epsilon^2 \mu^2 \eta_x^2}\right) = 0.
+\end{equation}
+\subsubsection*{Within $\mathcal{O}(\mu^0)$:} we have $\mathcal{H} \approx \mathcal{H}_0,$ and the single equation becomes:
+\begin{equation}\label{1stNondimH}
+\partial_t\left(\mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right) + \epsilon \partial_x \eta = 0.
+\end{equation}
+Note 
+\begin{align*}
+\mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} &= - \int^{\infty}_0  \sin (kx) \coth(\mu k) \reallywidehat{(\epsilon \mu \eta_t)^k_c} \D k \\
+&= -\epsilon \int^{\infty}_0  \sin (kx) \mu \coth(\mu k) \reallywidehat{(\eta_t)^k_c} \D k \\
+&= -\epsilon \int^{\infty}_0  \sin (kx) \left( \frac{1}{k} + \frac{\mu^2 k}{3} + \ldots \right) \reallywidehat{(\eta_t)^k_c} \D k \\
+&\approx -\epsilon \int^{\infty}_0  \sin (kx) \frac{1}{k} \reallywidehat{(\eta_t)^k_c} \D k.
+\end{align*}
+Substituting into \eqref{1stNondimH} yields
+\begin{align*}
+\partial_t(-\epsilon \int^{\infty}_0  \sin (kx) \frac{1}{k} \reallywidehat{(\eta_t)^k_c} \D k) + \epsilon \eta_x = 0 &\implies -\int^{\infty}_0 \sin (kx) \frac{1}{k} \reallywidehat{(\eta_{tt})^k_c} \D k + \eta_x = 0 \\
+&\implies - \frac{1}{k} \reallywidehat{(\eta_{tt})^k_c} - k \reallywidehat{\eta^k_s} = 0 \\
+\end{align*}
+\subsubsection*{Within $\mathcal{O}(\mu^2)$:} 
+We have $\mathcal{H} \approx \mathcal{H}_0 + \epsilon \mathcal{H}_1,$ and the single equation becomes:
+\begin{equation}\label{2ndNondimH}
+\partial_t\left(\mathcal{H}_0 \{ \epsilon \mu \eta_t\} + \epsilon \mathcal{H}_1 \{ \epsilon \mu \eta_t\} \right) + \partial_x \left(\frac{1}{2} (\mathcal{H}_0 \{ \epsilon \mu \eta_t\})^2 + \epsilon \eta \right) = 0.
+\end{equation}
+Note
+\begin{align*}
+\mathcal{H}_0 \{ \epsilon \mu \eta_t\} &= - \{ \mathcal{F}^k_s \}^{-1} \{ \coth(\mu k) \reallywidehat{\epsilon \mu (\eta_t)^k_c} \} \\
+&= - \epsilon \{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_t)^k_c} \}, \\
+\mathcal{H}_1 \{ \epsilon \mu \eta_t\} &= -  \{ \mathcal{F}^k_s \}^{-1} \{ k \mu\reallywidehat{\left( \eta \epsilon \mu \eta_t \right)}^k_c + k \mu \coth(\mu k) \reallywidehat{\left( \eta \mathcal{H}_0\{ \epsilon \mu \eta_t \} \right)}^k_c\} \\
+&= -  \epsilon \mu \{ \mathcal{F}^k_s \}^{-1} \{ \mu k\reallywidehat{\left( \eta \eta_t \right)}^k_c + \mu k \coth(\mu k) \reallywidehat{\left( \eta \mathcal{H}_0\{ \eta_t \} \right)}^k_c\}.
+\end{align*}
+Then,
+\begin{align*}
+&\partial_t\left(\mathcal{H}_0 \{ \epsilon \mu \eta_t\} + \epsilon \mathcal{H}_1 \{ \epsilon \mu \eta_t\} \right) \\ 
+&= - \partial_t \left( \epsilon \{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_t)^k_c} \} + \epsilon^2 \mu \{ \mathcal{F}^k_s \}^{-1} \{\mu k \reallywidehat{\left( \eta \eta_t \right)}^k_c + \mu k \coth(\mu k) \reallywidehat{\left( \eta \mathcal{H}_0\{ \eta_t \} \right)}^k_c\} \right) \\
+&=- \epsilon \left(  \{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_{tt})^k_c} \} + \epsilon \mu \{ \mathcal{F}^k_s \}^{-1} \{\mu k \partial_t \reallywidehat{\left( \eta \eta_t \right)}^k_c + \mu k \coth(\mu k) \partial_t \reallywidehat{\left( \eta \mathcal{H}_0\{ \eta_t \} \right)}^k_c\} \right)
+\end{align*}
+Moreover, 
+\begin{align*}
+\frac{1}{2} (\mathcal{H}_0 \{ \epsilon \mu \eta_t\})^2 &= \frac{1}{2} (- \epsilon \{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_t)^k_c} \})^2 \\
+&= \frac{\epsilon^2}{2} (\{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_t)^k_c} \})^2.
+\end{align*}
+When combining the terms, the equation \eqref{2ndNondimH} becomes
+\begin{align*}
+&\partial_t (\mathcal{H}_0 \{ \epsilon \mu \eta_t\} + \epsilon \mathcal{H}_1 \{ \epsilon \mu \eta_t\} ) + \partial_x \left(\frac{1}{2} (\mathcal{H}_0 \{ \epsilon \mu \eta_t\})^2 + \epsilon \eta \right) = 0 \\
+\implies & -\epsilon( \{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_{tt})^k_c} \} + \epsilon \mu \{ \mathcal{F}^k_s \}^{-1} \{\mu k \partial_t \reallywidehat{\left( \eta \eta_t \right)}^k_c + \mu k \coth(\mu k) \partial_t \reallywidehat{\left( \eta \mathcal{H}_0\{ \eta_t \} \right)}^k_c\} ) \\
+& + \frac{\epsilon^2}{2} \partial_x (\{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_t)^k_c} \})^2 + \epsilon \eta_x = 0. \\
+\implies & -( \{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_{tt})^k_c} \} + \epsilon \mu \{ \mathcal{F}^k_s \}^{-1} \{\mu k \partial_t \reallywidehat{\left( \eta \eta_t \right)}^k_c + \mu k \coth(\mu k) \partial_t \reallywidehat{\left( \eta \mathcal{H}_0\{ \eta_t \} \right)}^k_c\} ) \\
+& + \frac{\epsilon}{2}\partial_x (\{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_t)^k_c} \})^2 + \eta_x = 0.
+\end{align*}
+Apply Fourier sine transform:
+\begin{align*}
+-(\mu \coth(\mu k) \reallywidehat{(\eta_{tt})^k_c} + \epsilon \mu^2 k \partial_t \reallywidehat{\left( \eta \eta_t \right)}^k_c &+ \epsilon \mu^2 k \coth(\mu k) \partial_t \reallywidehat{\left( \eta \mathcal{H}_0\{ \eta_t \} \right)}^k_c ) \\
+&+ \frac{\epsilon}{2} \mathcal{F}^k_s \{ \partial_x(\{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_t)^k_c} \})^2\}  + \reallywidehat{(\eta_x)^k_s} = 0,
+\end{align*}
+(but then  $\mathcal{F}^k_s\{ \eta_x\} = - k \reallywidehat{\eta}^k_c.$)
+Suppose we do not divide by $\coth(\mu k).$ Then, letting $\epsilon = \mu^2$ and expanding $\mathcal{H}_0$ in 
+\begin{align*}
+-(\mu \coth(\mu k) \reallywidehat{(\eta_{tt})^k_c} + \epsilon \mu^2 k \partial_t \reallywidehat{\left( \eta \eta_t \right)^k_c} &+ \epsilon \mu^2 k \coth(\mu k) \partial_t \reallywidehat{\left( \eta \mathcal{H}_0\{ \eta_t \} \right)}^k_c ) \\
+&+ \frac{\epsilon}{2} \mathcal{F}^k_s \{ \partial_x(\{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_t)^k_c} \})^2\}  + \reallywidehat{(\eta_x)^k_s} = 0,
+\end{align*}
+we obtain 
+\begin{align*}
+-\mu \coth(\mu k) \reallywidehat{(\eta_{tt})^k_c} - \mu^4 k \partial_t \reallywidehat{\left( \eta \eta_t \right)^k_c} &+  \mu^3 k \coth(\mu k) \partial_t \mathcal{F}^k_c \{\left(\eta \{ \mathcal{F}^l_s \}^{-1} \{ \mu \coth(\mu l) \reallywidehat{(\eta_t)^l_c} \} \right)\}\\
+&+ \frac{\mu^2}{2} \mathcal{F}^k_s \{ \partial_x(\{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_t)^k_c} \})^2\}  + \reallywidehat{(\eta_x)^k_s} = 0.
+\end{align*}
+Expanding $\coth(\mu k)$ yields:
+\begin{align*}
+-\mu\left(\frac{1}{\mu k} + \frac{\mu k}{3}\right)\reallywidehat{(\eta_{tt})^k_c} - \mu^4 k \partial_t \reallywidehat{\left( \eta \eta_t \right)^k_c} &+  \mu^3 k\left(\frac{1}{\mu k} + \frac{\mu k}{3}\right)\partial_t \mathcal{F}^k_c \{\left(\eta \{ \mathcal{F}^l_s \}^{-1} \{ \mu \left(\frac{1}{\mu l} + \frac{\mu l}{3}\right)\reallywidehat{(\eta_t)^l_c} \} \right)\}\\
+&+ \frac{\mu^2}{2} \mathcal{F}^k_s \{ \partial_x(\{ \mathcal{F}^k_s \}^{-1} \{ \mu \left(\frac{1}{\mu k} + \frac{\mu k}{3}\right) \reallywidehat{(\eta_t)^k_c} \})^2\}  + \reallywidehat{(\eta_x)^k_s} = 0,
+\end{align*}
+and so
+\begin{align*}
+-\left(\frac{1}{k} + \frac{\mu^2 k}{3}\right)\reallywidehat{(\eta_{tt})^k_c} - \mu^4 k \partial_t \reallywidehat{\left( \eta \eta_t \right)}^k_c &+ \left(\mu^2 + \frac{\mu^4 k^2}{3}\right)\partial_t \mathcal{F}^k_c \{\left(\eta \{ \mathcal{F}^l_s \}^{-1} \{ \left(\frac{1}{l} + \frac{\mu^2 l}{3}\right)\reallywidehat{(\eta_t)^l_c} \} \right)\}\\
+&+ \frac{\mu^2}{2} \mathcal{F}^k_s \{ \partial_x(\{ \mathcal{F}^k_s \}^{-1} \{\left(\frac{1}{k} + \frac{\mu^2 k}{3}\right) \reallywidehat{(\eta_t)^k_c} \})^2\}  + \reallywidehat{(\eta_x)^k_s} = 0.
+\end{align*}
+Removing the terms of order $\mathcal{O}(\mu^4)$ and rearranging, we obtain:
+\begin{equation}\label{dontdivide}
+-\frac{1}{k}\reallywidehat{(\eta_{tt})^k_c} + \reallywidehat{(\eta_x)^k_s} + \mu^2 \left(\partial_t \mathcal{F}^k_c \{\left(\eta \{ \mathcal{F}^l_s \}^{-1} \{ \frac{1}{l}\reallywidehat{(\eta_t)^l_c} \} \right)\} + \frac{1}{2} \mathcal{F}^k_s \{ \partial_x(\{ \mathcal{F}^k_s \}^{-1} \{ \frac{1}{k}\reallywidehat{(\eta_t)^k_c} \})^2\} - \frac{k}{3}\reallywidehat{(\eta_{tt})^k_c}\right) = 0.
+\end{equation}
+Now, we would like to manipulate \eqref{dontdivide} so that we can apply inverse Fourier sine transform. First, note
+\begin{align*}
+-\frac{1}{k}\frac{1}{2\pi}\reallywidehat{(\eta_{tt})^k_c} &= -\frac{1}{k}\frac{1}{2\pi} \int^{\infty}_0 \cos(kx) \eta_{tt} \D x \\
+&= - \frac{1}{2\pi}\frac{\cos(kx)}{k} \left( \int^x_0 \eta_{tt} \D x' \right) \bigg|^{\infty}_{0} -\frac{1}{2\pi} \int^{\infty}_0 \sin(kx) \left( \int^{x}_0\eta_{tt} \D x'\right) \D x \\
+&= - \mathcal{F}^k_s\{ \int^{x}_0\eta_{tt} \D x'\},
+\end{align*} 
+where the final line follows sine $\displaystyle\int^{\infty}_0 \eta_{tt} \D x' = 0$ is a conservation law (TO BE VERIFIED).
+Second, observe that
+\begin{align*}
+\frac{1}{l}\reallywidehat{(\eta_t)^l_c} &= \frac{1}{l} \frac{1}{2 \pi} \int^{\infty}_0 \cos(lx) \eta_t \D x \\
+&= \frac{1}{2 \pi} \frac{\cos(lx)}{l} \left(\int^x_0 \eta_t \D x' \right) \bigg|^{\infty}_0 + \frac{1}{2\pi} \int^{\infty}_0 \sin(lx) \left( \int^x_0 \eta_t \D x' \right) \D x \\
+&= \mathcal{F}^l_s\{ \int^{x}_0\eta_{t} \D x'\},
+\end{align*}
+where similarly the last line follows since $\displaystyle\int^{\infty}_0 \eta_t \D x' = 0,$ a conservation law (TO BE VERIFIED). This identity yields:
+\begin{align*}
+\partial_t \mathcal{F}^k_c \{\eta \{ \mathcal{F}^l_s \}^{-1} \{ \frac{1}{l}\reallywidehat{(\eta_t)^l_c} \} &= \mathcal{F}^k_c \{ \partial_t \left( \eta \int^{x}_0\eta_{t} \D x' \right)\},\\
+\frac{1}{2} \mathcal{F}^k_s \{ \partial_x(\{ \mathcal{F}^k_s \}^{-1} \{ \frac{1}{k}\reallywidehat{(\eta_t)^k_c} \})^2\} &=  \frac{1}{2} \mathcal{F}^k_s \{ \partial_x\left(\int^{x}_0\eta_{t} \D x' \right)^2\}.
+\end{align*} 
+Thirdly, we have
+\begin{align*}
+- \frac{k}{3}\reallywidehat{(\eta_{tt})^k_c} &= - \frac{k}{3} \frac{1}{2\pi} \int^{\infty}_0 \cos(kx) \eta_{tt} \D x \\
+&= - \frac{k}{3} \frac{1}{2\pi} \frac{\sin(kx)}{k} \eta_{tt} \bigg|^{\infty}_0 + \frac{1}{3} \frac{1}{2\pi} \int^{\infty}_0 \sin(kx) \eta_{ttx} \D x \\
+&= \frac{1}{3} \mathcal{F}^k_s \{ \eta_{ttx}\},
+\end{align*}
+where the last line follows by the assumption $\lim_{x\to\infty} \eta_{tt} = 0.$ With these manipulations in mind, the equation \eqref{dontdivide} becomes 
+\begin{equation}\label{dontdivide2}
+-\mathcal{F}^k_s\{ \int^{x}_0\eta_{tt} \D x'\} + \reallywidehat{(\eta_x)^k_s} + \mu^2 \left(\mathcal{F}^k_c \{ \partial_t \left( \eta \int^{x}_0\eta_{t} \D x' \right)\} + \frac{1}{2} \mathcal{F}^k_s \{ \partial_x\left(\int^{x}_0\eta_{t} \D x' \right)^2\} + \frac{1}{3} \mathcal{F}^k_s \{ \eta_{ttx}\} \right) = 0.
+\end{equation}
+Inverting the Fourier sine transform, we obtain
+\begin{equation}\label{dontdivide3}
+-\int^{x}_0\eta_{tt} \D x' + \eta_x + \mu^2 \left( (\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ \partial_t \left( \eta \int^{x}_0\eta_{t} \D x' \right)\} \} + \frac{1}{2} \partial_x\left(\int^{x}_0\eta_{t} \D x' \right)^2 + \frac{1}{3} \eta_{ttx} \right) = 0.
+\end{equation}
+Take the derivative with respect to $x:$
+\begin{equation}\label{dontdivide3}
+ - \eta_{tt} + \eta_{xx} + \mu^2 \left( \partial_x(\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ \partial_t \left( \eta \int^{x}_0\eta_{t} \D x' \right)\} \} + \frac{1}{2} \partial^2_x\left(\int^{x}_0\eta_{t} \D x' \right)^2 + \frac{1}{3} \eta_{ttxx} \right) = 0.
+\end{equation}
+Rearranging and using $\eta_{tt} = \eta_{xx} + \mathcal{O}(\mu^2),$ we obtain the equation
+\begin{equation}\label{SurfaceElevationHL}
+ \eta_{tt} - \eta_{xx} = \mu^2 \left( \frac{1}{3} \eta_{xxxx}  + \partial_x(\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ \partial_t \left( \eta \int^{x}_0\eta_{t} \D x' \right)\} \} + \frac{1}{2} \partial^2_x\left(\int^{x}_0\eta_{t} \D x' \right)^2\right).
+\end{equation}
+Clearly, the presence of the term with mixed transforms complicates things: we cannot apply integration by parts like we did for other terms, because doing so results in a multiple of $k$ in the new term, which is exactly what we want to avoid. For comparison, the whole line equation for the surface is given by 
+\[ \eta_{tt} - \eta_{xx} = \mu^2 \left( \frac{1}{3}\eta_{xxxx} + \partial_x \left[ \eta_t \left(\int^{x}_{-\infty} \eta_t \D x'  \right) + \eta \eta_x\right]  + \frac{1}{2} \partial_x^2 \left(\int^{x}_{-\infty} \eta_t \D x' \right)^2 \right). \]
+
+\subsubsection*{other stuff}
+Consider the term 
+\[ \epsilon \mu^2 \frac{(\eta_t + \eta_x \mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\})^2}{1+\epsilon^2 \mu^2 \eta_x^2} .\]
+Note that $|\epsilon \mu \eta_x|<1,$ so 
+\[ 
+\frac{1}{1+\epsilon^2 \mu^2 \eta_x^2} = \frac{1}{1-(-\epsilon^2 \mu^2 \eta_x^2)} \approx 1 + \epsilon^2 \mu^2 \eta_x^2,
+\]
+by geometric series argument.
+Furthermore, 
+\begin{align*}
+(\eta_t + \eta_x \mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\})^2 &\approx \eta_t^2 + 2 \eta_t \eta_x \mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \\
+&\approx \eta_t^2 + 2 \eta_t \eta_x \mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\},
+\end{align*}
+so we can assume 
+\[ 
+\epsilon \mu^2 \frac{(\eta_t + \eta_x \mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\})^2}{1+\epsilon^2 \mu^2 \eta_x^2} \approx \epsilon \mu^2 (\eta_t^2 + 2 \eta_t \eta_x \mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\})
+\]
+Then, 
+\begin{align*}
+\frac{1}{2}\left(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 &\approx \frac{1}{2}\left( \left[\mathcal{H}_0(\epsilon\eta, D) + \epsilon \mathcal{H}_1(\epsilon\eta, D)\right]\{ \epsilon \mu \eta_t\}  \right)^2 \\
+&= \frac{1}{2}\left( \left[\mathcal{H}_0(\epsilon\eta, D)^2 + 2\epsilon \mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \mathcal{H}_1(\epsilon\eta, D)\right]\{ \epsilon \mu \eta_t\} \right) \\
+&= \frac{1}{2} \left( \mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 + \epsilon \mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \mathcal{H}_1(\epsilon\eta, D) \{ \epsilon \mu \eta_t\}  \\
+&= \frac{1}{2} \left( \mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 + \epsilon^3 \mu^2 \mathcal{H}_0(\epsilon\eta, D)\{ \eta_t\} \mathcal{H}_1(\epsilon\eta, D) \{\eta_t\} \\
+&= \frac{(\epsilon\mu)^2}{2} \left[ \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\}\right]^2 \\
+&+ \epsilon^3 \mu^2\left[ \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\}\right] (\mu (\eta f)_x - \mathcal{F}^{-1} \{ \mu k \coth (\mu k) \mathcal{F}\{\eta \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\} \}\}).
+\end{align*}
+
+In the leading two orders, we have
+\begin{align*}
+\partial_t\left(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right) + \partial_x\left( \frac{1}{2}\left(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 + \epsilon \eta - \frac{1}{2}\epsilon \mu^2 \frac{(\eta_t + \eta_x \mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\})^2}{1+\epsilon^2 \mu^2 \eta_x^2}\right) &= 0 \implies \\
+\partial_t( \left[ \mathcal{H}_0(\epsilon\eta, D) + \epsilon\mathcal{H}_1(\epsilon\eta, D) \right] \{ \epsilon \mu \eta_t\} + \partial_x\bigg(\frac{1}{2}\left(\mathcal{H}_0(\epsilon\eta, D) \{ \epsilon \mu \eta_t\}\right)^2 + \epsilon \mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \mathcal{H}_1(\epsilon\eta, D) &\{ \epsilon \mu \eta_t\} \\
++ \epsilon \eta - \frac{1}{2} \epsilon \mu^2 \eta_t^2 \bigg) &= 0 \\
+\partial_t( \left[ \mathcal{H}_0(\epsilon\eta, D) + \epsilon\mathcal{H}_1(\epsilon\eta, D) \right] \{ \epsilon \mu \eta_t\} + \partial_x\bigg(\frac{1}{2}\left(\mathcal{H}_0(\epsilon\eta, D) \{ \epsilon \mu \eta_t\}\right)^2 + \epsilon^3 \mu^2 \mathcal{H}_0(\epsilon\eta, D)\{ \eta_t\} \mathcal{H}_1(\epsilon\eta, D) &\{ \eta_t\} \\
++ \epsilon \eta - \frac{1}{2} \epsilon \mu^2 \eta_t^2 \bigg) &= 0.
+\end{align*}
+Consider each term:
+\begin{align*}
+\partial_t\left( \left[ \mathcal{H}_0(\epsilon\eta, D) + \epsilon \mathcal{H}_1(\epsilon\eta, D) \right] \{ \epsilon \mu \eta_t\} \right) &= \epsilon \mu \partial_t\left( \left[ \mathcal{H}_0(\epsilon\eta, D) + \epsilon \mathcal{H}_1(\epsilon\eta, D) \right] \{\eta_t\} \right) \\
+&=\epsilon \mu \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_{tt}}\} + \epsilon^2 \mu^2 (\eta \eta_t)_{tx} \\
+&- \epsilon^2 \mu \mathcal{F}^{-1} \{ \mu k \coth (\mu k) \mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\} \right] \}.
+\end{align*}
+Then, 
+\begin{align*}
+\epsilon \mu \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_{tt}}\} &+ \epsilon^2 \mu^2 (\eta \eta_t)_{tx} - \epsilon^2 \mu \mathcal{F}^{-1} \{ \mu k \coth (\mu k) \mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\} \right] \} \\
+&+ \frac{(\epsilon\mu)^2}{2} \partial_x \left[ \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\}\right]^2\\
+&+ \epsilon^3 \mu^2 \partial_x \left[ \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\}\right] \left[\mu (\eta f)_x - \mathcal{F}^{-1} \{ \mu l \coth (\mu l) \mathcal{F}\{\eta \mathcal{F}^{-1} \{ i \coth (\mu j) \reallywidehat{\eta_t} \}_k\} \right] \\
+&+ \epsilon \partial_x \eta - \frac{1}{2} \epsilon \mu^2 \partial_x (\eta_t^2) =0.
+\end{align*}
+Invert Fourier transform:
+\begin{align*}
+\epsilon \mu i \coth (\mu k) \reallywidehat{\eta_{tt}} &+ \epsilon^2 \mu^2 ik \reallywidehat{(\eta \eta_t)_{t}} - \epsilon^2 \mu ( \mu k \coth (\mu k) \mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\} \right]) \} \\
+&+ \frac{(\epsilon\mu)^2}{2} ik \mathcal{F} \{ \left[ \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\}\right]^2 \} \\
+&+ \epsilon^3 \mu^2 ik \mathcal{F}  \left( \left[ \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\}\right] \left[\mu (\eta f)_x - \mathcal{F}^{-1} \{ \mu l \coth (\mu l) \mathcal{F}\{\eta \mathcal{F}^{-1} \{ i \coth (\mu j) \reallywidehat{\eta_t} \}_k\} \right] \right)\\
+&+ \epsilon ik \reallywidehat{\eta} - \frac{1}{2} \epsilon \mu^2 ik\reallywidehat{\eta_t^2} =0.
+\end{align*}
+Divide by $i\epsilon:$
+\begin{align*}
+\mu\coth (\mu k) \reallywidehat{\eta_{tt}} &+ \epsilon \mu^2 k \reallywidehat{(\eta \eta_t)_{t}} - \epsilon \mu( \mu k \coth (\mu k) \mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{ \coth (\mu k) \reallywidehat{\eta_t}\} \}\right]) \\
+&+ \frac{\epsilon \mu^2}{2} k \mathcal{F} \{ \left[ \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\}\right]^2 \} \\
+&+ \epsilon^2 \mu^2 k \mathcal{F}  \left( \left[ \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\}\right] \left[\mu (\eta f)_x - \mathcal{F}^{-1} \{ \mu l \coth (\mu l) \mathcal{F}\{\eta \mathcal{F}^{-1} \{ i \coth (\mu j) \reallywidehat{\eta_t} \}_k\} \right] \right)\\
+&+ k \reallywidehat{\eta} - \frac{1}{2} \mu^2 k\reallywidehat{\eta_t^2} =0.
+\end{align*}
+Divide by $\coth(\mu k):$
+\begin{align*}
+\mu\reallywidehat{\eta_{tt}} &+ \epsilon \mu^2 k\tanh(\mu k) \reallywidehat{(\eta \eta_t)_{t}} - \epsilon \mu ( \mu k \mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{ \coth (\mu k) \reallywidehat{\eta_t}\} \right] \}) \\
+&+ \frac{\epsilon \mu^2}{2} k\tanh(\mu k) \mathcal{F} \{ \left[ \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\}\right]^2 \} \\
+&+ \epsilon^2 \mu^2 k \tanh(\mu k) \mathcal{F}  \left( \left[ \mathcal{F}^{-1} \{ i \coth (\mu k) \reallywidehat{\eta_t}\}\right] \left[\mu (\eta f)_x - \mathcal{F}^{-1} \{ \mu l \coth (\mu l) \mathcal{F}\{\eta \mathcal{F}^{-1} \{ i \coth (\mu j) \reallywidehat{\eta_t} \}_k\} \right] \right)\\ 
+&+ \tanh(\mu k) k \reallywidehat{\eta} - \tanh(\mu k) \frac{1}{2} \mu^2 k\reallywidehat{\eta_t^2} =0.
+\end{align*}
+Let $\epsilon = \mu^2$ and recall expansions:
+\[ 
+\tanh(\mu k) \approx \mu k - \frac{(\mu k)^3}{3} + \mathcal{O}(\mu^5), \qquad \coth(\mu k) \approx \frac{1}{\mu k} + \frac{\mu k}{3}+ \mathcal{O}(\mu^3).
+\]
+Substitute the expansions appropriately:
+\begin{align*}
+\mu\reallywidehat{\eta_{tt}} &+ \mu^4 k \left( \mu k - \frac{(\mu k)^3}{3} \right) \reallywidehat{(\eta \eta_t)_{t}} - i\mu^3 k (\mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{ \left( \frac{1}{k} + \frac{\mu^2 k}{3} \right) \reallywidehat{\eta_t}\} \right]) \\
+&- \frac{\epsilon \mu^2}{2} k\left(\mu k - \frac{(\mu k)^3}{3}\right) \mathcal{F} \{ \left[ \mathcal{F}^{-1} \{ \left( \frac{1}{\mu l} + \frac{\mu l}{3} \right) \reallywidehat{\eta_t}\}\right]^2 \} \\
+&+ \epsilon^2 \mu^3 k^2 \left(1 - \frac{(\mu k)^2}{3}\right) \mathcal{F} \left( \left[ \mathcal{F}^{-1} \{ i \left( \frac{1}{\mu k} + \frac{\mu k}{3} \right) \reallywidehat{\eta_t}\}\right] \left[\mu (\eta f)_x - \mathcal{F}^{-1} \{ \left( 1 + \frac{(\mu l)^2}{3}\right) \mathcal{F}\{\eta \mathcal{F}^{-1} \{ i \left(\frac{1}{\mu j} + \frac{\mu j}{3}\right) \reallywidehat{\eta_t} \}\} \right] \right)\\ 
+&+ \left( \mu k - \frac{(\mu k)^3}{3} \right) k \reallywidehat{\eta} -  \left( \mu k - \frac{(\mu k)^3}{3} \right) \frac{1}{2} \mu^2 k\reallywidehat{\eta_t^2} =0.
+\end{align*}
+Consider the term on the third line: we divide by $\mu,$ and eliminate terms within $\mathcal{O}(\mu^4):$
+\begin{align*}
+\epsilon^2 \mu^3 k^2 \left(1 - \frac{(\mu k)^2}{3}\right) \mathcal{F} \left( \left[ \mathcal{F}^{-1} \{ i \left( \frac{1}{\mu k} + \frac{\mu k}{3} \right) \reallywidehat{\eta_t}\}\right] \left[\mu (\eta f)_x - \mathcal{F}^{-1} \{ \left( 1 + \frac{(\mu l)^2}{3}\right) \mathcal{F}\{\eta \mathcal{F}^{-1} \{ i \left(\frac{1}{\mu j} + \frac{\mu j}{3}\right) \reallywidehat{\eta_t} \}\} \right] \right) = \\
+\epsilon^2 \mu k^2 \left(1 - \frac{(\mu k)^2}{3}\right) \mathcal{F} \left( \left[ \mathcal{F}^{-1} \{ i \left( \frac{\mu}{\mu k} + \frac{\mu^2 k}{3} \right) \reallywidehat{\eta_t}\}\right] \left[\mu^2 (\eta f)_x - \mathcal{F}^{-1} \{ \left( 1 + \frac{(\mu l)^2}{3}\right) \mathcal{F}\{\eta \mathcal{F}^{-1} \{ i \left(\frac{\mu}{\mu j} + \frac{\mu^2 j}{3}\right) \reallywidehat{\eta_t} \}\} \right] \right) =\\
+\epsilon^2 \mu k^2 \left(1 - \frac{(\mu k)^2}{3}\right) \mathcal{F} \left( \left[ \mathcal{F}^{-1} \{ i \left( \frac{1}{k} + \frac{\mu^2 k}{3} \right) \reallywidehat{\eta_t}\}\right] \left[\mu^2 (\eta f)_x - \mathcal{F}^{-1} \{ \left( 1 + \frac{(\mu l)^2}{3}\right) \mathcal{F}\{\eta \mathcal{F}^{-1} \{ i \left(\frac{1}{j} + \frac{\mu^2 j}{3}\right) \reallywidehat{\eta_t} \}\} \right] \right) \approx \\
+\epsilon^2 \mu k^2 \mathcal{F} \left(\eta \left[ \mathcal{F}^{-1} \{\frac{1}{k} \reallywidehat{\eta_t}\}\right] \left]\mathcal{F}^{-1} \{ \frac{1}{j} \reallywidehat{\eta_t} \}\}\right]  \right),
+\end{align*}
+divide by $\mu$ to obtain
+\[ \epsilon^2 k^2 \mathcal{F} \left(\eta \left[ \mathcal{F}^{-1} \{\frac{1}{k} \reallywidehat{\eta_t}\}\right] \left[\mathcal{F}^{-1} \{ \frac{1}{j} \reallywidehat{\eta_t} \}\}\right]  \right) = \epsilon^2 k^2 \mathcal{F} \left(\eta \left[ \int^{x}_{-\infty} \eta_t \D x' \right]^2  \right),
+ \]
+Divide through by $\mu,$ eliminate terms of order $\mathcal{O}(\mu^4)$ and rearrange:
+\begin{align*}
+\reallywidehat{\eta_{tt}} + k^2 \reallywidehat{\eta} &+ \mu^2 \left( - ik (\mathcal{F}\{\partial_t \left[\eta \int^{x}_{-\infty} \eta_t \D x \} \right])  - \frac{1}{2} k^2 \mathcal{F} \{ \left[ \mathcal{F}^{-1} \{ \frac{1}{l} \reallywidehat{\eta_t}\}\right]^2 \} - \frac{k^4}{3} \reallywidehat{\eta} -  \frac{k^2}{2} \reallywidehat{\eta_t^2} \right) =0.
+\end{align*}
+Finally, invert Fourier transform:
+\begin{align*}
+\eta_{tt} - \eta_{xx}  &+ \mu^2 \left( -\partial_x \partial_t \left[\eta \int^{x}_{-\infty} \eta_t \D x \} \right] + \frac{1}{2} \partial^2_x \left[ \mathcal{F}^{-1} \{ \frac{1}{l} \reallywidehat{\eta_t}\}\right]^2 - \frac{1}{3} \eta_{xxxx} + \frac{1}{2} \partial^2_{x} \eta_t^2 \right) =0,
+\end{align*}
+or more conveniently,
+\begin{align*}
+\eta_{tt} - \eta_{xx}  &= \mu^2 \ \left( \frac{1}{3} \eta_{xxxx} - \frac{1}{2} \partial^2_{x} \eta_t^2 + \partial_x \partial_t \left[\eta \int^{x}_{-\infty} \eta_t \D x \} \right] + \frac{1}{2} \frac{\partial^2}{\partial x^2} \left[ \int^{x}_{-\infty} \eta_t \D x' \right]^2\right)
+\end{align*}
+For direct comparison, in \cite[p. 110]{ablowitz}, the corresponding equation is the equation (5.20)
+\begin{align*}
+\eta_{tt} - \eta_{xx} = \mu^2 \ \left( \frac{1}{3} \eta_{xxxx} + \eta_{xt} \int^{x}_{-\infty} \eta_t \D x' + \eta_x^2 + \eta_t^2 +\eta \eta_{xx} +\frac{1}{2} \frac{\partial^2}{\partial x^2}\left[ \int^{x}_{-\infty} \eta_t \D x'\right]^2 \right),
+\end{align*}
+\bibliographystyle{amsplain}
+{\small\bibliography{references}}
+
+\end{document}

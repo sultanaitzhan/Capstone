@@ -11,7 +11,11 @@
 \contentsline {subsubsection}{\numberline {2.1.2}Via non-local formulation}{7}{subsubsection.2.1.2}% 
 \contentsline {section}{\numberline {3}The Half-Line problem}{7}{section.3}% 
 \contentsline {subsection}{\numberline {3.1}Determining the boundary conditions}{7}{subsection.3.1}% 
-\contentsline {subsection}{\numberline {3.2}Determining the non-local formulation}{7}{subsection.3.2}% 
-\contentsline {subsection}{\numberline {3.3}Derivation of Wave \& KdV equations}{7}{subsection.3.3}% 
-\contentsline {subsubsection}{\numberline {3.3.1}Via velocity potential formulation}{7}{subsubsection.3.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Determining the non-local formulation}{8}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}Derivation of Wave \& KdV equations}{8}{subsection.3.3}% 
+\contentsline {subsubsection}{\numberline {3.3.1}Via velocity potential formulation}{8}{subsubsection.3.3.1}% 
 \contentsline {subsubsection}{\numberline {3.3.2}Via non-local formulation}{12}{subsubsection.3.3.2}% 
+\contentsline {subsubsection}{\numberline {3.3.3}Non-local formulation for the half-line}{15}{subsubsection.3.3.3}% 
+\contentsline {subsubsection}{\numberline {3.3.4}Non-local, non-dimensional formulation on a half-line}{17}{subsubsection.3.3.4}% 
+\contentsline {subsubsection}{\numberline {3.3.5}Perturbation expansion for $\mathcal {H}_0$}{18}{subsubsection.3.3.5}% 
+\contentsline {subsubsection}{\numberline {3.3.6}Approximation Procedure}{19}{subsubsection.3.3.6}% 

@@ -1,9 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.29)  23 DEC 2019 18:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.29)  13 JAN 2020 23:20
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**capstone-notes.tex
-(./capstone-notes.tex
+**"report 2.tex"
+(./report 2.tex
 LaTeX2e <2018-12-01>
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -587,18 +588,18 @@ sep char (CT)
 \stackedbox=\box59
 \@centerbox=\box60
 \c@ROWcellindex@=\count295
-)) (./capstone-notes.aux
+)) (./report 2.aux
 
-LaTeX Warning: Label `contourHL' multiply defined.
+LaTeX Warning: Label `1stOrderApprox' multiply defined.
 
 
 LaTeX Warning: Label `DimHLRP' multiply defined.
 
 
-LaTeX Warning: Label `NondimH' multiply defined.
+LaTeX Warning: Label `dontdivide3' multiply defined.
 
 )
-\openout1 = `capstone-notes.aux'.
+\openout1 = `"report 2.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
@@ -775,9 +776,9 @@ LaTeX Info: Redefining \ref on input line 12.
 LaTeX Info: Redefining \pageref on input line 12.
 LaTeX Info: Redefining \nameref on input line 12.
 
-(./capstone-notes.out) (./capstone-notes.out)
+(./report 2.out) (./report 2.out)
 \@outlinefile=\write3
-\openout3 = `capstone-notes.out'.
+\openout3 = `"report 2.out"'.
 
 LaTeX Font Info:    Try loading font information for U+msa on input line 12.
 
@@ -788,113 +789,141 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 12.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-(./capstone-notes.toc)
+) (./report 2.toc)
 \tf@toc=\write4
-\openout4 = `capstone-notes.toc'.
+\openout4 = `"report 2.toc"'.
 
  [1{/Users/ww/Library/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 }
 
-] [2] [3]
+]
 
-LaTeX Warning: Reference `EE-main' on page 4 undefined on input line 174.
-
-[4] [5] [6] [7] [8]
-Overfull \hbox (7.19044pt too wide) detected at line 400
-[]
- []
-
-[9] [10] [11]
-Overfull \hbox (7.40031pt too wide) detected at line 522
-[]\OML/cmm/m/it/10 t[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 t[]=L;  x[] \OT1/cmr/
-m/n/10 = \OML/cmm/m/it/10 x=L;  z[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 z=h;  ^^
-Q[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 ^^Q=a;  k[] \OT1/cmr/m/n/10 = \OML/cmm/m
-/it/10 Lk;  ^^^ \OT1/cmr/m/n/10 = []\OML/cmm/m/it/10 ^^^[];  q[] \OT1/cmr/m/n/1
-0 = []\OML/cmm/m/it/10 q;
- []
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 69.
 
 
-Overfull \hbox (12.38327pt too wide) detected at line 546
-\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 ! 1\OML/cmm/m/it/10 ; \OM
-S/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 1 \OML/cmm/m/it/10 < z < "^^Q\OMS/cmsy/m/n/10 
-g\OML/cmm/m/it/10 ;  \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 ! ^^
-@1\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 1 \OML/cmm/m/it/10 < z
- < "^^Q\OMS/cmsy/m/n/10 g\OML/cmm/m/it/10 ;  \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10
- z \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; \O
-T1/cmr/m/n/10 0 \OML/cmm/m/it/10 < x < \OMS/cmsy/m/n/10 1g\OML/cmm/m/it/10 ;  \
-OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 z \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 "^^Q; \O
-T1/cmr/m/n/10 0 \OML/cmm/m/it/10 < x < \OMS/cmsy/m/n/10 1g\OML/cmm/m/it/10 :
- []
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 69.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 549.
 
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 69.
+
+[2]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 107.
+
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 549.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 107.
 
-Overfull \hbox (19.88492pt too wide) detected at line 559
+Overfull \hbox (9.3889pt too wide) detected at line 114
 []
  []
+
+[3]
+Overfull \hbox (22.3005pt too wide) detected at line 182
+[]
+ []
+
+[4]
+Overfull \hbox (16.98804pt too wide) detected at line 194
+[]
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 214.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 214.
+
+[5]
+Overfull \hbox (18.41084pt too wide) detected at line 237
+\OMS/cmsy/m/n/10 FfH[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 "^^Q; D\OT1/cmr/m/n/10 
+)\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cm
+r/m/n/10 )\OMS/cmsy/m/n/10 gg[] \OT1/cmr/m/n/10 = [][] \OML/cmm/m/it/10 e[]\OMS
+/cmsy/m/n/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 "^^Q; D\OT1/cmr/m/n/10 )\OMS/
+cmsy/m/n/10 f\OML/cmm/m/it/10 g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/
+10 )\OMS/cmsy/m/n/10 g \OT1/cmr/m/n/10 d\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 = []
+[] \OML/cmm/m/it/10 e[]i []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^Vk\OT1/cmr/m/n/1
+0 )\OML/cmm/m/it/10 g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) d\OML
+/cmm/m/it/10 x \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 i []\OT1/cmr/m/n/10 (\OML/cmm
+/m/it/10 ^^Vk\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 Ff\OML/cmm/m/it/10 g\OT1/cmr/m/n
+/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 g[]\OML/cmm/m/it/10 :
+ []
+
+[6]
+\tmpboxcontent=\box63
+ [7] [8] [9] [10] [11]
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 534.
 
 [12]
-\tmpboxcontent=\box63
- [13]
-Overfull \hbox (2.82487pt too wide) detected at line 609
+Overfull \hbox (59.4334pt too wide) detected at line 565
 []
  []
 
 
-Overfull \hbox (3.49326pt too wide) detected at line 622
+Overfull \hbox (35.84082pt too wide) detected at line 576
 []
  []
 
-[14] [15]
-Overfull \hbox (56.65561pt too wide) detected at line 713
+[13] [14]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 642.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 642.
+
+[15] [16] [17] [18]
+Overfull \hbox (2.82487pt too wide) detected at line 846
 []
  []
 
-[16] [17]
+[19]
+Overfull \hbox (3.49326pt too wide) detected at line 859
+[]
+ []
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 789.
+[20]
+Overfull \hbox (56.65332pt too wide) detected at line 891
+[]
+ []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 789.
+Overfull \hbox (46.42448pt too wide) detected at line 898
+[]
+ []
 
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 789.
-
-[18] [19] [20] (./capstone-notes.bbl [21])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 955.
+(./report 2.bbl [21])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 921.
  [22]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 955.
- (./capstone-notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 955.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 955.
-Package rerunfilecheck Info: File `capstone-notes.out' has not changed.
-(rerunfilecheck)             Checksum: 53824AF17ABB36D6D0577C86DF0B0EF6;1797.
-
-
-LaTeX Warning: There were undefined references.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 921.
+ (./report 2.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 921.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 921.
+Package rerunfilecheck Info: File `"report 2".out' has not changed.
+(rerunfilecheck)             Checksum: AC20980C9C25DAEE55267B59E854C936;1077.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 955.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 921.
  ) 
 Here is how much of TeX's memory you used:
- 20014 strings out of 492616
- 368094 string characters out of 6129481
- 467046 words of memory out of 5000000
- 23663 multiletter control sequences out of 15000+600000
- 544631 words of font info for 72 fonts, out of 8000000 for 9000
+ 20009 strings out of 492616
+ 367912 string characters out of 6129481
+ 461919 words of memory out of 5000000
+ 23655 multiletter control sequences out of 15000+600000
+ 543705 words of font info for 69 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 40i,21n,63p,2014b,898s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,22n,63p,960b,895s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -908,15 +937,15 @@ texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/tex
 live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
 e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2
 019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
-19/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2019/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/201
-9/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on capstone-notes.pdf (22 pages, 296007 bytes).
+19/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2019
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2019/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on "report 2.pdf" (22 pages, 279277 bytes).
 PDF statistics:
- 406 PDF objects out of 1000 (max. 8388607)
- 360 compressed objects within 4 object streams
- 105 named destinations out of 1000 (max. 500000)
- 169 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 376 PDF objects out of 1000 (max. 8388607)
+ 330 compressed objects within 4 object streams
+ 110 named destinations out of 1000 (max. 500000)
+ 89 words of extra memory for PDF output out of 10000 (max. 10000000)
 
