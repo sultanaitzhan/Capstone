@@ -15,7 +15,7 @@
 \tableofcontents
 
 
-\section{Water-wave problem on the whole line: non-local formulation}
+\section{Water-wave problem on the whole line: nonlocal formulation}
 
 Recall the full water-wave problem on a whole line:
 \begin{subequations} \label{DimWholeLineProblem}
@@ -66,7 +66,7 @@ Substituting \eqref{defH3} into \eqref{qEq2}, we obtain
 \end{equation}
 The utility of \eqref{Hequation} depends on whether we can find a useful representation for the operator $\mathcal{H}(\eta, D).$ In the next section, we describe an equation that the $\mathcal{H}$ operator must satisfy. 
 
-\subsubsection{Behaviour of the $\mathcal{H}$ operator}
+\subsubsection{Behaviour of the $\mathcal{H}$ operator: the whole line.}
 Consider the following boundary value problem:
 \begin{subequations}
 \begin{align}
@@ -131,14 +131,14 @@ Note that we could choose $\varphi(x,z) = e^{-ikx} \sinh(k(z+h)),$ so that the i
 \begin{align*}
 \int_{-\infty}^{\infty} e^{-ikx}( k \cosh(k(\eta+h)) f(x) + ik \sinh(k(\eta+h)) \mathcal{H}( \eta, D)\{ f(x) \}) \D x = 0.
 \end{align*}
-Assume that $k \neq 0.$ Dividing by $k$ and multiplying by $i$ yields an equation that relates $f$ and the operator $\mathcal{H}$ acting on $f:$
+It can be shown that we can take out $k$ in the integral, so that the below holds for all $k \in \RR.$
 \begin{equation}\label{DimHbehav}
 \int_{-\infty}^{\infty} e^{-ikx}( i  \cosh(k(\eta+h)) f(x) - \sinh(k(\eta+h)) \mathcal{H}( \eta, D)\{ f(x) \}) \D x = 0.
 \end{equation}
-\rmk{One has to be careful with dividing by $k$: if $k =0,$ then none of the following work will be valid. Thus, we need to deal with this problem.}
-\rmk{A related comment to the above is that the choice of $\varphi$ is not unique. Indeed, we only required that $\varphi$ is harmonic, and that $\varphi_x(x, -h) = 0,$ which allowed us to cancel the contribution from the bottom. If we choose different $\varphi,$ then we will end up with different version of \eqref{DimHbehav}. This is important to be aware of, since different versions can give an insight into why the case $k=0$ is problematic. Furthermore, if we let $\varphi(x+iz)^n, n \in \NN,$ then we will end up with conservation laws, which we will exploit later.}
+\rmk{Even though \eqref{DimHbehav} holds for all $k \in \RR,$ the case $k = 0$ still poses some challenges. Namely,the first term of $\mathcal{H}$ will contain $\coth (uk)$ term, which blows up as $k \to 0.$ As will be seen, this problem should be dealt by picking $\eta$ such that its Fourier transform decays faster than $\mathcal{H}$ blows up.}
+\rmk{A related comment to the above is that the choice of $\varphi$ is not unique. Indeed, we only required that $\varphi$ is harmonic, and that $\varphi_x(x, -h) = 0,$ which allowed us to cancel the contribution from the bottom. If we choose different $\varphi,$ then we will end up with different version of \eqref{DimHbehav}. Furthermore, if we let $\varphi(x+iz)^n, n \in \NN,$ then we will end up with conservation laws, which we will exploit later.}
 
-\subsubsection{Nondimensional, nonlocal formulation}
+\subsubsection{Nondimensional, nonlocal formulation: the whole line.}
 
 We derive the non-dimensional version of the above work. Let 
 \begin{equation}\label{NDcoord}
@@ -170,7 +170,7 @@ where we have dropped starred notation. Now, split the contour into the followin
 \int_D &= \int_{-\infty}^{\infty} \bigg|^{z = -1} + \int_{-1}^{\epsilon\eta(x)} \bigg|^{x  \to \infty} + \int^{-\infty}_{\infty} \bigg|^{z = \epsilon\eta(x)} + \int_{\epsilon\eta(x)}^{-1} \bigg|^{x \to -\infty} \\
 &= \int_{-\infty}^{\infty} \bigg|^{z = -1} + \int_{-1}^{\epsilon\eta(x)} \bigg|^{x  \to \infty} - \int^{\infty}_{-\infty} \bigg|^{z = \epsilon\eta(x)} - \int^{\epsilon\eta(x)}_{-1} \bigg|^{x \to -\infty}.
 \end{align*}
-Consider integral on each of the segments (WRITE OUT COMPLETELY):
+Consider integral on each of the segments:
 \begin{itemize}
 \item As $|x| \to \infty,$ we know that $\phi$ and its gradient vanish, so the integral also vanishes on these segments.
 \item At $z = -1, \D z = 0,$ so we have 
@@ -207,11 +207,11 @@ As before, we choose $\varphi(x,z) = e^{-ikx} \sinh(k(z+h)) = e^{-ik^{\star}x^{\
 \begin{align*}
 \int_{-\infty}^{\infty} e^{-ikx}( k \cosh(\mu k(\eta+1)) g(x) + ik \sinh(\mu k(\eta+1)) \mathcal{H}( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
 \end{align*}
-Assume that $k \neq 0.$ Dividing by $k$ and multiplying by $i$ yields an equation that relates $g$ and the operator $\mathcal{H}$ acting on $g:$
+Taking $k$ out and multiplying by $i$ yields an equation that relates $g$ and the operator $\mathcal{H}$ acting on $g:$
 \begin{equation}\label{NDimHbehav}
 \int_{-\infty}^{\infty} e^{-ikx}( i  \cosh(\mu k(\eta+1)) g(x) - \sinh(\mu k(\eta+1)) \mathcal{H}( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
 \end{equation}
-\subsubsection{Representation of the $\mathcal{H}$ operator}
+\subsubsection{Perturbation expansion of the $\mathcal{H}$ operator: the whole line.}
 In this section, we derive a representation of the $\mathcal{H}$ operator in the leading two terms. To begin, consider \eqref{NDimHbehav} and expand in $\epsilon:$
 \begin{align*}
 \cosh(\mu k(\eta+1)) &= \cosh(\mu k) + \mu k \epsilon \eta \sinh(\mu k) + \ldots, \\
@@ -239,7 +239,7 @@ Finally, we invert Fourier transform to obtain
 \begin{equation*}
 \mathcal{H}_0( \epsilon \eta, D)\{ g(x) \} =\mathcal{F}^{-1}\{i \coth(\mu k) \mathcal{F}\{g(x)\}_k \}_k,
 \end{equation*}
-where we write out $k$'s explicitly to keep track of transforms.
+where we write out $k$'s explicitly to keep track of transforms. Note that as $k \to 0, \mathcal{H}_0$ blows up as $\coth(\mu k)$ has a singularity of order 1 at $k = 0.$ 
 \newline \textbf{Within $\mathcal{O}(\epsilon^1):$} from expansions above, we have 
 \begin{align*}
 \int_{-\infty}^{\infty} e^{-ikx}( i \mu k \eta \sinh(\mu k) g(x) - \left[ \sinh(\mu k)\mathcal{H}_1 + \mu k \eta \cosh(\mu k) \mathcal{H}_0 \right]( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
@@ -265,7 +265,7 @@ In sum, we obtain
 \mathcal{H}_0( \epsilon \eta, D)\{ g(x) \} &= \mathcal{F}^{-1}\{i \coth(\mu k) \mathcal{F}\{g(x)\}_k \}_k, \\
 \mathcal{H}_1( \epsilon \eta, D) \{ g(x) \} &= \mu \partial_x(\eta g) - \mathcal{F}^{-1} \{ \mu k \coth(\mu k) \mathcal{F} \{ \eta \mathcal{F}^{-1}\{i \coth(\mu l) \mathcal{F}\{g\}_l \}_l \}_k \}_k.
 \end{align*}
-\subsubsection{Deriving an expression for surface elevation}
+\subsubsection{Deriving an expression for surface elevation: the whole-line.}
 In this section, we would like to derive an expression for $\eta.$ We can do this because the scalar equation \eqref{Hequation} is written in terms of $\eta.$ The non-dimensional version of \eqref{Hequation} is given by
 \begin{equation}\label{NDHequation}
 \partial_t\left(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right) + \partial_x\left( \frac{1}{2}\left(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 + \epsilon \eta - \frac{1}{2}\epsilon^2 \mu^2 \frac{(\eta_t + \eta_x \mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\})^2}{1+\epsilon^2 \mu^2 \eta_x^2}\right) = 0.
@@ -376,7 +376,7 @@ Using these two facts, equation \eqref{2ndApproxAlmost} becomes
 \end{align*}
 For direct comparison, this equation is the same as the one in \cite[p. 111]{ablowitz}, the unnumbered equation between (5.20) and (5.21). It remains to derive the wave and KdV equations.
 
-\subsubsection{Derivation of wave and KdV equations}
+\subsubsection{Derivation of wave and KdV equations: the whole line.}
 In this section, we derive the approximate equations from
 \begin{equation}\label{srfceq0}
 \eta_{tt} - \eta_{xx} = \epsilon \left[ \frac{1}{3}\eta_{xxxx} +  \partial_x^2 \left( \frac{\eta^2}{2} + \left( \int^{x}_{-\infty} \eta_t \D x' \right)^2\right)\right].
@@ -505,8 +505,8 @@ Since $\eta_1$ must be bounded, we must have
 \end{align}
 In other words, we have obtained two KdV equations, \eqref{KdV1} and \eqref{KdV2}, whose solutions describe behaviour of the surface elevation in the leading order. The derivation is complete.
 
-\section{Water-wave problem on the whole line: non-local formulation}
-The (tentative) half-line problem is given by the following system:
+\section{Water-wave problem on a half line: nonlocal formulation}
+The (tentative) half line problem is given by the following system:
 \begin{subequations}\label{DimHalfLineProblem}
 \begin{align}
 \phi_{xx} + \phi_{zz} &= 0, &-h < z < \eta(x,t), \\
@@ -514,11 +514,10 @@ The (tentative) half-line problem is given by the following system:
 \phi_{x} &= 0, &x =0, \\
 \eta_t + \phi_{x}\eta_{x} &= \phi_{z}, & z = \eta(x,t), \\
 \phi_t + g\eta + \frac{1}{2}(\phi_{x}^2 + \phi_{z}^2) &= 0, &z = \eta(x,t), \\
-\phi_{z}(0,\eta,t) &= \eta_t(0,t), &(x,z) = (0,\eta). \\
-|\phi| \to 0, |\eta| &\to 0,  &x &\to \infty,
+\phi_{z}(0,\eta,t) &= \eta_t(0,t), &(x,z) = (0,\eta),
 \end{align}
 \end{subequations}
-Introducing the nondimensional variables as before yields the non-dimensional problem:
+and $\eta, \phi, \nabla \phi \to 0$ as $x \to \infty.$ Introducing the nondimensional variables as before yields the non-dimensional problem:
 \begin{subequations} \label{NondimHalfLineProblem}
 \begin{align}
 \label{NondimPDE}\epsilon\phi_{xx} + \phi_{zz} &= 0 &-1 < z < \epsilon\eta \\
@@ -529,21 +528,21 @@ Introducing the nondimensional variables as before yields the non-dimensional pr
 \label{NondimBC5}\phi_{z}(0,\epsilon\eta,t) &= \epsilon\eta_t(0,t) &(x,z) = (0,\epsilon\eta),
 \end{align}
 \end{subequations}
-and the conditions on decay of $\phi$ and $\eta$ remain the same, except there is only the right side. We seek a non-local formulation of the problem.
+and the conditions on decay of $\phi$ and $\eta$ remain the same, except there is only the right side. We seek a nonlocal formulation of the problem.
 
-\subsubsection{Dimensional, non-local formulation for the half-line}
+\subsubsection{Derivation of the nonlocal formulation: a half-line}
 First, we begin with a dimensional system. As previously, let $\varphi$ be harmonic. Then, after some manipulation, we have the following contour integral (in dimensional variables):
 \begin{equation}
 \int_D \varphi_z(\phi_z \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) = 0
 \end{equation}
 Break the contour $D$ in the following segments:
 \begin{align*}
-\int_D &= \int_{-\infty}^{\infty} \bigg|^{z=-h} + \int^{\eta(x)}_{-h} \bigg|^{x = \infty} + \int^{-\infty}_{\infty} \bigg|^{z= \eta(x)} + \int_{\eta}^{-h} \bigg|^{x=0} \\
-&= \int_{-\infty}^{\infty} \bigg|^{z=-h} + \int^{\eta(x)}_{-h} \bigg|^{x = \infty} - \int^{\infty}_{-\infty} \bigg|^{z= \eta(x)} - \int^{\eta}_{-h} \bigg|^{x=0}
+\int_D &= \int_{-\infty}^{\infty} \bigg|^{z=-h} + \int^{\eta(x)}_{-h} \bigg|^{x \to \infty} + \int^{-\infty}_{\infty} \bigg|^{z= \eta(x)} + \int_{\eta}^{-h} \bigg|^{x=0} \\
+&= \int_{-\infty}^{\infty} \bigg|^{z=-h} + \int^{\eta(x)}_{-h} \bigg|^{x \to \infty} - \int^{\infty}_{-\infty} \bigg|^{z= \eta(x)} - \int^{\eta}_{-h} \bigg|^{x=0}
 \end{align*}
 We consider each of the segments:
 \begin{itemize}
-\item At $x = \infty$, the integral vanishes due to behaviour of $\phi$ and its gradient. 
+\item As $x \to \infty$, the integral vanishes due to behaviour of $\phi$ and its gradient. 
 \item At $x = 0, \D x = 0,$ so we have 
 \begin{align*}
 \int_{-h}^{\eta} - \varphi_z \phi_x + \phi \varphi_{xz} \D z &= \int_{-h}^{\eta} \phi \varphi_{xz} - \varphi_z \phi_x  \D z \\
@@ -567,7 +566,7 @@ We consider each of the segments:
 Combine the segments:
 \begin{align*}
 0 &= \int_D \varphi_z(\phi_x \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) \\
-&= \bigg\{ \int_{-\infty}^{\infty} \bigg|^{z=-h} + \int^{\eta(x)}_{-h} \bigg|^{x = \infty} - \int^{\infty}_{-\infty} \bigg|^{z= \eta(x)} - \int^{\eta}_{-h} \bigg|^{x=0} \bigg\} ~ \varphi_z(\phi_x \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) \\
+&= \bigg\{ \int_{-\infty}^{\infty} \bigg|^{z=-h} + \int^{\eta(x)}_{-h} \bigg|^{x \to \infty} - \int^{\infty}_{-\infty} \bigg|^{z= \eta(x)} - \int^{\eta}_{-h} \bigg|^{x=0} \bigg\} ~ \varphi_z(\phi_x \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) \\
 &= - \phi(0,-h) \varphi_{x}(0,-h) - \int^{\infty}_{0} \phi_x(x,-h) \varphi_x(x,-h) \D x \\
 &- \int_{0}^{\infty} \varphi_z(x, \eta)\frac{\partial \phi}{\partial N}(x, \eta)\D x + \phi(0, \eta) \varphi_x(0, \eta) + \int^{\infty}_{0}\phi_x(x, \eta)  \varphi_x(x, \eta) \D x \\
 &-\phi(0, \eta) \varphi_x(0, \eta) + \phi(0, -h) \varphi_x(0, -h) + \int_{-h}^{\eta} \phi_{z}(0,z) \varphi_{x}(0,z) \D z \\
@@ -588,7 +587,7 @@ since $\varphi_x(x,-h) = -k \sin(kx) \sinh(k(h-h)) = 0.$ Let $\dfrac{\partial \p
 \end{equation}
 Observe that \eqref{DimHLRP} is kinda like the real part of the original equation but on a half-line (maybe the other half-line is the imaginary part).
 
-\subsubsection{Non-local, non-dimensional formulation on a half-line}
+\subsubsection{Nondimensional, nonlocal formulation: a half-line}
 As previously, let $\phi$ be harmonic. Then, after some manipulation, we have the following contour integral (in non-dimensional variables):
 \begin{equation}\label{contourHL1}
 \int_D \varphi_z(\frac{1}{\mu^2}\phi_z \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) = 0.
@@ -625,24 +624,26 @@ Combine the segments:
 &= - 2\phi(0,-h) \varphi_{x}(0,-1) - \int_{-1}^{\epsilon\eta} \phi_{z}(0,z) \varphi_{x}(0,z) \D z \\
 & + \int_{0}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi \cdot \tilde{N} \D x - \int^{\infty}_{0}\phi_x(x, \epsilon\eta) \varphi_x(x, \epsilon \eta) \D x - \int^{\infty}_{0} \phi_x(x,-1) \varphi_x(x,-1) \D x.
 \end{align*}
-Force $\phi_x(0,z) = 0,$ so that we are left with:
-\begin{equation}
-\int_{0}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi \cdot \tilde{N} \D x - \phi_x(x, \epsilon\eta)  \varphi_x(x, \epsilon \eta) \D x -  \phi_x(x,-1) \varphi_x(x,-1) \D x
-\end{equation}
+Force $\varphi_x(0,z) = 0,$ so that we are left with:
+\begin{align*}
+\int_{0}^{\infty} \frac{1}{\mu} \varphi_z \tilde{\nabla} \phi \cdot \tilde{N} \D x - \phi_x(x, \epsilon\eta)  \varphi_x(x, \epsilon \eta) \D x -  \phi_x(x,-1) \varphi_x(x,-1) \D x.
+\end{align*}
 Let $\varphi = \cos(kx) \sinh(\mu k(z+1)),$ and note that $\phi_x(x, \epsilon\eta) = \dfrac{\partial \phi}{\partial T}$ is the tangential derivative at $z = \epsilon\eta.$ The above becomes:
 \begin{equation}
 \int_{0}^{\infty} k \cos(kx) \cosh(\mu k(\eta+1)) \tilde{\nabla} \phi \cdot \tilde{N} + k \sin(kx) \sinh(\mu k(\eta+1)) \tilde{\nabla} \phi \cdot \tilde{T} \D x = 0,
 \end{equation}
 since $\varphi_x(x,-1) = -k \sin(kx) \sinh(k(1-1)) = 0.$ Let 
-\[\tilde{\nabla} \phi \cdot \tilde{T} = \dfrac{\partial \phi}{\partial N}(x, \epsilon\eta) = f(x), \dfrac{\partial \phi}{\partial T}(x, \epsilon\eta) = \mathcal{H}(\epsilon\eta,D)\{ f(x) \} \] 
-and assume $k \neq 0,$ so that we obtain
+\[\tilde{\nabla} \phi \cdot \tilde{T} = \dfrac{\partial \phi}{\partial N}(x, \epsilon\eta) = f(x), \qquad \dfrac{\partial \phi}{\partial T}(x, \epsilon\eta) = \mathcal{H}(\epsilon\eta,D)\{ f(x) \}, \] 
+so that we obtain
 \begin{equation}\label{DimHLRP}
-\int_{0}^{\infty} \cos(kx) \cosh(\mu k(\eta+1)) f(x) + \sin(kx) \sinh(\mu k(\eta+1))\mathcal{H}(\epsilon \eta,D) \{f(x) \} \D x = 0.
+\int_{0}^{\infty} \cos(kx) \cosh(\mu k(\eta+1)) f(x) + \sin(kx) \sinh(\mu k(\eta+1))\mathcal{H}(\epsilon \eta,D) \{f(x) \} \D x = 0,
 \end{equation}
-\subsubsection{Perturbation expansion for $\mathcal{H}$}
+where we took $k$ out of integral.
+
+\subsubsection{Perturbation expansion of the $\mathcal{H}$ operator: a half line.}
 Suppose 
 \[ \mathcal{H}(\epsilon\eta, D)\{ f(x)\} = \sum^{\infty}_{j = 0} \epsilon^j \mathcal{H}_0(\epsilon\eta, D)\{ f(x)\}. \]
-For notational convenience, we assume throughout that the $H$ operator is evaluated at $(\epsilon, D),$ so that we drop this term in writing.
+For notational convenience, we assume throughout that the $\mathcal{H}$ operator is evaluated at $(\epsilon\eta, D),$ so that we drop this term in writing.
 Expand in $\epsilon:$
 \begin{align*}
 \cosh(\mu k(\epsilon \eta+1)) &= \cosh (\mu k) + \epsilon \mu k \eta \sinh(\mu k) + \frac{(\epsilon \mu k\eta)^2}{2} \cosh(\mu k) + \ldots, \\
@@ -684,7 +685,7 @@ In sum, we obtain
 \mathcal{H}_0(\epsilon\eta, D) \{f(x) \} &= - \{ \mathcal{F}^k_s \}^{-1} \{ \coth(\mu k) \reallywidehat{f^k_c} \}, \\
 \mathcal{H}_1(\epsilon\eta, D) \{f(x) \} &= - \{ \mathcal{F}^k_s \}^{-1} \{ \mu k \reallywidehat{\left( \eta f(x) \right)}^k_c + \mu k \coth(\mu k) \reallywidehat{\left( \eta \mathcal{H}_0\{f(x) \} \right)}^k_c\}.
 \end{align*}
-\subsubsection{Approximation Procedure}
+\subsubsection{Deriving an expression for surface elevation: a half-line.}
 First, we'd like to approximate. Recall the non-dimensional single equation:
 \begin{equation}\label{NondimH}
 \partial_t\left(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right) + \partial_x\left( \frac{1}{2}\left(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 + \epsilon \eta - \frac{1}{2}\epsilon \mu^2 \frac{(\eta_t + \eta_x \mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\})^2}{1+\epsilon^2 \mu^2 \eta_x^2}\right) = 0.
@@ -703,8 +704,17 @@ Note
 Substituting into \eqref{1stNondimH} yields
 \begin{align*}
 \partial_t(-\epsilon \int^{\infty}_0  \sin (kx) \frac{1}{k} \reallywidehat{(\eta_t)^k_c} \D k) + \epsilon \eta_x = 0 &\implies -\int^{\infty}_0 \sin (kx) \frac{1}{k} \reallywidehat{(\eta_{tt})^k_c} \D k + \eta_x = 0 \\
-&\implies - \frac{1}{k} \reallywidehat{(\eta_{tt})^k_c} - k \reallywidehat{\eta^k_s} = 0 \\
+&\implies - \frac{1}{k} \reallywidehat{(\eta_{tt})^k_c} + \reallywidehat{\eta_x}^k_s = 0.
 \end{align*}
+Note that via integration by parts and using a conservation law,
+\[ - \frac{1}{k} \reallywidehat{(\eta_{tt})}^k_c = - \mathcal{F}^k_s \{ \int^x_0 \eta_{tt} \D x' \}, \]
+so that
+\begin{align*}
+- \frac{1}{k} \reallywidehat{(\eta_{tt})^k_c} + \reallywidehat{\eta_x}^k_s = - \mathcal{F}^k_s \{ \int^x_0 \eta_{tt} \D x' \} + \reallywidehat{\eta_x}^k_s = 0.
+\end{align*}
+Inverting the Sine transform yields:
+\[ - \int^x_0 \eta_{tt} \D x' + \eta_x = 0, \]
+and differentiating with respect to $x$ yields the wave equation.
 \subsubsection*{Within $\mathcal{O}(\mu^2)$:} 
 We have $\mathcal{H} \approx \mathcal{H}_0 + \epsilon \mathcal{H}_1,$ and the single equation becomes:
 \begin{equation}\label{2ndNondimH}
@@ -739,10 +749,9 @@ When combining the terms, the equation \eqref{2ndNondimH} becomes
 Apply Fourier sine transform:
 \begin{align*}
 -(\mu \coth(\mu k) \reallywidehat{(\eta_{tt})^k_c} + \epsilon \mu^2 k \partial_t \reallywidehat{\left( \eta \eta_t \right)}^k_c &+ \epsilon \mu^2 k \coth(\mu k) \partial_t \reallywidehat{\left( \eta \mathcal{H}_0\{ \eta_t \} \right)}^k_c ) \\
-&+ \frac{\epsilon}{2} \mathcal{F}^k_s \{ \partial_x(\{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_t)^k_c} \})^2\}  + \reallywidehat{(\eta_x)^k_s} = 0,
+&+ \frac{\epsilon}{2} \mathcal{F}^k_s \{ \partial_x(\{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_t)^k_c} \})^2\}  + \reallywidehat{(\eta_x)^k_s} = 0.
 \end{align*}
-(but then  $\mathcal{F}^k_s\{ \eta_x\} = - k \reallywidehat{\eta}^k_c.$)
-Suppose we do not divide by $\coth(\mu k).$ Then, letting $\epsilon = \mu^2$ and expanding $\mathcal{H}_0$ in 
+Then, letting $\epsilon = \mu^2$ and expanding $\mathcal{H}_0$ in 
 \begin{align*}
 -(\mu \coth(\mu k) \reallywidehat{(\eta_{tt})^k_c} + \epsilon \mu^2 k \partial_t \reallywidehat{\left( \eta \eta_t \right)^k_c} &+ \epsilon \mu^2 k \coth(\mu k) \partial_t \reallywidehat{\left( \eta \mathcal{H}_0\{ \eta_t \} \right)}^k_c ) \\
 &+ \frac{\epsilon}{2} \mathcal{F}^k_s \{ \partial_x(\{ \mathcal{F}^k_s \}^{-1} \{ \mu \coth(\mu k) \reallywidehat{(\eta_t)^k_c} \})^2\}  + \reallywidehat{(\eta_x)^k_s} = 0,
@@ -768,18 +777,18 @@ Removing the terms of order $\mathcal{O}(\mu^4)$ and rearranging, we obtain:
 \end{equation}
 Now, we would like to manipulate \eqref{dontdivide} so that we can apply inverse Fourier sine transform. First, note
 \begin{align*}
--\frac{1}{k}\frac{1}{2\pi}\reallywidehat{(\eta_{tt})^k_c} &= -\frac{1}{k}\frac{1}{2\pi} \int^{\infty}_0 \cos(kx) \eta_{tt} \D x \\
+-\frac{1}{k}\reallywidehat{(\eta_{tt})^k_c} &= -\frac{1}{k}\frac{1}{2\pi} \int^{\infty}_0 \cos(kx) \eta_{tt} \D x \\
 &= - \frac{1}{2\pi}\frac{\cos(kx)}{k} \left( \int^x_0 \eta_{tt} \D x' \right) \bigg|^{\infty}_{0} -\frac{1}{2\pi} \int^{\infty}_0 \sin(kx) \left( \int^{x}_0\eta_{tt} \D x'\right) \D x \\
 &= - \mathcal{F}^k_s\{ \int^{x}_0\eta_{tt} \D x'\},
 \end{align*} 
-where the final line follows sine $\displaystyle\int^{\infty}_0 \eta_{tt} \D x' = 0$ is a conservation law (TO BE VERIFIED).
+where the final line follows since $\displaystyle\int^{\infty}_0 \eta_{tt} \D x' = 0$ is a conservation law (to be verified).
 Second, observe that
 \begin{align*}
 \frac{1}{l}\reallywidehat{(\eta_t)^l_c} &= \frac{1}{l} \frac{1}{2 \pi} \int^{\infty}_0 \cos(lx) \eta_t \D x \\
 &= \frac{1}{2 \pi} \frac{\cos(lx)}{l} \left(\int^x_0 \eta_t \D x' \right) \bigg|^{\infty}_0 + \frac{1}{2\pi} \int^{\infty}_0 \sin(lx) \left( \int^x_0 \eta_t \D x' \right) \D x \\
 &= \mathcal{F}^l_s\{ \int^{x}_0\eta_{t} \D x'\},
 \end{align*}
-where similarly the last line follows since $\displaystyle\int^{\infty}_0 \eta_t \D x' = 0,$ a conservation law (TO BE VERIFIED). This identity yields:
+where similarly the last line follows since $\displaystyle\int^{\infty}_0 \eta_t \D x' = 0,$ a conservation law (to be verified). This identity yields:
 \begin{align*}
 \partial_t \mathcal{F}^k_c \{\eta \{ \mathcal{F}^l_s \}^{-1} \{ \frac{1}{l}\reallywidehat{(\eta_t)^l_c} \} &= \mathcal{F}^k_c \{ \partial_t \left( \eta \int^{x}_0\eta_{t} \D x' \right)\},\\
 \frac{1}{2} \mathcal{F}^k_s \{ \partial_x(\{ \mathcal{F}^k_s \}^{-1} \{ \frac{1}{k}\reallywidehat{(\eta_t)^k_c} \})^2\} &=  \frac{1}{2} \mathcal{F}^k_s \{ \partial_x\left(\int^{x}_0\eta_{t} \D x' \right)^2\}.
@@ -809,7 +818,7 @@ Rearranging and using $\eta_{tt} = \eta_{xx} + \mathcal{O}(\mu^2),$ we obtain th
 Clearly, the presence of the term with mixed transforms complicates things: we cannot apply integration by parts like we did for other terms, because doing so results in a multiple of $k$ in the new term, which is exactly what we want to avoid. For comparison, the whole line equation for the surface is given by 
 \[ \eta_{tt} - \eta_{xx} = \mu^2 \left( \frac{1}{3}\eta_{xxxx} + \partial_x \left[ \eta_t \left(\int^{x}_{-\infty} \eta_t \D x'  \right) + \eta \eta_x\right]  + \frac{1}{2} \partial_x^2 \left(\int^{x}_{-\infty} \eta_t \D x' \right)^2 \right). \]
 
-\subsubsection*{other stuff}
+\subsubsection*{Sultan's calculations}
 Consider the term 
 \[ \epsilon \mu^2 \frac{(\eta_t + \eta_x \mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\})^2}{1+\epsilon^2 \mu^2 \eta_x^2} .\]
 Note that $|\epsilon \mu \eta_x|<1,$ so 

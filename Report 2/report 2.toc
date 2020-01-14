@@ -1,11 +1,11 @@
-\contentsline {section}{\numberline {1}Water-wave problem on the whole line: non-local formulation}{1}{section.1}% 
-\contentsline {subsubsection}{\numberline {1.0.1}Behaviour of the $\mathcal {H}$ operator}{2}{subsubsection.1.0.1}% 
-\contentsline {subsubsection}{\numberline {1.0.2}Nondimensional, nonlocal formulation}{4}{subsubsection.1.0.2}% 
-\contentsline {subsubsection}{\numberline {1.0.3}Representation of the $\mathcal {H}$ operator}{6}{subsubsection.1.0.3}% 
-\contentsline {subsubsection}{\numberline {1.0.4}Deriving an expression for surface elevation}{7}{subsubsection.1.0.4}% 
-\contentsline {subsubsection}{\numberline {1.0.5}Derivation of wave and KdV equations}{9}{subsubsection.1.0.5}% 
-\contentsline {section}{\numberline {2}Water-wave problem on the whole line: non-local formulation}{12}{section.2}% 
-\contentsline {subsubsection}{\numberline {2.0.1}Dimensional, non-local formulation for the half-line}{12}{subsubsection.2.0.1}% 
-\contentsline {subsubsection}{\numberline {2.0.2}Non-local, non-dimensional formulation on a half-line}{14}{subsubsection.2.0.2}% 
-\contentsline {subsubsection}{\numberline {2.0.3}Perturbation expansion for $\mathcal {H}$}{15}{subsubsection.2.0.3}% 
-\contentsline {subsubsection}{\numberline {2.0.4}Approximation Procedure}{16}{subsubsection.2.0.4}% 
+\contentsline {section}{\numberline {1}Water-wave problem on the whole line: nonlocal formulation}{1}{section.1}% 
+\contentsline {subsubsection}{\numberline {1.0.1}Behaviour of the $\mathcal {H}$ operator: the whole line.}{2}{subsubsection.1.0.1}% 
+\contentsline {subsubsection}{\numberline {1.0.2}Nondimensional, nonlocal formulation: the whole line.}{4}{subsubsection.1.0.2}% 
+\contentsline {subsubsection}{\numberline {1.0.3}Perturbation expansion of the $\mathcal {H}$ operator: the whole line.}{6}{subsubsection.1.0.3}% 
+\contentsline {subsubsection}{\numberline {1.0.4}Deriving an expression for surface elevation: the whole-line.}{7}{subsubsection.1.0.4}% 
+\contentsline {subsubsection}{\numberline {1.0.5}Derivation of wave and KdV equations: the whole line.}{9}{subsubsection.1.0.5}% 
+\contentsline {section}{\numberline {2}Water-wave problem on a half line: nonlocal formulation}{12}{section.2}% 
+\contentsline {subsubsection}{\numberline {2.0.1}Derivation of the nonlocal formulation: a half-line}{12}{subsubsection.2.0.1}% 
+\contentsline {subsubsection}{\numberline {2.0.2}Nondimensional, nonlocal formulation: a half-line}{14}{subsubsection.2.0.2}% 
+\contentsline {subsubsection}{\numberline {2.0.3}Perturbation expansion of the $\mathcal {H}$ operator: a half line.}{15}{subsubsection.2.0.3}% 
+\contentsline {subsubsection}{\numberline {2.0.4}Deriving an expression for surface elevation: a half-line.}{16}{subsubsection.2.0.4}% 

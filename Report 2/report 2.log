@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.29)  13 JAN 2020 23:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.29)  14 JAN 2020 20:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -860,70 +860,70 @@ cmsy/m/n/10 f\OML/cmm/m/it/10 g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/
  [7] [8] [9] [10] [11]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 534.
+(hyperref)                than one, level fixed on input line 533.
 
 [12]
-Overfull \hbox (59.4334pt too wide) detected at line 565
+Overfull \hbox (59.4334pt too wide) detected at line 564
 []
  []
 
 
-Overfull \hbox (35.84082pt too wide) detected at line 576
+Overfull \hbox (35.84082pt too wide) detected at line 575
 []
  []
 
 [13] [14]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 642.
+(hyperref)                removing `math shift' on input line 643.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 642.
+(hyperref)                removing `math shift' on input line 643.
 
-[15] [16] [17] [18]
-Overfull \hbox (2.82487pt too wide) detected at line 846
+[15] [16] [17] [18] [19]
+Overfull \hbox (2.82487pt too wide) detected at line 855
 []
  []
 
-[19]
-Overfull \hbox (3.49326pt too wide) detected at line 859
+
+Overfull \hbox (3.49326pt too wide) detected at line 868
 []
  []
 
 [20]
-Overfull \hbox (56.65332pt too wide) detected at line 891
+Overfull \hbox (56.65332pt too wide) detected at line 900
 []
  []
 
 
-Overfull \hbox (46.42448pt too wide) detected at line 898
+Overfull \hbox (46.42448pt too wide) detected at line 907
 []
  []
 
-(./report 2.bbl [21])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 921.
+[21] (./report 2.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 930.
  [22]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 921.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 930.
  (./report 2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 921.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 921.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 930.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 930.
 Package rerunfilecheck Info: File `"report 2".out' has not changed.
-(rerunfilecheck)             Checksum: AC20980C9C25DAEE55267B59E854C936;1077.
+(rerunfilecheck)             Checksum: 60B53448B739625A4E42EDF59BE5CD94;1221.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 921.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 930.
  ) 
 Here is how much of TeX's memory you used:
- 20009 strings out of 492616
- 367912 string characters out of 6129481
- 461919 words of memory out of 5000000
+ 20007 strings out of 492616
+ 367885 string characters out of 6129481
+ 464070 words of memory out of 5000000
  23655 multiletter control sequences out of 15000+600000
  543705 words of font info for 69 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 40i,22n,63p,960b,895s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,22n,63p,960b,793s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -942,10 +942,10 @@ e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2019/texm
 f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "report 2.pdf" (22 pages, 279277 bytes).
+Output written on "report 2.pdf" (22 pages, 279811 bytes).
 PDF statistics:
- 376 PDF objects out of 1000 (max. 8388607)
- 330 compressed objects within 4 object streams
- 110 named destinations out of 1000 (max. 500000)
+ 373 PDF objects out of 1000 (max. 8388607)
+ 327 compressed objects within 4 object streams
+ 108 named destinations out of 1000 (max. 500000)
  89 words of extra memory for PDF output out of 10000 (max. 10000000)
 
