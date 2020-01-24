@@ -1,0 +1,21 @@
+% Preamble
+\documentclass[10pt,reqno,oneside,a4paper]{article}
+\usepackage[a4paper,includeheadfoot,left=25mm,right=25mm,top=00mm,bottom=20mm,headheight=20mm]{geometry}
+\usepackage{siunitx}
+\input{texHead}
+\author{Sultan Aitzhan}
+\newcommand{\theshorttitle}{}
+\date{\today}
+\allowdisplaybreaks
+
+\begin{document}
+\thispagestyle{fancy}
+
+\textbf{Poster title}: \textit{Approximate equations for the water wave problem in the shallow water limit on unbounded domains}
+
+\textbf{Poster abstract} : A free boundary, water wave problem is studied for an irrotational, inviscid, and incompressible fluid. Specifically, we describe a derivation of approximate equations in the shallow water limit using a non-local formulation, introduced in \cite{KV2013} via a normal-to-tangential operator, in two related settings. One is the classical, whole line case, and another is a half line case, which physically is represented by putting up a tall and impenetrable barrier in the middle, so that all the fluid is flowing to one side. In both settings, non-local formulations yield expressions for the surface elevation, from which the appropriate wave and Boussinesq equations, as well as new approximations are obtained. We present a numerical algorithm using the non-local formulation, and the utility of a normal-to-tangential operator is examined via its numerical error, along with comparison to DNO \cite{DNO} and AFM \cite{AFM} formulations. Connections between the two settings are explored, and a number of interesting differences are noted.
+
+\bibliographystyle{amsplain}
+{\small\bibliography{references}}
+
+\end{document}

@@ -1,0 +1,22 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{1}
+
+\bibitem{AFM}
+Fokas~A.S. Ablowitz, M.J. and Z.H. Sulem, Musslimani, \emph{Numerical
+  simulation of gravity waves}, Journal of Fluid Mechanics (2006).
+
+\bibitem{DNO}
+W.~Craig and C.~Sulem, \emph{Numerical simulation of gravity waves}, Journal of
+  Computational Physics (1993).
+
+\bibitem{KV2013}
+K.~Oliveras and V.~Vasan, \emph{A new equation describing travelling water
+  waves}, Journal of Fluid Mechanics (2013).
+
+\end{thebibliography}
