@@ -294,6 +294,133 @@ f_1(\eta(x_k, t_0), u(x_k, t_0)) &= \eta(x_k, t_0)_{xx} + \frac{\mu^2}{3} \eta(x
 &+ \mu^2 \left( 2 u(x_k, t_0)_{x} \int^{x_k}_{x_0} u(x', t_0) \D x' +2 u(x_k, t_0)^2 + \eta(x_k, t_0)^2_x + \eta(x_k, t_0)\eta(x_k, t_0)_{xx} \right)
 \end{align*}
 Note that all the terms on the last line can be computed via finite differences and both initial conditions. With this, we obtain the values of $u, \eta$ at point $x_k$ and time $t_1.$ Performing this calculation for all $k,$ we move on to compute $u, \eta$ at time $t_2,$ and so on.  
+
+\section{The half line problem}
+In this section, we deal with this term 
+\[ 
+\partial_x(\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ \partial_t \left( \eta \int^{x}_0\eta_{t} \D x' \right)\} \}
+\]
+More generally, we have the following result:
+\begin{thm}
+For nice enough $f$ defined on $x\geq 0,$ we have
+\[ 
+(\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ f \} \} = \frac{1}{\pi} \int^{\infty}_0 f(y) \left( \frac{1}{x-y} + \frac{1}{x+y} \right) \D y.
+\]
+\end{thm}
+Before we begin, recall the Riemann-Lebesgue lemma:
+\begin{lem}[Theorem 11.6, \cite{apostol}]
+Assume that $f \in L(I).$ Then, for each real $\beta,$ we have 
+\[\lim_{\alpha\to\infty} \int_I f(t) sing(\alpha t + \beta) \D t = 0.\]
+\end{lem}
+\begin{proof}[Proof of Theorem 1]
+Consider
+\[ 
+(\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ f \} \}.
+\]
+For generality, we consider $(\mathcal{F}^k_s)^{-1} \{ G(k) \},$ where $G$ is a function of $k$ defined on $k\geq 0.$ Expanding the integral, we obtain:
+\begin{align*}
+(\mathcal{F}^k_s)^{-1} \{ G(k) \} &= \int^{\infty}_0 \sin(kx) G(k) \D k \\
+&= \frac{1}{2i} \int^{\infty}_0 (e^{ikx} - e^{-ikx}) G(k) \D k \\
+&= \frac{1}{2i} \left[ \int^{\infty}_0 e^{ikx} G(k) \D k - \int^{\infty}_0 e^{-ikx} G(k) \D k\right] \\
+&= \frac{1}{2i} \left[ \int^{\infty}_0 e^{ikx} G(k) \D k + \int^{-\infty}_0 e^{ikx} G(-k) \D k\right] &\text{(apply $k \mapsto - k$ in the 2nd term)} \\
+&= \frac{1}{2i} \left[ \int^{\infty}_0 e^{ikx} G(k) \D k + \int_{-\infty}^0 e^{ikx} (-G(-k)) \D k\right],
+\end{align*}
+where $-G(-k)$ is an odd extension to $k<0$. Now, observe the following:
+\begin{align*}
+\frac{2}{\pi} \int^{\infty}_0 \cos(kx) f(x) \D x &=\frac{1}{\pi} \int^{\infty}_0 (e^{ikx} + e^{-ikx}) f(x) \D x \\
+&= \frac{1}{\pi} \left[ \int^{\infty}_0 e^{ikx} f(x) \D x + \int^{\infty}_0 e^{-ikx} f(x) \D x \right] \\
+&= \frac{1}{\pi} \left[ -\int^{-\infty}_0 e^{-ikx} f(-x) \D x  + \int^{\infty}_0 e^{-ikx} f(x) \D x  \right] &\text{(apply $x \mapsto - x$ in the 1st term)} \\
+&= \frac{1}{\pi} \left[ \int_{-\infty}^0 e^{-ikx} f(-x) \D x  + \int^{\infty}_0 e^{-ikx} f(x) \D x \right] \\
+&= \frac{1}{\pi} \int_{-\infty}^\infty e^{-ikx} F(x) \D x, 
+\end{align*}
+where we used an even extension to $x<0$ and defined
+\[ 
+F(x) = \begin{cases} f(x) & x>0 \\ f(-x) & x<0 \end{cases}.
+\]
+For $k>0,$ we have
+\begin{equation}\label{G(k)}
+G(k) = \mathcal{F}^k_c \{ f \} = \frac{2}{\pi} \int^{\infty}_0 \cos(kx) f(x) \D x = \frac{1}{\pi} \int_{-\infty}^\infty e^{-ikx} F(x) \D x.
+\end{equation}
+For $k<0,$ we have 
+\begin{equation}\label{-G(-k)}
+-G(- k) = - \mathcal{F}^{-k}_c \{ f \}  = -\frac{2}{\pi} \int^{\infty}_0 \cos(-kx) f(x) \D x =-\frac{2}{\pi} \int^{\infty}_0 \cos(kx) f(x) \D x = - \frac{1}{\pi} \int_{-\infty}^\infty e^{-ikx} F(x) \D x, 
+\end{equation}
+since cosine is an even function. Thus, using \eqref{G(k)} and \eqref{-G(-k)}, we obtain
+\begin{align}
+(\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ f \} \} &= \frac{1}{2i} \left[ \int^{\infty}_0 e^{ikx} \mathcal{F}^k_c \{ f \} \D k + \int_{-\infty}^0 e^{ikx} (-\mathcal{F}^(-k)_c \{ f \}) \D k\right] \nonumber \\
+&= \frac{1}{2\pi i} \left[ \int^{\infty}_0 e^{ikx}  \int_{-\infty}^\infty e^{-iky} F(y) \D y \D k - \int_{-\infty}^0 e^{ikx} \int_{-\infty}^\infty e^{-iky} F(y) \D y \D k\right] \nonumber \\
+&= \frac{1}{2\pi i} \left[ \int^{\infty}_0 e^{ikx} \int_{-\infty}^\infty e^{ik(x-y)} F(y) \D y \D k - \int_{-\infty}^0 \int_{-\infty}^\infty e^{ik(x-y)} F(y) \D y \D k\right]. \label{expFF}
+\end{align}
+Let
+\begin{align*}
+V(k) &= \int_{-\infty}^\infty \sin(k(x-y)) F(y) \D y = -V(-k), \\
+U(k) &= \int_{-\infty}^\infty \cos(k(x-y)) F(y) \D y = U(-k),
+\end{align*}
+so that $V$ is odd and $U$ is even. This allows to rewrite \eqref{expFF} as:
+\begin{align*}
+(\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ f \} \} &= \frac{1}{2\pi i} \left[ \int^{\infty}_0 e^{ikx} \int_{-\infty}^\infty e^{ik(x-y)} F(y) \D y \D k - \int_{-\infty}^0 \int_{-\infty}^\infty e^{ik(x-y)} F(y) \D y \D k\right] \\
+&= \frac{1}{2\pi i} \left[ \int^{\infty}_0 U(k) +i V(k) \D k - \int_{-\infty}^0 U(k) + i V(k) \D k\right] \\
+&= \frac{1}{2\pi i} \left[ \int^{\infty}_0 U(k) +i V(k) \D k + \int_{\infty}^0 U(-k) + i V(-k) \D k\right] \\
+&= \frac{1}{2\pi i} \left[ \int^{\infty}_0 U(k) +i V(k) \D k + \int^{\infty}_0 -U(-k) + i (-V(-k)) \D k\right] \\
+&= \frac{1}{2\pi i} \left[ \int^{\infty}_0 U(k) +i V(k) \D k + \int^{\infty}_0 -U(k) + i V(k) \D k\right] \\
+&= \frac{1}{\pi } \int^{\infty}_0 V(k) \D k,
+\end{align*}
+where on the third last line, we flipped the bounds of integration and brought the minus sign inside the integral, and on the second last line, we used that $U$ is even and $V$ is odd. Thus, we obtain 
+\[ 
+(\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ f \} \} = \frac{1}{\pi } \int^{\infty}_0 V(k) \D k =  \frac{1}{\pi} \int^{\infty}_0 \int_{-\infty}^\infty \sin(k(x-y)) F(y) \D y \D k.
+\]
+Note that the integral in $k$ is an improper integral, so
+\[
+\int^{\infty}_0 \int_{-\infty}^\infty \sin(k(x-y)) F(y) \D y \D k = \lim_{\alpha \to \infty} \int^{\alpha}_0 \int_{-\infty}^\infty \sin(k(x-y)) F(y) \D y \D k.
+\]
+Now, interchanging the order of integration, we have 
+\begin{align*}
+\int^{\alpha}_0 \int_{-\infty}^\infty \sin(k(x-y)) F(y) \D y \D k &= \int_{-\infty}^\infty F(y) \int^{\alpha}_0  \sin(k(x-y)) \D k  \D y \\
+&= \int_{-\infty}^\infty F(y) \left[ - \frac{\cos(k(x-y))}{x-y} \mid^\alpha_0 \right] \D y \\
+&= \int_{-\infty}^\infty F(y) \left[ \frac{1}{x-y} - \frac{\cos(\alpha(x-y))}{x-y} \right] \D y \\
+&= \int_{-\infty}^\infty F(y)  \frac{1 - \cos(\alpha(x-y))}{x-y} \D y.
+\end{align*}
+The interchange is justified, since sine is bounded and differentiable on $\RR.$ Finally, we use the Riemann-Lebesgue lemma to deal with the last term:
+\begin{align*}
+\int_{-\infty}^\infty F(y)  \frac{1 - \cos(\alpha(x-y))}{x-y} \D y &= \int_0^\infty f(y)  \frac{1 - \cos(\alpha(x-y))}{x-y} \D y + \int_{-\infty}^0 f(-y)  \frac{1 - \cos(\alpha(x-y))}{x-y} \D y \\
+&= \int_0^\infty f(y)  \frac{1 - \cos(\alpha(x-y))}{x-y} \D y - \int_{\infty}^0 f(y)  \frac{1 - \cos(\alpha(x+y))}{x+y} \D y \\
+&= \int_0^\infty f(y)  \frac{1 - \cos(\alpha(x-y))}{x-y} \D y + \int^{\infty}_0 f(y)  \frac{1 - \cos(\alpha(x+y))}{x+y} \D y \\ 
+&= \int_0^\infty f(y)  \frac{1}{x-y} \D y - \int_0^\infty f(y) \frac{\cos(\alpha(x-y))}{x-y} \D y \\
+&+ \int^{\infty}_0 f(y) \frac{1}{x+y} \D y - \int^{\infty}_0 f(y) \frac{\cos(\alpha(x+y))}{x+y} \D y.
+\end{align*}
+As $\alpha \to \infty,$ the terms 
+\[ \int_0^\infty f(y) \frac{\cos(\alpha(x-y))}{x-y} \D y, \qquad \int^{\infty}_0 f(y) \frac{\cos(\alpha(x+y))}{x+y} \D y \to 0\]
+by the Riemann-Lebesgue lemma with $\beta = \pi/2$, so that 
+\[ 
+\int_{-\infty}^\infty F(y) \frac{1 - \cos(\alpha(x-y))}{x-y} \D y = \int_0^\infty f(y) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y. 
+\]
+Thus, 
+\[ (\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ f \} \} = \frac{1}{\pi} \int^{\infty}_0 \int_{-\infty}^\infty \sin(k(x-y)) F(y) \D y \D k = \frac{1}{\pi} \int_0^\infty f(y) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y. \]
+The proof is complete.
+\end{proof}
+\rmk{Note that the integral 
+\[ \frac{1}{\pi} \int_0^\infty f(y) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y = \]
+looks like a convolution-type transform. In fact, the term with $1/(x-y)$ is pretty much the Hilbert transform, but on a half-line.
+}
+
+The theorem yields 
+\[ \partial_x(\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ \partial_t \left( \eta \int^{x}_0\eta_{t} \D x' \right)\} \}
+= \partial_x \left( \frac{1}{\pi} \int_0^\infty \partial_t \left( \eta \int^{y}_0\eta_{t} \D y' \right)  \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right). \]
+For generality, let $f(y) = \partial_t \left( \eta \int^{y}_0\eta_{t} \D y' \right).$ Note the following:
+\begin{align*} 
+\partial_x \left( \frac{1}{\pi} \int_0^\infty f(y) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) &= \frac{1}{\pi} \int_0^\infty f(y) \partial_x \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&= - \frac{1}{\pi} \int_0^\infty f(y)  \left[ \frac{1}{(x-y)^2} + \frac{1}{(x+y)^2} \right] \D y,
+\end{align*}
+so that
+\begin{equation}\label{SingIntegral}
+\partial_x(\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ \partial_t \left( \eta \int^{x}_0\eta_{t} \D x' \right)\} \} = - \frac{1}{\pi} \int_0^\infty \partial_t \left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{(x-y)^2} + \frac{1}{(x+y)^2} \right] \D y.
+\end{equation}
+As can be seen, the integral \eqref{SingIntegral} is singular whenever $x = y$ or $x = -y,$ over $y.$ To deal with this issue, one may need to use a Residue theorem. To conclude, the surface expression on a half-line becomes:
+\begin{align*}
+ \eta_{tt} - \eta_{xx} &= \mu^2 \left( \frac{1}{3} \eta_{xxxx}  + \partial_x(\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ \partial_t \left( \eta \int^{x}_0\eta_{t} \D x' \right)\} \} + \frac{1}{2} \partial^2_x\left(\int^{x}_0\eta_{t} \D x' \right)^2\right) \\
+ &= \mu^2 \left( \frac{1}{3} \eta_{xxxx}  - \frac{1}{\pi} \int_0^\infty \partial_t \left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{(x-y)^2} + \frac{1}{(x+y)^2} \right] \D y + \frac{1}{2} \partial^2_x\left(\int^{x}_0\eta_{t} \D x' \right)^2\right) . 
+\end{align*}
+
 \bibliographystyle{amsplain}
 {\small\bibliography{references}}
 
