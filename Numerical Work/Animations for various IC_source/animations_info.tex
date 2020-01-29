@@ -1,0 +1,62 @@
+% Preamble
+\documentclass[10pt,reqno,oneside,a4paper]{article}
+\usepackage[a4paper,includeheadfoot,left=25mm,right=25mm,top=00mm,bottom=20mm,headheight=20mm]{geometry}
+\usepackage{siunitx}
+\input{texHead}
+\author{Sultan Aitzhan}
+\title{Various problems set-ups for }
+\newcommand{\theshorttitle}{Report 3}
+\date{\today}
+\allowdisplaybreaks
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+We numerically solve the equation:
+\[ 
+\eta_{tt} - \eta_{xx} = \mu^2 \left( \frac{1}{3}\eta_{xxxx} +\frac{\partial^2}{\partial x^2}\left[\frac{\eta^2}{2} + \left(\int^x_{-\infty} \eta_t \D x' \right)^2\right]\right).
+\]
+We set $\mu = 0.01$ in all the experiments. 
+\begin{enumerate}
+\item
+\begin{itemize}
+\item Filename: KinkyIC1
+\item Number of points: 600
+\item Initial conditions:
+\[ \eta_t(x,0) = \mathrm{sech}(5x)^2 + \mathrm{sech}(5x-10)^2, \qquad \eta(x,0) = \mathrm{sech}(10x)^2 - \mathrm{sech}(10x-20)^2. \]
+\item Other parameters: $t0 = 0, tf = 10, NumSteps = 50.$
+\end{itemize}
+\item
+\begin{itemize}
+\item Filename: KinkyIC2
+\item Number of points: 600
+\item Initial conditions:
+\[ \eta_t(x,0) = \mathrm{sech}(5x)^2 + \mathrm{sech}(5x-10)^2 + \mathrm{sech}(10x+10)^2, \qquad \eta(x,0) = \mathrm{sech}(10x-12)^2 - \mathrm{sech}(10x-20)^2 \]
+\item Other parameters: $t0 = 0, tf = 20, NumSteps = 160w.$
+\end{itemize}
+\item
+\begin{itemize}
+\item Filename: KinkyIC3
+\item Number of points: 600
+\item Initial conditions:
+\[ \eta_t(x,0) =  \mathrm{sech}(5x-10)^2 + \mathrm{sech}(10x+10)^2, \qquad \eta(x,0) = \mathrm{sech}(5x)^2 + \mathrm{sech}(10x-12)^2 - \mathrm{sech}(10x-20)^2 \]
+\item Other parameters: $t0 = 0, tf = 20, NumSteps = 120.$
+\end{itemize}
+\item 
+\begin{itemize}
+\item Filename: GaussianIC
+\item Number of points: 600
+\item Initial conditions:
+\[ \eta_t(x,0) = \mathrm{sech}(x)^2, \qquad \eta(x,0) = \exp(-x^2).
+ \]
+\item Other parameters: $t0 = 0, tf = 10, NumSteps = 50.$
+\end{itemize}
+
+\end{enumerate}
+
+
+
+\bibliographystyle{amsplain}
+{\small\bibliography{references}}
+
+\end{document}
