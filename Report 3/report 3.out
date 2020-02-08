@@ -1,3 +1,5 @@
 \BOOKMARK [1][-]{section.1}{Time stepping and finite differences: the whole line}{}% 1
 \BOOKMARK [1][-]{section.2}{The half line problem}{}% 2
 \BOOKMARK [1][-]{section.3}{Time stepping and finite differences: the half line}{}% 3
+\BOOKMARK [1][-]{section.4}{Approximate equations: half-line}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{Discussion of F, G at x = 0.}{section.4}% 5

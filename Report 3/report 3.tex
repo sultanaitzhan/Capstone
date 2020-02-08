@@ -546,8 +546,169 @@ u(x_n, t_{j})
 + \DT \mathcal{C}
 \end{align*}
 
+\section{Approximate equations: half-line}
 
-\bibliographystyle{amsplain}
+In this section, we derive the approximate equations from
+\begin{equation}\label{srfcexpHL11}
+\eta_{tt} - \eta_{xx} = \epsilon \left( \frac{1}{3} \eta_{xxxx}  + \frac{d}{dx} \frac{1}{\pi} \int_0^\infty \partial_t \left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \frac{1}{2} \partial^2_x\left(\int^{x}_0\eta_{t} \D x' \right)^2\right). 
+\end{equation}
+As we approximate, we assume an expansion of $\eta$ in $\epsilon:$
+\begin{equation}\label{SrfcExpansion}
+\eta = \eta_0 + \epsilon \eta_1 + \mathcal{O}(\epsilon^2).
+\end{equation}
+\subsubsection*{First order approximation}
+Substitution of \eqref{SrfcExpansion} into equation \eqref{srfcexpHL11} yields
+\begin{equation}\label{srfceqExpanded}
+\eta_{0tt} - \eta_{0xx} +\epsilon(\eta_{1tt} - \eta_{1xx})= \epsilon \left[ \frac{1}{3}\eta_{0xxxx} +  \frac{d}{dx} \frac{1}{\pi} \int_0^\infty \partial_t \left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y+ \frac{1}{2} \partial^2_x \left( \int^{x}_{-\infty} (\eta_0 + \epsilon \eta_1)_t \D x' \right)^2\right) + \mathcal{O}(\epsilon^2). 
+\end{equation}
+In the leading order $\mathcal{O}(\epsilon^0),$ equation \eqref{srfceqExpanded} becomes
+\begin{equation}\label{1stOrderApprox}
+\eta_{0tt} - \eta_{0xx} = 0.
+\end{equation}
+This is the wave equation with velocity $1,$ whose solution depends on the type of boundary conditions we prescribe for $\eta$ at $x=0.$ For now, we prescribe 
+\[ \eta_x(0,t) = 0.\]
+The general solution is 
+\[ \eta(x,t) = \begin{cases} F(x-t) + G(x+t) & x>t \\ F(t-x) + G(x+t) & x<t \end{cases}, \] 
+where $F,G$ are to be determined. 
+\subsubsection*{Second order approximation}
+As in the velocity potential case, we employ multiple scales. First, we find an expression for $\eta_0.$  We introduce 
+\[ \tau_0 = t, \qquad \tau_1 = \epsilon t, \qquad \tau_2 = \epsilon^2 t, \ldots, \]
+so that 
+\[ \eta(x, t) = \eta(x, \tau_0, \tau_1, \ldots). \]
+With this in mind, the expansion \eqref{SrfcExpansion} becomes
+\begin{equation}\label{NewSrfcExpansion}
+\eta(x, \tau_0, \tau_1, \ldots) = \eta_0(x, \tau_0, \tau_1, \ldots) + \mathcal{O}(\epsilon^1).
+\end{equation}
+Substituting \eqref{NewSrfcExpansion} into \eqref{srfcexpHL11}, within $\mathcal{O}(\epsilon^0),$ we obtain
+\begin{equation}\label{1stOrderApprox}
+\eta_{0\tau_0 \tau_0} - \eta_{0xx} = 0,
+\end{equation}
+so that the general solution is 
+\[ \eta_0(x, \tau_0, \tau_1, \ldots ) = \begin{cases} F(x-\tau_0, \tau_1, \ldots ) + G(x+\tau_0, \tau_1, \ldots) & x>t \\ F(\tau_0-x, \tau_1, \ldots ) + G(x+\tau_0, \tau_1, \ldots) & x<t \end{cases}, \]
+where we recalled the boundary conditions $\eta_x(0,t) = 0.$
+Now, although we have found an expression for $\eta_0,$ the functions $F,G$ used are still general functions. To determine $F,G,$ we proceed to the next order, i.e. $\mathcal{O}(\epsilon^1).$ We introduce
+\[ 
+\xi = x-\tau_0 \qquad \zeta = x+ \tau_0
+\]
+so that 
+\[ \eta_0(x, \tau_0, \tau_1, \ldots ) = \begin{cases} F(\xi, \tau_1, \ldots ) + G(\zeta, \tau_1, \ldots) & x>t \\ F(-\xi, \tau_1, \ldots ) + G(\zeta, \tau_1, \ldots) & x<t \end{cases}, \]
+and
+\begin{align*}
+\partial_x &= \partial_\xi \frac{\D \xi}{\D x} + \partial_\zeta \frac{\D \zeta}{\D x} =\partial_\xi + \partial_\zeta, \\
+\partial_t &= \partial_\xi \frac{\D \xi}{\D t} + \partial_\zeta \frac{\D \zeta}{\D t} + \partial_{\tau_1}\frac{\D \tau_1}{\D t} = - \partial_\xi + \partial_\zeta + \epsilon \partial_{\tau_1}.
+\end{align*}
+We consider the case $x>t.$ We can rewrite \eqref{NewSrfcExpansion} as follows
+\begin{align*}
+\eta &= \eta_0 + \epsilon \eta_1 + \mathcal{O}(\epsilon^2)  \\
+&= F(x-t, \epsilon t, \ldots) + G(x+t, \epsilon t, \ldots) + \epsilon \eta_1 + \mathcal{O}(\epsilon^2) \\
+&= F(\xi, \tau_1, \ldots) + G(\zeta, \tau_1, \ldots) + \epsilon \eta_1 + \mathcal{O}(\epsilon^2) \\
+&= F+G + \epsilon \eta_1 +  \mathcal{O}(\epsilon^2).
+\end{align*}
+For ease of writing, we suppressed explicit dependence on variables, though the reader should bear in mind that function $F ~ (G)$ depend on $\xi ~ (\zeta), \tau_1, \tau_2,$ etc. In addition, observe that
+\begin{align*}
+(\partial_t^2 - \partial_x^2) = \left( - 4\partial_\xi \partial_\zeta + 2\epsilon(\partial_\zeta \partial_{\tau_1} - \partial_\xi\partial_{\tau_1}) + \epsilon^2 \partial_{\tau_1}^2 \right),
+\end{align*}
+so that the LHS of \eqref{srfceq0} becomes
+\begin{align}
+(\partial_t^2 - \partial_x^2) \eta &= \epsilon \left(- 4\eta_{1\xi \zeta} - 2F_{\tau_1 \xi} + 2G_{\tau_1 \zeta} \right) + \mathcal{O}(\epsilon^2). \label{LHS1}
+\end{align}
+Now, we deal with the RHS of \eqref{srfceq0}. By appropriate substitutions, the terms become:
+\begin{align*}
+\frac{1}{3}\eta_{xxxx} &= \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta} + \mathcal{O}(\epsilon)); \\
+\left( \int^{x}_{0} \eta_t \D x' \right)^2 &= \left( \int^{x}_{0} \eta_{0t} \D x' \right)^2 + \mathcal{O}(\epsilon) \\
+&= \left( \int^{x}_{0}(-\partial_{\xi'} + \partial_{\zeta'} + \epsilon \partial_{\tau_1}) (F+G) \D x' \right)^2 + \mathcal{O}(\epsilon)\\ 
+&= \left( \int^{x}_{0}-F_{\xi'} + G_{\zeta'} \D x' \right)^2 + \mathcal{O}(\epsilon)\\
+&= \left( \int^{x}_{0}F_{\xi'} \D x'\right)^2 - 2\left( \int^{x}_{0}F_{\xi'} \D x'\right)\left( \int^{x}_{0}G_{\zeta'} \D x'\right) + \left( \int^{x}_{0} G_{\zeta'} \D x'\right)^2 + \mathcal{O}(\epsilon) \\
+&= F^2 - 2FG + G^2 + \mathcal{O}(\epsilon),
+\end{align*}
+where for the last line we translate $\xi' = x'-t, \zeta' = x'+t$ to obtain
+\begin{align*}
+\int^{x}_{0}F_{\xi'}(x' - \tau_0, \tau_1) \D x' &=  \int^{x-t}_{-t}F_{\xi'}(\xi', \tau_1) \D \xi' =\int^{\xi}_{-\tau_0}F_{\xi'}(\xi', \tau_1) \D \xi' = F(\xi, \tau_1) - F(-\tau_0, \tau_1), \\
+\int^{x}_{0} G_{\zeta'}(x'+\tau_0, \tau_1) \D x' &=  \int^{x+t}_{t}G_{\zeta'}(\zeta', \tau_1) \D \zeta' = \int^{\zeta}_{\tau_0}G_{\zeta'}(\zeta', \tau_1) \D \zeta' = G(\zeta, \tau_1) - G(\tau_0, \tau_1).
+\end{align*}
+\textbf{For now, we assume that $F(x-\tau_0, \tau_1), G(x+\tau_0, \tau_1)$ vanish at $x = 0$. A brief discussion will be given at the end.} Finally, we deal with the Hilbert transform term: 
+\begin{align*}
+\int_0^\infty \partial_t \left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y &= \int_0^\infty (- \partial_\xi + \partial_\zeta + \epsilon \partial_{\tau_1})\left( (\eta_0 + \epsilon \eta_1) \int^{y}_0(\eta_0 + \epsilon \eta_1)_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \mathcal{O}(\epsilon^2)\\
+&= \int_0^\infty (- \partial_\xi + \partial_\zeta)\left( (\eta_0 + \epsilon \eta_1) \int^{y}_0(\eta_0 + \epsilon \eta_1)_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \mathcal{O}(\epsilon)\\
+&= \int_0^\infty (- \partial_\xi + \partial_\zeta)\left( \eta_0 \int^{y}_0 (\eta_0)_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \mathcal{O}(\epsilon)\\
+&= \int_0^\infty (- \partial_\xi + \partial_\zeta)\left( \eta_0 \int^{y}_0 (- \partial_\xi + \partial_\zeta + \epsilon \partial_{\tau_1})\eta_0 \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \mathcal{O}(\epsilon)\\
+&= \int_0^\infty (- \partial_\xi + \partial_\zeta)\left( \eta_0 \int^{y}_0 (- \partial_\xi + \partial_\zeta)\eta_0 \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \mathcal{O}(\epsilon)\\
+&= \int_0^\infty (- \partial_\xi + \partial_\zeta)\left( (F+G) \int^{y}_0 (-F_{\xi} + G_\zeta) \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \mathcal{O}(\epsilon)\\
+&= \int_0^\infty (- \partial_\xi + \partial_\zeta)\left( (F+G) \int^{y}_0 (-F_{\xi'} + G_{\zeta'}) \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \mathcal{O}(\epsilon)\\
+&= \int_0^\infty (- \partial_\xi + \partial_\zeta)\left( (F+G) (-F + G) \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \mathcal{O}(\epsilon)\\
+&= \int_0^\infty (- \partial_\xi + \partial_\zeta)\left( (-F^2 + G^2) \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \mathcal{O}(\epsilon)\\
+&= \int_0^\infty ( 2FF_\xi + 2GG_\zeta) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \mathcal{O}(\epsilon).
+\end{align*}
+Substitution of terms into the RHS of \eqref{srfcexpHL11} leads to:
+\begin{align}
+\frac{1}{3} \eta_{xxxx} &+ \frac{d}{dx} \frac{1}{\pi} \int_0^\infty \partial_t \left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \frac{1}{2} \partial^2_x\left(\int^{x}_0\eta_{t} \D x' \right)^2 \nonumber\\
+&= \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) + \frac{1}{\pi} (\partial_\xi + \partial_\zeta) \int_0^\infty ( 2FF_\xi + 2GG_\zeta) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \frac{1}{2} (\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) \left(F^2 - 2FG + G^2 \right) + \mathcal{O}(\epsilon) \nonumber \\
+&= \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) + \frac{1}{\pi} (\partial_\xi + \partial_\zeta) \int_0^\infty ( 2FF_\xi + 2GG_\zeta) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \partial_{\xi}(F F_{\xi} - F_{\xi}G) + \partial_{\zeta}(G G_{\zeta} - F G_{\zeta}) - 2 F_{\xi}G_{\zeta} + \mathcal{O}(\epsilon). \label{RHS1}
+\end{align}
+Combining \eqref{LHS1} and \eqref{RHS1}, in $\mathcal{O}(\epsilon^1)$ we have
+\begin{equation}\label{srfceqHL2}
+- 4\eta_{1\xi \zeta} = 2F_{\tau_1 \xi} - 2G_{\tau_1 \zeta} + \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) + \frac{1}{\pi} (\partial_\xi + \partial_\zeta) \int_0^\infty ( 2FF_\xi + 2GG_\zeta) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \partial_{\xi}(F F_{\xi} - F_{\xi}G) + \partial_{\zeta}(G G_{\zeta} - F G_{\zeta}) - 2 F_{\xi}G_{\zeta} 
+\end{equation}
+By rearranging appropriately, \eqref{srfceqHL2} becomes
+\begin{equation}\label{srfceqHL3}
+\begin{aligned}
+- 4\eta_{1\xi \zeta} &= \partial_\xi (2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + F F_{\xi} +  \frac{1}{\pi} \int_0^\infty 2FF_\xi \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) \\
+&+ \partial_\zeta(- 2G_{\tau_1} +  \frac{1}{3} G_{\zeta\zeta\zeta}+ G G_{\zeta}  + \frac{1}{\pi} \int_0^\infty 2GG_\zeta \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) \\
+&+ \partial_{\xi}( - F_{\xi}G + \frac{1}{\pi} \int_0^\infty 2GG_\zeta \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) \\
+&+ \partial_{\zeta}(- F G_{\zeta} +  \frac{1}{\pi} \int_0^\infty 2FF_\xi \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) - 2 F_{\xi}G_{\zeta} 
+\end{aligned}
+\end{equation}
+Integration of \eqref{srfceqHL3} with respect to $\zeta$ yields
+\begin{align*}
+- 4\eta_{1\xi} &= \partial_\xi (2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + F F_{\xi} +  \frac{1}{\pi} \int_0^\infty 2FF_\xi \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y)\zeta \\
+&+ (- 2G_{\tau_1} +  \frac{1}{3} G_{\zeta\zeta\zeta}+ G G_{\zeta}  + \frac{1}{\pi} \int_0^\infty 2GG_\zeta \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) \\
+&+ \partial_{\xi}( - F_{\xi}G + \frac{1}{\pi} \int_0^\infty 2GG_\zeta \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) \\
+&+ \int (- F G_{\zeta} +  \frac{1}{\pi} \int_0^\infty 2FF_\xi \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y))\D \zeta - 2 F_{\xi}G
+\end{align*}
+and further integration with respect to $\xi$ leads to
+\begin{align*}
+- 4\eta_1 &= (2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + F F_{\xi} +  \frac{1}{\pi} \int_0^\infty 2FF_\xi \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y)\zeta \\
+&+ (- 2G_{\tau_1} +  \frac{1}{3} G_{\zeta\zeta\zeta}+ G G_{\zeta}  + \frac{1}{\pi} \int_0^\infty 2GG_\zeta \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y)\xi \\
+&+  \int \frac{1}{\pi} \int_0^\infty 2GG_\zeta \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) \D \xi + \int \frac{1}{\pi} \int_0^\infty 2FF_\xi \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \D \zeta - 4 FG.
+\end{align*}
+Since $\eta_1$ must be bounded, we must have 
+\begin{align}
+2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + F F_{\xi} +  \frac{1}{\pi} \int_0^\infty 2FF_\xi \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) &= 0 \label{KdVish1}, \\
+-2G_{\tau_1} +  \frac{1}{3} G_{\zeta\zeta\zeta}+ G G_{\zeta}  + \frac{1}{\pi} \int_0^\infty 2GG_\zeta \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y &= 0. \label{KdVish2}
+\end{align}
+In other words, we have obtained two KdV-like equations, \eqref{KdVish1} and \eqref{KdVish2}, whose solutions describe behaviour of the surface elevation in the leading order. Now, for $x<t,$ by the same procedure, the equation for $G$ remains the same but \eqref{KdVish1} becomes
+\[ 
+2F(-\xi)_{\tau_1} + \frac{1}{3}F(-\xi)_{\xi\xi\xi} + F(-\xi) F(-\xi)_{\xi} +  \frac{1}{\pi} \int_0^\infty 2F(-\xi)F(-\xi)_\xi \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) = 0, 
+\]
+though one has to assume that $F(\tau_0, \tau_1) = 0,$ instead of $F(-\tau_0, \tau_1) = 0.$
+\subsection{Discussion of $F, G$ at $x = 0.$}
+As is seen, in order to obtain 
+\begin{align*}
+\left( \int^{x}_{0} \eta_t \D x' \right)^2 &= F(\xi)^2 - 2F(\xi)G + G^2 + \mathcal{O}(\epsilon), &&\qquad x > t, \\
+\left( \int^{x}_{0} \eta_t \D x' \right)^2 &= F(-\xi)^2 + 2F(-\xi)G + G^2 + \mathcal{O}(\epsilon), &&\qquad x < t,
+\end{align*}
+we had to assume that at $x = 0$
+\begin{equation}\label{HLBCs}
+\begin{aligned}
+F(-\tau_0, \tau_1), ~ G(\tau_0, \tau_1) &= 0, &&\qquad x > t, \\
+F(\tau_0, \tau_1), ~ G(\tau_0, \tau_1) &= 0, &&\qquad x < t.
+\end{aligned}
+\end{equation}
+Conditions in \eqref{HLBCs} therefore imply that at $x=0,$
+\begin{equation*}
+\begin{aligned}
+\eta(x, t, \varepsilon t) = F(x-t, \varepsilon t)+ G(x+t, \varepsilon t) &= 0, &&\qquad x > t, \\
+\eta(x, t, \varepsilon t) = F(t-x, \varepsilon t) + G(x+t, \varepsilon t) &= 0, &&\qquad x < t.
+\end{aligned}
+\end{equation*}
+In other words, 
+\begin{equation*}
+\begin{aligned}
+\eta(0, t, \varepsilon t) = F(-t, \varepsilon t)+ G(t, \varepsilon t) &= 0, &&\qquad 0 > t, \\
+\eta(0, t, \varepsilon t) = F(t, \varepsilon t) + G(t, \varepsilon t) &= 0, &&\qquad 0 < t.
+\end{aligned}
+\end{equation*}
+Thus, it seems like $\eta(0,t) = 0$ is the right condition to obtain KdV-like equations.
 {\small\bibliography{references}}
 
 \end{document}
