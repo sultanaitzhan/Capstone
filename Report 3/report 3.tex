@@ -702,13 +702,46 @@ Conditions in \eqref{HLBCs} therefore imply that at $x=0,$
 \end{aligned}
 \end{equation*}
 In other words, 
+\begin{align}
+\eta(0, t, \varepsilon t) = F(-t, \varepsilon t)+ G(t, \varepsilon t) &= 0, &&\qquad 0 > t, \label{x>t}\\
+\eta(0, t, \varepsilon t) = F(t, \varepsilon t) + G(t, \varepsilon t) &= 0, &&\qquad 0 < t. \label{x<t}
+\end{align}
+Thus, it seems like $\eta(0,t) = 0$ is the right condition to obtain KdV-like equations. Namely, if we do not assume that $F(-t, \varepsilon t), G(t, \varepsilon t)$ vanish, then for $x>t,$ we obtain the following general expression for the $\eta_1:$
+\begin{equation}
+\begin{aligned}
+- 4\eta_{1} &=  \zeta(2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + (F- F(-\tau_0))F_\xi +  \frac{1}{\pi} \int_0^\infty \bigg(2FF_\xi -F_\xi(F(-\tau_0)+G(\tau_0))\bigg)  \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) \\
+&+ \xi(- 2G_{\tau_1} +  \frac{1}{3} G_{\zeta\zeta\zeta}+ (G - G(\tau_0))G_\zeta + \frac{1}{\pi} \int_0^\infty \bigg( 2GG_\zeta + G_\zeta(F(-\tau_0)+G(\tau_0)) \bigg) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) \\
+&+ (- F_{\xi} \int G -G(t) \D \zeta) + \int \frac{1}{\pi} \int_0^\infty \bigg( 2GG_\zeta + G_\zeta(F(-\tau_0)+G(\tau_0)) \bigg) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \D \zeta \\
+&+ (-G_{\zeta} \int F - F(-t) \D \xi ) +  \int \frac{1}{\pi} \int_0^\infty \bigg(2FF_\xi -F_\xi(F(-\tau_0)+G(\tau_0))\bigg) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \D \xi  - 2 FG.
+\end{aligned}
+\end{equation}
+If we impose that \eqref{x>t}, then we obtain 
 \begin{equation*}
 \begin{aligned}
-\eta(0, t, \varepsilon t) = F(-t, \varepsilon t)+ G(t, \varepsilon t) &= 0, &&\qquad 0 > t, \\
-\eta(0, t, \varepsilon t) = F(t, \varepsilon t) + G(t, \varepsilon t) &= 0, &&\qquad 0 < t.
+- 4\eta_{1} &=  \zeta(2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + (F- F(-\tau_0))F_\xi +  \frac{1}{\pi} \int_0^\infty 2FF_\xi \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) \\
+&+ \xi(- 2G_{\tau_1} +  \frac{1}{3} G_{\zeta\zeta\zeta}+ (G - G(\tau_0))G_\zeta + \frac{1}{\pi} \int_0^\infty 2GG_\zeta \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) \\
+&+ (- F_{\xi} \int G -G(t) \D \zeta) + \int \frac{1}{\pi} \int_0^\infty 2GG_\zeta \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \D \zeta \\
+&+ (-G_{\zeta} \int F - F(-t) \D \xi ) +  \int \frac{1}{\pi} \int_0^\infty 2FF_\xi \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \D \xi  - 2 FG,
 \end{aligned}
 \end{equation*}
-Thus, it seems like $\eta(0,t) = 0$ is the right condition to obtain KdV-like equations.
+which we can rewrite by recalling 
+\[ 
+F(\xi, \tau_1) - F(-\tau_0, \tau_1) = \int^{x}_{0}F_{\xi'}(\xi', \tau_1) \D x' , \qquad G(\zeta, \tau_1) - G(\tau_0, \tau_1) = \int^{x}_{0} G_{\zeta'}(\zeta', \tau_1) \D x'. 
+\]
+Thus, 
+\begin{equation*}
+\begin{aligned}
+- 4\eta_{1} &=  \zeta(2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + F_\xi \int^{x}_{0}F_{\xi'}(\xi', \tau_1) \D x' +  \frac{1}{\pi} \int_0^\infty 2FF_\xi \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) \\
+&+ \xi(- 2G_{\tau_1} +  \frac{1}{3} G_{\zeta\zeta\zeta}+ G_\zeta \int^{x}_{0} G_{\zeta'}(\zeta', \tau_1) \D x' + \frac{1}{\pi} \int_0^\infty 2GG_\zeta \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y) \\
+&+ (- F_{\xi} \int  \int^{x}_{0} G_{\zeta'}(\zeta', \tau_1) \D x'  \D \zeta) + \int \frac{1}{\pi} \int_0^\infty 2GG_\zeta \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \D \zeta \\
+&+ (-G_{\zeta} \int \int^{x}_{0}F_{\xi'}(\xi', \tau_1) \D x' \D \xi ) +  \int \frac{1}{\pi} \int_0^\infty 2FF_\xi \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \D \xi  - 2 FG.
+\end{aligned}
+\end{equation*}
+Finally, the boundedness condition gives rise to two KdV-like, integro-differential equations:
+\begin{align*}
+2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + F_\xi \int^{x}_{0}F_{\xi'}(\xi', \tau_1) \D x' +  \frac{1}{\pi} \int_0^\infty 2FF_\xi \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y &= 0, \\
+- 2G_{\tau_1} +  \frac{1}{3} G_{\zeta\zeta\zeta}+ G_\zeta \int^{x}_{0} G_{\zeta'}(\zeta', \tau_1) \D x' + \frac{1}{\pi} \int_0^\infty 2GG_\zeta \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y &= 0.
+\end{align*}
 {\small\bibliography{references}}
 
 \end{document}
