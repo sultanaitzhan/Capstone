@@ -150,7 +150,7 @@ As we approximate, we assume an expansion of $\eta$ in $\epsilon:$
 \begin{equation}\label{SrfcExpansion}
 \eta = \eta_0 + \epsilon \eta_1 + \mathcal{O}(\epsilon^2).
 \end{equation}
-\subsubsection*{First order approximation}
+\subsection{First order approximation}
 Substitution of \eqref{SrfcExpansion} into equation \eqref{srfceq0} yields
 \begin{equation}\label{srfceqExpanded}
 \eta_{0tt} - \eta_{0xx} +\epsilon(\eta_{1tt} - \eta_{1xx})= \epsilon \left[ \frac{1}{3}\eta_{0xxxx} +  \frac{d}{dx} \frac{1}{\pi} \int_0^\infty \partial_t \left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y+ \frac{1}{2} \partial^2_x \left( \int^{x}_{-\infty} (\eta_0 + \epsilon \eta_1)_t \D x' \right)^2\right) + \mathcal{O}(\epsilon^2). 
@@ -165,7 +165,7 @@ The general solution is
 \[ \eta(x,t) = \begin{cases} F(x-t) + G(x+t) & x>t \\ F(t-x) + G(x+t) & x<t \end{cases}, \] 
 where $F,G$ are to be determined. 
 
-\subsubsection*{Second order approximation}
+\subsection{Second order approximation}
 As in the velocity potential case, we employ multiple scales. First, we find an expression for $\eta_0.$  We introduce 
 \[ \tau_0 = t, \qquad \tau_1 = \epsilon t, \qquad \tau_2 = \epsilon^2 t, \ldots, \]
 so that 
@@ -179,8 +179,7 @@ Substituting \eqref{NewSrfcExpansion} into \eqref{srfceq0}, within $\mathcal{O}(
 \eta_{0\tau_0 \tau_0} - \eta_{0xx} = 0,
 \end{equation}
 so that the general solution is 
-\[ \eta_0(x, \tau_0, \tau_1, \ldots ) = \begin{cases} F_2(x-\tau_0, \tau_1, \ldots ) + G_2(x+\tau_0, \tau_1, \ldots) & x\geq \tau_0 \\ F_1(\tau_0-x, \tau_1, \ldots ) + G_1(x+\tau_0, \tau_1, \ldots) & x<\tau_0 \end{cases}, \]
-where we recalled the boundary conditions $\eta_x(0,t) = 0.$
+\[ \eta_0(x, \tau_0, \tau_1, \ldots ) = \begin{cases} F_2(x-\tau_0, \tau_1, \ldots ) + G_2(x+\tau_0, \tau_1, \ldots) & x\geq \tau_0 \\ F_1(\tau_0-x, \tau_1, \ldots ) + G_1(x+\tau_0, \tau_1, \ldots) & x<\tau_0 \end{cases}. \]
 Now, although we have found an expression for $\eta_0,$ the functions $F_i, G_i$ used are still general functions. To determine $F_i,G_i,$ we proceed to the next order, i.e. $\mathcal{O}(\epsilon^1).$ We introduce
 \[ 
 \xi = x-\tau_0 \qquad \zeta = x+ \tau_0
@@ -193,14 +192,8 @@ and
 \partial_t &= \partial_\xi \frac{\D \xi}{\D t} + \partial_\zeta \frac{\D \zeta}{\D t} + \partial_{\tau_1}\frac{\D \tau_1}{\D t} = - \partial_\xi + \partial_\zeta + \epsilon \partial_{\tau_1}.
 \end{align*}
 
-\rmk{We emphasize the piecewise nature of solutions, which is why we write that $F_1, F_2$ as different functions even though they share the same variable $\xi.$ It is very important to be aware which $F_i$ we need to use, as we will demonstrate when dealing with the non-local terms. In addition, we also need to impose some more conditions at $x = \tau_0,$ to reinforce some sort of continuity between $F_1$ and $F_2.$.
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[scale = 0.5]{HLpic.png}
-%\label{HLpic}
-%\end{figure}
-}
-\subsubsection*{The case $x<\tau_0$}
+\rmk{We emphasize the piecewise nature of solutions, which is why we write that $F_1, F_2$ as different functions even though they share the same variable $\xi.$ It is very important to be aware which $F_i$ we need to use, as we will demonstrate when dealing with the non-local terms. In addition, we also need to impose some more conditions at $x = \tau_0,$ to reinforce some sort of continuity between $F_1$ and $F_2.$.}
+\subsubsection{The case $x<\tau_0$}
 We consider the case $x<t.$ First, we use
 \begin{align*}
 \eta &= \eta_0 + \epsilon \eta_1 + \mathcal{O}(\epsilon^2)  \\
@@ -283,7 +276,7 @@ Since $\eta_1$ must be bounded, we must have
 \end{align}
 In other words, we have obtained two KdV-like equations, \eqref{KdVish1} and \eqref{KdVish3}, whose solutions $F_1, G_1$ describe behaviour of the surface elevation in the leading order, when $x<\tau_0.$
  
-\subsubsection*{The case $x\geq \tau_0$}
+\subsubsection{The case $x\geq \tau_0$}
 On the domain $x\geq \tau_0,$ we use 
 \begin{align*}
 \eta &= \eta_0 + \epsilon \eta_1 + \mathcal{O}(\epsilon^2)  \\
@@ -376,8 +369,10 @@ Since $\eta_1$ must be bounded, we must have
 \end{align}
 In other words, we have obtained two KdV-like equations, \eqref{KdVish2} and \eqref{KdVish4}, whose solutions $F_2, G_2$ describe behaviour of the surface elevation in the leading order, when $x\geq \tau_0.$
 
-\subsubsection*{Conclusion}
-In summary, we have obtained 2 systems of 2 equations: one in $F_1, F_2:$
+\subsubsection{Conclusion}
+In summary, we have started out with a general solution of the wave equation on the right half-line:
+\[ \eta_0(x, \tau_0, \tau_1, \ldots ) = \begin{cases} F_2(x-\tau_0, \tau_1, \ldots ) + G_2(x+\tau_0, \tau_1, \ldots) & x\geq \tau_0 \\ F_1(\tau_0-x, \tau_1, \ldots ) + G_1(x+\tau_0, \tau_1, \ldots) & x<\tau_0 \end{cases}, \]
+and obtained 2 systems of 2 equations: one in $F_1, F_2:$
 \begin{equation}\label{HLSystemF}
 \begin{aligned}
 2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_\xi^3 F_1 + F_1\partial_\xi F_1 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) &= 0; \\
@@ -395,7 +390,8 @@ It should be noted that even though two systems \eqref{HLSystemF} and \eqref{HLS
 \[ F_1(0) = F_2(0), G_1(2\tau_0) =G_2(2\tau_0), \]
 and the free boundary condition at the midpoint
 \[ \eta_x(0,t) = -F_1'(\tau_0)+ G_1'(\tau_0) = 0. \]
-\subsubsection*{The Hilbert Transform term}
+
+\subsubsection{The Hilbert Transform term}
 \begin{prop}\label{HTtransformed}
 We have 
 \begin{align*}

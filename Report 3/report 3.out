@@ -1,2 +1,8 @@
 \BOOKMARK [1][-]{section.1}{The half line problem}{}% 1
 \BOOKMARK [1][-]{section.2}{Approximate equations: half-line}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{First order approximation}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Second order approximation}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.2.1}{The case x<0}{subsection.2.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.2.2}{The case x0}{subsection.2.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Conclusion}{subsection.2.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.2.4}{The Hilbert Transform term}{subsection.2.2}% 8

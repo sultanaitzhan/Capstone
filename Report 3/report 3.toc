@@ -1,2 +1,8 @@
 \contentsline {section}{\numberline {1}The half line problem}{1}{section.1}% 
 \contentsline {section}{\numberline {2}Approximate equations: half-line}{6}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}First order approximation}{6}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}Second order approximation}{7}{subsection.2.2}% 
+\contentsline {subsubsection}{\numberline {2.2.1}The case $x<\tau _0$}{8}{subsubsection.2.2.1}% 
+\contentsline {subsubsection}{\numberline {2.2.2}The case $x\geqslant \tau _0$}{11}{subsubsection.2.2.2}% 
+\contentsline {subsubsection}{\numberline {2.2.3}Conclusion}{15}{subsubsection.2.2.3}% 
+\contentsline {subsubsection}{\numberline {2.2.4}The Hilbert Transform term}{15}{subsubsection.2.2.4}% 
