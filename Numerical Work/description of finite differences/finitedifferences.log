@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.29)  19 FEB 2020 21:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.29)  19 FEB 2020 21:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"report 3.tex"
-(./report 3.tex
+**finitedifferences.tex
+(./finitedifferences.tex
 LaTeX2e <2018-12-01>
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -588,12 +588,8 @@ sep char (CT)
 \stackedbox=\box59
 \@centerbox=\box60
 \c@ROWcellindex@=\count295
-)) (./report 3.aux
-
-LaTeX Warning: Label `1stOrderApprox' multiply defined.
-
-)
-\openout1 = `"report 3.aux"'.
+)) (./finitedifferences.aux)
+\openout1 = `finitedifferences.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
@@ -770,9 +766,9 @@ LaTeX Info: Redefining \ref on input line 12.
 LaTeX Info: Redefining \pageref on input line 12.
 LaTeX Info: Redefining \nameref on input line 12.
 
-(./report 3.out) (./report 3.out)
+(./finitedifferences.out) (./finitedifferences.out)
 \@outlinefile=\write3
-\openout3 = `"report 3.out"'.
+\openout3 = `finitedifferences.out'.
 
 LaTeX Font Info:    Try loading font information for U+msa on input line 12.
 
@@ -783,59 +779,56 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 12.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (./report 3.toc)
+)
+(./finitedifferences.toc)
 \tf@toc=\write4
-\openout4 = `"report 3.toc"'.
+\openout4 = `finitedifferences.toc'.
 
  [1{/Users/ww/Library/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 }
 
-] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16]
-(./report 3.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 472.
- [17]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 472.
- (./report 3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 472.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 472.
-Package rerunfilecheck Info: File `"report 3".out' has not changed.
-(rerunfilecheck)             Checksum: CB668A27F65D301471B251F7567AB53F;123.
+] [2] [3] [4] [5] [6] [7] [8] [9] [10]
+Overfull \hbox (25.19264pt too wide) detected at line 354
+[]
+ []
 
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 472.
+[11] [12]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 423.
+ [13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 423.
+ (./finitedifferences.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 423.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 423.
+Package rerunfilecheck Info: File `finitedifferences.out' has not changed.
+(rerunfilecheck)             Checksum: 04B35DE1A2556367BA057D477CE75FDC;173.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 423.
  ) 
 Here is how much of TeX's memory you used:
- 19916 strings out of 492616
- 366494 string characters out of 6129481
- 442810 words of memory out of 5000000
- 23612 multiletter control sequences out of 15000+600000
- 543705 words of font info for 69 fonts, out of 8000000 for 9000
+ 19842 strings out of 492616
+ 365854 string characters out of 6129481
+ 440044 words of memory out of 5000000
+ 23584 multiletter control sequences out of 15000+600000
+ 542715 words of font info for 66 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 40i,13n,63p,960b,811s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,15n,63p,967b,734s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
 /usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
-r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
-cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/t
-exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive
-/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
-2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/20
-19/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2019/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/201
-9/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "report 3.pdf" (17 pages, 237615 bytes).
+usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></us
+r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
+local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
+cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loca
+l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/
+texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/tex
+live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
+e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
+/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2
+019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on finitedifferences.pdf (13 pages, 181851 bytes).
 PDF statistics:
- 257 PDF objects out of 1000 (max. 8388607)
- 217 compressed objects within 3 object streams
- 63 named destinations out of 1000 (max. 500000)
+ 149 PDF objects out of 1000 (max. 8388607)
+ 118 compressed objects within 2 object streams
+ 23 named destinations out of 1000 (max. 500000)
  17 words of extra memory for PDF output out of 10000 (max. 10000000)
 
