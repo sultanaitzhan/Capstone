@@ -223,56 +223,76 @@ where for the last line we translate $\xi' = x'-t, \zeta' = x'+t$ to obtain
  \int^{x}_{0} -\partial_{\xi'}(F_1(\tau_0 - \xi')) \D x' &=  \int^{x-t}_{-t}(F_1)_{\xi'}(-\xi', \tau_1) \D \xi' =\int^{\xi}_{-\tau_0}(F_1)_{\xi'}(-\xi', \tau_1) \D \xi' = F_1 - F_1(\tau_0), \\
 \int^{x}_{0} (G_1)_{\zeta'}(x'+\tau_0, \tau_1) \D x' &=  \int^{x+t}_{t}(G_1)_{\zeta'}(\zeta', \tau_1) \D \zeta' = \int^{\zeta}_{\tau_0}(G_1)_{\zeta'}(\zeta', \tau_1) \D \zeta' = G_1 - G_1(\tau_0).
 \end{align*}
-Note that previously we wrongly assumed that there is some strange term $F(-t).$ But $F$ that we used was rather $F_2,$ which is appropriate when $x \geq \tau_0.$ In this case, $x< \tau_0,$ so we need to use $F_1,$ which provides the right viewpoint. Finally, from Proposition \ref{HTtransformed}, we also have
+Note that previously we wrongly assumed that there is some strange term $F(-t).$ But $F$ that we used was rather $F_2,$ which is appropriate when $x \geq \tau_0.$ In this case, $x< \tau_0,$ so we need to use $F_1,$ which provides the right viewpoint. Next, from Proposition \ref{HTtransformed2}, we also have
 \begin{align*}
-\int_0^\infty \partial_t &\left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
-&=  \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y.
+(\partial_\xi + \partial_\zeta)\int_0^\infty \partial_t &\left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&=\partial_\xi \left( \int^{0}_{-\tau_0} 2 F_1\partial_{\xi'}F_1  \frac{1}{\xi -\xi'} \D \xi' + \int_{0}^\infty 2 F_1\partial_{\xi'}F_1  \frac{1}{\xi -\xi'} \D \xi'  + \int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \int_{2\tau_0}^{\infty}  2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta'\right) \\
+&+ \partial_{\zeta} \left(  \int^{0}_{-\tau_0} 2 F_1\partial_{\xi'}F_1 \frac{1}{\zeta +\xi'} \D \xi' + \int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' + \int_{0}^\infty 2 F_1\partial_{\xi'}F_1 \frac{1}{\zeta +\xi'} \D \xi' + \int_{2\tau_0}^{\infty}  2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' \right) \\
+&+ \partial_\xi \left( A \int^0_{-\tau_0} -\partial_\xi F_1 \frac{1}{\xi - \xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \frac{1}{\xi + \zeta'} \D \zeta' + (A+B)\int_0^{\infty} -\partial_\xi F_2 \frac{1}{\xi - \xi'} \D \xi' + \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \\
+&+ \partial_\zeta \left( A \int^0_{-\tau_0} -\partial_\xi F_1  \frac{1}{\zeta + \xi'}  \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \frac{1}{\zeta - \zeta'} \D \zeta' + (A+B) \int_0^{\infty} -\partial_\xi F_2  \frac{1}{\zeta + \xi'} \D \xi'  + \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \frac{1}{\zeta - \zeta'}\D \zeta'  \right).
 \end{align*}
+Finally, note that
+\begin{align*}
+\frac{1}{2} (\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) &\left( (F_1 - F_1(\tau_0))^2 - 2(F_1 - F_1(\tau_0))(G_1- G_1(\tau_0)) + (G_1 - G_1(\tau_0))^2 \right) \\
+&= \frac{1}{2} \partial_\xi^2 \left( (F_1 - F_1(\tau_0))^2 - 2(F_1 - F_1(\tau_0))(G_1- G_1(\tau_0)) \right) + \frac{1}{2}\partial_\zeta^2 \left(- 2(F_1 - F_1(\tau_0))(G_1- G_1(\tau_0)) + (G_1 - G_1(\tau_0))^2 \right) \\
+&-2 \partial_\xi \partial_\zeta \left((F_1 - F_1(\tau_0))(G_1- G_1(\tau_0)) \right) \\
+&= \partial_\xi \left( (F_1 - F_1(\tau_0)) \partial_\xi F_1 -  \partial_\xi F_1(G_1- G_1(\tau_0)) \right) + \partial_\zeta \left(- (F_1 - F_1(\tau_0))\partial_\zeta G_1 + (G_1 - G_1(\tau_0))\partial_\zeta G_1 \right) - 2 \partial_\xi F_1\partial_\zeta G_1 \\
+&= \partial_\xi \left( (F_1 - F_1(\tau_0) - G_1+ G_1(\tau_0) ) \partial_\xi F_1 \right) + \partial_\zeta \left((G_1 - G_1(\tau_0)-F_1 + F_1(\tau_0))\partial_\zeta G_1 \right) - 2 \partial_\xi F_1\partial_\zeta G_1 \\
+&=\partial_\xi \left( (F_1 - G_1 - A) \partial_\xi F_1 \right) + \partial_\zeta \left((G_1 - F_1 + A)\partial_\zeta G_1 \right) - 2 \partial_\xi F_1\partial_\zeta G_1,
+\end{align*}
+where we set $A = F_1(\tau_0)- G_1(\tau_0).$
+
 Substitution of terms into the RHS of \eqref{srfceq0} leads to:
 \begin{align}
 \frac{1}{3} \eta_{xxxx} &+ \frac{d}{dx} \frac{1}{\pi} \int_0^\infty \partial_t \left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \frac{1}{2} \partial^2_x\left(\int^{x}_0\eta_{t} \D x' \right)^2 \nonumber\\
-&= \frac{1}{3}(\partial_\xi^4 F_1 + \partial_\zeta^4 G_1 + \frac{1}{\pi} (\partial_\xi + \partial_\zeta) \left( \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) \nonumber \\
-&+ \frac{1}{2} (\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) \left( (F_1 - F_1(\tau_0))^2 - 2(F_1 - F_1(\tau_0))(G_1- G_1(\tau_0)) + (G_1 - G_1(\tau_0))^2 \right) + \mathcal{O}(\epsilon) \nonumber \\
-&=  \frac{1}{3}(\partial_\xi^4 F_1 + \partial_\zeta^4 G_1 + \frac{1}{\pi} (\partial_\xi + \partial_\zeta) \left( \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) \nonumber \\
-&+ \partial_\xi\left( (F_1 - G_1)\partial_\xi F_1 \right)+  \partial_\zeta \left( (G_1 - F_1)\partial_\zeta G_1)\right) - 2 \partial_\xi F_1 \partial_\zeta G_1. \label{RHS1-1}
+&=  \frac{1}{3}(\partial_\xi^4 F_1 + \partial_\zeta^4 G_1) + \partial_\xi \left( (F_1 - G_1 - A) \partial_\xi F_1 \right) + \partial_\zeta \left((G_1 - F_1 + A)\partial_\zeta G_1 \right) - 2 \partial_\xi F_1\partial_\zeta G_1 \nonumber \\
+&+ \partial_\xi \frac{1}{\pi} \left( \int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \nonumber \\
+&+ \partial_\zeta \frac{1}{\pi} \left( \int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi + \zeta'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi + \zeta'} \D \xi' + \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right) \nonumber \\ 
+&+ \partial_\xi \left( A \int^0_{-\tau_0} -\partial_\xi F_1 \frac{1}{\xi - \xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \frac{1}{\xi + \zeta'} \D \zeta' + (A+B)\int_0^{\infty} -\partial_\xi F_2 \frac{1}{\xi - \xi'} \D \xi' + \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \nonumber \\
+&+ \partial_\zeta \left( A \int^0_{-\tau_0} -\partial_\xi F_1  \frac{1}{\zeta + \xi'}  \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \frac{1}{\zeta - \zeta'} \D \zeta' + (A+B) \int_0^{\infty} -\partial_\xi F_2  \frac{1}{\zeta + \xi'} \D \xi'  + \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \frac{1}{\zeta - \zeta'}\D \zeta'  \right)+ \mathcal{O}(\epsilon).  \label{RHS1-1}
 \end{align}
 Combining \eqref{LHS1-1} and \eqref{RHS1-1}, in $\mathcal{O}(\epsilon^1)$ we have
 \begin{equation}\label{srfceqHL2-1}
 \begin{aligned}
-- 4\eta_{1\xi \zeta} &= 2 \partial_\xi \partial_{\tau_1}F_1 - 2\partial_{\zeta} \partial_{\tau_1}G_1  + \frac{1}{3}(\partial_\xi^4 F_1 + \partial_\zeta^4 G_1) \\
-&+ \frac{1}{\pi} (\partial_\xi + \partial_\zeta) \left( \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) \\
-&+ \partial_\xi\left( (F_1 - G_1)\partial_\xi F_1 \right) +  \partial_\zeta \left( (G_1 - F_1)\partial_\zeta G_1 \right) - 2 \partial_\xi F_1 \partial_\zeta G_1.
+- 4\eta_{1\xi \zeta} &= 2 \partial_\xi \partial_{\tau_1}F_1 - 2\partial_{\zeta} \partial_{\tau_1}G_1  + \frac{1}{3}(\partial_\xi^4 F_1 + \partial_\zeta^4 G_1) + \partial_\xi \left( (F_1 - G_1 - A) \partial_\xi F_1 \right) + \partial_\zeta \left((G_1 - F_1 + A)\partial_\zeta G_1 \right) - 2 \partial_\xi F_1\partial_\zeta G_1 \\
+&+ \partial_\xi \frac{1}{\pi} \left( \int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \\
+&+ \partial_\zeta \frac{1}{\pi} \left( \int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi + \zeta'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi + \zeta'} \D \xi' + \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right) \\
+&+ \partial_\xi  \frac{1}{\pi} \left( A \int^0_{-\tau_0} -\partial_\xi' F_1 \frac{1}{\xi - \xi'} \D \xi' + A\int^{2\tau_0}_{\tau_0} \partial_\zeta' G_1 \frac{1}{\xi + \zeta'} \D \zeta' + (A+B)\int_0^{\infty} -\partial_\xi' F_2 \frac{1}{\xi - \xi'} \D \xi' + (A+B) \int_{2\tau_0}^{\infty} \partial_\zeta' G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \\
+&+ \partial_\zeta \frac{1}{\pi}  \left( A \int^0_{-\tau_0} -\partial_\xi' F_1  \frac{1}{\zeta + \xi'}  \D \xi' + A \int^{2\tau_0}_{\tau_0} \partial_\zeta' G_1 \frac{1}{\zeta - \zeta'} \D \zeta' + (A+B) \int_0^{\infty} -\partial_\xi' F_2  \frac{1}{\zeta + \xi'} \D \xi'  + (A+B) \int_{2\tau_0}^{\infty} \partial_\zeta' G_2 \frac{1}{\zeta - \zeta'}\D \zeta' \right)
 \end{aligned}
 \end{equation}
 By rearranging appropriately, \eqref{srfceqHL2-1} becomes
 \begin{equation}\label{srfceqHL3-1}
 \begin{aligned}
-- 4\eta_{1\xi \zeta} &= \partial_\xi (2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_\xi^3 F_1 + F_1\partial_\xi F_1 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right))  \\
-&+ \partial_\zeta(- 2 \partial_{\tau_1} G_1 +  \frac{1}{3} \partial_\zeta^3 G_1+ G_1 \partial_{\zeta} G_1  + \frac{1}{\pi} \left( \int_0^{\tau_0}  2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right)) \\
-&+ \partial_{\xi}(-G_1 \partial_\xi F_1 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) ) \\
-&+ \partial_{\zeta}( - F_1\partial_\zeta G_1 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2  \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right)) - 2 \partial_\xi F_1 \partial_\zeta G_1. 
+- 4\eta_{1\xi \zeta} &= \partial_\xi (2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_\xi^3 F_1 + (F_1-A)\partial_\xi F_1 + \frac{1}{\pi} \left(\int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi' +  A \int^0_{-\tau_0} -\partial_{\xi'} F_1 \frac{1}{\xi - \xi'} \D \xi' + (A+B)\int_0^{\infty} -\partial_{\xi'} F_2 \frac{1}{\xi - \xi'} \D \xi'  \right))  \\
+&+ \partial_\zeta(- 2 \partial_{\tau_1} G_1 +  \frac{1}{3} \partial_\zeta^3 G_1+ (G_1 +A)\partial_{\zeta} G_1  + \frac{1}{\pi} \left( \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' + A \int^{2\tau_0}_{\tau_0} \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta'+(A+B) \int_{2\tau_0}^{\infty} \partial_{\zeta'} G_2 \frac{1}{\zeta - \zeta'}\D \zeta'\right)) \\
+&+ \partial_{\xi}(-G_1 \partial_\xi F_1 + \frac{1}{\pi}\left(\int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta'
++ A\int^{2\tau_0}_{\tau_0} \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + (A+B) \int_{2\tau_0}^{\infty} \partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) ) \\
+&+ \partial_{\zeta}( - F_1\partial_\zeta G_1 + \frac{1}{\pi} \left(\int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi + \zeta'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi + \zeta'} \D \xi' + A \int^0_{-\tau_0} -\partial_{\xi'} F_1  \frac{1}{\zeta + \xi'}  \D \xi'  + (A+B) \int_0^{\infty} -\partial_{\xi'} F_2  \frac{1}{\zeta + \xi'} \D \xi'  \right)) \\
+&- 2 \partial_\xi F_1 \partial_\zeta G_1. 
 \end{aligned}
 \end{equation}
 Integration of \eqref{srfceqHL3-1} with respect to $\zeta$ yields
 \begin{equation}
 \begin{aligned}
-- 4\eta_{1\xi} &= \zeta \partial_\xi (2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_\xi^3 F_1 + F_1\partial_\xi F_1 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right))  \\
-&+(- 2 \partial_{\tau_1} G_1 +  \frac{1}{3} \partial_\zeta^3 G_1+ G_1 \partial_{\zeta} G_1  + \frac{1}{\pi} \left( \int_0^{\tau_0}  2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right)) \\
-&+ \partial_{\xi}\int (G_1 \partial_\xi F_1 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) )\D \zeta \\
-&+(-F_1\partial_\zeta G_1 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2  \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right)) - 2 \partial_\xi F_1 G_1. 
+- 4\eta_{1\xi} &= \zeta \partial_\xi (2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_\xi^3 F_1 + (F_1-A) \partial_\xi F_1 + \frac{1}{\pi} \left(\int^0_{-\tau_0} (2 F_1  - A)\partial_{\xi'} F_1\frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} (2 F_2 - (A+B))\partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi' \right))  \\
+&+(- 2 \partial_{\tau_1} G_1 +  \frac{1}{3} \partial_\zeta^3 G_1+ (G_1 +A) \partial_{\zeta} G_1  + \frac{1}{\pi} \left( \int^{2\tau_0}_{\tau_0} (2 G_1 + A) \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2+(A+B)) \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta'   \right)) \\
+&+ \partial_{\xi}\int (G_1 \partial_\xi F_1 + \frac{1}{\pi}\left(\int^{2\tau_0}_{\tau_0} (2 G_1+ A) \partial_{\zeta'} G_1  \frac{1}{\xi + \zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2 + (A+B))\partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right)  )\D \zeta  \\
+&+(-F_1\partial_\zeta G_1 + \frac{1}{\pi} \left(\int^0_{-\tau_0} (2 F_1-A) \partial_{\xi'} F_1 \frac{1}{\xi + \zeta'} \D \xi' + \int^{\infty}_{0} (2 F_2 -(A+B))\partial_{\xi'} F_2 \frac{1}{\xi + \zeta'} \D \xi' \right)) - 2 \partial_\xi F_1 G_1. 
 \end{aligned}
 \end{equation}
 and further integration with respect to $\xi$ leads to
 \begin{align*}
-- 4\eta_{1} &= \zeta (2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_\xi^3 F_1 + F_1\partial_\xi F_1 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) ) \\
-&+\xi (- 2 \partial_{\tau_1} G_1 +  \frac{1}{3} \partial_\zeta^3 G_1+ G_1 \partial_{\zeta} G_1  + \frac{1}{\pi} \left( \int_0^{\tau_0}  2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) )\\
-&+ \int (G_1 \partial_\xi F_1 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) )\D \zeta \\
-&+\int (-F_1\partial_\zeta G_1 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2  \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right))\D \xi - 2 F_1 G_1. 
+- 4\eta_{1} &= \zeta (2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_\xi^3 F_1 + (F_1-A)\partial_\xi F_1 + \frac{1}{\pi} \left(\int^0_{-\tau_0} (2 F_1  - A)\partial_{\xi'} F_1\frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} (2 F_2 - (A+B))\partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi'\right) ) \\
+&+\xi (- 2 \partial_{\tau_1} G_1 +  \frac{1}{3} \partial_\zeta^3 G_1+ (G_1+A) \partial_{\zeta} G_1 + \frac{1}{\pi} \left( \int^{2\tau_0}_{\tau_0} (2 G_1 + A) \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2+(A+B)) \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right) )\\
+&+ \int (G_1 \partial_\xi F_1 + \frac{1}{\pi}\left(\int^{2\tau_0}_{\tau_0} (2 G_1+ A) \partial_{\zeta'} G_1  \frac{1}{\xi + \zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2 + (A+B))\partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta'
+\right)  )\D \zeta \\
+&+\int (-F_1\partial_\zeta G_1 + \frac{1}{\pi} \left(\int^0_{-\tau_0} (2 F_1-A) \partial_{\xi'} F_1 \frac{1}{\xi + \zeta'} \D \xi' + \int^{\infty}_{0} (2 F_2 -(A+B))\partial_{\xi'} F_2 \frac{1}{\xi + \zeta'} \D \xi' \right))\D \xi - 2 F_1 G_1. 
 \end{align*}
 Since $\eta_1$ must be bounded, we must have 
 \begin{align}
-2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_\xi^3 F_1 + F_1\partial_\xi F_1 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) &= 0 \label{KdVish1}, \\
-- 2 \partial_{\tau_1} G_1 +  \frac{1}{3} \partial_\zeta^3 G_1+ G_1 \partial_{\zeta} G_1  + \frac{1}{\pi} \left( \int_0^{\tau_0}  2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) &= 0. \label{KdVish3}
+2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_\xi^3 F_1 + (F_1-A)\partial_\xi F_1 + \frac{1}{\pi} \left(\int^0_{-\tau_0} (2 F_1  - A)\partial_{\xi'} F_1\frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} (2 F_2 - (A+B))\partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi'\right) &= 0 \label{KdVish1}, \\
+- 2 \partial_{\tau_1} G_1 +  \frac{1}{3} \partial_\zeta^3 G_1+ (G_1+A) \partial_{\zeta} G_1  +  \frac{1}{\pi} \left( \int^{2\tau_0}_{\tau_0} (2 G_1 + A) \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2+(A+B)) \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right) &= 0. \label{KdVish3}
 \end{align}
 In other words, we have obtained two KdV-like equations, \eqref{KdVish1} and \eqref{KdVish3}, whose solutions $F_1, G_1$ describe behaviour of the surface elevation in the leading order, when $x<\tau_0.$
  
@@ -299,7 +319,7 @@ Now, we deal with the RHS of \eqref{srfceq0}. By appropriate substitutions, the 
 &= \left( \int^{\tau_0}_{0} \eta_{0t} \D x' + \int_{\tau_0}^{x} \eta_{0t} \D x' \right)^2 + \mathcal{O}(\epsilon) \\ 
 &= \left( \int^{\tau_0}_{0} (-\partial_{\xi'} + \partial_{\zeta'} + \epsilon \partial_{\tau_1}) (F_1+G_1) \D x' + \int_{\tau_0}^{x} (-\partial_{\xi'} + \partial_{\zeta'} + \epsilon \partial_{\tau_1}) (F_2+G_2) \D x' \right)^2 + \mathcal{O}(\epsilon) \\
 &= \left( \int^{\tau_0}_{0} (-\partial_{\xi'} + \partial_{\zeta'}) (F_1+G_1) \D x' + \int_{\tau_0}^{x} (-\partial_{\xi'} + \partial_{\zeta'}) (F_2+G_2) \D x' \right)^2 + \mathcal{O}(\epsilon), \\
-&= F^2_2 - 2F_2 G_2 + G_2^2 + \mathcal{O}(\epsilon),
+&= (-F_2 + G_2 + A +B)^2+ \mathcal{O}(\epsilon),
 \end{align*}
 where for the last line we have simplified as follows:
 \begin{align*}
@@ -312,91 +332,124 @@ Addition of terms yields
 \begin{align*}
 \int^{\tau_0}_{0} (-\partial_{\xi'} + \partial_{\zeta'}) (F_1+G_1) \D x' + \int_{\tau_0}^{x} (-\partial_{\xi'} + \partial_{\zeta'}) (F_2+G_2) \D x' &=  -F_1(0) + F_1(\tau_0) + G_1(2\tau_0) - G_1(\tau_0) -F_2 + F_2(0) + G_2 - G_2(2\tau_0) \\
 &= -F_2  + G_2 -F_1(0) + F_2(0) + G_1(2\tau_0)- G_2(2\tau_0) + F_1(\tau_0)- G_1(\tau_0) \\
-&=  -F_2  + G_2,
+&=  -F_2  + G_2 + A + B,
 \end{align*}
-where we recall the interface conditions $F_1(0) = F_2(0), G_1(2\tau_0) =G_2(2\tau_0)$ and the boundary conditions $\eta_x(0,t) = 0.$ The latter yields that
-\[ \eta_x(0,t) = \partial_x(F_1(\tau_0-x) + G_1(\tau_0+x))\bigg|^{x=0} =  -F_1'(\tau_0) + G_1'(\tau_0) = 0 \implies  F_1'(\tau_0) = G_1'(\tau_0)  \implies F_1(\tau_0) = G_1(\tau_0), \]
-where we set the scalar of integration to be 0. Finally, by Proposition \ref{HTtransformed}, we also have 
+where we write 
+\[ F_1(\tau_0)- G_1(\tau_0) = A \qquad -F_1(0) + F_2(0) + G_1(2\tau_0)- G_2(2\tau_0) = B.\]
+Next, by Proposition \ref{HTtransformed2}, we also have 
 \begin{align*}
-\int_0^\infty \partial_t &\left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
-&=  \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y.
+(\partial_\xi + \partial_\zeta)\int_0^\infty \partial_t &\left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&= \partial_\xi
+\left( \int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \\
+&+ \partial_\zeta \left( 
+\int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi + \zeta'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi + \zeta'} \D \xi' + \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta'
+\right) \\
+&+ \partial_\xi \left( A \int^0_{-\tau_0} -\partial_{\xi'}F_1 \frac{1}{\xi - \xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + (A+B)\int_0^{\infty} -\partial_{\xi'} F_2 \frac{1}{\xi - \xi'} \D \xi' + \int_{2\tau_0}^{\infty} \partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \\
+&+ \partial_\zeta \left( A \int^0_{-\tau_0} -\partial_{\xi'} F_1  \frac{1}{\zeta + \xi'}  \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' + (A+B) \int_0^{\infty} -\partial_{\xi'} F_2  \frac{1}{\zeta + \xi'} \D \xi'  + \int_{2\tau_0}^{\infty} \partial_{\zeta'} G_2 \frac{1}{\zeta - \zeta'}\D \zeta' \right) + \mathcal{O}(\epsilon).
+\end{align*}
+Finally, note that 
+\begin{align*}
+\frac{1}{2} (\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) (-F_2 + G_2 + A +B)^2 &= \frac{1}{2} \partial_\xi^2 (-F_2 + G_2 + A +B)^2 + \frac{1}{2} \partial_\zeta^2 (-F_2 + G_2 + A +B)^2 + \partial_\xi \partial_\zeta (-F_2 + G_2 + A +B)^2 \\
+&= \partial_\xi ((-F_2 + G_2 + A +B)\partial_\xi(-F_2)) + \partial_\zeta ((-F_2 + G_2 + A +B)\partial_\zeta G_2) - 2 \partial_\xi F_2 \partial_\zeta G_2.
 \end{align*}
 Substitution of terms into the RHS of \eqref{srfceq0} leads to:
 \begin{align}
 \frac{1}{3} \eta_{xxxx} &+ \frac{d}{dx} \frac{1}{\pi} \int_0^\infty \partial_t \left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \frac{1}{2} \partial^2_x\left(\int^{x}_0\eta_{t} \D x' \right)^2 \nonumber\\
-&= \frac{1}{3}(\partial_\xi^4 F_2 + \partial_\zeta^4 G_2 + \frac{1}{\pi} (\partial_\xi + \partial_\zeta) \left( \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) \nonumber \\
-&+ \frac{1}{2} (\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) \left( F^2_2 - 2F_2 G_2 + G_2^2 \right) + \mathcal{O}(\epsilon) \nonumber \\
-&=  \frac{1}{3}(\partial_\xi^4 F_2 + \partial_\zeta^4 G_2 + \frac{1}{\pi} (\partial_\xi + \partial_\zeta) \left( \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) \nonumber \\
-&+ \partial_\xi\left( (F_2 - G_2)\partial_\xi F_2 \right)+  \partial_\zeta \left( (G_2 - F_2)\partial_\zeta G_2\right) - 2 \partial_\xi F_2 \partial_\zeta G_2. \label{RHS1-2}
+&=  \frac{1}{3}(\partial_\xi^4 F_2 + \partial_\zeta^4 G_2) + \partial_\xi ((-F_2 + G_2 + A +B)\partial_\xi(-F_2)) + \partial_\zeta ((-F_2 + G_2 + A +B)\partial_\zeta G_2) - 2 \partial_\xi F_2 \partial_\zeta G_2\nonumber \\
+&+ \partial_\xi\frac{1}{\pi}
+\left( \int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \nonumber\\
+&+ \partial_\zeta\frac{1}{\pi} \left( \int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi + \zeta'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi + \zeta'} \D \xi' + \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right)\nonumber \\
+&+ \partial_\xi \frac{1}{\pi} \left( A \int^0_{-\tau_0} -\partial_{\xi'}F_1 \frac{1}{\xi - \xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + (A+B)\int_0^{\infty} -\partial_{\xi'} F_2 \frac{1}{\xi - \xi'} \D \xi' + \int_{2\tau_0}^{\infty} \partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \nonumber \\
+&+ \partial_\zeta \frac{1}{\pi} \left( A \int^0_{-\tau_0} -\partial_{\xi'} F_1  \frac{1}{\zeta + \xi'}  \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' + (A+B) \int_0^{\infty} -\partial_{\xi'} F_2  \frac{1}{\zeta + \xi'} \D \xi'  + \int_{2\tau_0}^{\infty} \partial_{\zeta'} G_2 \frac{1}{\zeta - \zeta'}\D \zeta' \right) + \mathcal{O}(\epsilon) \label{RHS1-2}
 \end{align}
 Combining \eqref{LHS1-2} and \eqref{RHS1-2}, in $\mathcal{O}(\epsilon^1)$ we have
 \begin{equation}\label{srfceqHL2-2}
 \begin{aligned}
-- 4\eta_{1\xi \zeta} &= 2 \partial_\xi \partial_{\tau_1}F_2 - 2\partial_{\zeta} \partial_{\tau_1}G_2  + \frac{1}{3}(\partial_\xi^4 F_2 + \partial_\zeta^4 G_2) \\
-&+ \frac{1}{\pi} (\partial_\xi + \partial_\zeta) \left( \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) \\
-&+ \partial_\xi\left( (F_2 - G_2)\partial_\xi F_2 \right)+  \partial_\zeta \left( (G_2 - F_2)\partial_\zeta G_2\right) - 2 \partial_\xi F_2 \partial_\zeta G_2.
+- 4\eta_{1\xi \zeta} &= 2 \partial_\xi \partial_{\tau_1}F_2 - 2\partial_{\zeta} \partial_{\tau_1}G_2  + \frac{1}{3}(\partial_\xi^4 F_2 + \partial_\zeta^4 G_2) + \partial_\xi ((-F_2 + G_2 + A +B)\partial_\xi(-F_2)) + \partial_\zeta ((-F_2 + G_2 + A +B)\partial_\zeta G_2) - 2 \partial_\xi F_2 \partial_\zeta G_2\nonumber \\
+&+ \partial_\xi\frac{1}{\pi}
+\left( \int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \\
+&+ \partial_\zeta\frac{1}{\pi} \left( \int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi + \zeta'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi + \zeta'} \D \xi' + \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right) \\
+&+ \partial_\xi \frac{1}{\pi} \left( A \int^0_{-\tau_0} -\partial_{\xi'}F_1 \frac{1}{\xi - \xi'} \D \xi' + A\int^{2\tau_0}_{\tau_0} \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + (A+B)\int_0^{\infty} -\partial_{\xi'} F_2 \frac{1}{\xi - \xi'} \D \xi' + (A+B)\int_{2\tau_0}^{\infty} \partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \nonumber \\
+&+ \partial_\zeta \frac{1}{\pi} \left( A \int^0_{-\tau_0} -\partial_{\xi'} F_1  \frac{1}{\zeta + \xi'}  \D \xi' + A\int^{2\tau_0}_{\tau_0} \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' + (A+B) \int_0^{\infty} -\partial_{\xi'} F_2  \frac{1}{\zeta + \xi'} \D \xi'  + (A+B)\int_{2\tau_0}^{\infty} \partial_{\zeta'} G_2 \frac{1}{\zeta - \zeta'}\D \zeta' \right)
 \end{aligned}
 \end{equation}
 By rearranging appropriately, \eqref{srfceqHL2-2} becomes
 \begin{equation}\label{srfceqHL3-2}
 \begin{aligned}
-- 4\eta_{1\xi \zeta} &= \partial_\xi (2 \partial_{\tau_1}F_2 + \frac{1}{3} \partial_\xi^3 F_2 + F_2\partial_\xi F_2 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right))  \\
-&+ \partial_\zeta(- 2 \partial_{\tau_1} G_2 +  \frac{1}{3} \partial_\zeta^3 G_2+ G_2 \partial_{\zeta} G_2 + \frac{1}{\pi} \left( \int_0^{\tau_0}  2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right)) \\
-&+ \partial_{\xi}(-G_2 \partial_\xi F_2 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) ) \\
-&+ \partial_{\zeta}( - F_2\partial_\zeta G_2+ \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2  \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right)) - 2 \partial_\xi F_2 \partial_\zeta G_2. 
+- 4\eta_{1\xi \zeta} &= \partial_\xi (2 \partial_{\tau_1}F_2 + \frac{1}{3} \partial_\xi^3 F_2 + F_2\partial_\xi F_2 + \frac{1}{\pi} \left( \int^0_{-\tau_0} (2 F_1 -A)\partial_{\xi'}F_1\frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} (2 F_2 -  (A+B))\partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi'  \right))  \\
+&+ \partial_\zeta(- 2 \partial_{\tau_1} G_2 +  \frac{1}{3} \partial_\zeta^3 G_2+ G_2 \partial_{\zeta} G_2 + \frac{1}{\pi} \left( \int^{2\tau_0}_{\tau_0} (2 G_1 +A)\partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2+A+B) \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right)) \\
+&+ \partial_{\xi}(-G_2 \partial_\xi F_2 + \frac{1}{\pi} \left( \int^{2\tau_0}_{\tau_0} (2 G_1+A) \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2 + (A+B) )\partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta'    \right) ) \\
+&+ \partial_{\zeta}( -F_2\partial_\zeta G_2+ \frac{1}{\pi} \left(\int^0_{-\tau_0} (2 F_1 - A)\partial_{\xi'} F_1 \frac{1}{\xi + \zeta'} \D \xi' + \int^{\infty}_{0} (2 F_2 -(A+B))\partial_{\xi'} F_2 \frac{1}{\xi + \zeta'} \D \xi' \right)) - 2 \partial_\xi F_2 \partial_\zeta G_2. 
 \end{aligned}
 \end{equation}
 Integration of \eqref{srfceqHL3-1} with respect to $\zeta$ yields
 \begin{equation}
 \begin{aligned}
-- 4\eta_{1\xi} &= \zeta \partial_\xi (2 \partial_{\tau_1}F_2 + \frac{1}{3} \partial_\xi^3 F_2 + F_2\partial_\xi F_2 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right))  \\
-&+(- 2 \partial_{\tau_1} G_2 +  \frac{1}{3} \partial_\zeta^3 G_2+ G_2 \partial_{\zeta} G_2  + \frac{1}{\pi} \left( \int_0^{\tau_0}  2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right)) \\
-&+ \partial_{\xi}\int (G_2 \partial_\xi F_2 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) )\D \zeta \\
-&+(-F_2\partial_\zeta G_2 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2  \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right)) - 2 \partial_\xi F_2 G_2. 
+- 4\eta_{1\xi} &= \zeta \partial_\xi (2 \partial_{\tau_1}F_2 + \frac{1}{3} \partial_\xi^3 F_2 + (F_2-A-B)\partial_\xi F_2 + \frac{1}{\pi} \left( \int^0_{-\tau_0} (2 F_1 -A)\partial_{\xi'}F_1\frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} (2 F_2 -  (A+B))\partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi'  \right) )  \\
+&+(- 2 \partial_{\tau_1} G_2 +  \frac{1}{3} \partial_\zeta^3 G_2+ (G_2+ A +B) \partial_{\zeta} G_2  + \frac{1}{\pi} \left( \int^{2\tau_0}_{\tau_0} (2 G_1 +A)\partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2+A+B) \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right) ) \\
+&+ \partial_{\xi}\int (-G_2 \partial_\xi F_2 + \frac{1}{\pi}\left( \int^{2\tau_0}_{\tau_0} (2 G_1+A) \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2 + (A+B) )\partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta'    \right) )\D \zeta \\
+&+(-F_2\partial_\zeta G_2 + \frac{1}{\pi} \left(\int^0_{-\tau_0} (2 F_1 - A)\partial_{\xi'} F_1 \frac{1}{\xi + \zeta'} \D \xi' + \int^{\infty}_{0} (2 F_2 -(A+B))\partial_{\xi'} F_2 \frac{1}{\xi + \zeta'} \D \xi' \right) ) - 2 \partial_\xi F_2 G_2. 
 \end{aligned}
 \end{equation}
 and further integration with respect to $\xi$ leads to
 \begin{align*}
-- 4\eta_{1} &= \zeta (2 \partial_{\tau_1}F_2 + \frac{1}{3} \partial_\xi^3 F_2 + F_2\partial_\xi F_2 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) ) \\
-&+\xi (- 2 \partial_{\tau_1} G_2 +  \frac{1}{3} \partial_\zeta^3 G_2+ G_2 \partial_{\zeta} G_2  + \frac{1}{\pi} \left( \int_0^{\tau_0}  2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) )\\
-&+ \int (G_2 \partial_\xi F_2 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) )\D \zeta \\
-&+\int (-F_2\partial_\zeta G_2 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2  \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right))\D \xi - 2 F_2 G_2. 
+- 4\eta_{1} &= \zeta (2 \partial_{\tau_1}F_2 + \frac{1}{3} \partial_\xi^3 F_2 + (F_2-A-B)\partial_\xi F_2 + \frac{1}{\pi} \left( \int^0_{-\tau_0} (2 F_1 -A)\partial_{\xi'}F_1\frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} (2 F_2 -  (A+B))\partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi'  \right)) \\
+&+\xi (- 2 \partial_{\tau_1} G_2 +  \frac{1}{3} \partial_\zeta^3 G_2+ (G_2+ A +B) \partial_{\zeta} G_2  + \frac{1}{\pi}  \left( \int^{2\tau_0}_{\tau_0} (2 G_1 +A)\partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2+A+B) \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right) )\\
+&+ \int (-G_2 \partial_\xi F_2 + \frac{1}{\pi}\left( \int^{2\tau_0}_{\tau_0} (2 G_1+A) \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2 + (A+B) )\partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta'    \right) )\D \zeta \\
+&+\int (-F_2\partial_\zeta G_2 + \frac{1}{\pi} \left(\int^0_{-\tau_0} (2 F_1 - A)\partial_{\xi'} F_1 \frac{1}{\xi + \zeta'} \D \xi' + \int^{\infty}_{0} (2 F_2 -(A+B))\partial_{\xi'} F_2 \frac{1}{\xi + \zeta'} \D \xi' \right) )\D \xi - 2 F_2 G_2. 
 \end{align*}
 Since $\eta_1$ must be bounded, we must have 
 \begin{align}
-2 \partial_{\tau_1}F_2 + \frac{1}{3} \partial_\xi^3 F_2 + F_2\partial_\xi F_2 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) &= 0 \label{KdVish2}, \\
-- 2 \partial_{\tau_1} G_2 +  \frac{1}{3} \partial_\zeta^3 G_2+ G_2 \partial_{\zeta} G_2  + \frac{1}{\pi} \left( \int_0^{\tau_0}  2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) &= 0. \label{KdVish4}
+2 \partial_{\tau_1}F_2 + \frac{1}{3} \partial_\xi^3 F_2 + (F_2-A-B)\partial_\xi F_2 + \frac{1}{\pi}  \left( \int^0_{-\tau_0} (2 F_1 -A)\partial_{\xi'}F_1\frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} (2 F_2 -  (A+B))\partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi'  \right) &= 0 \label{KdVish2}, \\
+- 2 \partial_{\tau_1} G_2 +  \frac{1}{3} \partial_\zeta^3 G_2+ (G_2+ A +B)\partial_{\zeta} G_2  + \frac{1}{\pi}  \left( \int^{2\tau_0}_{\tau_0} (2 G_1 +A)\partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2+A+B) \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right) &= 0. \label{KdVish4}
 \end{align}
 In other words, we have obtained two KdV-like equations, \eqref{KdVish2} and \eqref{KdVish4}, whose solutions $F_2, G_2$ describe behaviour of the surface elevation in the leading order, when $x\geq \tau_0.$
 
 \subsubsection{Conclusion}
 In summary, we have started out with a general solution of the wave equation on the right half-line:
 \[ \eta_0(x, \tau_0, \tau_1, \ldots ) = \begin{cases} F_2(x-\tau_0, \tau_1, \ldots ) + G_2(x+\tau_0, \tau_1, \ldots) & x\geq \tau_0 \\ F_1(\tau_0-x, \tau_1, \ldots ) + G_1(x+\tau_0, \tau_1, \ldots) & x<\tau_0 \end{cases}, \]
-and obtained 2 systems of 2 equations: one in $F_1, F_2:$
+and obtained a system of 4 equations in four unknowns $F_1, F_2, G_1, G_2:$
+\begin{equation}\label{HLSystem}
+\begin{aligned}
+2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_\xi^3 F_1 + (F_1-A)\partial_\xi F_1 + \frac{1}{\pi} \left(\int^0_{-\tau_0} (2 F_1  - A)\partial_{\xi'} F_1\frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} (2 F_2 - (A+B))\partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi'\right)  &= 0, \qquad x < \tau_0; \\
+2 \partial_{\tau_1}F_2 + \frac{1}{3} \partial_\xi^3 F_2 + (F_2-A-B)\partial_\xi F_2 + \frac{1}{\pi}  \left( \int^0_{-\tau_0} (2 F_1 -A)\partial_{\xi'}F_1\frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} (2 F_2 -  (A+B))\partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi'  \right) &= 0, \qquad x \geq \tau_0; \\
+- 2 \partial_{\tau_1} G_1 +  \frac{1}{3} \partial_\zeta^3 G_1+ (G_1+A) \partial_{\zeta} G_1  +  \frac{1}{\pi} \left( \int^{2\tau_0}_{\tau_0} (2 G_1 + A) \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2+(A+B)) \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right) &= 0, \qquad x < \tau_0; \\
+- 2 \partial_{\tau_1} G_2 +  \frac{1}{3} \partial_\zeta^3 G_2+ (G_2+ A +B)\partial_{\zeta} G_2  + \frac{1}{\pi}  \left( \int^{2\tau_0}_{\tau_0} (2 G_1 +A)\partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} (2 G_2+A+B) \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right) &= 0, \qquad x \geq \tau_0,
+\end{aligned}
+\end{equation}
+where 
+\[ A = F_1(\tau_0)  - G_1(\tau_0), \qquad B = F_2(0) - F_1(0)  +  G_1(2\tau_0) - G_2(2\tau_0). \]
+One can decouple this system by further forcing 
+\[
+F_1(0) = F_2(0), \qquad G_1(2\tau_0) =G_2(2\tau_0), \qquad F_1(\tau_0) ) = G_1(\tau_0),
+\]
+in which case, $A, B = 0,$ and we obtain 2 systems of 2 equations: one in $F_1, F_2:$
 \begin{equation}\label{HLSystemF}
 \begin{aligned}
-2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_\xi^3 F_1 + F_1\partial_\xi F_1 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) &= 0; \\
-2 \partial_{\tau_1}F_2 + \frac{1}{3} \partial_\xi^3 F_2 + F_2\partial_\xi F_2 + \frac{1}{\pi} \left( \int_0^{\tau_0} 2 F_1  \partial_\xi F_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) &= 0,
+2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_\xi^3 F_1 + F_1\partial_\xi F_1 + \frac{1}{\pi} \left(\int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi' \right) &= 0, \qquad x < \tau_0; \\
+2 \partial_{\tau_1}F_2 + \frac{1}{3} \partial_\xi^3 F_2 + F_2\partial_\xi F_2 + \frac{1}{\pi}  \left( \int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi' \right) &= 0, \qquad x \geq \tau_0;
 \end{aligned}
 \end{equation}
 and another one in $G_1, G_2:$
 \begin{equation}\label{HLSystemG}
 \begin{aligned}
-- 2 \partial_{\tau_1} G_1 +  \frac{1}{3} \partial_\zeta^3 G_1+ G_1 \partial_{\zeta} G_1  + \frac{1}{\pi} \left( \int_0^{\tau_0}  2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) &= 0; \\
-- 2 \partial_{\tau_1} G_2 +  \frac{1}{3} \partial_\zeta^3 G_2+ G_2 \partial_{\zeta} G_2  + \frac{1}{\pi} \left( \int_0^{\tau_0}  2 G_1 \partial_\zeta G_1 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \right) &= 0.
+- 2 \partial_{\tau_1} G_1 +  \frac{1}{3} \partial_\zeta^3 G_1+ G_1 \partial_{\zeta} G_1  +  \frac{1}{\pi} \left( \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right) &= 0, \qquad x < \tau_0; \\
+- 2 \partial_{\tau_1} G_2 +  \frac{1}{3} \partial_\zeta^3 G_2+ G_2 \partial_{\zeta} G_2  + \frac{1}{\pi} \left( \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right) &= 0, \qquad x \geq \tau_0.
 \end{aligned}
 \end{equation}
-It should be noted that even though two systems \eqref{HLSystemF} and \eqref{HLSystemG} seem to be unrelated, this separation was due to the boundary conditions that we imposed at the interface
-\[ F_1(0) = F_2(0), G_1(2\tau_0) =G_2(2\tau_0), \]
-and the free boundary condition at the midpoint
-\[ \eta_x(0,t) = -F_1'(\tau_0)+ G_1'(\tau_0) = 0. \]
 
 \subsubsection{The Hilbert Transform term}
 \begin{prop}\label{HTtransformed}
 We have 
 \begin{align*}
 \int_0^\infty \partial_t &\left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
-&=  \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y.
+&=  \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&+ A \int_0^{\tau_0} (-\partial_\xi F_1 + \partial_\zeta G_1) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + (A+B)\int_{\tau_0}^\infty (- \partial_\xi F_2+ \partial_\zeta G_2) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y,
+\end{align*}
+where 
+\begin{align*}
+A &= F_1(\tau_0) ) - G_1(\tau_0), \\
+B &= F_2(0) - F_1(0)  +  G_1(2\tau_0) - G_2(2\tau_0). 
 \end{align*}
 \end{prop}
 \begin{proof}
@@ -424,17 +477,17 @@ We deal with \eqref{Int1}:
 &= \int_0^{\tau_0} (- \partial_\xi + \partial_\zeta)\left( (F_1 + G_1) (- (F_1-F_1(\tau_0)) + G_1 - G_1(\tau_0) )\right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
 &= \int_0^{\tau_0} (- \partial_\xi + \partial_\zeta)\left( (F_1 + G_1) ( - F_1 + G_1 + F_1(\tau_0) ) - G_1(\tau_0) )\right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
 &= \int_0^{\tau_0} \left(- \partial_\xi + \partial_\zeta) (-F_1^2 + G_1^2)  + (- \partial_\xi + \partial_\zeta)(F_1 + G_1) (F_1(\tau_0) ) - G_1(\tau_0) )\right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
-&= \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y, 
+&= \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 + A(-\partial_\xi F_1 + \partial_\zeta G_1)\right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y, 
 \end{align*}
-where we can set $F_1(\tau_0) ) - G_1(\tau_0)  = 0$ by imposing a free end condition $\eta_x(0,t) = 0.$ Now, we deal with \eqref{Int2}:
+where we can set $F_1(\tau_0) ) - G_1(\tau_0)  =  A$ by imposing a free end condition $\eta_x(0,t) = 0.$ Now, we deal with \eqref{Int2}:
 \begin{align*}
 \int_{\tau_0}^\infty (- \partial_\xi + \partial_\zeta)&\left( \eta_0 \int^{y}_0 (- \partial_\xi + \partial_\zeta)\eta_0 \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
 &= \int_{\tau_0}^\infty  (- \partial_\xi + \partial_\zeta)\left( (F_2 + G_2) \left (\int^{\tau_0}_0 (- \partial_\xi + \partial_\zeta)(F_1 + G_1) \D y'  +  \int^{y}_{\tau_0} (- \partial_\xi + \partial_\zeta)(F_2 + G_2) \D y' \right) \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
 &=  \int_{\tau_0}^\infty  (- \partial_\xi + \partial_\zeta)\left( (F_2 + G_2) \left( (- F_1(0) + F_1(\tau_0) + G_1(2\tau_0) - G_1(\tau_0)-  F_2 + F_2(0) + G_2 - G_2(2\tau_0) \right) \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
 &=  \int_{\tau_0}^\infty  (- \partial_\xi + \partial_\zeta)\left( (F_2 + G_2) \left( - F_2 + G_2 + F_2(0) - F_1(0)  + F_1(\tau_0)  + G_1(2\tau_0) - G_2(2\tau_0) - G_1(\tau_0) \right) \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
-&=  \int_{\tau_0}^\infty  (- \partial_\xi + \partial_\zeta)\left( (F_2 + G_2) (- F_2 + G_2) \right) +  (- \partial_\xi + \partial_\zeta)\left( (F_2 + G_2) (F_2(0) - F_1(0)  + F_1(\tau_0)  + G_1(2\tau_0) - G_2(2\tau_0) - G_1(\tau_0) ) \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y.
+&=  \int_{\tau_0}^\infty  (- \partial_\xi + \partial_\zeta)\left( (F_2 + G_2) (- F_2 + G_2) \right) +  (- \partial_\xi + \partial_\zeta)\left( (F_2 + G_2) (F_2(0) - F_1(0)  + F_1(\tau_0)  + G_1(2\tau_0) - G_2(2\tau_0) - G_1(\tau_0) ) \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y,
 \end{align*}
-where for the last line we translate $\xi' = x'-t, \zeta' = x'+t$ to obtain
+where for the second and third lines we translate $\xi' = x'-t, \zeta' = x'+t$ to obtain
 \begin{align*}
  \int^{y}_{t} -\partial_{\xi'}(F_2(\xi' - \tau_0 )) \D x' &=  \int^{y-t}_{0}(F_2)_{\xi'}(\xi', \tau_1) \D \xi' =\int^{\xi}_{0}(F_2)_{\xi'}(\xi', \tau_1) \D \xi' = F_2(\xi, \tau_1) - F_2(0, \tau_1), \\
 \int^{y}_{t} \partial_{\zeta'}(G_2)(\xi'+\tau_0, \tau_1) \D x' &=  \int^{y+t}_{2t}(G_2)_{\zeta'}(\zeta', \tau_1) \D \zeta' = \int^{\zeta}_{2\tau_0}(G_2)_{\zeta'}(\zeta', \tau_1) \D \zeta' = G_2(\zeta, \tau_1) - G_2(2\tau_0, \tau_1).
@@ -445,24 +498,150 @@ We have that
 &= \int_{\tau_0}^\infty (\partial_\xi (F_2^2) + \partial_\zeta(G_2^2) )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
 &= \int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y.
 \end{align*}
-Looking at the term
-\begin{equation}\label{ConstTerm2}
- \int_{\tau_0}^\infty (- \partial_\xi + \partial_\zeta)\left( (F_2 + G_2) (F_2(0) - F_1(0)  + F_1(\tau_0)  + G_1(2\tau_0) - G_2(2\tau_0) - G_1(\tau_0) ) \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y,
-\end{equation}
-we observe interaction between $F_i, G_i$ at the interface $x= \tau_0.$ If we impose continuity, then $F_2(0) = F_1(0), G_2(2\tau_0) = G_1(2\tau_0),$ which leaves us with $F_1(\tau_0)- G_1(\tau_0).$ As before, we can eliminate this term by imposing a free end condition $\eta_x(0,t) = 0.$ Therefore, the term \eqref{ConstTerm2} vanishes due to boundary conditions. So, we obtain
+Let 
+\[ F_2(0) - F_1(0)  +  G_1(2\tau_0) - G_2(2\tau_0) = B, \]
+so that
+\[ F_2(0) - F_1(0)  +  G_1(2\tau_0) - G_2(2\tau_0) + F_1(\tau_0) - G_1(\tau_0) = A + B. \]
+We then see that:
+\begin{align}
+ \int_{\tau_0}^\infty (- \partial_\xi + \partial_\zeta)&\left( (F_2 + G_2) (F_2(0) - F_1(0)  + F_1(\tau_0)  + G_1(2\tau_0) - G_2(2\tau_0) - G_1(\tau_0) ) \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \nonumber \\
+ &= (A+B)\int_{\tau_0}^\infty (- \partial_\xi + \partial_\zeta) (F_2 + G_2)  \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \nonumber \\
+ &= (A+B)\int_{\tau_0}^\infty (- \partial_\xi F_2+ \partial_\zeta G_2) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y. \label{ConstTerm2}
+\end{align}
+we observe interaction between $F_i, G_i$ at the interface $x= \tau_0.$ Note that if we impose continuity, then $F_2(0) = F_1(0), G_2(2\tau_0) = G_1(2\tau_0),$ which leaves us with $F_1(\tau_0)- G_1(\tau_0).$ As before, we can eliminate this term by imposing a free end condition $\eta_x(0,t) = 0,$ and restricting the scalar of integration to be $0.$ In this case, $A+B = 0$ and so the term \eqref{ConstTerm2} vanishes due to boundary conditions. More generally, we obtain
 \begin{align*} 
-\int_{\tau_0}^\infty (- \partial_\xi + \partial_\zeta)\left( \eta_0 \int^{y}_0 (- \partial_\xi + \partial_\zeta)\eta_0 \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y &= \int_{\tau_0}^\infty  (- \partial_\xi + \partial_\zeta)\left( (F_2 + G_2) (- F_2 + G_2) \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
-&= \int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y,
+\int_{\tau_0}^\infty (- \partial_\xi + \partial_\zeta)&\left( \eta_0 \int^{y}_0 (- \partial_\xi + \partial_\zeta)\eta_0 \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&= \int_{\tau_0}^\infty  (- \partial_\xi + \partial_\zeta)\left( (F_2 + G_2) (- F_2 + G_2) \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + (A+B)\int_{\tau_0}^\infty (- \partial_\xi F_2+ \partial_\zeta G_2) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y\\
+&= \int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + (A+B)\int_{\tau_0}^\infty (- \partial_\xi F_2+ \partial_\zeta G_2) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y,
 \end{align*}
 so that 
 \begin{align*}
 \int_0^\infty \partial_t \left( \eta \int^{y}_0\eta_{t} \D y' \right) &\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
 &= \int_0^{\tau_0} (- \partial_\xi + \partial_\zeta)\left( \eta_0 \int^{y}_0 (- \partial_\xi + \partial_\zeta)\eta_0 \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + \int_{\tau_0}^\infty (- \partial_\xi + \partial_\zeta)\left( \eta_0 \int^{y}_0 (- \partial_\xi + \partial_\zeta)\eta_0 \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y\\
-&= \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y.
+&= \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y +\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&+ A \int_0^{\tau_0} (-\partial_\xi F_1 + \partial_\zeta G_1) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + (A+B)\int_{\tau_0}^\infty (- \partial_\xi F_2+ \partial_\zeta G_2) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y.
 \end{align*}
 The proof is complete. 
 \end{proof}
-
+\begin{prop}\label{HTtransformed2}
+Let 
+\begin{align*}
+A &= F_1(\tau_0) ) - G_1(\tau_0), \\
+B &= F_2(0) - F_1(0)  +  G_1(2\tau_0) - G_2(2\tau_0). 
+\end{align*}
+Then, we have 
+\begin{align*}
+(\partial_\xi + \partial_\zeta)\int_0^\infty \partial_t &\left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&= \partial_\xi
+\left( 
+\int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi -\xi'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta'
+\right) \\
+&+ \partial_\zeta \left( 
+\int^0_{-\tau_0} 2 F_1 \partial_{\xi'} F_1 \frac{1}{\xi + \zeta'} \D \xi' + \int^{\infty}_{0} 2 F_2 \partial_{\xi'} F_2 \frac{1}{\xi + \zeta'} \D \xi' + \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta'
+\right) \\
+&+ \partial_\xi \left( A \int^0_{-\tau_0} -\partial_{\xi'}F_1 \frac{1}{\xi - \xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + (A+B)\int_0^{\infty} -\partial_{\xi'} F_2 \frac{1}{\xi - \xi'} \D \xi' + \int_{2\tau_0}^{\infty} \partial_{\zeta'} G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \\
+&+ \partial_\zeta \left( A \int^0_{-\tau_0} -\partial_{\xi'} F_1  \frac{1}{\zeta + \xi'}  \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' + (A+B) \int_0^{\infty} -\partial_{\xi'} F_2  \frac{1}{\zeta + \xi'} \D \xi'  + \int_{2\tau_0}^{\infty} \partial_{\zeta'} G_2 \frac{1}{\zeta - \zeta'}\D \zeta'  \right)
+\end{align*}
+\end{prop}
+\begin{proof}
+By Proposition \ref{HTtransformed}, we have
+\begin{align*}
+(\partial_\xi + \partial_\zeta)\int_0^\infty \partial_t &\left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&=  (\partial_\xi + \partial_\zeta) \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + (\partial_\xi + \partial_\zeta)\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&+ A (\partial_\xi + \partial_\zeta)\int_0^{\tau_0} (-\partial_\xi F_1 + \partial_\zeta G_1) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + (A+B)(\partial_\xi + \partial_\zeta)\int_{\tau_0}^\infty (- \partial_\xi F_2+ \partial_\zeta G_2) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y,
+\end{align*}
+Before we start, recall the following changes of variables; they will be used throughout the proof:
+\begin{align}
+x - \tau_0 &= \xi, \label{Tr1} \\
+x + \tau_0 &= \zeta, \label{Tr2} \\
+y - \tau_0 &= \xi', \label{Tr3} \\
+y + \tau_0 &= \zeta'. \label{Tr4}
+\end{align} 
+Consider 
+\[ (\partial_\xi + \partial_\zeta) \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y. \]
+First, observe that 
+\begin{align*}
+\int_0^{\tau_0} 2 F_1(\tau_0-y) \partial_{\xi'} F_1(\tau_0-y) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y  &= \int^{0}_{-\tau_0} 2 F_1(-\xi')  \partial_{\xi'}F_1(-\xi') \left[ \frac{1}{x-\xi'-t} +  \frac{1}{x+\xi' + t} \right] \D \xi' &\text{(use \eqref{Tr3})} \\
+&= \int^{0}_{-\tau_0} 2 F_1(-\xi')  \partial_{\xi'}F_1(-\xi') \left[ \frac{1}{\xi + \tau_0 -\xi'- \tau_0} +\frac{1}{\zeta - \tau_0 +\xi' + \tau_0} \right] \D \xi'  &\text{(use \eqref{Tr1} and \eqref{Tr2})} \\
+&= \int^{0}_{-\tau_0} 2 F_1 \partial_{\xi'}F_1 \left[ \frac{1}{\xi -\xi'} + \frac{1}{\zeta +\xi'} \right] \D \xi',
+\end{align*}
+and 
+\begin{align*}
+\int_0^{\tau_0} 2 G_1(y+\tau_0) \partial_{\zeta'} G_1(y+\tau_0) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y &= \int_{\tau_0}^{2\tau_0} 2 G_1(\zeta') \partial_{\zeta'} G_1(\zeta') \left[ \frac{1}{x-\zeta' - \tau_0} + \frac{1}{x+\zeta' + \tau_0} \right] \D \zeta' &\text{(use \eqref{Tr4})} \\
+&= \int_{\tau_0}^{2\tau_0} 2 G_1\partial_{\zeta'} G_1 \left[ \frac{1}{\zeta - \tau_0 -\zeta' + \tau_0} +\frac{1}{\xi + \tau_0 +\zeta' - \tau_0} \right] \D \zeta' &\text{(use \eqref{Tr2}) and \eqref{Tr1}} \\
+&= \int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \left[ \frac{1}{\zeta - \zeta'} + \frac{1}{\xi + \zeta'} \right] \D \zeta'.
+\end{align*}
+This yields:
+\begin{align}
+(\partial_\xi + \partial_\zeta) \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y &= (\partial_\xi + \partial_\zeta)\int^{0}_{-\tau_0} 2 F_1\partial_{\xi'}F_1 \left[ \frac{1}{\xi -\xi'} + \frac{1}{\zeta +\xi'} \right] \D \xi'  + (\partial_\xi + \partial_\zeta)\int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \left[ \frac{1}{\zeta - \zeta'} + \frac{1}{\xi + \zeta'} \right] \D \zeta' \nonumber \\
+&= \partial_\xi \int^{0}_{-\tau_0} 2 F_1\partial_{\xi'}F_1 \frac{1}{\xi -\xi'} \D \xi'  + \partial_\zeta \int^{0}_{-\tau_0} 2 F_1\partial_{\xi'}F_1 \frac{1}{\zeta +\xi'} \D \xi' \nonumber\\
+&+ \partial_\xi \int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \partial_\zeta \int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' \nonumber \\
+&= \partial_\xi \left( \int^{0}_{-\tau_0} 2 F_1\partial_{\xi'}F_1  \frac{1}{\xi -\xi'} \D \xi' + \int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' \right)  \nonumber\\
+&+\partial_\zeta \left( \int^{0}_{-\tau_0} 2 F_1\partial_{\xi'}F_1 \frac{1}{\zeta +\xi'} \D \xi' + \int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' \right) \label{Tr5}.
+\end{align}
+By a similar argument, one may show that 
+\begin{align*}
+\int_{\tau_0}^\infty 2 F_2 \partial_\xi F_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y = \int_{0}^\infty 2 F_2 \partial_\xi F_2 \left[ \frac{1}{\xi - \xi'} + \frac{1}{\zeta + \xi'} \right] \D \xi',
+\end{align*}
+and 
+\begin{align*}
+\int_{\tau_0}^\infty 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y = \int_{2\tau_0}^{\infty} 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{\zeta - \zeta'} + \frac{1}{\xi + \zeta'}\right] \D \zeta', 
+\end{align*}
+so that
+\begin{align}
+(\partial_\xi + \partial_\zeta)\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y &= (\partial_\xi + \partial_\zeta) \int_{0}^\infty 2 F_2 \partial_\xi F_2 \left[ \frac{1}{\xi - \xi'} + \frac{1}{\zeta + \xi'} \right] \D \xi'  + (\partial_\xi + \partial_\zeta) \int_{2\tau_0}^{\infty} 2 G_2 \partial_\zeta G_2 \left[ \frac{1}{\zeta - \zeta'} + \frac{1}{\xi + \zeta'}\right] \D \zeta' \nonumber\\
+&= \partial_\xi \int_{0}^\infty 2 F_1\partial_{\xi'}F_1 \frac{1}{\xi -\xi'} \D \xi'  + \partial_\zeta \int_{0}^\infty 2 F_1\partial_{\xi'}F_1 \frac{1}{\zeta +\xi'} \D \xi' \nonumber \\
+&+ \partial_\xi \int_{2\tau_0}^{\infty}  2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \partial_\zeta \int_{2\tau_0}^{\infty}  2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' \nonumber\\
+&= \partial_\xi \left( \int_{0}^\infty 2 F_1\partial_{\xi'}F_1  \frac{1}{\xi -\xi'} \D \xi' + \int_{2\tau_0}^{\infty}  2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' \right) \nonumber \\
+&+\partial_\zeta \left( \int_{0}^\infty 2 F_1\partial_{\xi'}F_1 \frac{1}{\zeta +\xi'} \D \xi' + \int_{2\tau_0}^{\infty}  2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' \right). \label{Tr6}
+\end{align}
+Finally, bringing \eqref{Tr5} and \eqref{Tr6} yields
+\begin{align*}
+(\partial_\xi + \partial_\zeta) \int_0^{\tau_0} &\left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + (\partial_\xi + \partial_\zeta)\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&= \partial_\xi \left( \int^{0}_{-\tau_0} 2 F_1\partial_{\xi'}F_1  \frac{1}{\xi -\xi'} \D \xi' + \int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' \right) + \partial_\zeta \left( \int^{0}_{-\tau_0} 2 F_1\partial_{\xi'}F_1 \frac{1}{\zeta +\xi'} \D \xi' + \int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' \right) \\
+&+\partial_\xi \left( \int_{0}^\infty 2 F_1\partial_{\xi'}F_1  \frac{1}{\xi -\xi'} \D \xi' + \int_{2\tau_0}^{\infty}  2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' \right) + \partial_\zeta \left( \int_{0}^\infty 2 F_1\partial_{\xi'}F_1 \frac{1}{\zeta +\xi'} \D \xi' + \int_{2\tau_0}^{\infty}  2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' \right) \\
+&= \partial_\xi \left( \int^{0}_{-\tau_0} 2 F_1\partial_{\xi'}F_1  \frac{1}{\xi -\xi'} \D \xi' + \int_{0}^\infty 2 F_1\partial_{\xi'}F_1  \frac{1}{\xi -\xi'} \D \xi'  + \int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \int_{2\tau_0}^{\infty}  2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta'\right) \\
+&+ \partial_{\zeta} \left(  \int^{0}_{-\tau_0} 2 F_1\partial_{\xi'}F_1 \frac{1}{\zeta +\xi'} \D \xi' + \int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' + \int_{0}^\infty 2 F_1\partial_{\xi'}F_1 \frac{1}{\zeta +\xi'} \D \xi' + \int_{2\tau_0}^{\infty}  2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' \right),
+\end{align*}
+which gives the first part of the identity. For the second part, it is straightforward that 
+\begin{align*}
+\int_0^{\tau_0} (-\partial_\xi F_1 + \partial_\zeta G_1) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y = \int^0_{-\tau_0} -\partial_\xi F_1 \left[ \frac{1}{\xi - \xi'} + \frac{1}{\zeta + \xi'} \right] \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \left[ \frac{1}{\zeta - \zeta'} + \frac{1}{\xi + \zeta'}  \right] \D \zeta'
+\end{align*}
+so that 
+\begin{align*}
+(\partial_\xi + \partial_\zeta)\int_0^{\tau_0} (-\partial_\xi F_1 + \partial_\zeta G_1) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y &= (\partial_\xi + \partial_\zeta) \int^0_{-\tau_0} -\partial_\xi F_1 \left[ \frac{1}{\xi - \xi'} + \frac{1}{\zeta + \xi'} \right] \D \xi' + (\partial_\xi + \partial_\zeta) \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \left[ \frac{1}{\zeta - \zeta'} + \frac{1}{\xi + \zeta'}  \right] \D \zeta' \\
+&= \partial_\xi \left( \int^0_{-\tau_0} -\partial_\xi F_1 \frac{1}{\xi - \xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \frac{1}{\xi + \zeta'} \D \zeta' \right) + \partial_\zeta \left( \int^0_{-\tau_0} -\partial_\xi F_1  \frac{1}{\zeta + \xi'}  \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \frac{1}{\zeta - \zeta'} \D \zeta' \right).
+\end{align*}
+Similarly, 
+\begin{align*}
+\int_{\tau_0}^\infty (- \partial_\xi F_2+ \partial_\zeta G_2) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y = \int_0^{\infty} -\partial_\xi F_2 \left[ \frac{1}{\xi - \xi'} + \frac{1}{\zeta + \xi'} \right] \D \xi' + \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \left[ \frac{1}{\zeta - \zeta'} + \frac{1}{\xi + \zeta'}  \right] \D \zeta'
+\end{align*}
+so that 
+\begin{align*}
+(\partial_\xi + \partial_\zeta) \int_{\tau_0}^\infty (- \partial_\xi F_2+ \partial_\zeta G_2) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y &=  (\partial_\xi + \partial_\zeta) \left( \int_0^{\infty} -\partial_\xi F_2 \left[ \frac{1}{\xi - \xi'} + \frac{1}{\zeta + \xi'} \right] \D \xi' \right)+ (\partial_\xi + \partial_\zeta)\left( \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \left[ \frac{1}{\zeta - \zeta'} + \frac{1}{\xi + \zeta'}  \right] \D \zeta' \right) \\
+&=\partial_\xi \left( \int_0^{\infty} -\partial_\xi F_2 \frac{1}{\xi - \xi'} \D \xi' + \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \frac{1}{\xi + \zeta'} \D \zeta'  \right) + \partial_\zeta \left( \int_0^{\infty} -\partial_\xi F_2  \frac{1}{\zeta + \xi'} \D \xi'  + \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \frac{1}{\zeta - \zeta'}\D \zeta' \right)
+\end{align*}
+Therefore,
+\begin{align*}
+A (\partial_\xi + \partial_\zeta)\int_0^{\tau_0} (-\partial_\xi F_1 + \partial_\zeta G_1) &\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + (A+B)(\partial_\xi + \partial_\zeta)\int_{\tau_0}^\infty (- \partial_\xi F_2+ \partial_\zeta G_2) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&= A \partial_\xi \left( \int^0_{-\tau_0} -\partial_\xi F_1 \frac{1}{\xi - \xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \frac{1}{\xi + \zeta'} \D \zeta' \right) + A \partial_\zeta \left( \int^0_{-\tau_0} -\partial_\xi F_1  \frac{1}{\zeta + \xi'}  \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \frac{1}{\zeta - \zeta'} \D \zeta' \right) \\
+&+ (A+B) \partial_\xi \left( \int_0^{\infty} -\partial_\xi F_2 \frac{1}{\xi - \xi'} \D \xi' + \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \frac{1}{\xi + \zeta'} \D \zeta'  \right) + (A+B) \partial_\zeta \left( \int_0^{\infty} -\partial_\xi F_2  \frac{1}{\zeta + \xi'} \D \xi'  + \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \frac{1}{\zeta - \zeta'}\D \zeta' \right) \\
+&= \partial_\xi \left( A \int^0_{-\tau_0} -\partial_\xi F_1 \frac{1}{\xi - \xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \frac{1}{\xi + \zeta'} \D \zeta' + (A+B)\int_0^{\infty} -\partial_\xi F_2 \frac{1}{\xi - \xi'} \D \xi' + \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \\
+&+ \partial_\zeta \left( A \int^0_{-\tau_0} -\partial_\xi F_1  \frac{1}{\zeta + \xi'}  \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \frac{1}{\zeta - \zeta'} \D \zeta' + (A+B) \int_0^{\infty} -\partial_\xi F_2  \frac{1}{\zeta + \xi'} \D \xi'  + \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \frac{1}{\zeta - \zeta'}\D \zeta'  \right),
+\end{align*}
+which yields the second part of identity.
+Therefore,
+\begin{align*}
+\partial_\xi + \partial_\zeta)\int_0^\infty \partial_t &\left( \eta \int^{y}_0\eta_{t} \D y' \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&=  (\partial_\xi + \partial_\zeta) \int_0^{\tau_0} \left( 2 F_1  \partial_\xi F_1 + 2 G_1 \partial_\zeta G_1 \right) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + (\partial_\xi + \partial_\zeta)\int_{\tau_0}^\infty (2 F_2 \partial_\xi F_2 + 2 G_2 \partial_\zeta G_2 )\left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&+ A (\partial_\xi + \partial_\zeta)\int_0^{\tau_0} (-\partial_\xi F_1 + \partial_\zeta G_1) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y + (A+B)(\partial_\xi + \partial_\zeta)\int_{\tau_0}^\infty (- \partial_\xi F_2+ \partial_\zeta G_2) \left[ \frac{1}{x-y} + \frac{1}{x+y} \right] \D y \\
+&= \partial_\xi \left( \int^{0}_{-\tau_0} 2 F_1\partial_{\xi'}F_1  \frac{1}{\xi -\xi'} \D \xi' + \int_{0}^\infty 2 F_1\partial_{\xi'}F_1  \frac{1}{\xi -\xi'} \D \xi'  + \int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta' + \int_{2\tau_0}^{\infty}  2 G_1 \partial_{\zeta'} G_1 \frac{1}{\xi + \zeta'} \D \zeta'\right) \\
+&+ \partial_{\zeta} \left(  \int^{0}_{-\tau_0} 2 F_1\partial_{\xi'}F_1 \frac{1}{\zeta +\xi'} \D \xi' + \int_{\tau_0}^{2\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' + \int_{0}^\infty 2 F_1\partial_{\xi'}F_1 \frac{1}{\zeta +\xi'} \D \xi' + \int_{2\tau_0}^{\infty}  2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta - \zeta'} \D \zeta' \right) \\
+&+ \partial_\xi \left( A \int^0_{-\tau_0} -\partial_\xi F_1 \frac{1}{\xi - \xi'} \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \frac{1}{\xi + \zeta'} \D \zeta' + (A+B)\int_0^{\infty} -\partial_\xi F_2 \frac{1}{\xi - \xi'} \D \xi' + \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \frac{1}{\xi + \zeta'} \D \zeta' \right) \\
+&+ \partial_\zeta \left( A \int^0_{-\tau_0} -\partial_\xi F_1  \frac{1}{\zeta + \xi'}  \D \xi' + \int^{2\tau_0}_{\tau_0} \partial_\zeta G_1 \frac{1}{\zeta - \zeta'} \D \zeta' + (A+B) \int_0^{\infty} -\partial_\xi F_2  \frac{1}{\zeta + \xi'} \D \xi'  + \int_{2\tau_0}^{\infty} \partial_\zeta G_2 \frac{1}{\zeta - \zeta'}\D \zeta'  \right).
+\end{align*}
+This gives the desired identity.
+\end{proof}
 {\small\bibliography{references}}
 
 \end{document}
