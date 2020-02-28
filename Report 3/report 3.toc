@@ -5,4 +5,5 @@
 \contentsline {subsubsection}{\numberline {2.2.1}The case $x<\tau _0$}{8}{subsubsection.2.2.1}% 
 \contentsline {subsubsection}{\numberline {2.2.2}The case $x\geqslant \tau _0$}{12}{subsubsection.2.2.2}% 
 \contentsline {subsubsection}{\numberline {2.2.3}Conclusion}{16}{subsubsection.2.2.3}% 
-\contentsline {subsubsection}{\numberline {2.2.4}The Hilbert Transform term}{17}{subsubsection.2.2.4}% 
+\contentsline {subsubsection}{\numberline {2.2.4}Analysis of the system}{18}{subsubsection.2.2.4}% 
+\contentsline {subsubsection}{\numberline {2.2.5}The Hilbert Transform term}{21}{subsubsection.2.2.5}% 

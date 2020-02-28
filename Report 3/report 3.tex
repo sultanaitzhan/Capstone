@@ -419,9 +419,9 @@ and obtained a system of 4 equations in four unknowns $F_1, F_2, G_1, G_2:$
 \end{equation}
 where 
 \[ A = F_1(\tau_0)  - G_1(\tau_0), \qquad B = F_2(0) - F_1(0)  +  G_1(2\tau_0) - G_2(2\tau_0). \]
-One can decouple this system by further forcing 
+\rmk{Observe that one can decouple this system by further forcing 
 \[
-F_1(0) = F_2(0), \qquad G_1(2\tau_0) =G_2(2\tau_0), \qquad F_1(\tau_0) ) = G_1(\tau_0),
+F_1(0) = F_2(0), \qquad F_2(0) - F_1(0)  = G_2(2\tau_0)  - G_1(2\tau_0)  
 \]
 in which case, $A, B = 0,$ and we obtain 2 systems of 2 equations: one in $F_1, F_2:$
 \begin{equation}\label{HLSystemF}
@@ -437,7 +437,113 @@ and another one in $G_1, G_2:$
 - 2 \partial_{\tau_1} G_2 +  \frac{1}{3} \partial_\zeta^3 G_2+ G_2 \partial_{\zeta} G_2  + \frac{1}{\pi} \left( \int^{2\tau_0}_{\tau_0} 2 G_1 \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' + \int^{\infty}_{2\tau_0} 2 G_2 \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \right) &= 0, \qquad x \geq \tau_0.
 \end{aligned}
 \end{equation}
+Note that all equations look like KdV except for the integral terms.
+}
 
+\subsubsection{Analysis of the system}
+In this section, we analyse the system \eqref{HLSystem}. First, we switch back to $x,t$ coordinates and for simplicity consider the case $x<\tau_0. $Recalling the changes of variables, we have
+\begin{align*}
+x - \tau_0 &= \xi, \implies \partial_\xi = \partial_x \\
+x + \tau_0 &= \zeta, \implies\partial_\zeta = \partial_x\\
+y - \tau_0 &= \xi', \implies \D \xi' = \D y \\
+y + \tau_0 &= \zeta', \implies \D \zeta' = \D y
+\end{align*} 
+Also, we have that $\partial_t = -\partial_\xi + \partial_\zeta + \epsilon \partial_{\tau_1},$ which implies $\partial_{\tau_1} = \frac{1}{\epsilon}(\partial_t + \partial_\xi - \partial_\zeta).$ 
+\subsubsection*{Addition}
+Consider
+\begin{align}
+2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_x^3 F_1 + F_1\partial_x F_1 - A\partial_\xi F_1+ \frac{1}{\pi} \left(\int_0^{\tau_0} 2 F_1\partial_{x'} F_1  - A\partial_{\xi'} F_1\frac{1}{x -x'} \D x + \int^{\infty}_{\tau_0} (2 F_2\partial_{x'} F_2 - (A+B) \partial_{x'} F_2 )\frac{1}{x -x'} \D x' \right)  &= 0, \qquad x < \tau_0; \label{XT1}\\
+- 2 \partial_{\tau_1} G_1 +  \frac{1}{3} \partial_x^3 G_1+ G_1\partial_{x} G_1 +A \partial_{\zeta} G_1  +  \frac{1}{\pi} \left( \int^{\tau_0}_{0} (2 G_1\partial_{x'} G_1 + A \partial_{\zeta'} G_1) \frac{1}{x-x'} \D x' + \int^{\infty}_{\tau_0} (2 G_2\partial_{x'} G_2+(A+B) \partial_{\zeta'} G_2 )\frac{1}{x -x'} \D x' \right) &= 0, \qquad x < \tau_0; \label{XT3}
+\end{align}
+
+Addition of \eqref{XT1} and \eqref{XT3} yields:
+\begin{align*}
+2 \partial_{\tau_1}(F_1 -G_1)+ \frac{1}{3} \partial_x^3 (F_1 + G_1)+ F_1\partial_x F_1 + G_1\partial_{x} G_1  +A(- \partial_\xi F_1  +\partial_{\zeta} G_1) + \frac{1}{\pi} \bigg(&\int_0^{\tau_0} ( 2 F_1\partial_{x'} F_1 + 2 G_1\partial_{x'} G_1 - A\partial_{\xi'} F_1 + A \partial_{\zeta'} G_1) \frac{1}{x -x'} \D x \\
++ &\int^{\infty}_{\tau_0} (2 F_2\partial_{x'} F_2 + 2 G_2\partial_{x'} G_2 - (A+B) \partial_{x'} F_2 +(A+B) \partial_{\zeta'} G_2  )\frac{1}{x -x'} \D x' \bigg))  = 0.
+\end{align*}
+Collecting derivatives, we obtain:
+\begin{align*}
+2 \partial_{\tau_1}(F_1 -G_1)+ \frac{1}{3} \partial_x^3 \eta_0+ \frac{1}{2} \partial_x( F_1^2 + G_1^2 )  +A(- \partial_\xi + \partial_\zeta)(F_1+ G_1) + \frac{1}{\pi} \bigg(&\int_0^{\tau_0} \partial_{x'}( F_1^2 + G_1^2 ) + A(-\partial_{\xi'} + \partial_{\zeta'} ) (F_1 + G_1) \frac{1}{x -x'} \D x \\
++ &\int^{\infty}_{\tau_0} ( \partial_{x'}(F_2^2 + G_2^2) + (A+B) (-\partial_{x'} + \partial_{\zeta'} )(F_2 + G_2 )\frac{1}{x -x'} \D x' \bigg))  = 0. 
+\end{align*}
+Using that $a^2 + b^2 = (a+b)^2 - 2ab, F_1 + G_1 = \eta_0$ and $\partial_{\tau_0} = -\partial_{\xi} + \partial_{\zeta},$ we rewrite
+\begin{align*}
+2 \partial_{\tau_1}(F_1 -G_1)+ \frac{1}{3} \partial_x^3 \eta_0+ \frac{1}{2} \partial_x( (F_1 + G_1)^2 - 2 F_1 G_1 )  +A \partial_{\tau_0} \eta_0 + \frac{1}{\pi} \bigg(&\int_0^{\tau_0} \partial_{x'}( (F_1 + G_1)^2 - 2 F_1 G_1 ) + A\partial_{\tau_0} \eta_0 \frac{1}{x -x'} \D x \\
++ &\int^{\infty}_{\tau_0} ( \partial_{x'}((F_2 + G_2)^2 - 2 F_2 G_2) + (A+B) \partial_{\tau_0}\eta_0 )\frac{1}{x -x'} \D x' \bigg))  = 0,
+\end{align*}
+so that
+\begin{equation}\label{AdditionEq1}
+\begin{aligned}
+2 \partial_{\tau_1}(F_1 -G_1)+ \frac{1}{3} \partial_x^3 \eta_0+ \frac{1}{2} \partial_x( \eta_0^2 - 2 F_1 G_1 )  +A \partial_{\tau_0} \eta_0 + \frac{1}{\pi} \bigg(&\int_0^{\tau_0} \partial_{x'}( \eta_0^2 - 2 F_1 G_1 ) + A\partial_{\tau_0} \eta_0 \frac{1}{x -x'} \D x \\
++ &\int^{\infty}_{\tau_0} ( \partial_{x'}(\eta_0^2 - 2 F_2 G_2) + (A+B) \partial_{\tau_0}\eta_0 )\frac{1}{x -x'} \D x' \bigg))  = 0.
+ \end{aligned}
+ \end{equation}
+Finally, note that 
+ \[ \partial_{\tau_0} \eta_0 = - \partial_\xi F_i + \partial_\zeta G_i \implies \partial_{\tau_0} \int \eta_0 \D x = \int \partial_{\tau_0} \eta_0 \D x = \int  - \partial_{\xi} F_i + \partial_{\zeta} G_i  \D x = - F_i + G_i.\]
+ Therefore, we rewrite \eqref{AdditionEq1} to have
+\[ - 2 \partial_{\tau_1} \partial_{\tau_0} \int \eta_0 \D x + \frac{1}{3} \partial_x^3 \eta_0+ \frac{1}{2} \partial_x( \eta_0^2 - 2 F_1 G_1 )  +A \partial_{\tau_0} \eta_0 + \frac{1}{\pi} \bigg(\int_0^{\tau_0} \partial_{x'}( \eta_0^2 - 2 F_1 G_1 ) + A\partial_{\tau_0} \eta_0 \frac{1}{x -x'} \D x + \int^{\infty}_{\tau_0} ( \partial_{x'}(\eta_0^2 - 2 F_2 G_2) + (A+B) \partial_{\tau_0}\eta_0 )\frac{1}{x -x'} \D x' \bigg))  = 0.\]
+
+\subsubsection*{Subtraction}
+Now, switch coordinates in \eqref{XT1} and \eqref{XT3} again to so that we can work with:
+\begin{align}
+2 \partial_{\tau_1}F_1 + \frac{1}{3} \partial_\xi^3 F_1 + F_1\partial_\xi F_1 - A\partial_x F_1+ \frac{1}{\pi} \left(\int_0^{\tau_0} 2 F_1\partial_{\xi'} F_1  - A\partial_{x'} F_1\frac{1}{x -x'} \D x + \int^{\infty}_{\tau_0} (2 F_2\partial_{\xi'} F_2 - (A+B) \partial_{\xi'} F_2 )\frac{1}{x -x'} \D x' \right)  &= 0, \qquad x < \tau_0; \label{XT2}\\
+- 2 \partial_{\tau_1} G_1 +  \frac{1}{3} \partial_\zeta^3 G_1+ G_1\partial_{\zeta} G_1 +A \partial_{x} G_1  +  \frac{1}{\pi} \left( \int^{\tau_0}_{0} (2 G_1\partial_{\zeta'} G_1 + A \partial_{x'} G_1) \frac{1}{x-x'} \D x' + \int^{\infty}_{\tau_0} (2 G_2\partial_{\zeta'} G_2+(A+B) \partial_{x'} G_2 )\frac{1}{x -x'} \D x' \right) &= 0, \qquad x < \tau_0; \label{XT4}
+\end{align}
+Subtraction of \eqref{XT2} from \eqref{XT4} gives:
+\begin{align*}
+0 = - 2 \partial_{\tau_1} (G_1 + F_1)+  \frac{1}{3}( \partial_\zeta^3 G_1 - \partial_\xi^3 F_1 )+ G_1\partial_{\zeta} G_1 +A \partial_{x} G_1 - F_1\partial_\xi F_1 + A\partial_x F_1 +  \frac{1}{\pi} \bigg(&\int^{\tau_0}_{0} (2 G_1\partial_{\zeta'} G_1 + A \partial_{x'} G_1- 2 F_1\partial_{\xi'} F_1  + A\partial_{x'} F_1) \frac{1}{x-x'} \D x' \\
+&+ \int^{\infty}_{\tau_0} (2 G_2\partial_{\zeta'} G_2+(A+B) \partial_{x'} G_2 - 2 F_2\partial_{\xi'} F_2 + (A+B) \partial_{x'} F_2)\frac{1}{x -x'} \D x' \bigg). 
+\end{align*}
+Collecting derivatives and reversing product rule yields
+\begin{equation}\label{SubtractionEq1}
+\begin{aligned}
+0 = - 2 \partial_{\tau_1} (G_1 + F_1)+  \frac{1}{3}( \partial_\zeta^3 - \partial_\xi^3)(G_1 + F_1)+ \frac{1}{2}(\partial_{\zeta} G_1^2 -\partial_\xi F_1^2) + A\partial_x (F_1+G_1) +  \frac{1}{\pi} \bigg(
+&\int^{\tau_0}_{0} (\partial_{\zeta'} G_1^2 - \partial_{\xi'} F_1^2  + A\partial_{x'} (G_1+F_1)) \frac{1}{x-x'} \D x' \\
+&+ \int^{\infty}_{\tau_0} (\partial_{\zeta'} G_2^2 - \partial_{\xi'} F_2^2 + (A+B) \partial_{x'}( G_2+F_2))\frac{1}{x -x'} \D x' \bigg).
+\end{aligned}
+\end{equation}
+Finally, observe that $\partial_{\zeta'} + \partial_{\xi'}= \partial_{x'}$ and $\partial_{\zeta'} - \partial_{\xi'} = \partial_{\tau_0},$ so that
+\begin{align*} 
+\partial_{\zeta'} G_i^2 - \partial_{\xi'}F_i^2 = (\partial_{\zeta'} + \partial_{\xi'})(G_i^2 - F_i^2) =  (\partial_{\zeta'} + \partial_{\xi'})((G_i- F_i)(G_i + F_i)) &= \partial_{x'} \eta_0 (G_i - F_i) + \eta_0 (\partial_{\zeta'} + \partial_{\xi'})(G_i- F_i) \\
+ &= \partial_{x'} \eta_0 (G_i - F_i) + \eta_0 (\partial_{\zeta'} - \partial_{\xi'})(G_i + F_i) \\
+ &= \partial_{x'} \eta_0 (G_i - F_i) + \eta_0 \partial_{\tau_0}\eta_0,
+\end{align*}
+ and 
+\begin{align*}
+( \partial_\zeta^3 - \partial_\xi^3) \eta_0 = (\partial_\zeta - \partial_\xi)(\partial_\zeta^2 + \partial_\zeta \partial_\xi + \partial_\xi^2)\eta_0 &= (\partial_\zeta - \partial_\xi)(\partial_\zeta^2 + 2\partial_\zeta \partial_\xi + \partial_\xi^2)\eta_0 - (\partial_\zeta - \partial_\xi) \partial_\zeta \partial_\xi \eta_0\\
+&= (\partial_{\tau_0})(\partial_\zeta +\partial_\xi)^2 \eta_0 - (\partial_\zeta - \partial_\xi) \partial_\zeta \partial_\xi (F+G)\\
+&= (\partial_{\tau_0})(\partial_x)^2 \eta_0 = \partial_{\tau_0 xx}\eta_0.
+ \end{align*}
+With this in mind, we rewrite \eqref{SubtractionEq1} to obtain
+\begin{align*}
+0 = - 2 \partial_{\tau_1} \eta_0 +  \frac{1}{3}\partial_{\tau_0 xx}\eta_0 + \frac{1}{2}( \partial_{x} \eta_0 (G_1 - F_1)) + \frac{1}{2} \eta_0 \partial_{\tau_0}\eta_0 + A\partial_x \eta_0 +  \frac{1}{\pi} \bigg(
+&\int^{\tau_0}_{0} ( \partial_{x'} \eta_0 (G_1 - F_1) + \eta_0 \partial_{\tau_0}\eta_0  + A\partial_{x'} \eta_0 ) \frac{1}{x-x'} \D x' \\
+&+ \int^{\infty}_{\tau_0} ( \partial_{x'} \eta_0 (G_2 - F_2) + \eta_0 \partial_{\tau_0}\eta_0 + (A+B) \partial_{x'}\eta_0)\frac{1}{x -x'} \D x' \bigg) 
+ \end{align*}
+Recall once more that 
+\[ 
+\partial_{\tau_0} \int \eta_0 \D x = - F_i + G_i.
+\]
+Substitution yields:
+\begin{align*}
+0 = - 2 \partial_{\tau_1} \eta_0 +  \frac{1}{3}\partial_{\tau_0 xx}\eta_0 + \frac{1}{2}( \partial_{x} \eta_0 \partial_{\tau_0} \int \eta_0 \D x) + \frac{1}{2} \eta_0 \partial_{\tau_0}\eta_0 + A\partial_x \eta_0 +  \frac{1}{\pi} \bigg(
+&\int^{\tau_0}_{0} ( \partial_{x'} \eta_0 \partial_{\tau_0} \int \eta_0 \D x + \eta_0 \partial_{\tau_0}\eta_0  + A\partial_{x'} \eta_0 ) \frac{1}{x-x'} \D x' \\
+&+ \int^{\infty}_{\tau_0} ( \partial_{x'} \eta_0 \partial_{\tau_0} \int \eta_0 \D x + \eta_0 \partial_{\tau_0}\eta_0 + (A+B) \partial_{x'}\eta_0)\frac{1}{x -x'} \D x' \bigg) \\
+=- 2 \partial_{\tau_1} \eta_0 +  \frac{1}{3}\partial_{\tau_0 xx}\eta_0 + \frac{1}{2} \partial_{x} \eta_0 (A+ \partial_{\tau_0} \int \eta_0 \D x) + \frac{1}{2} \eta_0 \partial_{\tau_0}\eta_0 +  \frac{1}{\pi} \bigg(
+&\int^{\tau_0}_{0} ( \partial_{x'} \eta_0 (A+ \partial_{\tau_0} \int \eta_0 \D x) + \eta_0 \partial_{\tau_0}\eta_0) \frac{1}{x-x'} \D x' \\
+&+ \int^{\infty}_{\tau_0} ( \partial_{x'} \eta_0 (A+B+ \partial_{\tau_0} \int \eta_0 \D x) + \eta_0 \partial_{\tau_0}\eta_0)\frac{1}{x -x'} \D x' \bigg)
+ \end{align*}
+ 
+\subsubsection*{Summary}
+In summary, on $x< \tau_0,$ we obtain two equations in $x$ coordinates: addition yields
+\[ 
+- 2 \partial_{\tau_1} \partial_{\tau_0} \int \eta_0 \D x + \frac{1}{3} \partial_x^3 \eta_0+ \frac{1}{2} \partial_x( \eta_0^2 - 2 F_1 G_1 )  +A \partial_{\tau_0} \eta_0 + \frac{1}{\pi} \bigg(\int_0^{\tau_0} \partial_{x'}( \eta_0^2 - 2 F_1 G_1 ) + A\partial_{\tau_0} \eta_0 \frac{1}{x -x'} \D x + \int^{\infty}_{\tau_0} ( \partial_{x'}(\eta_0^2 - 2 F_2 G_2) + (A+B) \partial_{\tau_0}\eta_0 )\frac{1}{x -x'} \D x' \bigg))  = 0,
+\]
+and subtraction yields
+\begin{align*}
+- 2 \partial_{\tau_1} \eta_0 +  \frac{1}{3}\partial_{\tau_0 xx}\eta_0 + \frac{1}{2} \partial_{x} \eta_0 (A+ \partial_{\tau_0} \int \eta_0 \D x) + \frac{1}{2} \eta_0 \partial_{\tau_0}\eta_0 +  \frac{1}{\pi} \bigg(&\int^{\tau_0}_{0} ( \partial_{x'} \eta_0 (A+ \partial_{\tau_0} \int \eta_0 \D x) + \eta_0 \partial_{\tau_0}\eta_0) \frac{1}{x-x'} \D x'  \\
++ &\int^{\infty}_{\tau_0} ( \partial_{x'} \eta_0 (A+B+ \partial_{\tau_0} \int \eta_0 \D x) + \eta_0 \partial_{\tau_0}\eta_0)\frac{1}{x -x'} \D x' \bigg)=0.
+\end{align*}
 \subsubsection{The Hilbert Transform term}
 \begin{prop}\label{HTtransformed}
 We have 
