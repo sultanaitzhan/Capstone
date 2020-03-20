@@ -1,0 +1,525 @@
+% Chapter Template
+
+\chapter{Non-local derivation on the whole line} % Main chapter title
+
+\label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+Recall that the equations of fluid motion are challenging to work with directly, due to the nonlinear boundary conditions and the unknown domain. In addition, these complications lead to difficulties when attempting to deal with questions of existence and well-posedness. To address these issues, reformulations of the problem have been introduced: they result in equivalent problems that are more tractable. While such reformulations can be helpful, they may suffer from other issues. Below, we give a short overview of these formulations, along with explaining the pros and cons of each. Our main goal is to look for a reformulation in the water surface $\eta$, and that generalises easily to two-dimensional problem. We chose this criteria with a view towards applications: indeed, in applications, determining the water surface $\eta$ is the main interest.
+
+For example, for one-dimensional surfaces (no $y$ variable), conformal mappings can be used to eliminate these problems (for an overview, see \cite{DKSZ1996}). However, this approach is limited to one-dimensional surfaces. For both one- and two-dimensional surfaces, other formulations (such as the Hamiltonian formulation given in  \cite{Zakharov} or the Zakharov–Craig–Sulem formulation, \cite{CS1993}) reduce the Euler equations to a system of two equations, in terms of surface variables $q = \phi(x, \eta)$ and $\eta$ only, by introducing a Dirichlet-to-Neumann operator (DNO). A new non-local formulation is introduced in \cite{AFM2006}, (henceforth referred to as the AFM formulation) that results in a system of two equations for the same variables as in the DNO formulation. Both the DNO and AFM formulations reduce the problem from the full fluid domain to a system of equations that depend on the surface elevation $\eta(x)$ and the velocity potential evaluated at the surface, $q(x) = \phi(x, \eta).$ However, these formulations involve solving for an additional function $q(x),$ which may be of little relevance in applications, and hard to measure in experiments.
+
+A new formulation is introduced in \cite{OV2013}, which reduces the water waves problem to a system of two equations, in one variable $\eta.$ This formulation allows to rigorously investigate one- and two-dimensional water waves. The computation of Stokes-wave asymptotic expansions for periodic waves justifies the use of the formulation; indeed, following \cite{OV2013}, the computations can be performed with arguably less effort, especially for two-dimensional waves. Our goal is to further justify the use of this formulation, which we call the $\mathcal{H}$ formulation.
+
+In this chapter, we first rewrite the water wave problem by introducing a normal-to-tangential operator. We then perform a perturbation expansion for the operator, and proceed to obtain an expression for the surface elevation. Finally, performing asymptotics and applying time scales yields the desired approximate equations. We emphasise that it is not our intention here to further the study of the water wave problem per se, but rather to demonstrate the efficacy of the $\mathcal{H}$ formulation for doing asymptotics. 
+
+\section{Water-wave problem on the whole line: non-local formulation}
+
+Recall the water wave problem 
+\begin{subequations} \label{S3:DimWholeLineProblem}
+\begin{align}
+\phi_{xx} + \phi_{zz} &= 0 &-h < z < \eta(x,t) \label{S3:PDE}\\
+\phi_{z} &= 0 &z = -h \label{S3:BBC}\\
+\eta_t + \phi_{x}\eta_{x} &= \phi_{z} & z = \eta(x,t) \label{S3:KBC}\\
+\phi_t + g\eta + \frac{1}{2}(\phi_{x}^2 + \phi_{z}^2) &= 0 &z = \eta(x,t) \label{S3:DBC}
+\end{align}
+\end{subequations}
+and consider the velocity potential evaluated at the surface:
+\[ 
+q(x,t ) = \phi (x, \eta(x, t)).
+\]
+We seek to reformulate the problem \eqref{S3:DimWholeLineProblem}. Combining \eqref{S3:KBC} and \eqref{S3:DBC}, evaluated at $z = \eta$, we obtain 
+\begin{equation}\label{S3:eq1}
+q_t + \frac{1}{2}q_x^2 + g \eta - \frac{1}{2} \frac{(\eta_t + q_x \eta_x)^2}{1 + \eta_x^2} = 0,
+\end{equation}
+which is an equation for two unknowns $q ,\eta.$ We need an equation in one unknown only. 
+
+Given the domain $D = \RR \times (-h, \eta)$, let 
+\[  
+\vec{N} = \begin{bmatrix} -\eta_x \\ 1 \end{bmatrix} \qquad
+\mbox{and} \qquad
+\vec{T} =\begin{bmatrix} 1 \\ \eta_x \end{bmatrix} \]
+be vectors normal and tangent to the surface $D,$ respectively. We introduce an operator that maps the normal derivative at a surface $\eta$ to the tangential derivative at the surface:
+\begin{equation}\label{S3:defH1}
+\mathcal{H}(\eta, D) \{ \nabla \phi \cdot \vec{N} \} = \nabla \phi \cdot \vec{T},
+\end{equation}
+where $D = - i \nabla.$ For convenience, we drop the vector notation. Note that by \eqref{S3:KBC}, 
+\[ 
+\nabla \phi \cdot N = \begin{bmatrix} \phi_x \\ \phi_z \end{bmatrix} \cdot \begin{bmatrix} -\eta_x \\ 1 \end{bmatrix} = \phi_z - \phi_x \eta_x = \eta_t,
+\] 
+and by chain rule,
+\[ 
+\nabla \phi \cdot T = \begin{bmatrix} \phi_x \\ \phi_z \end{bmatrix} \cdot \begin{bmatrix} 1 \\ \eta_x \end{bmatrix} = \phi_x + \eta_x \phi_z = q_x.
+\]
+This allows us to rewrite \eqref{S3:defH1} as 
+\begin{equation}\label{S3:defH2}
+\mathcal{H}(\eta, D) \{ \eta_t \} = q_x,
+\end{equation}
+and obtain a system
+\begin{align*}
+q_t + \frac{1}{2}q_x^2 + g \eta - \frac{1}{2} \frac{(\eta_t + q_x \eta_x)^2}{1 + \eta_x^2} &= 0, \\
+\mathcal{H}(\eta, D) \{ \eta_t \} &= q_x.
+\end{align*}
+Differentiate \eqref{S3:eq1} with respect to $x$ and \eqref{S3:defH2} with respect to $t:$
+\begin{align}
+\partial_t(q_x) + \partial_x\left(\frac{1}{2}q_x^2 + g \eta - \frac{1}{2} \frac{(\eta_t + q_x \eta_x)^2}{1 + \eta_x^2}\right) &= 0, \label{S3:eq2} \\
+\partial_t(\mathcal{H}(\eta, D) \{ \eta_t \}) &= q_{xt}. \label{S3:defH3}
+\end{align}
+Substituting \eqref{S3:defH2} and \eqref{S3:defH3} into \eqref{S3:eq2}, we obtain 
+\begin{equation}\label{S3:Hequation}
+\begin{aligned}
+\partial_t&\left(\mathcal{H}(\eta, D)\{ \eta_t\} \right) \\
+&+ \partial_x\left( \frac{1}{2}\left(\mathcal{H}(\eta, D)\{\eta_t\} \right)^2 + \epsilon \eta - \frac{1}{2} \frac{(\eta_t + \eta_x \mathcal{H}(\eta, D)\{ \eta_t\})^2}{1+\eta_x^2}\right) = 0.
+\end{aligned}
+\end{equation}
+Equation \eqref{S3:Hequation} represents a scalar equation for the water wave surface $\eta.$ The utility of \eqref{S3:Hequation} depends on whether we can find a useful representation for the operator $\mathcal{H}(\eta, D).$ In the next section, we proceed to find an equation that the $\mathcal{H}$ operator must satisfy. 
+
+\section{Behaviour of the $\mathcal{H}$ operator}
+Consider the following boundary value problem:
+\begin{subequations}
+\begin{align}
+\phi_{xx} + \phi_{zz} &= 0 &-h < z < \eta(x,t) \label{S3:PDE1}\\
+\phi_{z} &= 0 &z = -h \label{S3:BBC}\\
+\nabla  \phi \cdot N &= f(x )& z = \eta(x,t) \label{S3:KBC}
+\end{align}
+\end{subequations}
+Let $\varphi$ be harmonic on $D.$ Using \eqref{S3:PDE1} and that $\varphi_z$ is also harmonic on $D,$ we have
+\[ \varphi_z(\phi_{xx} + \phi_{zz}) - \phi((\varphi_z)_{zz} + (\varphi_{z})_{xx}) = 0. \]
+Taking the integral over the domain yields
+\[ \int^{\infty}_{-\infty} \int^{\eta(x)}_{-h} \varphi_z(\phi_{xx} + \phi_{zz}) - \phi((\varphi_z)_{zz} + (\varphi_{z})_{xx}) \D z \D x = 0.\]
+An application of Green's theorem gives 
+\begin{equation}\label{S3:dInt}
+\int_{\partial D} \varphi_z(\nabla  \phi \cdot \textbf{n}) - \phi(\nabla  \varphi_z \cdot \textbf{n}) \D s = 0,
+\end{equation} 
+where $\partial D$ is the boundary of the domain, $\D s$ is the area element, and $\textbf{n}$ is the normal vector. Now, observe that
+\[- \nabla \varphi_z \cdot \textbf{n} = \nabla  \varphi_x \cdot \textbf{t}, \]
+%\begin{align*} - \nabla  \varphi_z \cdot N = - \begin{pmatrix} \varphi_{zx} \\ \varphi_{zz} \end{pmatrix} \cdot \begin{pmatrix} - \dfrac{\D z}{\D s} \\ \dfrac{\D x}{\D s} \end{pmatrix} &=  - \begin{pmatrix} \varphi_{zx} \\ - \varphi_{xx} \end{pmatrix} \cdot \begin{pmatrix} - \dfrac{\D z}{\D s} \\ \dfrac{\D x}{\D s} \end{pmatrix} \\ &= \begin{pmatrix} \varphi_{zx} \\ \varphi_{xx} \end{pmatrix} \cdot \begin{pmatrix} \dfrac{\D z}{\D s} \\ \dfrac{\D x}{\D s} \end{pmatrix} \\ &= \begin{pmatrix} \varphi_{xx} \\ \varphi_{xz} \end{pmatrix} \cdot \begin{pmatrix} \dfrac{\D x}{\D s} \\ \dfrac{\D z}{\D s} \end{pmatrix} \\&= \nabla  \varphi_x \cdot \textbf{t}, \end{align*}
+where $\textbf{t}$ is the tangential vector. We use this to rewrite \eqref{S3:dInt} and obtain the following contour integral:
+\begin{equation}
+\begin{aligned}
+0 &= \int_{\partial D} \varphi_z(\nabla  \phi \cdot N) + \phi(\nabla  \varphi_z \cdot \textbf{t}) \D s \nonumber \\
+&= \int_{\partial D} \varphi_z (\phi_z \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) \label{S3:DimContInt}
+\end{aligned}
+\end{equation}
+We split the contour into four segments:
+\begin{align*}
+\int_{\partial D} &= \int^{\infty}_{-\infty} \bigg|^{z = -h} + \int_{-h}^{\eta(x)} \bigg|^{x \to \infty}+ \int_{\infty}^{-\infty}\bigg|^{z=\eta(x)} + \int_{\eta(x)}^{-h}\bigg|^{x \to -\infty} \\
+&=  \int^{\infty}_{-\infty} \bigg|^{z = -h} +  \int_{-h}^{\eta(x)} \bigg|^{x \to \infty} - \int_{-\infty}^{\infty}\bigg|^{z=\eta(x)} -  \int^{\eta(x)}_{-h} \bigg|^{x \to -\infty}.
+\end{align*}
+Consider each segment:
+\begin{itemize}
+\item As $|x|\to \infty,$ we know that $\phi$ and its gradient vanish, so the integrals
+\[  \int_{-h}^{\eta(x)} \bigg|^{x \to \infty}, \int^{\eta(x)}_{-h} \bigg|^{x \to -\infty}\]
+vanish.
+\item At $z = -h, \D z = 0,$ so we have 
+\begin{align*}
+\int^{\infty}_{-\infty}\varphi_z (\phi_z \D x &- \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) \\
+&= \int^{\infty}_{-\infty} \phi \varphi_{xx} \D x \qquad \text{(since $\phi_z=0$ at $z =-h$)} \\
+&= \phi(x,-h) \varphi_x(x, -h) \bigg|^{\infty}_{-\infty} - \int^{\infty}_{-\infty} \phi_x(x,-h)\varphi_x(x,-h) \D x \\
+&= 0,
+\end{align*}
+where we pick $\varphi$ such that $\varphi_x(x, -h) = 0.$
+\item At $z = \eta, \D z = \eta_x \D x,$ so we have 
+\begin{align*}
+\int_{-\infty}^{\infty} \varphi_z(\phi_z &- \phi_x \eta_x) + \phi(\varphi_{xx}  +  \varphi_{xz} \eta_x) \D x \\
+&= \int_{-\infty}^{\infty} \varphi_z(\phi_z - \phi_x \eta_x)+ \phi \dfrac{\D \varphi_x(x, \eta)}{\D x} \D x \\
+&= \int_{-\infty}^{\infty} \varphi_z (\phi_z - \phi_x \eta_x) -\varphi_x \dfrac{\D \phi(x, \eta)}{\D x} \D x \qquad \text{(integration by parts)}\\
+&= \int_{-\infty}^{\infty} \varphi_z \begin{pmatrix} \phi_x  \\ \phi_z \end{pmatrix}\cdot \begin{pmatrix} - \eta_x \\ 1 \end{pmatrix}  -\varphi_x \begin{pmatrix} \phi_x  \\ \phi_z \end{pmatrix} \cdot \begin{pmatrix} 1 \\ \phi_x \eta_x \end{pmatrix} \D x \\
+&= \int_{-\infty}^{\infty} \varphi_z \nabla \phi \cdot N -\varphi_x \nabla \phi \cdot T \D x \\
+&= \int_{-\infty}^{\infty} \varphi_z f(x) -\varphi_x(x, \eta) \mathcal{H}( \eta, D)\{ f(x) \} \D x \qquad \text{(recall \eqref{S3:KBC} and \eqref{S3:defH1})}. 
+\end{align*}
+\end{itemize}
+Combining segments, we obtain: 
+\begin{equation}\label{S3:dInt2}
+\int_{-\infty}^{\infty} \varphi_z f(x) -\varphi_x(x, \eta) \mathcal{H}( \eta, D)\{ f(x) \} \D x = 0.
+\end{equation}
+Note that $\varphi(x,z) = e^{-ikx} \sinh(k(z+h)), k \in \RR$ is one solution of 
+\[ \Delta \varphi = 0, \qquad \varphi_z(-h,z) = 0.\]
+Then, \eqref{S3:dInt2} becomes
+\begin{align*}
+\int_{-\infty}^{\infty} e^{-ikx}( k \cosh(k(\eta+h)) f(x) + ik \sinh(k(\eta+h)) \mathcal{H}( \eta, D)\{ f(x) \}) \D x = 0.
+\end{align*}
+It can be shown that we can take out $k$ in the integral, so that the below holds for all $k \in \RR:$
+\begin{equation}\label{S3:DimHbehav}
+\int_{-\infty}^{\infty} e^{-ikx}( i  \cosh(k(\eta+h)) f(x) - \sinh(k(\eta+h)) \mathcal{H}( \eta, D)\{ f(x) \}) \D x = 0.
+\end{equation}
+The equation \eqref{S3:DimHbehav} gives a description of how the operator $\mathcal{H}( \eta, D)$ behaves, in dimensional coordinates. 
+%\rmk{Even though \eqref{DimHbehav} and \eqref{NDimHbehav} hold for all $k \in \RR,$ the case $k = 0$ still poses some challenges. Namely, the first term of $\mathcal{H}$ will contain $\coth (uk)$ term, which blows up as $k \to 0.$ As will be seen, this problem should be dealt by selecting an appropriate function space for $\eta.$}
+
+In summary, introduction of the normal-to-tangential operator $\mathcal{H}(\eta, D)$ allows to reduce the water waves problem \eqref{S3:DimWholeLineProblem} to a scalar equation for $\eta:$
+\begin{equation}\label{S3:Hequation1}
+\begin{aligned}
+\partial_t\left(\mathcal{H}(\eta, D)\{ \eta_t\} \right) \\
+&+ \partial_x\left( \frac{1}{2}\left(\mathcal{H}(\eta, D)\{\eta_t\} \right)^2 + \epsilon \eta - \frac{1}{2} \frac{(\eta_t + \eta_x \mathcal{H}(\eta, D)\{ \eta_t\})^2}{1+\eta_x^2}\right) = 0,
+\end{aligned}
+\end{equation}
+where the operator $H$ is described via 
+\begin{equation}\label{S3:DimHbehav1}
+\int_{-\infty}^{\infty} e^{-ikx}( i  \cosh(k(\eta+h)) f(x) - \sinh(k(\eta+h)) \mathcal{H}( \eta, D)\{ f(x) \}) \D x = 0, \qquad k \in \RR.
+\end{equation}
+In doing so, we go from solving for two unknowns $\phi$ and $\eta$ to solving for one unknown $\eta.$ Now, the utility of \eqref{S3:Hequation1} depends on whether we can find a useful representation of the operator $\mathcal{H}(\eta, D).$ 
+
+\section{Perturbation expansion of the $\mathcal{H}$ operator}
+In this section, we derive a perturbation series of the $\mathcal{H}$ operator. First, observe that \eqref{S3:DimHbehav1} is written in dimensional coordinates. To obtain the non-dimensional version, introduce new variables: 
+\[ 
+t^{\star} = \frac{t \sqrt{gh}}{L}, \qquad x^{\star}  = \frac{x}{L}, \qquad z^{\star}  = \frac{z}{h}, \qquad \eta^{\star}  = \frac{\eta}{a}, \qquad k^{\star}  = Lk, \]
+rescale functions via
+\[ \phi = \frac{Lga}{\sqrt{gh}} \phi^{\star}, \qquad q^{\star}  = \frac{\sqrt{gh}}{agL} q,\]
+and define parameters $\epsilon$ and $\mu$ so that
+\[ 
+\epsilon = \frac{a}{h}, \qquad \mu = \frac{h}{L}, \qquad \epsilon \mu = \frac{a}{L}.
+\] 
+Starting with 
+\begin{equation*}
+\int_{\partial D} \varphi_z(\phi_z \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z) = 0,
+\end{equation*}
+one may continue the same procedure to obtain the nondimensional version of \eqref{S3:DimHbehav}:
+\begin{equation}\label{S3:NDimHbehav}
+\int_{-\infty}^{\infty} e^{-ikx}( i  \cosh(\mu k(\eta+1)) g(x) - \sinh(\mu k(\eta+1)) \mathcal{H}( \epsilon \eta, D)\{ g(x) \}) \D x = 0, 
+\end{equation}
+where $k \in \RR$ and we dropped the starred notation for convenience. In addition, note that $g$ and $f$ are related by 
+\[ g(x^{\star}) = \frac{\sqrt{gh}}{ga}g(x^{\star}L) = \frac{\sqrt{gh}}{ga}f(x).
+\]
+Since $\epsilon \ll 1,$ we expand the hyperbolic functions as a Taylor series in $\epsilon:$
+\begin{align*}
+\cosh(\mu k(\eta+1)) &= \cosh(\mu k) + \mu k \epsilon \eta \sinh(\mu k) + \mathcal{O}(\epsilon^2), \\
+\sinh(\mu k(\eta+1)) &= \sinh(\mu k) + \mu k \epsilon \eta \cosh(\mu k) + \mathcal{O}(\epsilon^2).
+\end{align*}
+Now, we note that the idea of a regular perturbation series applies not only to classical functions but also to operators. Therefore, we expand
+\begin{align*}
+\mathcal{H}( \eta, D)\{ g(x) \} &= \left[\mathcal{H}_0 + \epsilon \mathcal{H}_1 + \mathcal{O}(\epsilon^2) \right]( \epsilon\eta, D)\{ g(x) \}.
+\end{align*}
+Equation \eqref{S3:NDimHbehav} becomes:
+\begin{equation}\label{S3:HPerturbed}
+\begin{aligned}
+\int_{-\infty}^{\infty} &e^{-ikx}( i \left[ \cosh(\mu k) + \mu k \epsilon \eta \sinh(\mu k) + \mathcal{O}(\epsilon^2) \right] g(x) \\
+&- \left[ \sinh(\mu k) + \mu k \epsilon \eta \cosh(\mu k) + \mathcal{O}(\epsilon^2)\right] \left[ \mathcal{H}_0 + \epsilon \mathcal{H}_1 + \mathcal{O}(\epsilon^2) \right]( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
+\end{aligned}
+\end{equation}
+\textbf{Within $\mathcal{O}(\epsilon^0):$} Using \eqref{S3:HPerturbed}, we obtain 
+\begin{equation*}
+\int_{-\infty}^{\infty} e^{-ikx}( i  \cosh(\mu k) g(x) - \sinh(\mu k) \mathcal{H}_0( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
+\end{equation*}
+Dividing by $\sinh(\mu k)$ yields 
+\begin{equation*}
+\int_{-\infty}^{\infty} e^{-ikx}( i  \coth(\mu k) g(x) - \mathcal{H}_0( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
+\end{equation*}
+Splitting the integrand and recognizing the Fourier transform yields:
+\begin{align*}
+\mathcal{F}_k\{\mathcal{H}_0( \epsilon \eta, D)\{ g(x) \}\}&= \int_{-\infty}^{\infty} e^{-ikx}\mathcal{H}_0( \epsilon \eta, D)\{ g(x) \} \D x\\
+&= \int_{-\infty}^{\infty} e^{-ikx} i \coth(\mu k) g(x) \D x \\
+&= i \coth(\mu k) \mathcal{F}_k\{g(x)\}.
+\end{align*}
+Finally, we invert Fourier transform to obtain 
+\begin{equation}\label{S3:H0}
+\mathcal{H}_0( \epsilon \eta, D)\{ g(x) \} =\mathcal{F}^{-1}_k\{i \coth(\mu k) \mathcal{F}_k\{g(x)\} \},
+\end{equation}
+where we write out $k$'s explicitly to keep track of transforms. 
+\newline \textbf{Within $\mathcal{O}(\epsilon^1):$} from \eqref{S3:HPerturbed}, we obtain
+\begin{align*}
+\int_{-\infty}^{\infty} e^{-ikx}( i \mu k \eta \sinh(\mu k) g(x) - \left[ \sinh(\mu k)\mathcal{H}_1 + \mu k \eta \cosh(\mu k) \mathcal{H}_0 \right]( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
+\end{align*}
+Dividing by $\sinh(\mu k)$ and dropping $( \epsilon \eta, D)$ for the notational convenience, we have 
+\begin{align*}
+\int_{-\infty}^{\infty} e^{-ikx}( i \mu k \eta g(x) - \left[\mathcal{H}_1 + \mu k \eta \coth(\mu k) \mathcal{H}_0 \right]\{ g(x) \}) \D x = 0.
+\end{align*}
+Splitting the integral and recognising the Fourier transform yields:
+\begin{align*}
+\mathcal{F}_k \{\mathcal{H}_1 \{ g(x) \})\} &= \int_{-\infty}^{\infty} e^{-ikx}  \mathcal{H}_1 \{ g(x) \}) \D x \\
+&= \int_{-\infty}^{\infty} e^{-ikx}( i \mu k \eta g  - \mu k \eta \coth(\mu k) \mathcal{H}_0 \{ g(x) \}) \D x \\
+&= \mu \mathcal{F}_k \{ i k \eta g \} - \mu k \coth(\mu k) \mathcal{F}_k\{ \eta \mathcal{H}_0 \{ g(x) \}) \}.
+\end{align*}
+Inverting Fourier transform and using \eqref{S3:H0}, we obtain an expression for $\mathcal{H}_1:$
+\begin{align*}
+\mathcal{H}_1 \{ g(x) \} &= \mathcal{F}^{-1}_k \{ \mu \eta g \} - \mathcal{F}^{-1}_k \{ \mu k \coth(\mu k) \mathcal{F}_k \{ \eta \mathcal{H}_0 \{ g(x) \}) \} \} \\
+&= \mu \partial_x(\eta g) - \mathcal{F}^{-1}_k \{ \mu k \coth(\mu k) \mathcal{F}_k \{ \eta \mathcal{H}_0 \{ g(x) \}) \} \} \\
+&= \mu \partial_x(\eta g) - \mathcal{F}^{-1}_k \{ \mu k \coth(\mu k) \mathcal{F}_k \{ \eta \mathcal{F}^{-1}_l \{i \coth(\mu l) \mathcal{F}_l\{g\} \} \} \}.
+\end{align*}
+In sum, we find a representation for the $\mathcal{H}$ operator within two orders:
+\[ \mathcal{H}( \epsilon \eta, D)\{ g(x) \} = [ \mathcal{H}_0 + \epsilon \mathcal{H}_1]( \epsilon \eta, D)\{ g(x) \} + \mathcal{O}(\epsilon^2),\]
+where 
+\begin{align*}
+\mathcal{H}_0( \epsilon \eta, D)\{ g(x) \} &= \mathcal{F}^{-1}_k\{i \coth(\mu k) \mathcal{F}_k\{g(x)\} \}, \\
+\mathcal{H}_1( \epsilon \eta, D) \{ g(x) \} &= \mu \partial_x(\eta g) - \mathcal{F}^{-1}_k \{ \mu k \coth(\mu k) \mathcal{F}_k \{ \eta \mathcal{F}^{-1}_l\{i \coth(\mu l) \mathcal{F}_l\{g\}\} \} \}.
+\end{align*}
+\rmk{As we proceed to use the operator $\mathcal{H},$ we must exercise caution. Recall the expression for $\mathcal{H}_0:$
+\[ \mathcal{H}_0( \epsilon \eta, D)\{ g(x) \} =\mathcal{F}^{-1}_k\{i \coth(\mu k) \mathcal{F}_k\{g(x)\} \}. \]
+Expanding $\coth(\mu k)$ via its Laurent series in $\mu k$ gives
+\[ \coth(\mu k) = \frac{1}{\mu k} +\frac{\mu k}{3} + \mathcal{O}(\mu^3).\]
+It is readily seen that since $\coth(\mu k)$ has a simple pole as $k \to 0,$ so do $\mathcal{H}_0, \mathcal{H}_1$ and $\mathcal{H}.$ 
+}
+\section{Deriving an expression for surface elevation}
+We proceed to derive approximate equations for the surface $\eta.$ Recall the scalar equation \eqref{S3:Hequation}: 
+\begin{equation}\label{S3:Eq12}
+\partial_t\left(\mathcal{H}(\eta, D)\{ \eta_t\} \right) + \partial_x\left( \frac{1}{2}\left(\mathcal{H}(\eta, D)\{\eta_t\} \right)^2 + \epsilon \eta - \frac{1}{2} \frac{(\eta_t + \eta_x \mathcal{H}(\eta, D)\{ \eta_t\})^2}{1+\eta_x^2}\right) = 0.
+\end{equation}
+The non-dimensional version of \eqref{S3:Eq12} is given by
+\begin{equation}\label{S3:Eq13}
+\begin{aligned}
+\partial_t\left(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right) &+ \partial_x\left( \frac{1}{2}\bigg(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 \\
+&+ \epsilon \eta - \frac{1}{2}\epsilon^2 \mu^2 \frac{(\eta_t + \eta_x \mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\})^2}{1+\epsilon^2 \mu^2 \eta_x^2}\bigg) = 0.
+\end{aligned}
+\end{equation}
+Also, recall our maximal balance assumption $\epsilon = \mu^2,$ and recall the first-order and second order expansions for $\coth(\mu k):$
+\[ 
+\coth(\mu k) = \frac{1}{\mu k} + \mathcal{O}(\mu) = \frac{1}{\mu k} + \frac{\mu k}{3}+ \mathcal{O}(\mu^3).
+ \]
+ \textbf{Within $\mathcal{O}(\mu^0):$} In the leading order, the equation \eqref{S3:Eq13} becomes
+\[ 
+\partial_t\left(\mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right) + \epsilon \partial_x \eta = 0.
+\]
+Bringing $\partial_t$ inside $\mathcal{H}_0$ and substituting the expression for $\mathcal{H}_0,$ we obtain:
+\[ 
+\mathcal{F}^{-1}_k \{i \coth(\mu k) \mathcal{F}_k \{\epsilon \mu \eta_{tt}\} \}+ \epsilon \partial_x \eta = 0.
+\]
+Inverting the Fourier transform and multiplying by $k/(i \epsilon)$ yields
+\[ 
+\mu k \coth(\mu k) \reallywidehat{\eta_{tt}}_k  +  k^2 \reallywidehat{\eta}_k = 0.
+\]
+Expanding $\coth(\mu k)$ in the leading order gives
+\[ 
+\reallywidehat{\eta_{tt}}_k + k^2 \reallywidehat{\eta}_k = 0.
+\]
+Inverting the Fourier transform, we have
+\[ 
+\eta_{tt} + (-i \partial_x)^2 \eta = 0,
+\]
+which is
+\[ \eta_{tt} - \eta_{xx} = 0. \]
+This is the wave equation, as we desired. 
+\vspace{5mm}
+\newline \textbf{Within $\mathcal{O}(\mu^2):$} The non-dimensional equation \eqref{S3:Eq13} becomes
+\begin{equation}\label{S3:Eq14}
+\partial_t\left(\mathcal{H}_0 \{ \epsilon \mu \eta_t\} + \epsilon \mathcal{H}_1 \{ \epsilon \mu \eta_t\} \right) + \partial_x \left(\frac{1}{2} (\mathcal{H}_0 \{ \epsilon \mu \eta_t\})^2 + \epsilon \eta \right) = 0.
+\end{equation}
+Recall
+\begin{align*}
+\mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t \} &= \epsilon \mu \mathcal{F}^{-1}_k \{ i \coth (\mu k) \reallywidehat{\eta_t}_k\}; \\
+\mathcal{H}_1(\epsilon\eta, D)\{ \epsilon \mu \eta_t \} &= \epsilon \mu^2 (\eta \eta_t)_x - \epsilon \mathcal{F}^{-1}_k \{ \mu k \coth (\mu k) \mathcal{F}_k\{\eta \mathcal{F}^{-1}_l \{ i  \mu\coth (\mu l) \reallywidehat{\eta_t}_l\} \}\}.
+\end{align*}
+Observe that
+\begin{align*}
+\frac{1}{2}\left(\mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 = \frac{1}{2}\left(\mathcal{H}_0(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 = \frac{\epsilon^2}{2} \left( \mathcal{F}^{-1}_k \{ i \mu \coth (\mu j) \reallywidehat{\eta_t}_k\}\right)^2,
+\end{align*}
+and 
+\begin{align*}
+\partial_t\bigg(\bigg[ \mathcal{H}_0(\epsilon\eta, D) &+ \epsilon \mathcal{H}_1(\epsilon\eta, D) \bigg] \{ \epsilon \mu \eta_t\} \bigg) \\
+&= \epsilon \mu \mathcal{F}^{-1}_k \{ i \coth (\mu k) \reallywidehat{\eta_{tt}}_k\} + \epsilon^2 \mu^2 (\eta \eta_t)_{tx} \\
+&- \epsilon^2 \mathcal{F}^{-1}_k \{ \mu k \coth (\mu k) \mathcal{F}_k\{\partial_t \left[\eta \mathcal{F}^{-1}_l \{ i \mu \coth (\mu l) \reallywidehat{\eta_t}_l\} \right] \}\}.
+\end{align*}
+The single equation \eqref{S3:Eq14} becomes 
+\begin{align*}
+\epsilon \mu \mathcal{F}^{-1}_k \{ i \coth (\mu k) \reallywidehat{\eta_{tt}}_k\} &+ \epsilon^2 \mu^2 (\eta \eta_t)_{tx} \\
+&- \epsilon^2 \mathcal{F}^{-1}_k \{ \mu k \coth (\mu k) \mathcal{F}_k\{\partial_t \left[\eta \mathcal{F}^{-1}_l \{ i \mu \coth (\mu l) \reallywidehat{\eta_t}_l\} \right] \} \} \\
+&+\frac{\epsilon^2}{2} \partial_x\left( \mathcal{F}^{-1}_j \{ i \mu \coth (\mu j) \reallywidehat{\eta_t}_j\}\right)^2 + \epsilon \partial_x \eta = 0.
+\end{align*}
+Application of Fourier transform yields
+\begin{align*}
+\epsilon \mu i \coth (\mu k) \reallywidehat{\eta_{tt}}_k  + \epsilon^2 \mu^2 ik (\eta \eta_t)_{t} &- \epsilon^2 \mu k \coth (\mu k) \mathcal{F}_k\{\partial_t \left[\eta \mathcal{F}^{-1}_l \{ i \mu \coth (\mu l) \reallywidehat{\eta_t}_l\} \right] \} \\
+&+\frac{\epsilon^2}{2} ik \mathcal{F}_k \{\left( \mathcal{F}^{-1}_j \{ i \mu \coth (\mu j) \reallywidehat{\eta_t}_j\}\right)^2\} + \epsilon ik \reallywidehat{\eta}_k = 0.
+\end{align*}
+Divide by $i\epsilon$ and recall $\epsilon = \mu^2$ to obtain
+\begin{align*}
+\mu \coth (\mu k) \reallywidehat{\eta_{tt}}_k  +  \mu^4 k (\eta \eta_t)_{t} &- \mu^3 k \coth (\mu k) \mathcal{F}\{\partial_t \left[\eta \mathcal{F}^{-1} \{ \mu \coth (\mu l) \reallywidehat{\eta_t}_l\}_l \right] \}_k \\
+&+\frac{\mu^2}{2} k \mathcal{F}\{\left( \mathcal{F}^{-1} \{ i \mu \coth (\mu j) \reallywidehat{\eta_t}_j\}_j\right)^2\}_k + k \reallywidehat{\eta}_k = 0.
+\end{align*}
+Expanding $\coth(\mu k)$-like terms yields
+\begin{equation}\label{S3:Eq15}
+\begin{aligned}
+\left( \frac{1}{k} + \frac{\mu^2 k}{3} \right) \reallywidehat{\eta_{tt}}_k  + \mu^4 k (\eta \eta_t)_{t} &- \mu^2 k \left( \frac{1}{k} + \frac{\mu^2 k}{3} \right) \mathcal{F}_k\{\partial_t \left[\eta \mathcal{F}^{-1} \{\left( \frac{1}{l} + \frac{\mu^2 l}{3}\right) \reallywidehat{\eta_t}_l\}_l \right] \} \\
+&-\frac{\mu^2}{2} k \mathcal{F}_k \{\left( \mathcal{F}^{-1}_j \{ \left( \frac{1}{j} + \frac{\mu^2 j}{3} \right) \reallywidehat{\eta_t}_j\}\right)^2\} + k \reallywidehat{\eta}_k = 0.
+\end{aligned}
+\end{equation}
+Within $\mathcal{O}(\mu^2),$ the equation \eqref{S3:Eq15} becomes 
+\begin{align*}
+\left( \frac{1}{k} + \frac{\mu^2 k}{3} \right) \reallywidehat{\eta_{tt}}_k - \mu^2 \mathcal{F}_k\{\partial_t \left[\eta \mathcal{F}^{-1}_l \{\frac{1}{l}\reallywidehat{\eta_t}_l\} \right] \} -\frac{\mu^2}{2} k \mathcal{F}_k\{\left( \mathcal{F}^{-1}_j \{ \frac{1}{j} \reallywidehat{\eta_t}_j\}\right)^2\} + k \reallywidehat{\eta}_k = 0,
+\end{align*}
+or rearranging and multiplying by $k$, we have
+\begin{align*}
+\reallywidehat{\eta_{tt}}_k + k^2 \reallywidehat{\eta}_k + \mu^2 \left(\frac{ k^2}{3}\reallywidehat{\eta_{tt}}_k - k \mathcal{F}_k\{\partial_t \left[\eta \mathcal{F}^{-1}_l \{\frac{1}{l}\reallywidehat{\eta_t}_l\} \right] \} -\frac{1}{2} k^2 \mathcal{F}_k \{\left( \mathcal{F}^{-1}_j \{ \frac{1}{j} \reallywidehat{\eta_t}_j\}\right)^2\} \right) = 0.
+\end{align*}
+Finally, inverting the Fourier transform yields:
+\begin{align*}
+\eta_{tt} - \eta_{xx} + \mu^2 \left(-\frac{\partial_x^2}{3}\eta_{tt} + i \partial_x\left(\partial_t \left[\eta \mathcal{F}^{-1}_l \{\frac{1}{l}\reallywidehat{\eta_t}_l\} \right] \right) + \frac{1}{2} \partial_x^2 \left( \mathcal{F}^{-1}_j \{ \frac{1}{j} \reallywidehat{\eta_t}_j\}\right)^2 \right) = 0,
+\end{align*}
+or more conveniently,
+\begin{equation}\label{S3:Eq16}
+\eta_{tt} - \eta_{xx} = \mu^2 \left(\frac{\partial_x^2}{3}\eta_{tt} - i \partial_x\left(\partial_t \left[\eta \mathcal{F}^{-1}_l \{\frac{1}{l}\reallywidehat{\eta_t}_l\} \right] \right) - \frac{1}{2} \partial_x^2 \left( \mathcal{F}^{-1}_j \{ \frac{1}{j} \reallywidehat{\eta_t}_j\}\right)^2 \right).
+\end{equation}
+We seek to simplify \eqref{S3:Eq16}. First, integration by parts gives
+\begin{align*}
+\frac{1}{l} \reallywidehat{\eta_t}_l &= \frac{1}{l} \frac{2}{\pi}\int^{\infty}_{-\infty} e^{-ilx} \eta_t \D x \\
+&= \frac{1}{l} \frac{2}{\pi} e^{-ilx} \int^x_{-\infty} \eta_t(x', t) \D x' \bigg|^{\infty}_{-\infty} + i\frac{2}{\pi} \int^{\infty}_{-\infty}e^{-ilx} \int^x_{-\infty} \eta_t(x', t) \D x' \D x  \\
+&= i\frac{2}{\pi} \int^{\infty}_{-\infty}e^{-ilx} \int^x_{-\infty} \eta_t(x', t) \D x' \D x \\
+&= i \mathcal{F}_l\{\int^x_{-\infty} \eta_t(x', t) \D x' \},
+\end{align*}
+so that 
+\begin{equation}\label{S3:Eq17}
+\mathcal{F}^{-1}_l \{\frac{1}{l} \reallywidehat{\eta_t}_l\} = \mathcal{F}^{-1}_l \{  i \mathcal{F}_l\{\int^x_{-\infty} \eta_t(x', t) \D x' \} \} = i \int^x_{-\infty} \eta_t(x', t) \D x',
+\end{equation}
+where we applied the Fourier inversion theorem. Using \eqref{S3:Eq17} and that $\eta_{tt} = \eta_{xx} + \mathcal{O}(\mu^2),$ the equation \eqref{S3:Eq16} becomes
+\begin{align}
+\eta_{tt} - \eta_{xx}  &= \mu^2 \left(\frac{1}{3}\eta_{xxxx} + \partial_x\partial_t \left[\eta \left(\int^{x}_{-\infty} \eta_t \D x' \right) \right]  + \frac{1}{2} \partial_x^2 \left(\int^{x}_{-\infty} \eta_t \D x' \right)^2 \right) \nonumber \\
+&= \mu^2 \left( \frac{1}{3}\eta_{xxxx} + \partial_x \left[ \eta_t \left(\int^{x}_{-\infty} \eta_t \D x'  \right) + \eta \eta_x\right]  + \frac{1}{2} \partial_x^2 \left(\int^{x}_{-\infty} \eta_t \D x' \right)^2 \right) \nonumber \\
+&= \epsilon \left[ \frac{1}{3}\eta_{xxxx} +  \partial_x^2 \left( \frac{\eta^2}{2} + \left( \int^{x}_{-\infty} \eta_t \D x' \right)^2\right)\right] \label{S3:Eq18}
+\end{align}
+In summary, the second order approximation of a scalar equation for $\eta$ resulted into equation \eqref{S3:Eq18}.
+\rmk{At the end of Section 2.4, we mentioned secular terms in the next order. We now show directly by examining the dispersion relation \eqref{S3:Eq18}. Assume a plane wave solution of the form $\tilde{\eta}(x,t) = \exp(i(kx-\omega t)).$ Substituting $\tilde{\eta}$ into the linearised equation
+\[ 
+\tilde{\eta}_{tt} - \tilde{\eta}_{xx} = \epsilon \frac{1}{3}\tilde{\eta}_{xxxx},
+\]
+leads to the following relation
+\[ -\omega^2 + k^2 = \epsilon \frac{k^4}{3}.\]
+Substituting the negative root of $\omega$ into the wave solution gives
+\[ \eta(x,t) \approx \exp(ikx) \exp\left( \sqrt{\frac{\epsilon}{3}}k^2 t\right).\]
+As is seen, this solution is unbounded in time as $k \to \infty.$ This phenomenon suggests that \eqref{Eq18} contains secularity and therefore warrants an application of time scales. 
+}\label{Rmk2}
+
+\section{Derivation of wave and KdV equations}
+We derive the approximate equations from
+\begin{equation}\label{srfceq0}
+\eta_{tt} - \eta_{xx} = \epsilon \left[ \frac{1}{3}\eta_{xxxx} +  \partial_x^2 \left( \frac{\eta^2}{2} + \left( \int^{x}_{-\infty} \eta_t \D x' \right)^2\right)\right].
+\end{equation}
+We assume an expansion of $\eta$ in $\epsilon:$
+\begin{equation}\label{SrfcExpansion}
+\eta = \eta_0 + \epsilon \eta_1 + \mathcal{O}(\epsilon^2).
+\end{equation}
+\subsubsection*{First order approximation}
+Substitution of \eqref{SrfcExpansion} into equation \eqref{srfceq0} yields
+\begin{equation}\label{srfceqExpanded}
+\begin{aligned}
+\eta_{0tt} - \eta_{0xx} +&\epsilon(\eta_{1tt} - \eta_{1xx}) \\
+&= \epsilon \left[ \frac{1}{3}\eta_{0xxxx} +  \partial_x^2 \left( \frac{(\eta_0 + \epsilon \eta_1)^2}{2} + \left( \int^{x}_{-\infty} (\eta_0 + \epsilon \eta_1)_t \D x' \right)^2\right)\right] + \mathcal{O}(\epsilon^2). 
+\end{aligned}
+\end{equation}
+In the leading order $\mathcal{O}(\epsilon^0),$ equation \eqref{srfceqExpanded} becomes
+\begin{equation*}
+\eta_{0tt} - \eta_{0xx} = 0.
+\end{equation*}
+This is the wave equation with velocity $1,$ and whose general solution is 
+\[ \eta_0 = F(x-t) + G(x+t), \]
+where $F,G$ are general functions. 
+\subsubsection*{Second order approximation}
+As was discussed in Remark \eqref{Rmk2}, anticipating the secular terms, we introduce slow time scales
+\[ \tau_0 = t, \qquad \tau_1 = \epsilon t. \]
+so that 
+\[ \eta(x, t) = \eta(x, \tau_0, \tau_1). \]
+The expansion \eqref{SrfcExpansion} becomes
+\begin{equation}\label{NewSrfcExpansion}
+\eta(x, \tau_0, \tau_1) = \eta_0(x, \tau_0, \tau_1) + \mathcal{O}(\epsilon^1).
+\end{equation}
+Substituting \eqref{NewSrfcExpansion} into \eqref{srfceq0}, within $\mathcal{O}(\epsilon^0),$ we obtain
+\begin{equation}\label{1stOrderApprox}
+\eta_{0\tau_0 \tau_0} - \eta_{0xx} = 0,
+\end{equation}
+so that the general solution is 
+\[ \eta_0(x, \tau_0, \tau_1) = F(x-\tau_0, \tau_1) + G(x+\tau_0, \tau_1). \]
+Although we have found an expression for $\eta_0,$ the functions $F,G$ used are still general functions. To determine them, we proceed to the next order, where we can understand the dependence of $F,G$ on the slow time scale $\tau_1.$ In addition, we introduce left-going and right-going variables 
+\[ 
+\xi = x-\tau_0 \qquad \zeta = x+ \tau_0.
+\]
+These new variables imply
+\begin{align*}
+\partial_x &= \partial_\xi \frac{\D \xi}{\D x} + \partial_\zeta \frac{\D \zeta}{\D x} =\partial_\xi + \partial_\zeta, \\
+\partial_t &= \partial_\xi \frac{\D \xi}{\D t} + \partial_\zeta \frac{\D \zeta}{\D t} + \partial_{\tau_1}\frac{\D \tau_1}{\D t} = - \partial_\xi + \partial_\zeta + \epsilon \partial_{\tau_1}.
+\end{align*}
+We can rewrite \eqref{NewSrfcExpansion} as follows:
+\begin{align*}
+\eta &= \eta_0 + \epsilon \eta_1 + \mathcal{O}(\epsilon^2)  \\
+&= F(\xi, \tau_1) + G(\zeta, \tau_1) + \epsilon \eta_1 + \mathcal{O}(\epsilon^2).
+\end{align*}
+For ease of writing, we suppress explicit dependence on variables, though the reader should bear in mind that function $F ~ (G)$ depend on $\xi ~ (\zeta), \tau_1.$ Observe that
+\begin{align*}
+(\partial_t^2 - \partial_x^2) &=  \left( - 4\partial_\xi \partial_\zeta + 2\epsilon(\partial_\zeta \partial_{\tau_1} - \partial_\xi\partial_{\tau_1}) + \epsilon^2 \partial_{\tau_1}^2 \right),
+\end{align*}
+%\begin{align*}
+%(\partial_t^2 - \partial_x^2) &= \left( (- \partial_\xi + \partial_\zeta + \epsilon \partial_{\tau_1})^2 - (\partial_\xi + \partial_\zeta)^2 \right) \\
+%&= \left( \partial^2_\xi - 2\partial_\xi\partial_\zeta + \partial_\zeta^2 + 2\epsilon(\partial_\zeta \partial_{\tau_1} - \partial_\xi\partial_{\tau_1}) + \epsilon^2 \partial_{\tau_1}^2
+%- \partial_\xi^2 - 2\partial_\xi\partial_\zeta - \partial_\zeta^2 \right) \\
+%&= \left( - 4\partial_\xi \partial_\zeta + 2\epsilon(\partial_\zeta \partial_{\tau_1} - \partial_\xi\partial_{\tau_1}) + \epsilon^2 \partial_{\tau_1}^2 \right),
+%\end{align*}
+so that the LHS of \eqref{srfceq0} becomes
+\begin{equation}
+(\partial_t^2 - \partial_x^2) \eta =  \epsilon \left(- 4\eta_{1\xi \zeta} - 2F_{\tau_1 \xi} + 2G_{\tau_1 \zeta} \right) + \mathcal{O}(\epsilon^2). \label{LHS1}
+\end{equation}
+%\begin{align}
+%(\partial_t^2 - \partial_x^2) \eta
+%&= \left( - 4\partial_\xi \partial_\zeta + 2\epsilon(\partial_\zeta \partial_{\tau_1} - \partial_\xi\partial_{\tau_1}) + \epsilon^2 \partial_{\tau_1}^2 \right) ( F + G + \epsilon \eta_1 + \mathcal{O}(\epsilon^2)) \nonumber \\
+%&= - 4\partial_\xi \partial_\zeta  ( F + G + \epsilon \eta_1) + 2\epsilon(\partial_\zeta \partial_{\tau_1} - \partial_\xi\partial_{\tau_1})  ( F + G) + \mathcal{O}(\epsilon^2) \nonumber \\
+%&=  \epsilon \left(- 4\eta_{1\xi \zeta} - 2F_{\tau_1 \xi} + 2G_{\tau_1 \zeta} \right) + \mathcal{O}(\epsilon^2). \label{LHS1}
+%\end{align}
+Now, we deal with the RHS of \eqref{srfceq0}. By appropriate substitutions, the terms become:
+\begin{align*}
+\frac{1}{3}\eta_{xxxx} &= \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) + \mathcal{O}(\epsilon); \\
+\frac{1}{2}\eta^2 &= \frac{1}{2} (F^2 + 2FG +G^2) + \mathcal{O}(\epsilon);
+\end{align*}
+and 
+\begin{align*}
+\left( \int^{x}_{-\infty} \eta_t \D x' \right)^2 &= \left( \int^{x}_{-\infty} \eta_{0t} \D x' \right)^2 + \mathcal{O}(\epsilon) \\
+&= \left( \int^{x}_{-\infty}-F_\xi + G_\zeta \D x' \right)^2 + \mathcal{O}(\epsilon)\\
+&= \left( \int^{x}_{-\infty}F_\xi \D x'\right)^2 - 2\left( \int^{x}_{-\infty}F_\xi \D x'\right)\left( \int^{x}_{-\infty}G_\zeta \D x'\right) \\
+&+ \left( \int^{x}_{-\infty} G_\zeta \D x'\right)^2 + \mathcal{O}(\epsilon) \\
+&= F^2 - 2FG + G^2 + \mathcal{O}(\epsilon),
+\end{align*}
+%\begin{align*}
+%\frac{1}{3}\eta_{xxxx} &=\frac{1}{3} (\partial_x^2)^2 \eta \\
+%&=\frac{1}{3} (\partial_\xi^2 + 2\partial_\xi\partial_\zeta + \partial_\zeta^2 )^2 \eta \\
+%&=\frac{1}{3} (\partial_\xi^4 + \partial_\zeta^4 +  4\partial_\xi^3\partial_\zeta+  2\partial_\xi\partial_\zeta^3 + 6\partial_\xi\partial_\zeta) (F + G + \epsilon \eta_1 + \mathcal{O}(\epsilon^2)) \\
+%&= \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta} + \epsilon (\partial_\xi + \partial_\zeta)^4 \eta_1 + \mathcal{O}(\epsilon^2)) \\
+%&= \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta} + \mathcal{O}(\epsilon)); \\
+%\frac{1}{2}\eta^2 &= \frac{1}{2} \left( F+G + \epsilon \eta_1 \right)^2 \\
+%&=  \frac{1}{2} \left( (F+G)^2 + 2\epsilon(F+G)\eta_1 + \epsilon^2 \eta_1^2 \right) \\ &=  \frac{1}{2} (F^2 + 2FG +G^2) + \epsilon(F+G)\eta_1 + \mathcal{O}(\epsilon^2) \\
+%&= \frac{1}{2} (F^2 + 2FG +G^2) + \mathcal{O}(\epsilon); \\ \left( \int^{x}_{-\infty} \eta_t \D x' \right)^2 &= \left( \int^{x}_{-\infty} \eta_{0t} \D x' + \epsilon\int^{x}_{-\infty}  \eta_{1t} \D x' \right)^2 \\
+%&= \left( \int^{x}_{-\infty} \eta_{0t} \D x' + \epsilon\int^{x}_{-\infty} \eta_{1t} \D x' \right)^2 \\ &= \left( \int^{x}_{-\infty} \eta_{0t} \D x' \right)^2 + \mathcal{O}(\epsilon) \\
+% &= \left( \int^{x}_{-\infty}(-\partial_\xi + \partial_\zeta + \epsilon \partial_{\tau_1}) (F+G) \D x' \right)^2 + \mathcal{O}(\epsilon)\\  &=  \left( \int^{x}_{-\infty}-F_\xi + G_\zeta \D x' + \epsilon \int^{x}_{-\infty} \partial_{\tau_1} (F+G) \D x' \right)^2 + \mathcal{O}(\epsilon) \\
+%&= \left( \int^{x}_{-\infty}-F_\xi + G_\zeta \D x' \right)^2 + \mathcal{O}(\epsilon)\\ &= \left( \int^{x}_{-\infty}F_\xi \D x'\right)^2 - 2\left( \int^{x}_{-\infty}F_\xi \D x'\right)\left( \int^{x}_{-\infty}G_\zeta \D x'\right) + \left( \int^{x}_{-\infty} G_\zeta \D x'\right)^2 + \mathcal{O}(\epsilon) \\
+%&= F^2 - 2FG + G^2 + \mathcal{O}(\epsilon), \end{align*}
+where we assume that $F,G$ vanish as $\xi, \zeta \to -\infty.$
+%\begin{align*}
+%\int^{x}_{-\infty}F_\xi \D x' = \lim_{a\to -\infty} \int^{x}_{a}F_{\xi'}(x'-t, \tau_1) \D x' &=  \lim_{a\to -\infty} \int^{x-t}_{a-t}F_{\xi'}(\xi', \tau_1) \D \xi' \\
+%&=  \lim_{a\to -\infty} \int^{\xi}_{a-t}F_{\xi'}(\xi', \tau_1) \D \xi' \\
+%&= \int^{\xi}_{-\infty}F_{\xi'}(\xi', \tau_1) \D \xi' = F(\xi, \tau_1), \\
+%\int^{x}_{-\infty} G_\zeta' \D x' = \lim_{a\to -\infty} \int^{x}_{a}F_{\zeta'}(x'-t, \tau_1) \D x' &=  \lim_{a\to -\infty} \int^{x+t}_{a+t}G_{\zeta'}(\zeta', \tau_1) \D \zeta' \\
+%&=  \lim_{a\to -\infty} \int^{\zeta}_{a-t}G_{\zeta'}(\zeta', \tau_1) \D \zeta' \\
+%&= \int^{\zeta}_{-\infty}G_{\zeta'}(\zeta', \tau_1) \D \zeta' = G(\zeta, \tau_1).
+%\end{align*}
+The RHS of \eqref{srfceq0} becomes
+%\begin{align}
+%\epsilon &\left[ \frac{1}{3}\eta_{xxxx} +  \partial_x^2 \left( \frac{\eta^2}{2} + \left( \int^{x}_{-\infty} \eta_t \D x' \right)^2\right)\right] \nonumber\\
+%&=\epsilon \Bigg[ \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) +  (\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) \left(\frac{1}{2} (F^2 + 2FG +G^2) + F^2 - 2FG + G^2 \right)\Bigg] + \mathcal{O}(\epsilon^2) \nonumber \\
+%&= \epsilon \Bigg[ \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) +  (\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) \left(\frac{3}{2} F^2  + \frac{3}{2}G^2 - FG \right) \Bigg] + \mathcal{O}(\epsilon^2). \label{RHS1}
+%\end{align}
+\begin{align}
+\epsilon &\left[ \frac{1}{3}\eta_{xxxx} +  \partial_x^2 \left( \frac{\eta^2}{2} + \left( \int^{x}_{-\infty} \eta_t \D x' \right)^2\right)\right] \nonumber\\
+&= \epsilon \Bigg[ \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) +  (\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) \left(\frac{3}{2} F^2  + \frac{3}{2}G^2 - FG \right) \Bigg] + \mathcal{O}(\epsilon^2). \label{RHS1}
+\end{align}
+Combining \eqref{LHS1} and \eqref{RHS1}, in $\mathcal{O}(\epsilon^1)$ we have
+\begin{equation}\label{srfceq2}
+- 4\eta_{1\xi \zeta} = 2F_{\tau_1 \xi} - 2G_{\tau_1 \zeta} + \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) + (\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) \left(\frac{3}{2} F^2  + \frac{3}{2}G^2 - FG \right).
+\end{equation}
+In the last term of \eqref{srfceq2}, differentiation yields:
+\begin{align*}
+(\partial_\xi^2 + 2\partial_\xi \partial_\zeta + \partial_\zeta^2) \left(\frac{3}{2} F^2  + \frac{3}{2}G^2 - FG\right) &= \partial_\xi(3 F F_\xi - G F_\xi) + \partial_\zeta(3 G G_\zeta - F G_\zeta) - 2 F_\xi G_\zeta,
+\end{align*}
+so that \eqref{srfceq2} becomes
+\begin{align}
+- 4\eta_{1\xi \zeta} &= 2F_{\tau_1 \xi} - 2G_{\tau_1 \zeta} + \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) + \partial_\xi(3 F F_\xi - G F_\xi) + \partial_\zeta(3 G G_\zeta - F G_\zeta) - 2 F_\xi G_\zeta \nonumber \\
+&= \partial_\xi(2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + 3 F F_\xi) + \partial_\zeta(- 2G_{\tau_1} +  \frac{1}{3}G_{\zeta\zeta\zeta} + 3 G G_\zeta) - (G F_\xi  + F G_\zeta) - 2 F_\xi G_\zeta. \label{srfceq3}
+\end{align}
+Integration of \eqref{srfceq3} with respect to $\zeta$ yields
+\[ 
+- 4\eta_{1\xi} = \partial_\xi(2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + 3 F F_\xi) \zeta + (- 2G_{\tau_1} +  \frac{1}{3}G_{\zeta\zeta\zeta} + 3 G G_\zeta) - \left(F_\xi \int G \D \zeta   + G F\right),
+\]
+and further integration with respect to $\xi$ leads to
+\begin{equation}\label{Eq18}
+- 4\eta_{1} = (2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + 3 F F_\xi) \zeta + (- 2G_{\tau_1} +  \frac{1}{3}G_{\zeta\zeta\zeta}+ 3 G G_\zeta) \xi - \left(F \int G \D \zeta  + G \int F \D \xi \right).
+\end{equation}
+From the equation \eqref{Eq18}, we see that the $\xi, \zeta$ terms are the secular terms we wish to remove. Otherwise, $\eta_1$ is unbounded in time. Therefore, we must have 
+\begin{align}
+2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + 3 F F_\xi &= 0 \label{KdV1} \\
+2G_{\tau_1} - \frac{1}{3}G_{\zeta\zeta\zeta} -  3 G G_\zeta &= 0. \label{KdV2}
+\end{align}
+The equations \eqref{KdV1} and \eqref{KdV2} are KdV equations, which allow us to determine the behaviour of $F, G$ on a slow time scale $\tau_1.$ 
+
+In conclusion, asymptotic analysis of the non-local formulation in shallow water limit gives rise to two KdV equations, \eqref{KdV1} and \eqref{KdV2}, for the right-going and left-going waves. Given the right decay initial conditions, we can solve these PDEs by means of the inverse scattering transform (see \cite[Chapter 9]{Ablowitz}). Keeping the leading-order terms, we have an approximate solution for the surface variable
+\[ \eta \approx \eta_0 = F(x- t, \epsilon t) + G(x + t, \epsilon t).\]
+The derivation is complete.

@@ -2,15 +2,17 @@
 
 \chapter{Preliminaries} % Main chapter title
 
-\label{Chapter1} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+\label{Chapter2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 %In this section, we present various techniques of asymptotics, explain the water wave problem in greater detail, and comment on why we can rely on asymptotics. This chapter assumes familiarity with a basic theory of ordinary and partial differential equations.
 
-\section{Water wave problem}
-In this section, a sketch of the derivation of the water wave problem will be provided, along with mathematical and physical justification of assumptions made. In addition, we discuss the shallow water limit. Conservation of mass \eqref{S2:CoMass} and conservation of momentum \eqref{S2:CoMomentum} are the two core principles that provide the relevant equations of fluid dynamics
+\section{Water waves problem}
+In this section, a sketch of the derivation of the water wave problem will be provided, along with mathematical and physical justification of assumptions made. In addition, we discuss the shallow water limit. 
+
+Conservation of mass \eqref{S2:CoMass} and conservation of momentum \eqref{S2:CoMomentum} are the two core principles that provide the relevant equations of fluid dynamics
 \begin{align}
 \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \V) &= 0, \label{S2:CoMass} \\
 \rho\left[ v\frac{\partial \V}{\partial t} + (\V \cdot \nabla) \V\right] &= \textbf{F} - \nabla P + v_{\star} \Delta \V. \label{S2:CoMomentum}
@@ -24,42 +26,42 @@ In \eqref{S2:CoMass}-\eqref{S2:CoMomentum}, $\rho = \rho(\X, t)$ denotes the flu
 \phi_t + g\eta + \frac{1}{2}(\phi_{x}^2 + \phi_{z}^2) &= 0 &z = \eta(x,t) \label{S2:DBC}
 \end{align}
 \end{subequations}
-where $\phi(x,z)$ is the fluid velocity, $\eta(x)$ is the surface elevation. In addition, $z$ is the vertical coordinate, $x$ is the horizontal direction, and $g$ is acceleration due to gravity. In deriving the problem, the following assumptions are made:
+where $\phi(x,z)$ is the fluid velocity, $\eta(x)$ is the surface elevation. In addition, $z$ is the vertical coordinate, $x$ is the horizontal direction, and $g$ is acceleration due to gravity. In deriving the problem \eqref{S2:DimWholeLineProblem}, the following assumptions are made:
 \begin{itemize}
 \item We can write $\V = \nabla \phi.$
 \item The problem has 1 horizontal dimension $x \in \RR.$
-\item The fluid $|\V|$ tends to equilibrium as $|x| \to \infty.$
+\item The fluid $\V$ tends to equilibrium as $|x| \to \infty.$
 \item The surface tension is negligible, i.e. $\sigma = 0.$ 
 \item The external force is the buoyancy force, i.e. $\textbf{F} = - \nabla (\rho_0 g z).$
 \item The pressure vanishes on the surface, $P = 0$ at $z = \eta(x,t).$
 \item The fluid density is constant, i.e. $\rho(\X,t) = \rho_0.$
 \end{itemize}
-Since the problem is expressed in terms of $\phi,$ and it is a scalar potential of $\V,$ we term the formulation \eqref{S2:DimWholeLineProblem} as the \textit{velocity potential} formulation.
+Since the problem is expressed in terms of $\phi,$ and it is a scalar potential of velocity $\V,$ we term the formulation \eqref{S2:DimWholeLineProblem} as the \textit{velocity potential} formulation.
 
 We begin to describe the physical meaning of the problem \eqref{S2:DimWholeLineProblem}. First, we elaborate on each equation:
 \begin{itemize}
 \item[\eqref{S2:PDE}:] The assumption that the fluid is irrotational means that the curl vanishes:
 \[ \nabla \times \V = 0. \]
-The conservation of mass then becomes $ \nabla \cdot \V = \nabla \cdot \nabla \phi = 0.$ In other words, \eqref{2PDE} represents that the fluid inside the domain $-h < z < \eta(x,t), x \in \RR$ does not rotate.  
+The conservation of mass then becomes $ \nabla \cdot \V = \nabla \cdot \nabla \phi = 0.$ In other words, \eqref{S2:PDE} represents that the fluid inside the domain $-h < z < \eta(x,t), x \in \RR$ does not rotate.  
 \item[\eqref{S2:DBC}:] This equation is the conservation of momentum applied at the surface $z = \eta(x,t).$ Since conservation of momentum is a statement about the balance of external forces and fluid at the boundary, which is the fluid's surface, this equation describes the dynamics of the velocity potential on the free surface. As such, we term \eqref{S2:DBC} as \textit{the dynamic boundary condition}.
 \item[\eqref{S2:KBC}:] This equation represents the condition that the surface $\eta$ is a surface of the fluid. In order words, we require that the surface $\eta$ is always composed of 
 fluid particles that remain on the surface. We call \eqref{S2:KBC} \textit{the kinematic boundary condition}, since it is about the geometry and shape of the surface. The condition should be contrasted with the dynamic condition, which is about the interaction of forces acting at the surface. 
 \item[\eqref{S2:BBC}:] This equation is an assumption that the bottom is a flat and impermeable surface, so that the fluid cannot escape through the bottom. We call \eqref{S2:BBC} \textit{the bottom condition}. 
 \end{itemize}
 
-Second, we explain the physical assumptions and considerations that led to the mathematical formulation of the problem. While mostly following \cite[Chapter 1]{Lannes}, we also expound on some of the considerations and provide additional references. For the most part, the model is the most useful in applications to oceanography.
+Second, we explain the physical assumptions and considerations that led to the mathematical formulation of the problem. While mostly following \cite[Chapter 1]{Lannes}, we also expound on some of the considerations and provide additional references. For the most part, the model is the most useful in applications to oceanography \cite{?}.
 \begin{itemize}
 \item The fluid is assumed to be continuous. We mainly deal with behaviour on scales that are large compared to the distance between molecules that comprise the fluid. Physical quantities such as mass and velocity are thought to be spread continuously throughout the region in question; this is termed as the continuity assumption. This is important to note, since water may have discontinuities in the form of air bubbles. Whenever this happens to a significant degree, e.g. when waves break, the problem \eqref{S2:DimWholeLineProblem} is no longer valid. A microscopic description of fluids is given by the Boltzmann equation. 
-\item The fluid is assumed to be incompressible and inviscid. Since the fluid under interest is water, and its density does not change both in space and time \cite{}, water has low compressibility. This justifies homogeneity and incompressibility. In addition, water has low viscosity \cite{}, so we can model the flow with an inviscid model. To account for viscosity, one needs to work with Navier-Stokes equations. 
-\item The fluid is assumed to be irrotational. In reality, there are rotational flows, such as tornadoes. In applications, rotational effects are not important, so we do not focus on them \cite{}. The situation is delicate when rotational flows are taken into account; in particular, the assumption $\V = \nabla \phi$ no longer holds, and the velocity formulation should be replaced with the stream-function formulation. See \cite[p.32]{Lannes} for a detailed overview.
-\item We assume that the surface and the bottom of the domain can be parametrised as graphs. One may argue that neither the surface nor the bottom need to be (classical) functions; modelling overhanging waves is such example. While this is true, assuming that the surface and the bottom are (classical) functions provides the easiest setting to work in. We can extend the model by considering more general settings \cite{}.
-\item The fluid is contained in its domain. We assume that the fluid does not leak through its bottom, nor do the fluid particles leave the fluid surface. These two conditions are given by \eqref{S2:BC} and \eqref{S2:KBC}, respectively.
+\item The fluid is assumed to be incompressible and inviscid. Since the fluid under interest is water, and its density does not change both in space and time \cite{?}.This justifies homogeneity and incompressibility. In addition, water has low viscosity \cite{?}, so we can model the flow with an inviscid model. To account for viscosity, one needs to work with Navier-Stokes equations. 
+\item The fluid is assumed to be irrotational. In reality, there are rotational flows, such as tornadoes. In applications, rotational effects are not important, so we do not focus on them \cite{?}. The situation is delicate when rotational flows are taken into account; in particular, the assumption $\V = \nabla \phi$ no longer holds, and the velocity formulation should be replaced with the stream-function formulation. See \cite[p.32]{Lannes} for a detailed overview.
+\item We assume that the surface and the bottom of the domain can be parametrised as graphs. One may argue that neither the surface nor the bottom need to be (classical) functions; modelling overhanging waves is such example. While this is true, assuming that the surface and the bottom are functions provides the easiest setting to work in. We can extend the model by considering more general settings \cite{?}.
+\item The fluid is contained in its domain. We assume that the fluid does not leak through its bottom, nor do the fluid particles leave the fluid surface. These two conditions are given by \eqref{S2:BBC} and \eqref{S2:KBC}, respectively.
 \item The bottom is assumed to be flat. In reality the bottom may differ drastically. Since the degree of bed rigidity, the porosity, and the roughness all influence the fluid to varying degrees, such bottoms are also more challenging to work with. In addition, when working in the shallow water regime (explained in the next section), it is necessary to make strong assumptions on the bottom to obtain correct asymptotics. As such, we choose to deal with the simplest case of a flat bottom. For a discussion of waves over more realistic seabeds, see \cite[Chapter 9]{DD}.
-\item The fluid tends to equilibrium. This is a natural condition so long as one considers infinite domains such as the whole line. It should be noted any discussion of the rate of convergence relates to the \textit{stability} theory of water waves, and will not be touched upon in this project.
+\item The fluid tends to equilibrium. This is a natural condition so long as one considers infinite domains such as the whole line. It should be noted any discussion of the rate of convergence relates to the \textit{stability} theory of water waves, and is not touched upon in this project.
 \item The water depth is assumed to be bounded by some nonnegative constant. In other words, we always have that $\eta - h \geq 0.$ This is a major limitation, as it excludes vanishes shorelines. However, removing this assumption is an open problem.
-\item The external force is conservative. This assumption follows naturally from conservation laws for water waves. Furthermore, for water waves, the most relevant external force are a \textit{body force}, which is the force induced by an outside source and is identical for all fluid particles, and a \textit{local force}, which is the force exerted on a fluid particle by other particles. Gravitational force and pressure is one example of a body force for which one needs to account. The local force is due to friction. Since the fluid is inviscid, no local force is present. See \cite[Chapter 4]{CK} for a detailed discussion.
-\item The surface tension is negligible and the surface pressure is constant. In applications to coastal oceanography, the surface tension tends to be very small, which justifies the assumption. Of course, surface tension is relevant when describing some smaller scale phenomena such as ripples. Since we expect no large weather variations, we can assume that locally pressure is constant. If one is to incorporate non-constant pressure and/or surface tension, the dynamic condition \eqref{S2:DBC} needs to be changed accordingly.
-\item The system is two dimensional, that is, there is one spatial dimension $x$ and one vertical dimension $z.$ By ignoring the remaining dimension $y,$ we are making an assumption that the fluid is only moving in $x$ direction. In other words, we consider the special case of \textit{no transverse waves}.  Incorporating weak transverse variation, leads to a generalisation of the KdV equation, the Kadomtsev-Petviashvili equation, equation (5.33) in \cite[Chapter 5]{Ablowitz}:
+\item The external force is conservative. This assumption follows naturally from conservation laws for water waves. Furthermore, for water waves, the most relevant external force are a \textit{body force}, which is the force induced by an outside source and is identical for all fluid particles, and a \textit{local force}, which is the force exerted on a fluid particle by other particles. Gravitational force and pressure is one example of a body force that one needs to consider. The local force is due to friction. Since the fluid is inviscid, no local force is present. See \cite[Chapter 4]{CK} for a detailed discussion.
+\item The surface tension is negligible and the surface pressure is constant. In applications to coastal oceanography, the surface tension tends to be very small \cite{?}, which justifies the assumption. Of course, surface tension is relevant when describing some smaller scale phenomena such as ripples. Since we expect no large weather variations, we can assume that locally pressure is constant. If one is to incorporate non-constant pressure and/or surface tension, the dynamic condition \eqref{S2:DBC} needs to be changed accordingly.
+\item The system is two dimensional, that is, there is one spatial dimension $x$ and one vertical dimension $z.$ By ignoring the remaining dimension $y,$ we are making an assumption that the fluid is only moving in $x$ direction. In other words, we consider the special case of \textit{no transverse waves}.  Incorporating weak transverse variation leads to a generalisation of the KdV equation, the Kadomtsev-Petviashvili equation, equation (5.33) in \cite[Chapter 5]{Ablowitz}:
 \begin{equation}\label{S2:KP}
 \partial_x(u_t + 6uu_x + u_{xxx}) + 3 \rho u_{yy} = 0.
 \end{equation}
@@ -68,9 +70,9 @@ In \eqref{S2:KP}, if $\rho = 1,$ then water waves with small surface tension are
 Finally, we discuss the role of initial conditions in the water waves problem. While the wave motion is expected to be initiated in some fashion, we are mainly interested in the evolution of the wave motion in many and varied situations. As such, initial conditions are not mentioned explicitly. 
 
 \section{Asymptotic analysis and perturbation methods}
-In this section, we present an introduction to perturbation theory, and its most relevant technique, namely the multiple scale analysis. The focus is on the illustration of ideas through examples, rather than rigorous justification and proofs. Examples used are from Chapters 7 and 11 of \cite{BO}.
+In this section, we present an introduction to perturbation theory, and its most relevant technique, namely the multiple scale analysis. The focus is on the illustration of ideas through examples, rather than rigorous justification and proofs. Examples are from Chapters 7 and 11 of \cite{BO}.
 
-Perturbation theory is a collection of iterative techniques used for obtaining approximate solutions to problems involving a small parameter $\epsilon$. The main idea is to represent the unknown variable as a \textit{perturbation series}, which is a formal power series 
+Perturbation theory is a collection of iterative techniques used for obtaining approximate solutions to problems involving a small parameter $\epsilon$. The main idea is to represent the unknown variable $f$ as a \textit{perturbation series}, which is a formal power series 
 \begin{equation}\label{S2:pertubationseries}
 f = f_0 + \epsilon f_1 + \epsilon^2 f_2 + \ldots.
 \end{equation} 
@@ -87,16 +89,16 @@ Consider the following initial-value problem:
 
 Observe that the perturbation series obtained in Example \ref{S2:example} converges uniformly as $\epsilon \to 0.$ However, in general, one need not expect uniform convergence. A paradigmatic example is the weakly nonlinear Duffing oscillator
 \begin{equation}\label{Duffing}
-\frac{d^2 y}{d t^2} + y + \epsilon y^3 = 0, \qquad y(0)=1 \qquad y'(0)=0.
+ y'' + y + \epsilon y^3 = 0, \qquad y(0)=1 \qquad y'(0)=0.
 \end{equation}
 Application of the regular perturbation series yields
-\begin{equation*}
+\begin{equation}\label{S2:sol}
 y(t) \approx y_0 + \epsilon y_1 = \cos t + \epsilon\left(\frac{1}{32} \cos 3t -\frac{1}{32} \cos t + \frac{3}{8} t \sin t\right ),
-\end{equation*}
+\end{equation}
 which converges as $\epsilon \to 0$ for fixed $x.$ However, one must observe that the convergence is point-wise, but not uniform. Indeed, for values $t \sim 1/\epsilon$ or larger, the presence of the $t \sin t$ term in $y_1$ implies that the amplitude of oscillation grows in $t;$ we call such terms \textit{secular}. However, solutions of the Duffing oscillator are known to be bounded. In particular, this suggests that the usual perturbation expansion of $y$ is not sufficient, and that the secularity is an outcome of this misfortune.
 
 \subsection*{Multiple scale analysis}
-When ordinary perturbative methods fail to give a uniformly accurate approximation, the method of \textit{multiple scales} comes in handy. The idea behind the multiple scales is to introduce a new variable $\tau = \epsilon t.$ Physically, $\tau$ represents a longer time scale than $t$, since $\tau$ is not negligible when $t$ is of order $1/\epsilon$ or larger. Observe that although $y(t)$ is a function of $t$ alone, through introduction of $\tau,$ $y(t)$ becomes a function of $t$ and $\tau,$ i.e $y(t, \tau).$ As such, the multiple scales looks for solutions as functions of both $t$ and $\tau,$ treating these variables independently. It must be emphasised that such treatment in two variables is rather an artifice, needed to eliminate secularities.
+When ordinary perturbative methods fail to give a uniformly accurate approximation, the method of \textit{multiple scales} comes in handy. The idea behind the multiple scales is to introduce a new variable $\tau = \epsilon t.$ Physically, $\tau$ represents a longer time scale than $t$, since $\tau$ is not negligible when $t$ is of order $1/\epsilon$ or larger. Although $y(t)$ is a function of $t$ alone, through introduction of $\tau,$ $y(t)$ becomes a function of $t$ and $\tau,$ i.e $y(t, \tau).$ As such, the multiple scales looks for solutions as functions of both $t$ and $\tau,$ treating these variables independently. It must be emphasised that such treatment in two variables is rather an artifice, needed to eliminate secularities.
 
 We illustrate the method on the Duffing oscillator. Formally, we write
 \[ y(t) = Y_0(t, \tau) + \epsilon Y_1(t, \tau) + \mathcal{O}(\epsilon^2) \]
@@ -118,7 +120,10 @@ Y_0(t, \tau) = A(\tau) e^{it} + A^*(\tau) e^{-it},
 \end{equation}
 where $A(\tau)$ is an arbitrary complex function in $\tau.$ We determine $A(\tau)$ by requiring that secular terms do not appear in $Y_1(t, \tau).$ Substitution of \eqref{S3} into \eqref{S2} gives
 \begin{equation}\label{S4}
-\frac{\partial^2 Y_1}{\partial t^2} + Y_1 =  \left(-3 A^2 A^* - 2i \frac{\D A}{\D \tau}\right) e^{it} + \left(-3 A (A^*)^2 + 2i \frac{\D A^*}{\D \tau}\right) e^{-it}  - A^3 e^{3it}  - (A^*)^3 e^{-3it}.
+\begin{aligned}
+\frac{\partial^2 Y_1}{\partial t^2} + Y_1 &=  \left(-3 A^2 A^* - 2i \frac{\D A}{\D \tau}\right) e^{it} + \left(-3 A (A^*)^2 + 2i \frac{\D A^*}{\D \tau}\right) e^{-it}\\
+&- A^3 e^{3it}  - (A^*)^3 e^{-3it}.
+\end{aligned}
 \end{equation}
 We have already seen that $e^{it}$ and $e^{-it}$ appear in the solution of \eqref{S1}, which is the homogeneous version of \eqref{S2}. Therefore, unless the coefficients of $e^{it}$ and $e^{-it}$ are zero, the solution $Y_1$ will be secular in $\tau.$  To preclude secularity, we need $A$ needs to satisfy
 \begin{align*}
@@ -127,13 +132,15 @@ We have already seen that $e^{it}$ and $e^{-it}$ appear in the solution of \eqre
 \end{align*}
 Observe that the two equations are complex conjugate of each other, so $A(\tau)$ is not overdetermined. Solving for $A(\tau)$ along with initial conditions $y(0)=1, y'(0)=0$ yields 
 \[ A(\tau) = \frac{1}{2} e^{i3\tau/8}.\]
-Thus, T\eqref{S3} becomes 
+Thus, \eqref{S3} becomes 
 \[ Y_0(t, \tau) = \cos (t + \frac{3}{8}\tau).\]
 Finally, using that $\tau = \epsilon t,$ we obtain the approximated solution 
-\begin{equation*}
+\begin{equation}\label{S2:sol2}
 y(t) = \cos \left[ t(1 + \epsilon\frac{3}{8})\right] + \mathcal{O}(\epsilon), \qquad \epsilon \to 0, \quad \epsilon t = \mathcal{O}(1).
-\end{equation*}
-To conclude, we remark that the choice of scales $\tau = \epsilon t$ tends to be example-specific. More generally, one may choose $\tau = f(t),$ where $f$ can be any function. For example, in 
+\end{equation}
+To conclude, we note that \eqref{S2:sol} is approximates $y$ well for $0\leq t \ll \mathcal{O}(1/\epsilon),$ while \eqref{S2:sol2} approximates over a much larger range of $t.$ 
+
+We remark that the choice of scales $\tau = \epsilon t$ tends to be example-specific. More generally, one may choose $\tau = f(t),$ where $f$ can be any function. For example, in 
 \[ y''(t) + y - \epsilon t y= 0, \qquad y(0) = 1, \qquad y'(0) = 0\]
 one would use $\tau = \sqrt{\epsilon} t,$ and for
 \[ y''(t)+ \omega^2(\epsilon t) y= 0,\]
@@ -141,7 +148,7 @@ one would use $\tau = \int^t \omega (\epsilon s) \D s.$
 
 \rmk{It is important to understand the need for multiple scales. In the example of the Duffing oscillator, we could solve the problem numerically for the exact solution, or approximate the solution via multiple scales. A question arises: why use multiple scales when we can solve the differential equations numerically? 
 
-Note that most of the real-world phenomena are expressed in terms of PDEs, which are much harder to solve numerically than ODEs. Due to many differences in the physical phenomena, there is no unified analytic and numerical treatment. In addition, developing numerical schemes can be very tricky, since issues such as stability, error as well as the physical conditions need to be carefully addressed to obtain an effective software. Furthermore, the cost of numerically solving PDEs can be expensive, in terms of time required to find a solution and computational power needed if the great precision is required. The latter is particularly important for real time predicting. This is another reason to prefer multiple scales. As mentioned before, multiple scales and perturbation methods, when appropriately applied, turn the original, difficult problem into many easier problems. These problems are much easier to solve, and provide further insight into the physics of the problem.}
+Note that many real-world phenomena are expressed in terms of PDEs, which are much harder to solve numerically than ODEs. Due to many differences in the physical phenomena, there is no unified analytic and numerical treatment. In addition, developing numerical schemes can be very tricky, since issues such as stability, error as well as the physical conditions need to be carefully addressed to obtain an effective software. Furthermore, the cost of numerically solving PDEs can be expensive, in terms of time required to find a solution and computational power needed if the great precision is required. The latter is particularly important for real time predicting. This is another reason to prefer multiple scales. As mentioned before, multiple scales and perturbation methods, when appropriately applied, turn the original, difficult problem into many easier problems. These problems are much easier to solve, are reliable, and provide further insight into the physics of the problem.}
 
 \section{Are asymptotic and perturbative methods reliable?}
 Given the emphasis on asymptotic and perturbative methods, one is interested whether these methods provide ``reliable" solutions. Formally, how can we justify that solutions obtained from asymptotic equations converge to the solutions of the original problem? In the context of the water waves problem, we wonder if the KdV model, provided by the shallow water approximation, is ``reasonable". Of course, in asking these questions, one needs to specify the meaning of ``reliable" and ``reasonable". Following \cite{Lannes}, the validity of our asymptotic model can be understood from the following questions:
@@ -244,6 +251,6 @@ so that $A_0 = A_0(\xi, \zeta, \tau_1) = F(\xi, \tau_1) + G(\zeta, \tau_1).$ Via
 \end{align}
 In other words, we have obtained two KdV equations, \eqref{S2:KdV1} and \eqref{S2:KdV2}, for $F$ and $G,$ which determine the leading order solution $A_0$ of the problem. 
 
-The wave and KdV equations are special PDEs. The wave equation arises as a model in numerous fields of classical physics, such as electrodynamics, plasma physics, and general relativity. The KdV equation appears whenever long waves propagate over dispersive medium, be it fluid mechanics, nonlinear optics, or Bose-Einstein condensation. Because of how they occur independently of the applications, wave and KdV have been studied extensively. Furthermore, KdV is special: despite being nonlinear, the PDE can be solved exactly, by means of inverse scattering transform. 
+The wave and KdV equations are special PDEs. The wave equation arises as a model in numerous fields of classical physics, such as electrodynamics, plasma physics, and general relativity. The KdV equation appears whenever long waves propagate over dispersive medium, be it fluid mechanics, nonlinear optics, or Bose-Einstein condensation. Because of how they occur independently of the applications, wave and KdV have been studied extensively. Furthermore, KdV is special: despite being nonlinear, this PDE can be solved exactly, by means of inverse scattering transform. 
 
 In conclusion, the leading order solution of the water wave problem for small-amplitude, shallow water waves is described by the wave equation \eqref{S2:W1} and two KdV equations \eqref{S2:KdV1}, \eqref{S2:KdV2}. This is the result we seek to obtain. 

@@ -1,0 +1,72 @@
+% Chapter Template
+
+\chapter{Water waves on the half-line} % Main chapter title
+
+\label{Chapter5} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+In the previous section, we use the $\mathcal{H}$ formulation to obtain expected, well-known results. In this section, we use the formulation to study a slightly different problem: the water waves problem, but on the half-line. Physically, we put up a tall, impenetrable barrier at $x = 0.$ This requires imposing several conditions on both $\eta, \phi$ at $x = 0.$ As such, the problem we consider is the following:
+\begin{subequations}\label{DimHalfLineProblem}
+\begin{align}
+\phi_{xx} + \phi_{zz} &= 0, &-h < z < \eta(x,t), \\
+\phi_{z} &= 0, &z = -h, \\
+\phi_{x} &= 0, &x =0, \label{HLBC1}\\
+\eta_t + \phi_{x}\eta_{x} &= \phi_{z}, & z = \eta(x,t), \\
+\phi_t + g\eta + \frac{1}{2}(\phi_{x}^2 + \phi_{z}^2) &= 0, &z = \eta(x,t), \\
+\phi_{z}(0,\eta,t) &= \eta_t(0,t), &(x,z) = (0,\eta), \label{HLBC2}
+\end{align}
+\end{subequations}
+where $x\in[0,\infty)$ and \eqref{HLBC1}, \eqref{HLBC2} are the new boundary conditions. In particular, \eqref{HLBC1} implies that the fluid does not leak through the barrier at $x=0,$ and \eqref{HLBC2} governs an interaction between the fluid and the surface at $x = 0.$ Approximate equations are conjectured to be the wave and KdV equations. While the wave equation can be justified, there is no reason to expect that KdV equations. Indeed, a literature review reveals that the KdV equation has not been derived on the half-line, in the way that we derive the equation on the whole line. 
+
+Using the $\mathcal{H}$ formulation, we derive the approximate equations on the half-line, note the main differences, and discuss the difficulties that arise. To begin, we observe that the scalar equation \eqref{S3:Hequation1} for $\eta$ and $\mathcal{H}$ remains the same, while the non-local equation \eqref{S3:DimHbehav1} changes to:
+\begin{equation}\label{S5:DimHLRP1}
+\int_{0}^{\infty} \cos(kx) \cosh(k(\eta+h)) f(x) + \sin(kx) \sinh(k(\eta+h))\mathcal{H}(\eta,D) \{f(x) \} \D x = 0,
+\end{equation}
+and the nondimensional version \eqref{S3:NDimHbehav} becomes
+\begin{equation}\label{S5:DimHLRP2}
+\int_{0}^{\infty} \cos(kx) \cosh(\mu k(\eta+1)) f(x) + \sin(kx) \sinh(\mu k(\eta+1))\mathcal{H}(\epsilon \eta,D) \{f(x) \} \D x = 0.
+\end{equation} 
+It is worth noting that taking the real part of the whole-line equations and restricting integrals to $[0,\infty)$ yields the half-line, non-local equations \eqref{DimHLRP1}, \eqref{DimHLRP2}.
+
+By the same procedure, the expansion for $\mathcal{H}$ operator is given by 
+\begin{align*}
+\mathcal{H}_0(\epsilon\eta, D) \{f(x) \} &= - \{ \mathcal{F}^k_s \}^{-1} \{ \coth(\mu k) \reallywidehat{f^k_c} \}, \\
+\mathcal{H}_1(\epsilon\eta, D) \{f(x) \} &= - \{ \mathcal{F}^k_s \}^{-1} \{ \mu k \reallywidehat{\left( \eta f(x) \right)}^k_c + \mu k \coth(\mu k) \reallywidehat{\left( \eta \mathcal{H}_0\{f(x) \} \right)}^k_c\}.
+\end{align*}
+The notable difference from the whole-line is the presence of Fourier cosine and sine transforms, in place of Fourier transform. 
+
+We apply the expansion to the scalar equation equation. In the leading order, this yields 
+\begin{align*}
+- \mathcal{F}^k_s \{ \int^x_0 \eta_{tt} \D x' \} + \reallywidehat{\eta_x}^k_s = 0.
+\end{align*}
+Inverting Fourier sine transform and differentiating with respect to $x$ yields the wave equation on the half-line.
+
+The next order approximation yields the equivalent of \eqref{srfceq0}:
+\begin{equation}\label{S5:SurfaceElevationHL}
+ \eta_{tt} - \eta_{xx} = \mu^2 \left( \frac{1}{3} \eta_{xxxx}  + \partial_x(\mathcal{F}^k_s)^{-1} \{ \mathcal{F}^k_c \{ \partial_t \left( \eta \int^{x}_0\eta_{t} \D x' \right)\} \} + \frac{1}{2} \partial^2_x\left(\int^{x}_0\eta_{t} \D x' \right)^2\right).
+\end{equation}
+The notable difference between the equations on two domains is the presence of the inverse sine transform of the cosine transform. Anticipating secularity, we introduce the same time scales 
+\[ \tau_0 = t, \qquad \tau_1 = \epsilon t.\]
+Along with an expansion $\eta = \eta_0 + \epsilon \eta_1,$ within $\mathcal{O}(\epsilon^0),$ we obtain
+\[ \eta_{0\tau_0 \tau_0} - \eta_{0xx} = 0,\]
+which is the wave equation on the half line. The general solution on the half-line is 
+\[ \eta_0(x, \tau_0, \tau_1, \ldots ) = \begin{cases} F_2(x-\tau_0, \tau_1, \ldots ) + G_2(x+\tau_0, \tau_1, \ldots) & x\geq \tau_0 \\ F_1(\tau_0-x, \tau_1, \ldots ) + G_1(x+\tau_0, \tau_1, \ldots) & x<\tau_0 \end{cases}, \]
+where we emphasise that the difference between $F_i$ and $G_i.$ Even though $F_1$ and $F_2$ are both right-going waves, they have different domains, and hence are different functions. Within $\mathcal{O}(\epsilon)$, a careful calculation yields the following system of 4 equations in four unknowns $F_1, F_2, G_1, G_2:$
+\begin{equation}\label{S5:HLSystem}
+\begin{aligned}
+2 \partial_{\tau_1}F_1 &+ \frac{1}{3} \partial_\xi^3 F_1 + (F_1-A)\partial_\xi F_1 + \frac{1}{\pi} \bigg(\int^0_{-\tau_0} (2 F_1  - A)\partial_{\xi'} F_1\frac{1}{\xi -\xi'} \D \xi' \\
+&+ \int^{\infty}_{0} (2 F_2 - (A+B))\partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi'\bigg)  &= 0, \qquad \xi < 0; \\
+2 \partial_{\tau_1}F_2 &+ \frac{1}{3} \partial_\xi^3 F_2 + (F_2-A-B)\partial_\xi F_2 + \frac{1}{\pi}  \bigg( \int^0_{-\tau_0} (2 F_1 -A)\partial_{\xi'}F_1\frac{1}{\xi -\xi'} \D \xi' \\
+&+ \int^{\infty}_{0} (2 F_2 -  (A+B))\partial_{\xi'} F_2 \frac{1}{\xi -\xi'} \D \xi'  \bigg) &= 0, \qquad \xi \geq 0; \\
+- 2 \partial_{\tau_1} G_1 &+  \frac{1}{3} \partial_\zeta^3 G_1 + (G_1+A) \partial_{\zeta} G_1 +  \frac{1}{\pi} \bigg( \int^{2\tau_0}_{\tau_0} (2 G_1 + A) \partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' \\
+&+ \int^{\infty}_{2\tau_0} (2 G_2+(A+B)) \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \bigg) &= 0, \qquad \xi < 0; \\
+- 2 \partial_{\tau_1} G_2 &+  \frac{1}{3} \partial_\zeta^3 G_2 + (G_2+ A +B)\partial_{\zeta} G_2 + \frac{1}{\pi}  \bigg( \int^{2\tau_0}_{\tau_0} (2 G_1 +A)\partial_{\zeta'} G_1 \frac{1}{\zeta -\zeta'} \D \zeta' \\
+&+ \int^{\infty}_{2\tau_0} (2 G_2+A+B) \partial_{\zeta'} G_2 \frac{1}{\zeta -\zeta'} \D \zeta' \bigg) &= 0, \qquad \xi \geq 0,
+\end{aligned}
+\end{equation}
+where 
+\[ A = F_1(\tau_0)  - G_1(\tau_0), \qquad B = F_2(0) - F_1(0)  +  G_1(2\tau_0) - G_2(2\tau_0). \]
+Each equation in the system \eqref{S5:HLSystem} is somewhat similar to KdV: the time derivative and dispersion term are preserved, whereas nonlinear terms are drastically different. Further, a careful look at the system reveals that unlike on the whole line case, the approximate equations for $F_i$ and $G_i$ are still dependent on the time scale $\tau_0.$ This is an issue, as the reason behind the time scales is to separate the dependence on different time scales. As of now, it is not clear why this issue appears. One possible reason is that the linear time scales
+\[ \tau_0 = t, \qquad \tau_1 = \epsilon t\]
+should be replaced with different time scales. Another reason could be that that $\mathcal{H}$ formulation does not provide sufficient information to do asymptotics.   
+
+In summary, although we do not obtain the approximate equations on the half-line, we see the utility of the $\mathcal{H}$ formulation in aiding to understand the physical and mathematical difficulties associated with the half-line problem. This should not be taken for granted: for example, if one conducts asymptotic expansions via the velocity potential formulation, one obtains 4 KdV equations for $F_i, G_i, i =1, 2$, which clearly does not agree with the results of this section. As such, the $\mathcal{H}$ formulation shows that the half-line problem has several subtleties, which may not be readily seen in other formulations. 

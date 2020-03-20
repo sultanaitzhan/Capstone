@@ -1,0 +1,38 @@
+% Chapter Template
+
+\chapter{Discussion} % Main chapter title
+
+\label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+In this section, we discuss and justify the relevance of the derivation. Taking the water wave problem on the whole line as our starting point, we obtain wave and KdV equations in the shallow water limit. This result is not novel; indeed, the AFM formulation, given in \cite{AFM2006}, also arrives at the same equations, though the unknown variable there is $q(x) = \phi(x,\eta(x)),$ the velocity potential evaluated at the surface. Rather, what is novel by our result is that we have derived the expected equations from a different, non-local formulation, thereby further justifying the use of this formulation when doing asymptotics. 
+
+In addition, although our goal is to approximate the solution of the water wave problem, the derivation of the KdV equations deserves a special consideration. Here, we obtain the KdV as an equation needed to remove secular terms. In literature, another approach to arrive at KdV is given in \cite{BBM1972}. In the paper, the authors begin by considering a first-order wave equation,
+\begin{equation}\label{Model1}
+u_t + c_0 u_x = 0,
+\end{equation} 
+which is a model for small-amplitude, long waves, propagating in $+x$ direction, with speed $c_0.$ The model \eqref{Model1} has limited utility, since the non-linear and dispersive effects accumulate and cause the model to lose its validity over large times.  One can correct for these effects by considering each separately. For non-linearity, this involves approximating the characteristic velocity by making it dependent on $u:$
+\[ \frac{1}{c_0} \frac{\D x}{\D t} = 1 +  \epsilon u, \qquad \epsilon \ll 1,\]
+so that \eqref{Model1} becomes
+\begin{equation}\label{Model2}
+u_t + c_0 (1+ \epsilon u)u_x = u_t + c_0 u_x + c_0 \epsilon u u_x  = 0.
+\end{equation}
+The validity of \eqref{Model2} relies on the condition that the amplitude parameter $\epsilon$ is sufficiently small, and the implicit error is $\mathcal{O}(\epsilon).$ As such, the model \eqref{Model2} can be regarded as an improvement over \eqref{Model1}, accounting for nonlinear effects, within $\mathcal{O}(\epsilon).$ 
+
+Similarly, one can account for the dispersion by considering a linear transformation
+\[ Lu = u + \epsilon \alpha^2 u_{xx}, \qquad \epsilon \ll 1.\]
+Substituting into \eqref{Model1} yields
+\begin{equation}\label{Model3}
+u_t + c_0 (Lu)_x= u_t + c_0 u_x + c_0 \epsilon \alpha^2 u_{xxx}  = 0, 
+\end{equation}
+which can be thought of as an improvement over \eqref{Model1}, accounting for dispersive effects, to $\mathcal{O}(\epsilon).$ 
+
+We obtain \eqref{Model2} and \eqref{Model3} as the respective first-order approximations by allowing for weak nonlinearity and dispersive effects. The authors then argue that an approximation accounting for both effects can be anticipated by simply combining the $\epsilon$ terms:
+\begin{equation}\label{Model4}
+u_t + u_x + \epsilon(u u_x + \alpha^2 u_{xxx}) = 0,
+\end{equation} 
+where we set $c_0 =1.$ In nondimensional variables, we transform \eqref{Model4} to obtain 
+\[ u_t + u_x + uu_x + u_{xxx} = 0.\] 
+Galilean transformations yield the usual form of the KdV 
+\[ u_t +uu_x + u_{xxx} = 0. \]
+
+The derivation is indeed elegant, and certainly much shorter, than the one presented here. Note that the use of \eqref{Model1} as the starting point is not problematic: indeed, upon a closer look, one obtains the equation directly from the dynamic boundary condition of the water wave problem, by imposing the shallow water limit. The issue is addition of the $\epsilon$ terms in \eqref{Model2} and \eqref{Model3}: by doing so, the authors already presuppose a certain balance between nonlinearity and dispersion. However, there is no reason to assume this choice of balance; indeed, for a self-consistent theory we must account for the nonlinear and dispersive effects simultaneously. 
