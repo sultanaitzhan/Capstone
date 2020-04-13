@@ -1,0 +1,295 @@
+% Chapter Template
+
+\chapter{Non-local derivation on the whole line} % Main chapter title
+
+\label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+As mentioned in Chapter 3, a direct derivation of the KdV model is subject to lengthy calculations and careful bookkeeping. If we are to change domains (say, the half-line), then additional care must be taken to ensure that the model is correct. As such, we look for a more efficient way of deriving asymptotic models valid on various domains.
+ 
+% In addition, these complications lead to difficulties when attempting to deal with questions of existence and well-posedness. 
+Recall that the water-wave problem is challenging to work with directly, due to the nonlinear boundary conditions and the domain with an unknown shape. To address these issues, reformulations of the problem are introduced, which result in equivalent problems that are more tractable. Below, we give a short overview of these formulations.
+
+For one-dimensional surfaces (one horizontal variable), conformal mappings can be used to eliminate some of the issues (for an overview, see \cite{DKSZ1996}). However, this approach is limited to one-dimensional surfaces. For both one- and two-dimensional surfaces, formulations such as the Hamiltonian formulation given in \cite{Zakharov} or \cite{CS1993} reduce the problem to a system of two equations in terms of surface variables $q(x,t) = \phi(x, \eta(x,t),t)$ and $\eta(x,t).$ This is achieved by introducing a Dirichlet-to-Neumann operator (DNO formulation). Another non-local formulation introduced in \cite{AFM2006} (AFM formulation) results in a system of two equations for the same variables as in the DNO formulation. However, both the DNO and AFM formulations involve solving for $q(x,t),$ which may be of little relevance in applications and is typically hard to measure in experiments. We are generally interested in the wave height $\eta(x,t).$
+
+A new formulation is introduced in \cite{OV2013}. In the work, the authors formally eliminate $q(x,t),$ reducing the water-wave problem to a system of two equations in one variable $\eta(x,t).$ This formulation allows rigorous investigations of one- and two-dimensional water waves. Computation of Stokes-wave asymptotic expansions for periodic waves justifies the use of the formulation; indeed, following \cite{OV2013}, computations can be performed with arguably less effort, especially for two-dimensional waves. Our goal is to further justify the use of this formulation, which we call the $\mathcal{H}$ formulation.
+
+In this chapter, we first rewrite the problem by introducing the normal-to-tangential $\mathcal{H}$ operator. We then perform an expansion for the operator and proceed to obtain an expression for the surface elevation. Finally, asymptotic reductions and multiple time scales yield the desired approximate equations. We emphasise that our intention in this chapter is to demonstrate the efficacy of the $\mathcal{H}$ formulation for doing asymptotics. For efficiency of presentation, many steps in calculations are omitted. 
+
+\section{Non-local formulation on the whole line}
+We seek to reformulate the problem \eqref{S2:DimWholeLineProblem}. Consider the velocity potential evaluated at the surface $q(x,t ) = \phi (x, \eta(x, t),t).$ Combining \eqref{S2:KBC} and \eqref{S2:DBC} evaluated at $z = \eta$, we obtain 
+\begin{equation}\label{S3:eq1}
+q_t + \frac{1}{2}q_x^2 + g \eta - \frac{1}{2} \frac{(\eta_t + q_x \eta_x)^2}{1 + \eta_x^2} = 0,
+\end{equation}
+which is an equation for two unknowns $q(x,t)$ and $\eta(x,t).$ We aim to find an equation in $\eta(x,t)$ only. 
+
+Let $\N = [-\eta_x, 1]^T$ and $\T =[1, \eta_x ]^T$ be vectors normal and tangent to the surface $z =\eta(x,t),$ respectively. We introduce an operator $\mathcal{H}(\eta, D)$ that maps the normal derivative at the surface $z = \eta$ to the tangential derivative at this surface:
+\begin{equation}\label{S3:defH1}
+\mathcal{H}(\eta, D) \{ \nabla \phi \cdot \N \} = \nabla \phi \cdot \T,
+\end{equation}
+where $D = - i \partial_x.$ Note that by \eqref{S2:KBC}, $\nabla \phi \cdot \N = \phi_z - \phi_x \eta_x = \eta_t,$ and by chain rule, $\nabla \phi \cdot \T = \phi_x + \eta_x \phi_z = q_x.$ This lets us rewrite \eqref{S3:defH1} as 
+\begin{equation}\label{S3:defH2}
+\mathcal{H}(\eta, D) \{ \eta_t \} = q_x.
+\end{equation}
+Together, \eqref{S3:eq1} and \eqref{S3:defH2} form a system of two equations for two unknowns $q(x,t),$ and $\eta(x,t).$ Differentiating \eqref{S3:eq1} with respect to $x$ and \eqref{S3:defH2} with respect to $t$ reduces the system to a single equation for $\eta(x,t):$
+\begin{equation}\label{S3:Hequation}
+\begin{aligned}
+\partial_t&\left(\mathcal{H}(\eta, D)\{ \eta_t\} \right) \\
+&+ \partial_x\left( \frac{1}{2}\left(\mathcal{H}(\eta, D)\{\eta_t\} \right)^2 + \epsilon \eta - \frac{1}{2} \frac{(\eta_t + \eta_x \mathcal{H}(\eta, D)\{ \eta_t\})^2}{1+\eta_x^2}\right) = 0.
+\end{aligned}
+\end{equation}
+Equation \eqref{S3:Hequation} represents a scalar equation for $\eta(x,t),$ incorporating the dynamic and kinematic boundary conditions. The utility of \eqref{S3:Hequation} depends on whether we can find a useful representation for the operator $\mathcal{H}(\eta, D).$
+
+\section{Behaviour of the $\mathcal{H}$ operator}
+In the previous section, we obtain a scalar equation \eqref{S3:Hequation} in terms of the surface variable $\eta(x,t)$ and the operator $\mathcal{H}.$ In this section, we derive another, nonlocal equation for $\eta$ and $\mathcal{H},$ thereby completing the system.
+
+Consider the following boundary value problem:
+\begin{subequations}
+\begin{align}
+\phi_{xx} + \phi_{zz} &= 0, &-h < z &< \eta(x,t), \label{S3:PDE1}\\
+\phi_{z} &= 0, &z &= -h, \label{S3:BBC1}\\
+\nabla  \phi \cdot \N &= f(x), & z &= \eta(x,t), \label{S3:KBC1}
+\end{align}
+\end{subequations}
+where $f(x)$ is a smooth function. Let $\varphi$ be harmonic on $S = \RR \times (-h, \eta);$ using \eqref{S3:PDE1} and that $\varphi_z$ is also harmonic on $S,$ we have
+\[ \varphi_z(\phi_{xx} + \phi_{zz}) - \phi((\varphi_z)_{zz} + (\varphi_{z})_{xx}) = 0. \]
+Taking the integral over the domain yields
+\[ \int^{\infty}_{-\infty} \int^{\eta}_{-h} \varphi_z(\phi_{xx} + \phi_{zz}) - \phi((\varphi_z)_{zz} + (\varphi_{z})_{xx}) \D z \D x = 0.\]
+An application of Green's theorem gives 
+\begin{equation}\label{S3:dInt}
+\int_{\partial S} \varphi_z(\nabla  \phi \cdot \textbf{n}) - \phi(\nabla  \varphi_z \cdot \textbf{n}) \D s = 0,
+\end{equation} 
+where $\partial S$ is the boundary of $S,$ $\D s$ is an area element, and $\textbf{n}$ is the vector outward normal to the boundary. Now, observe that $- \nabla \varphi_z \cdot \textbf{n} = \nabla  \varphi_x \cdot \textbf{t},$ where $\textbf{t}$ is the vector tangential to the boundary of the domain. Using this to rewrite \eqref{S3:dInt}, we obtain the following contour integral:
+\begin{align}
+0 &= \int_{\partial S} \varphi_z(\nabla  \phi \cdot \textbf{n}) + \phi(\nabla  \varphi_z \cdot \textbf{t}) \D s \nonumber \\
+&= \int_{\partial S} \varphi_z (\phi_z \D x - \phi_x \D z) + \phi(\varphi_{xx} \D x + \varphi_{xz} \D z). \label{S3:DimContInt}
+\end{align}
+Splitting the contour and rewriting the improper integral as a limit yields
+\begin{align*}
+\int_{\partial S}&(\cdot) \D s \\
+&=  \bigg\{\int^{\infty}_{-\infty} (\cdot) \bigg|_{z = -h} + \lim_{R \to \infty} \int_{-h}^{\eta} (\cdot) \bigg|_{x = R} + \int_{\infty}^{-\infty} (\cdot) \bigg|_{z=\eta} + \lim_{R \to \infty}\int_{\eta}^{-h}(\cdot) \bigg|_{x = -R} \bigg\} \D s,
+\end{align*}
+where $(\cdot)$ represents the integrand in \eqref{S3:DimContInt}. 
+
+We consider each segment. As $R \to \infty,$ we require that $\phi$ and its gradient vanish, so these integrals vanish. At $z = -h,$ we can pick $\varphi$ such that $\varphi_x(x, -h) = 0.$ The bottom condition and integration by parts then reveal that the contribution at $z = - h$ vanishes as well. Finally, at $z = \eta(x,t),$ integration parts and recognising normal and tangential derivatives yield
+\begin{align*}
+\int_{-\infty}^{\infty} \varphi_z(\phi_z &- \phi_x \eta_x) + \phi(\varphi_{xx}  +  \varphi_{xz} \eta_x) \D x = \int_{-\infty}^{\infty} \varphi_z \nabla \phi \cdot \N -\varphi_x \nabla \phi \cdot \T \D x.
+\end{align*}
+Finally, recalling \eqref{S3:KBC1} and \eqref{S3:defH1}, we reduce the contour integral \eqref{S3:DimContInt} to
+\begin{equation}\label{S3:dInt2}
+\int_{-\infty}^{\infty} \varphi_z f(x) -\varphi_x(x, \eta) \mathcal{H}( \eta, D)\{ f(x) \} \D x = 0.
+\end{equation}
+Note that $\varphi(x,z) = e^{-ikx} \sinh(k(z+h)), ~ k \in \RR$ is one solution of the problem $\Delta \varphi = 0, ~ \varphi_z(-h,z) = 0.$ Substituting $e^{-ikx} \sinh(k(z+h))$ into
+\eqref{S3:dInt2} yields
+\begin{equation}\label{S3:DimHbehav2}
+\int_{-\infty}^{\infty} e^{-ikx}( k \cosh(k(\eta+h)) f(x) + ik \sinh(k(\eta+h)) \mathcal{H}( \eta, D)\{ f(x) \}) \D x = 0.
+\end{equation}
+Taking out $k$ in the integral gives
+\begin{equation}\label{S3:DimHbehav}
+\int_{-\infty}^{\infty} e^{-ikx}( i  \cosh(k(\eta+h)) f(x) - \sinh(k(\eta+h)) \mathcal{H}( \eta, D)\{ f(x) \}) \D x = 0,
+\end{equation}
+valid for all $k \in \RR.$ Equation \eqref{S3:DimHbehav} gives a description for the operator $\mathcal{H}( \eta, D)$ in dimensional coordinates. 
+
+\rmk{We observe that \eqref{S3:DimHbehav} actually holds only for $k \neq 0.$ However, for the water wave problem, $f(x) = \eta_t.$ As $k \to 0,$ \eqref{S3:DimHbehav} then reduces to 
+\[ \int^{\infty}_{-\infty} \eta_t \D x = 0.\]
+This equation is known to be true and represents the conservation of mass. See \cite{BO1982} for details.}
+
+As mentioned in Chapter 3, to derive asymptotic models we need to work in non-dimensional variables. Using the same rescaling and nondimensionalisation as in \eqref{S2:NDvar}, via the same procedure one obtains
+\begin{equation}\label{S3:NDimHbehav}
+\int_{-\infty}^{\infty} e^{-ikx}( i  \cosh(\mu k(\eta+1)) \tilde{f}(x) - \sinh(\mu k(\eta+1)) \mathcal{H}( \epsilon \eta, D)\{ \tilde{f}(x)  \}) \D x = 0, 
+\end{equation}
+where $k \in \RR$ and the primed notation is dropped for convenience. In addition, note that $\tilde{f}$ and $f$ are related by $\tilde{f}(x') = \dfrac{\sqrt{gh}}{ga}f(x).$
+
+In summary, introduction of the normal-to-tangential operator $\mathcal{H}(\eta, D)$ reduces the problem \eqref{S2:DimWholeLineProblem} to the scalar equation \eqref{S3:Hequation} for $\eta,$ where the operator $\mathcal{H}$ is described via \eqref{S3:DimHbehav}. This is the non-local formulation presented in \cite{OV2013}. 
+
+\section{Expansion of the $\mathcal{H}$ operator}
+As the relation in \eqref{S3:NDimHbehav} is implicit, it is difficult to solve for the operator $\mathcal{H}(\eta, D)$ directly. Therefore, following \cite{CS1993}, we find a formal series expansion for the operator via perturbative methods. Since $\epsilon \ll 1,$ we expand the hyperbolic functions as a Taylor series in $\epsilon:$
+\begin{align*}
+\cosh(\mu k(\eta+1)) &= \cosh(\mu k) + \mu k \epsilon \eta \sinh(\mu k) + \mathcal{O}(\epsilon^2), \\
+\sinh(\mu k(\eta+1)) &= \sinh(\mu k) + \mu k \epsilon \eta \cosh(\mu k) + \mathcal{O}(\epsilon^2).
+\end{align*}
+Now, we note that the idea of formally expanding as a perturbation series can be extended to operators. The formal expansion is given by 
+\begin{align*}
+\mathcal{H}( \epsilon \eta, D)\{ g(x) \} &= \sum^{\infty}_{j=0} \mathcal{H}_j( \epsilon \eta, D)\{ g(x) \}, 
+\end{align*}
+where $\mathcal{H}_j$ is homogeneous of degree $j,$ i.e. $\mathcal{H}_j( \epsilon \eta, D) =  \epsilon ^j \mathcal{H}_j(\eta, D).$ Let $g(x) = \tilde{f}(x)$ so that the scalar equation \eqref{S3:NDimHbehav} becomes:
+\begin{equation}\label{S3:HPerturbed}
+\begin{aligned}
+\int_{-\infty}^{\infty} &e^{-ikx}\bigg( i \left[ \cosh(\mu k) + \mu k \epsilon \eta \sinh(\mu k) + \mathcal{O}(\epsilon^2) \right] g(x) \\
+&- \left[ \sinh(\mu k) + \mu k \epsilon \eta \cosh(\mu k) + \mathcal{O}(\epsilon^2)\right] \left[ \mathcal{H}_0 + \epsilon \mathcal{H}_1 + \mathcal{O}(\epsilon^2) \right]( \epsilon \eta, D)\{ g(x) \}\bigg) \D x = 0,
+\end{aligned}
+\end{equation}
+\textbf{At leading order $\mathcal{O}(\epsilon^0):$} Using \eqref{S3:HPerturbed}, we obtain 
+\begin{equation*}
+\int_{-\infty}^{\infty} e^{-ikx}( i  \cosh(\mu k) g(x) - \sinh(\mu k) \mathcal{H}_0( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
+\end{equation*}
+For $k \neq 0,$ dividing by $\sinh(\mu k)$ yields 
+\begin{equation*}
+\int_{-\infty}^{\infty} e^{-ikx}( i  \coth(\mu k) g(x) - \mathcal{H}_0( \epsilon \eta, D)\{ g(x) \}) \D x = 0.
+\end{equation*}
+Splitting the integrand and recognising the Fourier transform yields:
+%\begin{align*}
+%\FT{\mathcal{H}_0( \epsilon \eta, D)\{ g(x) \}} &= \int_{-\infty}^{\infty} e^{-ikx} i \coth(\mu k) g(x) \D x \\
+%&= i \coth(\mu k) \FT{g(x)}.
+%\end{align*}
+%Finally, we invert Fourier transform to obtain 
+\begin{equation}\label{S4:OpPerturbedH1}
+\mathcal{H}_0( \epsilon \eta, D)\{ g(x) \} =\invFT{i \coth(\mu k) \FT{g(x)}}.
+\end{equation}
+If $\FT{ g(x)} \to 0$ faster than $\mathcal{O}(\mu k)$ as $k \to 0,$ \eqref{S4:OpPerturbedH1} is defined for all $k \in \RR$ (see Remark \ref{S4:rmk}).
+\newline \textbf{At the next order $\mathcal{O}(\epsilon^1):$} From \eqref{S3:HPerturbed}, we obtain
+\begin{align*}
+\int_{-\infty}^{\infty} e^{-ikx}( i \mu k \eta \sinh(\mu k) g - \left[ \sinh(\mu k)\mathcal{H}_1 + \mu k \eta \cosh(\mu k) \mathcal{H}_0 \right]\{ g \}) \D x = 0,
+\end{align*}
+where we drop $( \epsilon \eta, D)$ for ease of notation. Dividing by $\sinh(\mu k),$ we have
+\begin{align*}
+\int_{-\infty}^{\infty} e^{-ikx}( i \mu k \eta g(x) - \left[\mathcal{H}_1 + \mu k \eta \coth(\mu k) \mathcal{H}_0 \right]\{ g(x) \}) \D x = 0, \quad k \neq 0.
+\end{align*}
+Splitting the integral and recognising the Fourier transform yields
+\begin{align}
+\mathcal{H}_1 \{ g(x) \} &= \invFT{ i k \FT{ \mu \eta g }}- \invFT{ \mu k \coth(\mu k) \FT{ \eta \mathcal{H}_0 \{ g \}) } } \nonumber\\
+&= \mu \partial_x(\eta g) - \invFT{ \mu k \coth(\mu k) \FT{ \eta \invFT[l]{i \coth(\mu l) \FT[l]{g} } } }, \label{S4:OpPerturbedH2}
+\end{align}
+where we write out spectral parameters $k, l$ to keep track of transforms. In sum, by expanding and collecting like powers of $\epsilon,$ we find
+\[ \mathcal{H}( \epsilon \eta, D)\{ g(x) \} = [ \mathcal{H}_0 + \epsilon \mathcal{H}_1]( \epsilon \eta, D)\{ g(x) \} + \mathcal{O}(\epsilon^2),\]
+where $\mathcal{H}_0$ is given by \eqref{S4:OpPerturbedH1} and $\mathcal{H}_1$ is given by \eqref{S4:OpPerturbedH2}. Following this procedure, a formal recursion formula can be obtained, so that each $\mathcal{H}_j$ can be written in terms of $\mathcal{H}_i,$ for $i = 0, 1, \ldots, j -1.$ For our needs, the first two terms are sufficient.
+\rmk{Recall that $\mathcal{H}_0( \epsilon \eta, D)\{ g(x) \} =\invFT{i \coth(\mu k) \FT{g(x)} }.$ Expanding $\coth(\mu k)$ via its Laurent series in $\mu k$ gives
+\[ \coth(\mu k) = \frac{1}{\mu k} +\frac{\mu k}{3} + \mathcal{O}(\mu^3).\]
+Since $\coth(\mu k)$ has a simple pole at $k = 0,$ so do $\mathcal{H}_0, \mathcal{H}_1$ and $\mathcal{H}.$ As such, so long as $\FT{ g(x)} \to 0$ as $k \to 0$ at a rate faster than $\mathcal{O}(\mu k),$ then $\displaystyle\lim_{k \to 0} \FT{ \mathcal{H}_0}$ exists and is finite. With this condition, $\mathcal{H}_0$ and $\mathcal{H}_1$ are defined for all $k \in \RR.$  
+}\label{S4:rmk}
+
+\section{Deriving an expression for surface elevation}\label{SrfcSec}
+We proceed to derive a second order approximation for $\eta,$ using \eqref{S3:Hequation} and the expansion for $\mathcal{H}.$ The non-dimensional version of \eqref{S3:Hequation} is given by
+\begin{equation}\label{S3:Eq13}
+\begin{aligned}
+\partial_t\bigg(\mathcal{H}(\epsilon\eta, D)&\{ \epsilon \mu \eta_t\} \bigg) + \partial_x\left( \frac{1}{2}\bigg(\mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\} \right)^2 \\
+&+ \epsilon \eta - \frac{1}{2}\epsilon^2 \mu^2 \frac{(\eta_t + \eta_x \mathcal{H}(\epsilon\eta, D)\{ \epsilon \mu \eta_t\})^2}{1+\epsilon^2 \mu^2 \eta_x^2}\bigg) = 0.
+\end{aligned}
+\end{equation}
+Recall $\epsilon = \mu^2;$ keeping the terms up to the next order, \eqref{S3:Eq13} becomes
+\begin{equation}\label{S3:Eq14}
+\partial_t\left(\mathcal{H}_0 \{ \epsilon \mu \eta_t\} + \epsilon \mathcal{H}_1 \{ \epsilon \mu \eta_t\} \right) + \partial_x \left(\frac{1}{2} (\mathcal{H}_0 \{ \epsilon \mu \eta_t\})^2 + \epsilon \eta \right) = 0.
+\end{equation}
+Using \eqref{S4:OpPerturbedH1} and \eqref{S4:OpPerturbedH2}, we rewrite \eqref{S3:Eq14} to obtain 
+\begin{equation}\label{S3:Eq15}
+\begin{aligned}
+\epsilon \mu &\invFT{ i \coth (\mu k) \reallywidehat{\eta_{tt}}_k} + \epsilon^2 \mu^2 (\eta \eta_t)_{tx} +\frac{\epsilon^2}{2} \partial_x\left( \invFT[j]{ i \mu \coth (\mu j) \reallywidehat{\eta_t}_j}\right)^2 + \epsilon \partial_x \eta \\
+&- \epsilon^2 \invFT{ \mu k \coth (\mu k) \FT{\partial_t \left[\eta \invFT[l] { i \mu \coth (\mu l) \reallywidehat{\eta_t}_l} \right] } } = 0
+\end{aligned}
+\end{equation}
+Applying the Fourier transform, expanding $\coth(\mu k)$-like terms and  keeping the terms up to $\mathcal{O}(\mu^2)$ gives
+\begin{align*}
+\left( \frac{1}{k} + \frac{\mu^2 k}{3} \right) \reallywidehat{\eta_{tt}}_k - \mu^2 \FT{\partial_t \left[\eta \invFT[l]{\frac{1}{l}\reallywidehat{\eta_t}_l} \right]} -\frac{\mu^2}{2} k \FT{\left( \invFT[j] { \frac{1}{j} \reallywidehat{\eta_t}_j}\right)^2} + k \reallywidehat{\eta}_k= 0.
+\end{align*}
+Inverting the Fourier transform yields
+%\begin{align*}
+%\eta_{tt} - \eta_{xx} + \mu^2 \left(-\frac{\partial_x^2}{3}\eta_{tt} + i \partial_x\left(\partial_t \left[\eta \invFT[l]{\frac{1}{l}\reallywidehat{\eta_t}_l} \right] \right) + \frac{1}{2} \partial_x^2 \left( \invFT[j]{ \frac{1}{j} \reallywidehat{\eta_t}_j}\right)^2 \right)= 0,
+%\end{align*}
+%or more conveniently,
+\begin{equation}\label{S3:Eq16}
+\eta_{tt} - \eta_{xx} = \mu^2 \left(\frac{\partial_x^2}{3}\eta_{tt} - i \partial_x\left(\partial_t \left[\eta \invFT[l]{\frac{1}{l}\reallywidehat{\eta_t}_l} \right] \right) - \frac{1}{2} \partial_x^2 \left( \invFT[j]{ \frac{1}{j} \reallywidehat{\eta_t}_j}\right)^2 \right).
+\end{equation}
+We seek to simplify \eqref{S3:Eq16}. First, integration by parts allows us to write
+\begin{equation}\label{S3:Eq17}
+\invFT[l]{\frac{1}{l} \reallywidehat{\eta_t}_l} = i \int^x_{-\infty} \eta_t(x', t) \D x'.
+\end{equation}
+Using \eqref{S3:Eq17}, $\epsilon = \mu^2,$ and that $\eta_{tt} = \eta_{xx} + \mathcal{O}(\mu^2),$ \eqref{S3:Eq16} becomes
+\begin{align}
+\eta_{tt} - \eta_{xx} &= \epsilon \left[ \frac{1}{3}\eta_{xxxx} +  \partial_x^2 \left( \frac{\eta^2}{2} + \left( \int^{x}_{-\infty} \eta_t \D x' \right)^2\right)\right].\label{S3:Eq18}
+\end{align}
+In sum, we obtain \eqref{S3:Eq18}, which is an expression for the surface elevation $\eta,$ valid to $\mathcal{O}(\epsilon)$.
+\rmk{In Section 2.4, we mention secularities in the next order. We show that this is not unexpected via the dispersion relation of \eqref{S3:Eq18}. Assuming a wave solution $\tilde{\eta}(x,t) = \exp(i(kx-\omega t))$ and substituting it into the linearised equation leads to $-\omega^2 + k^2 = \epsilon k^4/3.$ For large $k,$ $\omega \sim \pm i \sqrt{\epsilon}k^2/\sqrt{3}.$ Substituting the negative root of $\omega$ into $\tilde{\eta}$ gives $\eta(x,t) \approx \exp(ikx) \exp\left( \sqrt{\dfrac{\epsilon}{3}}k^2 t\right).$ As $k \to \infty,$ $\eta$ is unbounded in time. This is unphysical, since in reality the wave height is always bounded. This suggests that \textit{the linear part} of \eqref{S3:Eq18} contains secularities. By itself, this does not warrant multiple scales, as we do not account for nonlinear effects. Still, this information is useful to keep in mind as we proceed.}\label{Rmk2}
+
+\rmk{Why is the derivation of \eqref{S3:Eq18} included whereas that of \eqref{S2:PS1} omitted? First, it is more efficient to derive \eqref{S3:Eq18} than \eqref{S2:PS1}. In the velocity potential case, the expansion \eqref{S2:PS0} is substituted into \eqref{S2:BC2ND2} to obtain an expression for $\eta$ in terms of $A.$ Then, \eqref{S2:PS0} and the expression for $\eta$ are substituted into \eqref{S2:BC3ND2} to obtain \eqref{S2:PS1} The derivation becomes rather long, requiring careful and tedious computations. 
+
+In our derivation, we begin with the scalar equation \eqref{S3:Hequation} and the nonlocal equation \eqref{S3:NDimHbehav}. Substituting \eqref{S4:OpPerturbedH1} and \eqref{S4:OpPerturbedH2} into \eqref{S3:Hequation}, along with asymptotic reductions, we arrive at the expression \eqref{S3:Eq18}. There is much less algebra involved in the derivation, compared to alternate methods. Asymptotic reductions are fairly immediate, since it is easy to estimate orders of $\mathcal{H}_0$ and $\mathcal{H}_1,$ due to presence of $\coth \mu k$ in each expression.  
+
+Second, the derivation of \eqref{S2:PS1} is a known result found in some texts on nonlinear waves (see Chapter 5 of \cite{Ablowitz}). However, our derivation is a new result, illustrating for the first time how the non-local $\mathcal{H}$ formulation can be used to derive a well-known asymptotic model.  
+}\label{Rmk3}
+
+\section{Derivation of wave and KdV equations}\label{wKdV}
+
+We derive the approximate equations from \eqref{S3:Eq18}. Anticipating secular terms, we introduce time scales $\tau_0 = t,  \tau_1 = \epsilon t,$ so that $\eta(x, t) = \eta(x, \tau_0, \tau_1)$ and expand $\eta = \eta_0 + \epsilon \eta_1 + \mathcal{O}(\epsilon^2).$ Substituting the series into \eqref{S3:Eq18}, within $\mathcal{O}(\epsilon^0),$ we obtain the wave equation
+\begin{equation}\label{1stOrderApprox}
+\eta_{0\tau_0 \tau_0} - \eta_{0xx} = 0,
+\end{equation}
+whose general solution is $\eta_0(x, \tau_0, \tau_1) = F(x-\tau_0, \tau_1) + G(x+\tau_0, \tau_1).$ While the dependence of $F$ and $G$ on $\tau_0$ is determined via the initial conditions, the dependence on $\tau_1$ remains unknown and is obtained by proceeding to the next order. 
+
+We introduce left-going and right-going variables $\xi = x-\tau_0,~ \zeta = x+ \tau_0.$ By chain rule, new variables imply $\partial_x = \partial_\xi + \partial_\zeta,$ and $\partial_t =- \partial_\xi + \partial_\zeta + \epsilon \partial_{\tau_1}.$ For ease of notation, we suppress explicit dependence on variables; the reader should remember that $F$ depends on $\xi, \tau_1,$ and $G$ depends on $\zeta, \tau_1.$ 
+%\[
+%\partial_x = \partial_\xi + \partial_\zeta, \qquad \partial_t =- \partial_\xi + \partial_\zeta + \epsilon \partial_{\tau_1}.
+%\]
+
+Through the change of variables, the LHS of \eqref{S3:Eq18} becomes
+\begin{equation}
+(\partial_t^2 - \partial_x^2) \eta =  \epsilon \left(- 4\eta_{1\xi \zeta} - 2F_{\tau_1 \xi} + 2G_{\tau_1 \zeta} \right) + \mathcal{O}(\epsilon^2), \label{LHS1}
+\end{equation}
+while the RHS of \eqref{S3:Eq18} becomes
+\begin{equation}\label{RHS1}
+\begin{aligned}
+&\frac{1}{3}\eta_{xxxx} +  \partial_x^2 \left( \frac{\eta^2}{2} + \left( \int^{x}_{-\infty} \eta_t \D x' \right)^2\right) \\
+&= \epsilon \left( \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) +  (\partial_\xi+ \partial_\zeta)^2 \left(\frac{3}{2} (F^2  + G^2) - FG \right)\right) + \mathcal{O}(\epsilon^2), 
+\end{aligned}
+\end{equation}
+where we assume that $F,G$ vanish as $\xi, \zeta \to -\infty.$ Combining \eqref{LHS1} and \eqref{RHS1}, in $\mathcal{O}(\epsilon^1)$ we rewrite \eqref{S3:Eq18} to obtain
+\begin{equation}\label{srfceq2}
+- 4\eta_{1\xi \zeta} = 2(F_{\tau_1 \xi} - G_{\tau_1 \zeta}) + \frac{1}{3}(F_{\xi\xi\xi\xi} + G_{\zeta\zeta\zeta\zeta}) + (\partial_\xi + \partial_\zeta)^2 \left(\frac{3}{2} F^2  + \frac{3}{2}G^2 - FG \right).
+\end{equation}
+In the last term of \eqref{srfceq2}, differentiation yields:
+\begin{align*}
+(\partial_\xi+ \partial_\zeta)^2 \left(\frac{3}{2} F^2  + \frac{3}{2}G^2 - FG\right) &= \partial_\xi(3 F F_\xi - G F_\xi) + \partial_\zeta(3 G G_\zeta - F G_\zeta) - 2 F_\xi G_\zeta,
+\end{align*}
+so that \eqref{srfceq2} becomes
+\begin{equation}\label{srfceq3}
+\begin{aligned}
+- 4\eta_{1\xi \zeta} &= \partial_\xi(2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + 3 F F_\xi) + \partial_\zeta(- 2G_{\tau_1} +  \frac{1}{3}G_{\zeta\zeta\zeta} + 3 G G_\zeta) \\
+&- (G F_\xi  + F G_\zeta) - 2 F_\xi G_\zeta. 
+\end{aligned}
+\end{equation}
+Integration of \eqref{srfceq3} with respect to $\zeta$ and $\xi$ yield
+%\begin{align*}
+%- 4\eta_{1\xi} &= \partial_\xi(2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + 3 F F_\xi) \zeta + (- 2G_{\tau_1} +  \frac{1}{3}G_{\zeta\zeta\zeta} + 3 G G_\zeta) \\
+%&- \left(F_\xi \int G \D \zeta   + G F\right) - 2 F_\xi G,
+%\end{align*}
+% and further integration with respect to  leads to
+\begin{equation}\label{S3:Eq19}
+\begin{aligned}
+- 4\eta_{1} &= \underbrace{(2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + 3 F F_\xi) \zeta}_{\to \infty \mbox{ as } \zeta \to \infty} + \underbrace{(- 2G_{\tau_1} +  \frac{1}{3}G_{\zeta\zeta\zeta}+ 3 G G_\zeta) \xi}_{\to \infty \mbox{ as } \xi \to \infty} \\
+&- \left(F \int G \D \zeta  + G \int F \D \xi \right)- 2 FG.
+\end{aligned}
+\end{equation}
+Since $\eta_1$ is required to be bounded, the RHS of \eqref{S3:Eq19} must be bounded as well. Assuming that $F, G, \displaystyle\int^{\infty}_{-\infty} G \D \zeta, \int^{\infty}_{-\infty} F \D \xi$ are bounded, the only problematic terms are the coefficients of $\xi$ and $\zeta$ in \eqref{S3:Eq19}. Unless the under-braced terms vanish, $\eta_1$ grows without bound as $\xi, \zeta \to \infty.$ Hence, these are the secular terms we wish to remove. Then, we must have 
+\begin{align}
+2F_{\tau_1} + \frac{1}{3}F_{\xi\xi\xi} + 3 F F_\xi &= 0 \label{KdV1} \\
+2G_{\tau_1} - \frac{1}{3}G_{\zeta\zeta\zeta} -  3 G G_\zeta &= 0. \label{KdV2}
+\end{align}
+Equations \eqref{KdV1} and \eqref{KdV2} are the KdV equations, which allow us to determine $F, G$ on a slow time scale $\tau_1.$ 
+
+We interpret the KdV model, given by \eqref{1stOrderApprox}, \eqref{KdV1} and \eqref{KdV2}, as follows. The wave equation \eqref{1stOrderApprox} prescribes a linear interaction of two wave trains $F$ and $G$ on a fast time scale $\tau_0.$ The KdV equations \eqref{KdV1} and \eqref{KdV2} govern the evolution on a slow time scale $\tau_1,$ when each wave train interacts with itself. In particular, that $F$ and $G$ can be decoupled into separate equations means that the left- and right-going waves do not affect each other long enough to interact strongly on the time scale $\tau_1$. 
+
+In conclusion, asymptotic analysis of the non-local formulation in shallow water limit gives rise to two KdV equations, \eqref{KdV1} and \eqref{KdV2}. Given appropriate initial conditions, we can solve these PDEs by means of the inverse scattering transform (see \cite[Chapter 9]{Ablowitz}). Keeping the leading-order terms, we have approximated wave height $\eta \approx \eta_0 = F(x- t, \epsilon t) + G(x + t, \epsilon t),$ where $F$ and $G$'s dependence on $x-t$ and $x+t$ is determined via the initial conditions, and dependence on $\epsilon t$ is determined via \eqref{KdV1} and \eqref{KdV2}. The derivation is complete.
+
+\section{On KdV derivation} % Main chapter title
+Although we approximate solutions of the water-wave problem, the derivation of the KdV equations deserves a special attention. Here, we obtain these equations when removing secular terms. In literature, another approach is given in \cite{BBM1972}. The authors begin by considering an advection equation,
+\begin{equation}\label{Model1}
+u_t + c_0 u_x = 0,
+\end{equation} 
+which is a model for small-amplitude long waves, propagating in the positive $x$ direction with speed $c_0.$ This model has limited utility, since nonlinear and dispersive effects accumulate and cause the model to lose its validity over large times. One can correct for these effects by considering each effect separately, by introducing a small parameter $\epsilon \ll 1.$ Nonlinearity is accounted by adding $c_0 \epsilon u u_x$ to \eqref{Model1} and dispersion is accounted by adding $c_0 \epsilon u_{xxx}$ to \eqref{Model1}.
+
+Adding the terms results in the respective first-order approximations allowing for weakly nonlinear and dispersive effects.
+%\begin{equation}\label{Model2}
+%u_t + c_0 (1+ \epsilon u)u_x = u_t + c_0 u_x + c_0 \epsilon u u_x  = 0, \qquad \epsilon \ll 1,
+%\end{equation}
+%and dispersion is accounted by
+%\begin{equation}\label{Model3}
+%u_t + c_0 (Lu)_x= u_t + c_0 u_x + c_0 \epsilon \alpha^2 u_{xxx}  = 0,  \qquad \epsilon \ll 1.
+%\end{equation}
+%Equations \eqref{Model2} and \eqref{Model3} are obtained as the respective first-order approximations allowing for weakly nonlinear and dispersive effects. 
+The authors then argue that an approximation accounting for both effects can be anticipated by simply combining the $\epsilon$ terms:
+\begin{equation}\label{Model4}
+u_t + u_x + c_0\epsilon(u u_x + u_{xxx}) = 0.
+\end{equation}  
+Introducing dimensionless variables and applying Galilean transformations yield the usual form of the KdV equation: $u_t +uu_x + u_{xxx} = 0.$
+
+The derivation is elegant, and certainly much shorter than the one presented in the previous section. However, addition of the $\epsilon$ terms to get \eqref{Model4} 
+%in \eqref{Model2} and \eqref{Model3} 
+presupposes a certain balance between nonlinearity and dispersion. There is no reason to assume this choice of balance; indeed, for a self-consistent theory we must account for the nonlinear and dispersive effects simultaneously. Thus, the resulting derivation can be considered ad-hoc, not relying on the direct derivation from the physical model.

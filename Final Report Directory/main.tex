@@ -1,0 +1,469 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Masters/Doctoral Thesis
+% LaTeX Template
+% Version 2.5 (27/8/17)
+%
+% This template was downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Version 2.x major modifications by:
+% Vel (vel@latextemplates.com)
+%
+% This template is based on a template by:
+% Steve Gunn (http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/)
+% Sunil Patel (http://www.sunilpatel.co.uk/thesis-template/)
+%1
+% Template license:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+% Pages (from the internal page numbering) to be printed in color - 3, 4, 5, 11, 12, 13, 14, 17, 18, 20, 21, 23, 25, 27.
+
+\documentclass[
+hidelinks,
+12pt, % The default document font size, options: 10pt, 11pt, 12pt
+oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
+english, % ngerman for German
+doublespacing, % Single line spacing, alternatives: onehalfspacing or singlespacing
+%draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
+%nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
+%liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
+%toctotoc, % Uncomment to add the main table of contents to the table of contents
+%parskip, % Uncomment to add space between paragraphs
+%nohyperref, % Uncomment to not load the hyperref package
+headsepline, % Uncomment to get a line under the header
+%chapterinoneline, % Uncomment to place the chapter title next to the number on one line
+%consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
+]{MastersDoctoralThesis} % The class file specifying the document structure
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{subcaption}
+\usepackage{mathpazo} % Use the Palatino font by default
+%\usepackage{newpxtext,newpxmath}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage[final]{pdfpages}
+\usepackage{xcolor}
+\usepackage{balance}
+\usepackage{epigraph}
+\usepackage{alltt} % for code snippet
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+
+\addbibresource{biblio.bib} % The filename of the bibliography
+
+% Standard packages
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{xcolor,graphicx}
+\usepackage{verbatim}
+\usepackage{hyperref}
+% To use turkish characters
+\usepackage[utf8]{inputenc}
+% Layout of headers & footers
+\usepackage{titling}
+
+% Hyphenation
+\hyphenation{non-zero}
+
+% Theorem definitions in the amsthm standard
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{sublem}[thm]{Sublemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conc}[thm]{Conclusion}
+\newtheorem{conj}[thm]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{cond}[thm]{Condition}
+\newtheorem{asm}[thm]{Assumption}
+\newtheorem{ntn}[thm]{Notation}
+\newtheorem{prob}[thm]{Problem}
+\theoremstyle{remark}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem*{hint}{Hint}
+
+\newcommand{\FT}[2][k]{\mathcal{F}_{#1}\left\lbrace #2\right\rbrace} 
+\newcommand{\invFT}[2][k]{\mathcal{F}^{-1}_{#1} \left\lbrace #2\right\rbrace}
+
+\newcommand{\SFT}[2][k]{\mathcal{F}_{#1}^s\left\lbrace #2\right\rbrace} 
+\newcommand{\invSFT}[2][k]{ \left\lbrace \mathcal{F}^{s}_{#1} \right\rbrace^{-1} \left\lbrace #2\right\rbrace }
+\newcommand{\CFT}[2][k]{\mathcal{F}_{#1}^c\left\lbrace #2\right\rbrace} 
+\newcommand{\invCFT}[2][k]{\left\lbrace \mathcal{F}^{c}_{#1} \right\rbrace^{-1} \left\lbrace #2\right\rbrace}
+
+%% Mathmode shortcuts
+% Number sets
+%\newcommand{\NN}{\mathbb N}              % The set of naturals
+\newcommand{\NNzero}{\NN_0}              % The set of naturals including zero
+\newcommand{\NNone}{\NN}                 % The set of naturals excluding zero
+\newcommand{\ZZ}{\mathbb Z}              % The set of integers
+\newcommand{\QQ}{\mathbb Q}              % The set of rationals
+\newcommand{\RR}{\mathbb R}              % The set of reals
+\newcommand{\CC}{\mathbb C}              % The set of complex numbers
+\newcommand{\KK}{\mathbb K}              % An arbitrary field
+% Modern typesetting for the real and imaginary parts of a complex number
+\renewcommand{\Re}{\operatorname*{Re}} \renewcommand{\Im}{\operatorname*{Im}}
+% Upright d for derivatives
+\newcommand{\D}{\ensuremath{\,\mathrm{d}}}
+
+\newcommand{\Div}{\ensuremath{\,\mathrm{div}\,}}
+
+\newcommand{\X}{\ensuremath{{\bf x}}}
+
+\newcommand{\V}{\ensuremath{{\bf v}}}
+
+\newcommand{\U}{\ensuremath{{\bf u}}}
+
+\newcommand{\N}{\ensuremath{{\bf N}}}
+\newcommand{\T}{\ensuremath{{\bf T}}}
+
+% Upright i for imaginary unit
+\newcommand{\ri}{\ensuremath{\mathrm{i}}}
+% Upright e for exponentials
+\newcommand{\re}{\ensuremath{\mathrm{e}}}
+% abbreviation for \lambda
+\newcommand{\la}{\ensuremath{\lambda}}
+% Make epsilons look more different from the element symbol
+\renewcommand{\epsilon}{\varepsilon}
+% Always use slanted forms of \leq, \geq
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+% Shorthand for "if and only if" symbol
+\newcommand{\Iff}{\ensuremath{\Leftrightarrow}}
+% Make bold symbols for vectors
+\providecommand{\BVec}[1]{\mathbf{#1}}
+% Hyperbolic functions
+\providecommand{\sech}{\operatorname{sech}}
+\providecommand{\csch}{\operatorname{csch}}
+\providecommand{\ctnh}{\operatorname{ctnh}}
+% sinc function
+\providecommand{\sinc}{\operatorname{sinc}}
+
+% add two sub and superscripts with a space between them
+\newcommand{\Mspacer}{\;} %Spacer for below Matrix display functions
+\newcommand{\M}[3]{#1_{#2\Mspacer#3}} %Print a symbol with two subscripts eg a matrix entry
+\newcommand{\Msup}[4]{#1_{#2\Mspacer#3}^{#4}} %Print a symbol with two subscripts and a superscript eg a matrix entry
+\newcommand{\Msups}[5]{#1_{#2\Mspacer#3}^{#4\Mspacer#5}} %Print a symbol with two subscripts and two superscripts eg a matrix entry
+\newcommand{\MAll}[7]{\prescript{#1}{#2}{#3}_{#4\Mspacer#5}^{#6\Mspacer#7}} %Print a symbol with two subscripts and two superscripts eg a matrix entry
+
+% Make really wide hat for Fourier transforms applied to large functions
+\usepackage{scalerel}
+\usepackage{stackengine}
+\stackMath
+\newcommand\reallywidecheck[1]{%
+\savestack{\tmpbox}{\stretchto{%
+  \scaleto{%
+    \scalerel*[\widthof{\ensuremath{#1}}]{\kern-.6pt\bigwedge\kern-.6pt}%
+    {\rule[-\textheight/2]{1ex}{\textheight}}%WIDTH-LIMITED BIG WEDGE
+  }{\textheight}% 
+}{0.5ex}}%
+\stackon[1pt]{#1}{\scalebox{-1}{\tmpbox}}%
+}
+\providecommand{\widecheck}{\reallywidecheck}
+
+\newcommand\reallywidehat[1]{%
+\savestack{\tmpbox}{\stretchto{%
+  \scaleto{%
+    \scalerel*[\widthof{\ensuremath{#1}}]{\kern-.6pt\bigwedge\kern-.6pt}%
+    {\rule[-\textheight/2]{1ex}{\textheight}}%WIDTH-LIMITED BIG WEDGE
+  }{\textheight}% 
+}{0.5ex}}%
+\stackon[1pt]{#1}{\tmpbox}%
+}
+
+\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+
+%----------------------------------------------------------------------------------------
+%	MARGIN SETTINGS
+%----------------------------------------------------------------------------------------
+
+\geometry{
+	paper=a4paper, % Change to letterpaper for US letter
+	inner=4.0cm, % Inner margin
+	outer=3.0cm, % Outer margin
+	bindingoffset=.5cm, % Binding offset
+	top=2.5cm, % Top margin
+	bottom=2.5cm, % Bottom margin
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+
+%----------------------------------------------------------------------------------------
+%	THESIS INFORMATION
+%----------------------------------------------------------------------------------------
+
+\thesistitle{Approximate equations in the shallow water regime of the water wave problem on unbounded domains} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
+\supervisor{Pr. Katie \textsc{Oliveras}} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
+\examiner{Dr/Pr. FirstName \textsc{LastName}} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
+\degree{B.Sc (Hons)} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
+\author{Sultan \textsc{Aitzhan}} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
+\addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
+
+\subject{Mathematical, Computational and Statistical Sciences} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
+\keywords{Insert, keywords, here} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
+\university{\href{https://www.yale-nus.edu.sg/}{Yale-NUS College}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
+\department{{}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
+\group{{}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
+\faculty{{}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
+
+\AtBeginDocument{
+\hypersetup{colorlinks=false}
+\hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
+\hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
+\hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
+}
+
+
+\begin{document}
+\sloppy
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
+
+\pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+% Fill out the titlepage.docx document, then save it as a pdf for inclusion here
+\includepdf[pages=-,pagecommand={},width=1.2\textwidth]{titlepage.pdf}
+
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	DECLARATION & CONSENT
+%----------------------------------------------------------------------------------------
+
+% print, sign, and scan the declaration form, then include it here
+\includepdf[pages=-,pagecommand={},width=1.2\textwidth]{declaration.pdf}
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+
+\begin{acknowledgements}
+\addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
+First and foremost, I would like to thank Prof Katie Oliveras for taking me in as her student and supervising this project. In addition, I extend my gratitude to Prof Dave Smith for his continued enthusiasm and patience in my growth as a mathematics student. The guidance and encouragement provided by these two people make doing mathematics so much more enjoyable. 
+
+Along the way, I must acknowledge the numerous mathematics faculty for their support: Prof Spagnuolo, Prof Berrick, Prof Wertz, Prof Heinecke, Prof Stamps, Prof Yu, Prof Dinh and Prof Rodin. I am also grateful to my friends Grace, Sveta, Chengpei, Elaine, Vlad and Ayan, for giving me reasons to laugh every day (amongst many other things). Finally, I thank my family for their never-ending belief in me, and my grandmother, for being the first inspiration to pursue mathematics. 
+
+Above all, Alhamdulillah. 
+\end{acknowledgements}
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{abstract}
+\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+A free-boundary, water-wave problem is studied for an irrotational, inviscid, and incompressible fluid. Specifically, we describe a derivation of approximate equations in the shallow water limit using a non-local formulation, introduced in \cite{OV2013} via a normal-to-tangential operator, in two related settings. One setting is the classical, whole-line problem, and the other is the half-line problem, which physically is represented by the presence of a wall, so that the water is flowing only on one side of the domain. In both settings, the non-local formulation yields expressions for the surface elevation, from which we obtain the appropriate wave and KdV-like equations, as well as new approximate models. 
+\end{abstract}
+
+
+%----------------------------------------------------------------------------------------
+% CONTRIBUTIONS
+%----------------------------------------------------------------------------------------
+
+% \chapter{Claims}
+%
+% This paper presents the following original contributions:
+%
+% \begin{enumerate}
+% 	\item A hardware device for haptic sensory substitution along with designs for the construction of such a system.
+% 	\item Two implementations of sensory substitution using haptic feedback, continuous and delayed feedback-based spatial navigation tasks, each of which include:
+% 		\begin{enumerate}
+% 			\item a front-end for providing visual input to the user during the training phase with useful readouts to the researcher,
+% 			\item a transmission protocol, which maps information from the task at hand (spatial coordinates, velocity information, etc) to time-based sensor actuation signals (20$^{\circ}$ on servo 1, 35$^{\circ}$ on servo 2, etc) in real-time.
+% 		\end{enumerate}
+% 	\item An evaluation framework for measuring the performance of a sensory substitution system, which provides sample tasks that can be used to standardise and compare performance across the board for future research.
+% 	\item A review of existing hardware and software stacks as well as possible avenues for development based on the developed metrics.
+% \end{enumerate}
+%
+% In addition, code for displaying results in real-time, modules for managing servo overload, network latency and other factors were also written by the author.
+
+
+% %----------------------------------------------------------------------------------------
+% %	DECLARATION PAGE
+% %----------------------------------------------------------------------------------------
+%
+%\begin{declaration}
+%\addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
+%
+%\noindent I, \authorname, hereby declare that this Project, the Capstone Report and associated work listed herein, is the end result of my own work and that due acknowledgement has been given in the bibliography and references to ALL sources printed, electronic, or personal, in accordance with the academic regulations of Yale‐NUS College.
+%I acknowledge that the Thesis is subject to the policies relating to Yale‐NUS College Intellectual  Property (Yale‐NUS HR 039).
+%
+%I confirm that:
+%
+%\begin{itemize}
+%\item This work was done wholly or mainly while in candidature for a research degree at this University.
+%\item Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
+%\item Where I have consulted the published work of others, this is always clearly attributed.
+%\item Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
+%\item I have acknowledged all main sources of help.
+%\item Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
+%\end{itemize}
+%
+%\noindent Signed:\\
+%\rule[0.5em]{25em}{0.5pt} % This prints a line for the signature
+%
+%\noindent Date:\\
+%\rule[0.5em]{25em}{0.5pt} % This prints a line to write the date
+% \end{declaration}
+%
+%\cleardoublepage
+
+%----------------------------------------------------------------------------------------
+%	QUOTATION PAGE
+%----------------------------------------------------------------------------------------
+
+% \vspace*{0.2\textheight}
+%
+% \noindent\enquote{\itshape Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism.}\bigbreak
+%
+% \hfill Dave Barry
+
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%----------------------------------------------------------------------------------------
+
+\tableofcontents % Prints the main table of contents
+
+%\listoftables % Prints the list of tables
+%\label{lst:tabs}
+
+\listoffigures % Prints the list of figures
+\label{lst:figs}
+%----------------------------------------------------------------------------------------
+%	ABBREVIATIONS
+%----------------------------------------------------------------------------------------
+
+\begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
+%%
+\textbf{RHS} & \textbf{R}ight \textbf{H}and \textbf{S}ide of an equation\\
+\textbf{LHS} & \textbf{L}eft \textbf{H}and \textbf{S}ide of an equation\\
+\textbf{ODE} & \textbf{O}rdinary \textbf{D}ifferential \textbf{E}quation\\
+\textbf{PDE} & \textbf{P}artial \textbf{D}ifferential \textbf{E}quation\\
+\textbf{BVP} & \textbf{B}oundary \textbf{V}alue \textbf{P}roblem\\
+\textbf{IVP} & \textbf{I}nitial \textbf{V}alue \textbf{P}roblem\\
+\textbf{KdV} equation & \textbf{K}orteweg \textbf{d}e \textbf{V}ries equation \\
+\textbf{DNO} & \textbf{D}irichlet-to-\textbf{N}eumann \textbf{O}perator\\
+\textbf{AFM} & \textbf{A}blowit-\textbf{F}okas-\textbf{M}usslimani \\
+%%
+\end{abbreviations}
+%
+%%----------------------------------------------------------------------------------------
+%	PHYSICAL CONSTANTS/OTHER DEFINITIONS
+%----------------------------------------------------------------------------------------
+
+% \begin{constants}{lr@{${}={}$}l} % The list of physical constants is a three column table
+%
+% % The \SI{}{} command is provided by the siunitx package, see its documentation for instructions on how to use it
+%
+% Speed of Light & $c_{0}$ & \SI{2.99792458e8}{\meter\per\second} (exact)\\
+% %Constant Name & $Symbol$ & $Constant Value$ with units\\
+%
+% \end{constants}
+
+%----------------------------------------------------------------------------------------
+%	SYMBOLS
+%----------------------------------------------------------------------------------------
+
+\begin{symbols}{lll} % Include a list of Symbols (a three column table)
+$\RR$ & Set of real numbers \\
+$\V$ & Vector in $\RR^3$ \\
+$\V^{*}$ & Complex conjugate of $\V$\\
+$\Vert\V\Vert$ & (Euclidean) Norm of $\V$ \\
+$v(\X)$ & Scalar field, i.e. map from $\RR^3$ to $\RR$ \\
+$\V(\X)$ & Vector field, i.e. map from $\RR^3$ to $\RR^3$ \\
+\addlinespace
+$\dfrac{\D f}{\D x}$ or $f'$ & Derivative of $f$ with respect to $x$  \\
+\addlinespace
+$\dfrac{\partial f}{\partial x_i}$ or $\partial_{x_i} f$ or $f_{x_i}$ & Partial derivative of $f$ with respect to variable $x_i$  \\
+\addlinespace
+$\nabla$  & Gradient operator $\nabla = (\partial_x, \partial_y, \partial_z)^T,$ where $T$ is transpose \\
+$\Delta$ & Laplace operator $\Delta = \nabla \cdot \nabla$ \\
+\addlinespace
+\addlinespace
+$\epsilon$ & Parameter for nonlinearity (Chapter 3) \\
+$\mu$ & Parameter for amplitude (Chapter 3) \\
+\addlinespace
+\addlinespace
+$f(x) = \mathcal{O}(g(x))$ & There is $M>0$ such that for sufficiently large $x,$ \\
+& $\qquad\qquad |f(x)| \leq  M|g(x)|$ \\
+$f(x) \sim g(x)$ & Same as $f(x) = \mathcal{O}(g(x))$\\
+$f(x)\approx g(x)$ & $f(x)$ is approximately equal to $g(x)$ \\
+$f(x)\simeq g(x)$ & $f(x)$ behaves like $g(x)$ when $x$ is large \\
+$f(x) \ll g(x)$ & $f(x)$ is much less than $g(x)$ \\
+$f(x)\gg g(x)$ & $f(x)$ is much greater than $g(x)$\\
+\addlinespace
+\addlinespace
+$\FT[k]{f(x)}$ or $\reallywidehat{f}_k:$ & Fourier transform of $f(x),$ given by \\
+& $\qquad \displaystyle\FT[k]{f(x)} = \int^{\infty}_{-\infty} \exp(-ikx) f(x) \D x$ \\
+$\SFT[k]{f(x)}$ or $\reallywidehat{f}^k_c:$ & Fourier Sine transform of $f(x),$ given by \\
+& $\qquad \displaystyle\SFT[k]{f(x)} = \int^{\infty}_{0} \sin(kx) f(x) \D x$ \\
+$\CFT[k]{f(x)}$ or $\reallywidehat{f}^k_c:$ & Fourier Cosine transform of $f(x),$ given by \\
+& $\qquad \displaystyle\CFT[k]{f(x)} = \int^{\infty}_{0}\cos(kx) f(x) \D x$ \\
+
+$\invFT[k]{F(k)}:$ & Inverse Fourier transform of $f(k),$ given by \\
+& $\qquad \displaystyle\invFT[k]{F(k)} = \frac{1}{2\pi} \int^{\infty}_{-\infty}\exp(ikx) F(k) \D k$ \\
+$\invSFT[k]{F(k)}:$ & Inverse Sine Fourier transform of $f(k),$ given by \\
+& $\qquad \displaystyle\invSFT[k]{F(k)} = \frac{2}{\pi} \int^{\infty}_{0} \sin(kx) F(k) \D k$ \\
+$\invCFT[k]{F(k)}:$ & Inverse Fourier Cosine transform of $F(k),$ given by \\
+& $\qquad\displaystyle\invCFT[k]{F(k)} = \frac{2}{\pi} \int^{\infty}_{0} \cos(kx) F(k) \D k$ \\
+
+\addlinespace % Gap to separate the Roman symbols from the Greek
+\end{symbols}
+
+%----------------------------------------------------------------------------------------
+%	DEDICATION
+%----------------------------------------------------------------------------------------
+
+%\dedicatory{Dedicated to ceux l\`{a} qui veulent.}
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - CHAPTERS
+%----------------------------------------------------------------------------------------
+\pagestyle{thesis}
+\mainmatter % Begin numeric (1,2,3...) page numbfile:///Users/ww/Desktop/capstone/Capstone/final-report-directory/chapters/chapter1.texering
+
+ % Return the page headers back to the "thesis" style
+
+% Include the chapters of the thesis as separate files from the Chapters folder
+% Uncomment the lines as you write the chapters
+
+\input{chapters/chapter1}
+\input{chapters/chapter2}
+\input{chapters/chapter3}
+\input{chapters/chapter4}
+\input{chapters/chapter5}
+
+%\input{chapters/otherchapter}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\printbibliography[heading=bibintoc]
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - APPENDICES
+%----------------------------------------------------------------------------------------
+
+%\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
+
+% Include the appendices of the thesis as separate files from the Appendices folder
+% Uncomment the lines as you write the Appendices
+
+%\input{appendix/appendixA}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
